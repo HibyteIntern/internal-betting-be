@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api/sample")
 class SampleController {
 
-    @GetMapping
+    @GetMapping(produces = ["text/plain"])
     fun getSample(): String = "Hello World!"
 }
