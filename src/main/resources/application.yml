@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/betting
+    username: postgres
+    password: admin
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://quay.keycloak.hq-hydra.hibyte.ro/realms/internship
+          jwk-set-uri: https://quay.keycloak.hq-hydra.hibyte.ro/realms/internship/protocol/openid-connect/certs
