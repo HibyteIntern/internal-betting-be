@@ -1,21 +1,35 @@
 package ro.hibyte.betting.entity
 
-import jakarta.persistence.Entity
-import jakarta.persistence.FetchType
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.Id
-import jakarta.persistence.JoinColumn
-import jakarta.persistence.ManyToOne
+import jakarta.persistence.*
+import ro.hibyte.betting.dto.CompleteBetTypeDto
 
 @Entity
 data class BetType (
     @Id
     @GeneratedValue
-    var id: Long,
+    var id: Long?,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bet_template_id")
-    var betTemplate: BetTemplate
+    var betTemplate: BetTemplate,
 
-    //odds will be added later
-)
+    @ElementCollection
+    @CollectionTable(name = "bet_type_odds", joinColumns = [JoinColumn(name = "bet_type_id")])
+    @Column(name = "odds")
+    var odds: List<Double> = ArrayList()
+) {
+
+    constructor(completeBet: CompleteBetTypeDto) : this(
+        id = completeBet.id,
+        betTemplate = BetTemplate(
+            name = completeBet.name,
+            type = completeBet.type,
+            multipleChoiceOptions = completeBet.multipleChoiceOptions ?: emptyList()
+        ),
+        odds = completeBet.odds ?: ArrayList()
+    )
+
+    fun update(betType: BetType) {
+        odds = betType.odds
+    }
+}

@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import ro.hibyte.betting.dto.CompleteBetTypeDto
 import ro.hibyte.betting.entity.BetType
 import ro.hibyte.betting.service.BetTypeService
 
@@ -19,8 +21,11 @@ import ro.hibyte.betting.service.BetTypeService
 class BetTypeController(private val betTypeService: BetTypeService) {
 
     @PostMapping
-    fun createBetType(@RequestBody betType: BetType): ResponseEntity<BetType> =
-        ResponseEntity(betTypeService.createBetType(betType), HttpStatus.CREATED)
+    fun createBetType(@RequestBody completeBet: CompleteBetTypeDto): ResponseEntity<CompleteBetTypeDto> =
+        ResponseEntity(
+            CompleteBetTypeDto(betTypeService.createBetType(completeBet)),
+            HttpStatus.CREATED
+        )
 
     @GetMapping("/{id}")
     fun getBetType(@PathVariable id: Long): BetType =
@@ -29,6 +34,13 @@ class BetTypeController(private val betTypeService: BetTypeService) {
     @GetMapping
     fun getBetTypes(): List<BetType> =
         betTypeService.getBetTypes()
+
+    @PutMapping("/{id}")
+    fun updateBetType(@PathVariable id: Long, @RequestBody completeBet: CompleteBetTypeDto): ResponseEntity<CompleteBetTypeDto> =
+        ResponseEntity(
+            CompleteBetTypeDto(betTypeService.updateBetType(id, completeBet)),
+            HttpStatus.OK
+        )
 
     @DeleteMapping("/{id}")
     fun deleteBetType(@PathVariable id: Long) =
