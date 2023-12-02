@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import ro.hibyte.betting.dto.CompleteBetTypeDto
-import ro.hibyte.betting.entity.BetType
 import ro.hibyte.betting.service.BetTypeService
 
 @RestController
@@ -28,12 +27,12 @@ class BetTypeController(private val betTypeService: BetTypeService) {
         )
 
     @GetMapping("/{id}")
-    fun getBetType(@PathVariable id: Long): BetType =
-        betTypeService.getBetType(id)
+    fun getBetType(@PathVariable id: Long): CompleteBetTypeDto =
+       CompleteBetTypeDto(betTypeService.getBetType(id))
 
     @GetMapping
-    fun getBetTypes(): List<BetType> =
-        betTypeService.getBetTypes()
+    fun getBetTypes(): List<CompleteBetTypeDto> =
+        betTypeService.getBetTypes().map{ CompleteBetTypeDto(it) }
 
     @PutMapping("/{id}")
     fun updateBetType(@PathVariable id: Long, @RequestBody completeBet: CompleteBetTypeDto): ResponseEntity<CompleteBetTypeDto> =

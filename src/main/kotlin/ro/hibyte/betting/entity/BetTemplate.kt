@@ -44,10 +44,12 @@ data class BetTemplate (
                 betTemplate.multipleChoiceOptions = ArrayList()
             }
         }
-        fun checkEntityAlreadyExists(betTemplate: BetTemplate, betTemplateRepository: BetTemplateRepository): Boolean {
+
+        //this method checks if the betTemplate already exists in the database. If it does, it returns the existing entity, otherwise null
+        fun checkEntityAlreadyExists(betTemplate: BetTemplate, betTemplateRepository: BetTemplateRepository): BetTemplate? {
             val betTemplateList: List<BetTemplate> = betTemplateRepository.findBetTemplatesByNameAndType(betTemplate.name, betTemplate.type)
-            if(betTemplateList.isEmpty()) return false
-            if(betTemplate.type != BetTemplateType.MULTIPLE_CHOICE) return true
+            if(betTemplateList.isEmpty()) return null
+            if(betTemplate.type != BetTemplateType.MULTIPLE_CHOICE) return betTemplateList[0]
 
             //if the type is MULTIPLE_CHOICE, we must also iterate through the list and check if the options are the same
             for(template in betTemplateList) {
@@ -59,12 +61,11 @@ data class BetTemplate (
                         break
                     }
                 }
-                if(sameOptions) return true
+                if(sameOptions) return template
             }
-            return false
+            return null
         }
     }
-
 
     fun update(betTemplate: BetTemplate) {
         multipleChoiceOptions = betTemplate.multipleChoiceOptions

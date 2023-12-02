@@ -11,7 +11,7 @@ class BetTemplateService(private val betTemplateRepository: BetTemplateRepositor
 
     fun createBetTemplate(betTemplate: BetTemplate): BetTemplate {
         BetTemplate.validateAndCorrect(betTemplate)
-        if(BetTemplate.checkEntityAlreadyExists(betTemplate, betTemplateRepository))
+        if(BetTemplate.checkEntityAlreadyExists(betTemplate, betTemplateRepository) != null)
             throw EntityAlreadyExistsException("Bet template with this name, type and options already exists")
         return betTemplateRepository.save(betTemplate)
     }
@@ -24,7 +24,7 @@ class BetTemplateService(private val betTemplateRepository: BetTemplateRepositor
 
     fun updateBetTemplate(id: Long, betTemplate: BetTemplate): BetTemplate {
         val templateToUpdate = betTemplateRepository.findById(id).orElseThrow { BetTemplateNotFoundException(id) }
-        if(BetTemplate.checkEntityAlreadyExists(betTemplate, betTemplateRepository))
+        if(BetTemplate.checkEntityAlreadyExists(betTemplate, betTemplateRepository) != null)
             throw EntityAlreadyExistsException("Bet template with this name, type and options already exists")
         templateToUpdate.update(betTemplate)
         return betTemplateRepository.save(templateToUpdate)

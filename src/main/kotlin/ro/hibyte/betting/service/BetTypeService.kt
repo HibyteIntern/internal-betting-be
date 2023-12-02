@@ -2,6 +2,7 @@ package ro.hibyte.betting.service
 
 import org.springframework.stereotype.Service
 import ro.hibyte.betting.dto.CompleteBetTypeDto
+import ro.hibyte.betting.entity.BetTemplate
 import ro.hibyte.betting.entity.BetType
 import ro.hibyte.betting.exceptions.types.BetTypeNotFoundException
 import ro.hibyte.betting.repository.BetTemplateRepository
@@ -11,16 +12,20 @@ import ro.hibyte.betting.repository.BetTypeRepository
 class BetTypeService(private val betTypeRepository: BetTypeRepository,
                      private val betTemplateRepository: BetTemplateRepository) {
 
+    private fun checkExistingBetTemplateAndAssignBetTemplate(betType: BetType): BetType {
+        val existingTemplate: BetTemplate? = BetTemplate.checkEntityAlreadyExists(betType.betTemplate, betTemplateRepository)
+        if(existingTemplate != null) {
+            betType.betTemplate = existingTemplate
+        } else {
+            BetTemplate.validateAndCorrect(betType.betTemplate)
+            betType.betTemplate = betTemplateRepository.save(betType.betTemplate)
+        }
+        return betType
+    }
+
     fun createBetType(completeType: CompleteBetTypeDto): BetType {
         val betType = BetType(completeType)
-//        val databaseBetTemplate: BetTemplate? =
-//            betTemplateRepository.findEqualBetTemplate(betType.betTemplate)
-//        if(databaseBetTemplate != null) {
-//            betType.betTemplate = databaseBetTemplate
-//        } else {
-//            BetTemplate.validateAndCorrect(betType.betTemplate)
-//            betType.betTemplate = betTemplateRepository.save(betType.betTemplate)
-//        }
+        checkExistingBetTemplateAndAssignBetTemplate(betType)
         return betTypeRepository.save(betType)
     }
 
@@ -33,15 +38,7 @@ class BetTypeService(private val betTypeRepository: BetTypeRepository,
     fun updateBetType(id: Long, completeType: CompleteBetTypeDto): BetType {
         val betTypeToUpdate: BetType = betTypeRepository.findById(id).orElseThrow{BetTypeNotFoundException(id)}
         val betType = BetType(completeType)
-//
-//        val databaseBetTemplate: BetTemplate? =
-//            betTemplateRepository.findEqualBetTemplate(betType.betTemplate)
-//        if(databaseBetTemplate != null) {
-//            betType.betTemplate = databaseBetTemplate
-//        } else {
-//            BetTemplate.validateAndCorrect(betType.betTemplate)
-//            betTypeToUpdate.betTemplate = betTemplateRepository.save(betType.betTemplate)
-//        }
+        checkExistingBetTemplateAndAssignBetTemplate(betType)
         betTypeToUpdate.update(betType)
         return betTypeRepository.save(betTypeToUpdate)
     }

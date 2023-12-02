@@ -31,5 +31,6 @@ data class BetType (
 
     fun update(betType: BetType) {
         odds = betType.odds
+        betTemplate = betType.betTemplate
     }
 }
