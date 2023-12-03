@@ -36,6 +36,7 @@ data class BetTemplate (
 
 
     companion object {
+        //this method ensures that no MULTIPLE_CHOICE BetTemplates can be created if the number of options is less than 2
         fun validateAndCorrect(betTemplate: BetTemplate) {
             if(betTemplate.type == BetTemplateType.MULTIPLE_CHOICE && betTemplate.multipleChoiceOptions.size < 2) {
                 throw BadRequestException("Multiple choice bets cannot have less than 2 options")
@@ -46,6 +47,7 @@ data class BetTemplate (
         }
 
         //this method checks if the betTemplate already exists in the database. If it does, it returns the existing entity, otherwise null
+        //equality criteria: same name, same type, and if the type is MULTIPLE_CHOICE, same option list
         fun checkEntityAlreadyExists(betTemplate: BetTemplate, betTemplateRepository: BetTemplateRepository): BetTemplate? {
             val betTemplateList: List<BetTemplate> = betTemplateRepository.findBetTemplatesByNameAndType(betTemplate.name, betTemplate.type)
             if(betTemplateList.isEmpty()) return null

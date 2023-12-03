@@ -12,6 +12,10 @@ import ro.hibyte.betting.repository.BetTypeRepository
 class BetTypeService(private val betTypeRepository: BetTypeRepository,
                      private val betTemplateRepository: BetTemplateRepository) {
 
+    /*
+    this method checks if a BetTemplate with these properties already exists. If it does, it can be assigned
+    to the BetType that we want to create. If it doesn't exist, we must create a new BetTemplate.
+    */
     private fun checkExistingBetTemplateAndAssignBetTemplate(betType: BetType): BetType {
         val existingTemplate: BetTemplate? = BetTemplate.checkEntityAlreadyExists(betType.betTemplate, betTemplateRepository)
         if(existingTemplate != null) {
