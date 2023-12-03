@@ -40,7 +40,7 @@ class CompetitionController {
 
         return CompetitionDto(competition)
     }
-    // TODO: fix put causes error 500
+
     @PutMapping("/{id}")
     fun update(@PathVariable id: Long, @RequestBody dto: CompetitionDto): CompetitionDto {
         val competition = competitionService.update(dto)
