@@ -1,9 +1,6 @@
 package ro.hibyte.betting.entity
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
+import jakarta.persistence.*
 import ro.hibyte.betting.dto.UserProfileDTO
 import java.util.UUID
 
@@ -17,8 +14,10 @@ data class UserProfile(
     var keycloakId: String? = null,
     var profilePicture: String? = null,
     var description: String? = null,
+
     //bets
-    var coins: Number? = null,
+
+    var coins: Number = 50,
 
 ){
     constructor(dtoUser: UserProfileDTO): this(

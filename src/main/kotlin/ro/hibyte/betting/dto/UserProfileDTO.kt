@@ -9,7 +9,7 @@ class UserProfileDTO(
     var profilePicture: String? = null,
     var description: String? = null,
     //bets
-    var coins: Number? = null,
+    var coins: Number = 50,
 ) {
     constructor(userProfile: UserProfile) : this(
         userId = userProfile.userId,
