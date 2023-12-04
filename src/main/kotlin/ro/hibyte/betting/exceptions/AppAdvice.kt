@@ -5,10 +5,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseBody
-import ro.hibyte.betting.exceptions.types.BadRequestException
-import ro.hibyte.betting.exceptions.types.BetTemplateNotFoundException
-import ro.hibyte.betting.exceptions.types.BetTypeNotFoundException
-import ro.hibyte.betting.exceptions.types.EntityAlreadyExistsException
+import ro.hibyte.betting.exceptions.types.*
 import java.time.LocalDateTime
 
 @ControllerAdvice
@@ -17,7 +14,8 @@ class AppAdvice {
     @ResponseBody
     @ExceptionHandler(value = [
         BetTemplateNotFoundException::class,
-        BetTypeNotFoundException::class
+        BetTypeNotFoundException::class,
+        EventTemplateNotFoundException::class
     ])
     fun entityNotFoundHandler(ex: RuntimeException): ResponseEntity<Any> {
         val body: MutableMap<String, Any> = mutableMapOf()
