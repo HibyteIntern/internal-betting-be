@@ -2,7 +2,6 @@ package ro.hibyte.betting.dto
 
 import jakarta.persistence.ElementCollection
 import ro.hibyte.betting.entity.Status
-import java.sql.Timestamp
 import java.time.Instant
 
 data class EventResponse(

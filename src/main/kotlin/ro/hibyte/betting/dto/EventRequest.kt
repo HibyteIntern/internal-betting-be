@@ -6,6 +6,7 @@ import java.sql.Timestamp
 import java.time.Instant
 
 data class EventRequest(
+//    to add user and bet related fields when implemented
     var name: String ,
     var description: String ,
     var template:String ,
