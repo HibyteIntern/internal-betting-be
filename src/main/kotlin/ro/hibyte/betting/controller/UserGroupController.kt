@@ -1,6 +1,7 @@
 package ro.hibyte.betting.controller
 
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.multipart.MultipartFile
 import ro.hibyte.betting.dto.UserGroupDto
 import ro.hibyte.betting.entity.UserGroup
 import ro.hibyte.betting.service.UserGroupService
@@ -30,4 +31,9 @@ class UserGroupController (private val userGroupService: UserGroupService){
 
     @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Long) = userGroupService.delete(id)
+
+    @PostMapping("/{userGroupId}/addPhoto")
+    fun addPhoto(@RequestPart("photo") photo: MultipartFile, @PathVariable userGroupId: Long): Long? {
+        return userGroupService.addPhoto(userGroupId, photo)
+    }
 }

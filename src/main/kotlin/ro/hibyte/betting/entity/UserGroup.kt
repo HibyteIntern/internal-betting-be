@@ -8,7 +8,7 @@ data class UserGroup(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
-    var profilePicture: String,
+    var profilePicture: Long,
     var description: String,
     @ElementCollection
     var users: Set<Long>
