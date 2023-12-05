@@ -1,12 +1,13 @@
 package ro.hibyte.betting.service
 
 import org.springframework.stereotype.Service
+import org.springframework.web.multipart.MultipartFile
 import ro.hibyte.betting.dto.UserProfileDTO
 import ro.hibyte.betting.entity.UserProfile
 import ro.hibyte.betting.repository.UserProfileRepository
 
 @Service
-class UserProfileService(private val userProfileRepository: UserProfileRepository) {
+class UserProfileService(private val userProfileRepository: UserProfileRepository, private val waspService: WaspService) {
 
     fun getAll(): List<UserProfile> = userProfileRepository.findAll()
 
@@ -39,4 +40,10 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
         }
     }
 
+    fun addPhoto(userId: Long, photo: MultipartFile): Long?{
+       var userProfile = userProfileRepository.findById(userId).orElseThrow()
+        userProfile.profilePicture = waspService.sendPhotoToWasp(photo)
+        userProfileRepository.save(userProfile)
+        return userProfile.profilePicture
+    }
 }

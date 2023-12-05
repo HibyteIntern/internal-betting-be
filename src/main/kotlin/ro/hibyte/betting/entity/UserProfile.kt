@@ -12,7 +12,7 @@ data class UserProfile(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var userId: Long? = null,
     var keycloakId: String? = null,
-    var profilePicture: String? = null,
+    var profilePicture: Long? = null,
     var description: String? = null,
 
     //bets

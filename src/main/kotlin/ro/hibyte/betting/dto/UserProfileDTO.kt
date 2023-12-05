@@ -6,7 +6,7 @@ import java.util.UUID
 class UserProfileDTO(
     var userId: Long? = null,
     var keycloakId: String? = null,
-    var profilePicture: String? = null,
+    var profilePicture: Long? = null,
     var description: String? = null,
     //bets
     var coins: Number = 50,
