@@ -1,8 +1,10 @@
 package ro.hibyte.betting.mapper
 
+import org.springframework.stereotype.Component
 import ro.hibyte.betting.dto.CompleteBetTypeDto
 import ro.hibyte.betting.entity.BetType
 
+@Component
 class BetTypeMapper {
 
     fun betTypeToCompleteBetTypeDto(betType: BetType): CompleteBetTypeDto =
