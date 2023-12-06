@@ -34,11 +34,6 @@ class UserProfileController(private val userProfileService: UserProfileService, 
         return UserProfileDTO(userProfile)
     }
 
-    @PostMapping("/{userId}/addPhoto")
-    fun addPhoto(@RequestPart("photo") photo: MultipartFile, @PathVariable userId: Long): Long? {
-        return userProfileService.addPhoto(userId, photo)
-    }
-
     @PostMapping
     fun create(@RequestBody userProfileDto: UserProfileDTO) : UserProfileDTO{
         val userProfile = userProfileService.create(userProfileDto)
@@ -53,6 +48,11 @@ class UserProfileController(private val userProfileService: UserProfileService, 
 
     @DeleteMapping("/{userId}")
     fun delete(@PathVariable userId: Long) = userProfileService.delete(userId)
+
+    @PostMapping("/{userId}/addPhoto")
+    fun addPhoto(@RequestPart("photo") photo: MultipartFile, @PathVariable userId: Long): Long? {
+        return userProfileService.addPhoto(userId, photo)
+    }
 
 
 
