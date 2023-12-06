@@ -5,12 +5,6 @@ import jakarta.persistence.*
 import ro.hibyte.betting.exceptions.types.BadRequestException
 import ro.hibyte.betting.repository.BetTemplateRepository
 
-enum class BetTemplateType {
-    NUMERIC,
-    BOOLEAN,
-    MULTIPLE_CHOICE,
-    STRING
-}
 
 @Entity
 data class BetTemplate (
