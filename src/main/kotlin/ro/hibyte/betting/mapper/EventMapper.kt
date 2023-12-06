@@ -11,7 +11,7 @@ import java.sql.Timestamp
 import java.util.stream.Collectors
 
 @Component
-class EventMapper {
+class EventMapper(private val betTypeMapper: BetTypeMapper) {
     fun mapEventRequestToEvent(eventRequest: EventRequest, betTypeService: BetTypeService): Event {
         val defaultCreator = ""
         val defaultUserGroups = emptyList<String>()
@@ -44,12 +44,16 @@ class EventMapper {
         )
     }
     fun mapEventToEventResponse(event: Event): EventResponse {
+        val completeBetTypeDtoList:List<CompleteBetTypeDto> = event.betTypes.stream()
+            .map(betTypeMapper::betTypeToCompleteBetTypeDto)
+            .collect(Collectors.toList())
         return EventResponse(
             eventId = event.eventId,
             name = event.name,
             description = event.description,
             creator = event.creator,
             tags = event.tags,
+            completeBetTypeDtoList = completeBetTypeDtoList,
             userGroups = event.userGroups,
             userProfiles = event.userProfiles,
             created = event.created.toInstant(),
