@@ -12,9 +12,9 @@ import java.sql.Timestamp
 import java.util.stream.Collectors
 
 @Service
-class EventService(private val eventRepository: EventRepository , private val eventMapper: EventMapper) {
+class EventService(private val eventRepository: EventRepository , private val eventMapper: EventMapper, private val betTypeService: BetTypeService) {
     fun addEvent(eventRequest: EventRequest){
-        val event :Event = eventMapper.mapEventRequestToEvent(eventRequest)
+        val event :Event = eventMapper.mapEventRequestToEvent(eventRequest,betTypeService)
         eventRepository.save(event)
     }
     @Transactional
@@ -27,7 +27,6 @@ class EventService(private val eventRepository: EventRepository , private val ev
             event.tags = Regex("#\\w+").findAll(updatedEvent.description)
                 .map { it.value }
                 .toMutableList();
-            event.template = updatedEvent.template
             event.startsAt = Timestamp.from(updatedEvent.startsAt)
             event.endsAt = Timestamp.from(updatedEvent.endsAt)
             event.status = updatedEvent.status

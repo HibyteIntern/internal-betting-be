@@ -1,11 +1,7 @@
 package ro.hibyte.betting.entity
 
 import com.fasterxml.jackson.databind.BeanDescription
-import jakarta.persistence.ElementCollection
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
+import jakarta.persistence.*
 import java.sql.Timestamp
 
 @Entity
@@ -19,7 +15,9 @@ data class Event(
     var template:String = "",
     @ElementCollection
     var tags: List<String> = emptyList(),
-//    bet types
+    @OneToMany
+    @JoinColumn(name  = "eventId")
+    var betTypes:List<BetType> = emptyList(),
 //    bets
 //    users
     @ElementCollection
@@ -38,6 +36,7 @@ data class Event(
         creator: String,
         template: String,
         tags: List<String>,
+        betTypes: List<BetType>,
         userGroups: List<String>,
         userProfiles: List<String>,
         created: Timestamp,
@@ -52,6 +51,7 @@ data class Event(
         creator,
         template,
         tags,
+        betTypes,
         userGroups,
         userProfiles,
         created,

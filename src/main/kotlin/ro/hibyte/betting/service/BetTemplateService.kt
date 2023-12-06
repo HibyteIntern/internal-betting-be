@@ -25,7 +25,8 @@ class BetTemplateService(private val betTemplateRepository: BetTemplateRepositor
     fun updateBetTemplate(id: Long, betTemplate: BetTemplate): BetTemplate {
         val templateToUpdate = betTemplateRepository.findById(id).orElseThrow { BetTemplateNotFoundException(id) }
         if(BetTemplate.checkEntityAlreadyExists(betTemplate, betTemplateRepository) != null)
-            throw EntityAlreadyExistsException("Bet template with this name, type and options already exists")
+            throw EntityAlreadyExistsException("Bet template with " +
+                    "tions already exists")
         templateToUpdate.update(betTemplate)
         return betTemplateRepository.save(templateToUpdate)
     }

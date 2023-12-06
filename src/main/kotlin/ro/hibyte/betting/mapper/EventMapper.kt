@@ -1,28 +1,38 @@
 package ro.hibyte.betting.mapper
 
 import org.springframework.stereotype.Component
+import ro.hibyte.betting.dto.CompleteBetTypeDto
 import ro.hibyte.betting.dto.EventRequest
 import ro.hibyte.betting.dto.EventResponse
+import ro.hibyte.betting.entity.BetType
 import ro.hibyte.betting.entity.Event
+import ro.hibyte.betting.service.BetTypeService
 import java.sql.Timestamp
+import java.util.stream.Collectors
+
 @Component
 class EventMapper {
-    fun mapEventRequestToEvent(eventRequest: EventRequest): Event {
+    fun mapEventRequestToEvent(eventRequest: EventRequest, betTypeService: BetTypeService): Event {
         val defaultCreator = ""
         val defaultUserGroups = emptyList<String>()
         val defaultUserProfiles = emptyList<String>()
         val defaultTimestamp = Timestamp(System.currentTimeMillis())
-
         // Extract words starting with '#' from the description to populate tags
         val tags = Regex("#\\w+").findAll(eventRequest.description)
             .map { it.value }
             .toList()
 
+        val completeBetTypeDtoList: List<CompleteBetTypeDto> = eventRequest.completeBetTypeDtoList
+
+        val betTypes:List<BetType> =  completeBetTypeDtoList.stream()
+            .map(betTypeService::createBetType)
+            .collect(Collectors.toList())
+
         return Event(
             name = eventRequest.name,
             description = eventRequest.description,
+            betTypes = betTypes,
             creator = defaultCreator,
-            template = eventRequest.template,
             tags = tags,
             userGroups = defaultUserGroups,
             userProfiles = defaultUserProfiles,
