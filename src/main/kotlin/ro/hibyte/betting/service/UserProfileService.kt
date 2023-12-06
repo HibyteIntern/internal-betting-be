@@ -46,4 +46,8 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
         userProfileRepository.save(userProfile)
         return userProfile.profilePicture
     }
+
+    fun getId(userProfile: UserProfile): Long?{
+        return userProfile.userId
+    }
 }

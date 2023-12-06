@@ -10,7 +10,7 @@ data class EventResponse(
     var creator:String ,
     var tags: List<String>,
     var userGroups : List<String> ,
-    var userProfiles : List<String>,
+    var userProfiles : List<Long?>,
     var completeBetTypeDtoList: List<CompleteBetTypeDto>,
     var created : Instant,
     var lastModified : Instant,

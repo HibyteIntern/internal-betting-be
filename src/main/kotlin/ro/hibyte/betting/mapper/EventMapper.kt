@@ -6,16 +6,18 @@ import ro.hibyte.betting.dto.EventRequest
 import ro.hibyte.betting.dto.EventResponse
 import ro.hibyte.betting.entity.BetType
 import ro.hibyte.betting.entity.Event
+import ro.hibyte.betting.entity.UserProfile
 import ro.hibyte.betting.service.BetTypeService
+import ro.hibyte.betting.service.UserProfileService
 import java.sql.Timestamp
 import java.util.stream.Collectors
 
 @Component
-class EventMapper(private val betTypeMapper: BetTypeMapper) {
+class EventMapper(private val betTypeMapper: BetTypeMapper, private val userProfileService: UserProfileService) {
     fun mapEventRequestToEvent(eventRequest: EventRequest, betTypeService: BetTypeService): Event {
         val defaultCreator = ""
         val defaultUserGroups = emptyList<String>()
-        val defaultUserProfiles = emptyList<String>()
+        val defaultUserProfiles = emptyList<Long?>()
         val defaultTimestamp = Timestamp(System.currentTimeMillis())
         // Extract words starting with '#' from the description to populate tags
         val tags = Regex("#\\w+").findAll(eventRequest.description)
@@ -28,14 +30,22 @@ class EventMapper(private val betTypeMapper: BetTypeMapper) {
             .map(betTypeService::createBetType)
             .collect(Collectors.toList())
 
+        val users: List<UserProfile> = eventRequest.userProfileIdList.stream()
+            .map(userProfileService::get)
+            .collect(Collectors.toList())
+
+        val userProfiles: List<Long?> = users.stream()
+            .map(userProfileService::getId)
+            .collect(Collectors.toList())
         return Event(
             name = eventRequest.name,
             description = eventRequest.description,
             betTypes = betTypes,
             creator = defaultCreator,
             tags = tags,
+            users = users,
             userGroups = defaultUserGroups,
-            userProfiles = defaultUserProfiles,
+            userProfiles = userProfiles,
             created = defaultTimestamp,
             lastModified = defaultTimestamp,
             startsAt = Timestamp.from(eventRequest.startsAt),

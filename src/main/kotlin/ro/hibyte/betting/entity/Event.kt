@@ -19,11 +19,13 @@ data class Event(
     @JoinColumn(name  = "eventId")
     var betTypes:List<BetType> = emptyList(),
 //    bets
-//    users
+    @OneToMany
+    @JoinColumn(name = "eventId")
+    var users:List<UserProfile> = emptyList(),
     @ElementCollection
     var userGroups : List<String> = emptyList(),
     @ElementCollection
-    var userProfiles : List<String> = emptyList(),
+    var userProfiles : List<Long?> = emptyList(),
     var created : Timestamp = Timestamp(System.currentTimeMillis()),
     var lastModified :Timestamp = Timestamp(System.currentTimeMillis()),
     var startsAt :Timestamp = Timestamp(System.currentTimeMillis()),
@@ -37,8 +39,9 @@ data class Event(
         template: String,
         tags: List<String>,
         betTypes: List<BetType>,
+        users:List<UserProfile>,
         userGroups: List<String>,
-        userProfiles: List<String>,
+        userProfiles: List<Long?>,
         created: Timestamp,
         lastModified: Timestamp,
         startsAt: Timestamp,
@@ -52,6 +55,7 @@ data class Event(
         template,
         tags,
         betTypes,
+        users,
         userGroups,
         userProfiles,
         created,

@@ -10,6 +10,7 @@ data class EventRequest(
     var name: String ,
     var description: String ,
     var completeBetTypeDtoList: List<CompleteBetTypeDto>,
+    var userProfileIdList: List<Long>,
     var startsAt : Instant ,
     var endsAt : Instant,
     var status: Status
