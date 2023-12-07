@@ -1,66 +1,76 @@
 package ro.hibyte.betting.entity
 
-import jakarta.persistence.ElementCollection
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.Id
-import jakarta.persistence.Temporal
-import jakarta.persistence.TemporalType
+import jakarta.persistence.*
+import org.springframework.beans.factory.annotation.Autowired
 import ro.hibyte.betting.dto.CompetitionDto
+import ro.hibyte.betting.service.CompetitionService
 import java.sql.Timestamp
 
 @Entity
 data class Competition(
     @Id
-    @GeneratedValue
-    var id: Long? = null,
-    var name: String? = null,
-    var creator: String? = null,
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var competitionId: Long = 0,
+    var name: String = "",
+    var creator: String = "",
     // TODO: users
     @ElementCollection
-    var userGroups: List<String>? = null,
+    var userGroups: List<String> = emptyList(),
     @ElementCollection
-    var userProfiles: List<String>? = null,
-    // TODO: events
+    var userProfiles: List<String> = emptyList(),
+    @OneToMany
+    var events: List<Event> = emptyList(),
     @Temporal(TemporalType.TIMESTAMP)
-    var created : Timestamp? = Timestamp(System.currentTimeMillis()),
+    var created : Timestamp = Timestamp(System.currentTimeMillis()),
     @Temporal(TemporalType.TIMESTAMP)
-    var lastModified : Timestamp? = Timestamp(System.currentTimeMillis()),
-    var status: Status? = null
+    var lastModified : Timestamp = Timestamp(System.currentTimeMillis()),
+    var status: Status = Status.Draft
     ) {
-
-    constructor(dto: CompetitionDto): this(
-        id = dto.id,
+    constructor(
+        dto: CompetitionDto,
+    ): this(
         name = dto.name,
         creator = dto.creator,
         // TODO: users
         userGroups = dto.userGroups,
         userProfiles = dto.userProfiles,
-        // TODO: events
-        created = dto.created?.let { Timestamp.from(it) },
-        lastModified = dto.lastModified?.let { Timestamp.from(it) },
-        status = when(dto.status) {
-            "Draft" -> Status.Draft
-            "Open" -> Status.Open
-            "Close" -> Status.Closed
-            else -> null
-        }
-        )
+        events = dto.events,
+        created = dto.created.let { Timestamp.from(it) },
+        lastModified = dto.lastModified.let { Timestamp.from(it) },
+        status = dto.status
+    )
+//    constructor(dto: CompetitionDto): this(
+//        id = dto.id,
+//        name = dto.name,
+//        creator = dto.creator,
+//        // TODO: users
+//        userGroups = dto.userGroups,
+//        userProfiles = dto.userProfiles,
+//        events = competitionService.getEventsFromIds(dto.events!!),
+//        created = dto.created?.let { Timestamp.from(it) },
+//        lastModified = dto.lastModified?.let { Timestamp.from(it) },
+//        status = when(dto.status) {
+//            "Draft" -> Status.Draft
+//            "Open" -> Status.Open
+//            "Close" -> Status.Closed
+//            else -> null
+//        }
+//        )
 
-    fun update(dto: CompetitionDto) {
-        name = dto.name
-        creator = dto.creator
-        // TODO: users
-        userGroups = dto.userGroups
-        userProfiles = dto.userProfiles
-        // TODO: events
-        created = dto.created?.let { Timestamp.from(it) }
-        lastModified = dto.lastModified?.let { Timestamp.from(it) }
-        status = when(dto.status) {
-            "Draft" -> Status.Draft
-            "Open" -> Status.Open
-            "Close" -> Status.Closed
-            else -> null
-        }
-    }
+//    fun update(dto: CompetitionDto, competitionService: CompetitionService) {
+//        name = dto.name
+//        creator = dto.creator
+//        // TODO: users
+//        userGroups = dto.userGroups
+//        userProfiles = dto.userProfiles
+//        events =  competitionService.getEventsFromIds(dto.events!!)
+//        created = dto.created?.let { Timestamp.from(it) }
+//        lastModified = dto.lastModified?.let { Timestamp.from(it) }
+//        status = when(dto.status) {
+//            "Draft" -> Status.Draft
+//            "Open" -> Status.Open
+//            "Close" -> Status.Closed
+//            else -> null
+//        }
+//    }
 }

@@ -1,37 +1,33 @@
 package ro.hibyte.betting.dto
 
 import ro.hibyte.betting.entity.Competition
+import ro.hibyte.betting.entity.Event
 import ro.hibyte.betting.entity.Status
 import java.sql.Timestamp
 import java.time.Instant
 
-class CompetitionDto(
+data class CompetitionDto(
     var id: Long? = null,
-    var name: String? = null,
-    var creator: String? = null,
+    var name: String = "",
+    var creator: String = "",
     // TODO: users
-    var userGroups: List<String>? = null,
-    var userProfiles: List<String>? = null,
-    // TODO: events
-    var created : Instant? = null,
-    var lastModified : Instant? = null,
-    var status: String? = null
+    var userGroups: List<String> = emptyList(),
+    var userProfiles: List<String> = emptyList(),
+    var events: List<Event> = emptyList(),
+    var created : Instant = Instant.now(),
+    var lastModified : Instant = Instant.now(),
+    var status: Status = Status.Draft
 ) {
     constructor(competition: Competition) : this(
-        id = competition.id,
+        id = competition.competitionId,
         name = competition.name,
         creator = competition.creator,
         // TODO: users
         userGroups = competition.userGroups,
         userProfiles = competition.userProfiles,
-        // TODO: events
-        created = competition.created?.toInstant(),
-        lastModified = competition.lastModified?.toInstant(),
-        status = when(competition.status) {
-            Status.Draft -> "Draft"
-            Status.Open -> "Open"
-            Status.Closed -> "Closed"
-            else -> null
-        }
+        events = competition.events,
+        created = competition.created.toInstant(),
+        lastModified = competition.lastModified.toInstant(),
+        status = competition.status
     )
 }
