@@ -13,12 +13,23 @@ data class Competition(
     var competitionId: Long = 0,
     var name: String = "",
     var creator: String = "",
-    // TODO: users
+    @ManyToMany
+    @JoinTable(
+        name = "competitions_user",
+        joinColumns = [JoinColumn(name = "competition_id")],
+        inverseJoinColumns = [JoinColumn(name = "user_profile_id")]
+    )
+    var users: Set<UserProfile> = emptySet(),
     @ElementCollection
     var userGroups: List<String> = emptyList(),
     @ElementCollection
     var userProfiles: List<String> = emptyList(),
-    @OneToMany
+    @ManyToMany
+    @JoinTable(
+        name = "competitions_events",
+        joinColumns = [JoinColumn(name = "competition_id")],
+        inverseJoinColumns = [JoinColumn(name = "event_id")]
+    )
     var events: List<Event> = emptyList(),
     @Temporal(TemporalType.TIMESTAMP)
     var created : Timestamp = Timestamp(System.currentTimeMillis()),
@@ -31,7 +42,7 @@ data class Competition(
     ): this(
         name = dto.name,
         creator = dto.creator,
-        // TODO: users
+        users = dto.users,
         userGroups = dto.userGroups,
         userProfiles = dto.userProfiles,
         events = dto.events,
@@ -39,38 +50,4 @@ data class Competition(
         lastModified = dto.lastModified.let { Timestamp.from(it) },
         status = dto.status
     )
-//    constructor(dto: CompetitionDto): this(
-//        id = dto.id,
-//        name = dto.name,
-//        creator = dto.creator,
-//        // TODO: users
-//        userGroups = dto.userGroups,
-//        userProfiles = dto.userProfiles,
-//        events = competitionService.getEventsFromIds(dto.events!!),
-//        created = dto.created?.let { Timestamp.from(it) },
-//        lastModified = dto.lastModified?.let { Timestamp.from(it) },
-//        status = when(dto.status) {
-//            "Draft" -> Status.Draft
-//            "Open" -> Status.Open
-//            "Close" -> Status.Closed
-//            else -> null
-//        }
-//        )
-
-//    fun update(dto: CompetitionDto, competitionService: CompetitionService) {
-//        name = dto.name
-//        creator = dto.creator
-//        // TODO: users
-//        userGroups = dto.userGroups
-//        userProfiles = dto.userProfiles
-//        events =  competitionService.getEventsFromIds(dto.events!!)
-//        created = dto.created?.let { Timestamp.from(it) }
-//        lastModified = dto.lastModified?.let { Timestamp.from(it) }
-//        status = when(dto.status) {
-//            "Draft" -> Status.Draft
-//            "Open" -> Status.Open
-//            "Close" -> Status.Closed
-//            else -> null
-//        }
-//    }
 }

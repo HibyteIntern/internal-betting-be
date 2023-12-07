@@ -15,7 +15,10 @@ class AppAdvice {
     @ExceptionHandler(value = [
         BetTemplateNotFoundException::class,
         BetTypeNotFoundException::class,
-        EventTemplateNotFoundException::class
+        EventTemplateNotFoundException::class,
+        CompetitionNotFoundException::class,
+        EventNotFoundException::class,
+        UserProfileNotFoundException::class
     ])
     fun entityNotFoundHandler(ex: RuntimeException): ResponseEntity<Any> {
         val body: MutableMap<String, Any> = mutableMapOf()

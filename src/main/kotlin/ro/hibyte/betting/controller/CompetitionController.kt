@@ -26,28 +26,34 @@ class CompetitionController {
 
     @GetMapping
     fun getAll(): List<CompetitionDto> = competitionService.getAll()
-//
-//    @GetMapping("/{id}")
-//    fun getOneById(@PathVariable id: Long): CompetitionDto {
-//        val competition = competitionService.getOne(id)
-//
-//        return CompetitionDto(competition)
-//    }
+
+    @GetMapping("/{id}")
+    fun getOneById(@PathVariable id: Long): CompetitionDto {
+        val competition = competitionService.getOne(id)
+
+        return CompetitionDto(competition)
+    }
 
     @PostMapping
     fun create(@RequestBody dto: CompetitionRequest): ResponseEntity<CompetitionDto> {
         val competition = competitionService.create(dto)
 
-        return ResponseEntity(competition, HttpStatus.OK)
+        val competitionResponse = CompetitionDto(competition)
+
+        return ResponseEntity(competitionResponse, HttpStatus.OK)
     }
 
-//    @PutMapping("/{id}")
-//    fun update(@PathVariable id: Long, @RequestBody dto: CompetitionDto): CompetitionDto {
-//        val competition = competitionService.update(dto)
-//
-//        return CompetitionDto(competition)
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    fun deleteOne(@PathVariable id: Long) = competitionService.delete(id)
+    @PutMapping("/{id}")
+    fun update(@PathVariable id: Long, @RequestBody dto: CompetitionRequest): ResponseEntity<CompetitionDto> {
+        val newCompetition = competitionService.update(id, dto)
+
+        return ResponseEntity(CompetitionDto(newCompetition), HttpStatus.OK)
+    }
+
+    @DeleteMapping("/{id}")
+    fun deleteOne(@PathVariable id: Long): ResponseEntity<Void> {
+        competitionService.delete(id)
+
+        return ResponseEntity(HttpStatus.OK)
+    }
 }

@@ -1,16 +1,14 @@
 package ro.hibyte.betting.dto
 
 import ro.hibyte.betting.entity.Competition
-import ro.hibyte.betting.entity.Event
 import ro.hibyte.betting.entity.Status
-import java.sql.Timestamp
 import java.time.Instant
 
 data class CompetitionDto(
     var id: Long? = null,
     var name: String = "",
     var creator: String = "",
-    // TODO: users
+    var users: Set<UserProfile> = emptySet(),
     var userGroups: List<String> = emptyList(),
     var userProfiles: List<String> = emptyList(),
     var events: List<Event> = emptyList(),
@@ -22,7 +20,7 @@ data class CompetitionDto(
         id = competition.competitionId,
         name = competition.name,
         creator = competition.creator,
-        // TODO: users
+        users = competition.users,
         userGroups = competition.userGroups,
         userProfiles = competition.userProfiles,
         events = competition.events,
