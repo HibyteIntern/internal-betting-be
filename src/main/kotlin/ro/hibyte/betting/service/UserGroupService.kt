@@ -5,11 +5,13 @@ import org.springframework.web.multipart.MultipartFile
 import ro.hibyte.betting.dto.UserGroupDto
 import ro.hibyte.betting.entity.UserGroup
 import ro.hibyte.betting.repository.UserGroupRepository
+import ro.hibyte.betting.repository.UserProfileRepository
 
 @Service
 class UserGroupService(
     private val userGroupRepository: UserGroupRepository,
-    private val waspService: WaspService
+    private val waspService: WaspService,
+    private val userProfileRepository: UserProfileRepository
 ) {
     fun getAll(): List<UserGroup> = userGroupRepository.findAll()
     fun getOne(id: Long): UserGroup =
@@ -25,14 +27,21 @@ class UserGroupService(
 
     fun update(id: Long, userGroupDto: UserGroupDto): UserGroup {
         val existingUserGroup = userGroupRepository.findById(id).orElseThrow {
-            NoSuchElementException("User Group not found with id: ${userGroupDto.id}")
+            NoSuchElementException("User Group not found with id: ${userGroupDto.userGroupId}")
         }
 
         existingUserGroup.update(userGroupDto)
         return userGroupRepository.save(existingUserGroup)
     }
-    fun create(userGroupDto: UserGroupDto) =
-        userGroupRepository.save(UserGroup(userGroupDto))
+    fun create(userGroupDto: UserGroupDto): UserGroup {
+        var userGroup = UserGroup(userGroupDto)
+        userGroupRepository.save(userGroup)
+        userGroup.users?.forEach { userProfile ->
+            userProfile.groups?.add(userGroup.userGroupId)
+            userProfileRepository.save(userProfile)
+        }
+        return userGroupRepository.save(userGroup)
+    }
 
     fun addPhoto(userId: Long, photo: MultipartFile): Long?{
         var userGroup = userGroupRepository.findById(userId).orElseThrow()

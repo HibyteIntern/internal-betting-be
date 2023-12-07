@@ -23,6 +23,7 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
         return userProfileRepository.save(userProfile)
     }
 
+
     fun update(dtoUser: UserProfileDTO): UserProfile {
         val userProfile = userProfileRepository.findById(dtoUser.userId!!).orElseThrow {
             NoSuchElementException("UserProfile not found with userId: ${dtoUser.userId}")
@@ -46,4 +47,7 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
         userProfileRepository.save(userProfile)
         return userProfile.profilePicture
     }
+
+
+
 }

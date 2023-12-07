@@ -3,7 +3,6 @@ package ro.hibyte.betting.controller
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
 import ro.hibyte.betting.dto.UserGroupDto
-import ro.hibyte.betting.entity.UserGroup
 import ro.hibyte.betting.service.UserGroupService
 
 @RestController
@@ -20,8 +19,10 @@ class UserGroupController (private val userGroupService: UserGroupService){
         UserGroupDto(userGroupService.getOne(id))
 
     @PostMapping
-    fun create(@RequestBody userGroupDto: UserGroupDto) =
-        UserGroupDto(userGroupService.create(userGroupDto))
+    fun create(@RequestBody userGroupDto: UserGroupDto) : UserGroupDto {
+        var userGroup = userGroupService.create(userGroupDto)
+        return UserGroupDto(userGroup)
+    }
 
     @PutMapping("/{id}")
     fun update(@PathVariable id: Long, @RequestBody userGroupDto: UserGroupDto): UserGroupDto {
@@ -36,4 +37,6 @@ class UserGroupController (private val userGroupService: UserGroupService){
     fun addPhoto(@RequestPart("photo") photo: MultipartFile, @PathVariable userGroupId: Long): Long? {
         return userGroupService.addPhoto(userGroupId, photo)
     }
+
+
 }

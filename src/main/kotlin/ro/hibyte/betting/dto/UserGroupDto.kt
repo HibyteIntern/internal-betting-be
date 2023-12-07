@@ -4,15 +4,15 @@ package ro.hibyte.betting.dto
 import ro.hibyte.betting.entity.UserGroup
 
 class UserGroupDto (
-    val id: Long,
-    var profilePicture: Long,
-    var description: String,
-    var users: Set<Long>
+    val userGroupId: Long,
+    var profilePicture: Long?,
+    var description: String?,
+    var users: MutableSet<UserProfileDTO>? = null
 ){
     constructor(userGroup: UserGroup): this(
-        id = userGroup.id,
+        userGroupId = userGroup.userGroupId,
         profilePicture = userGroup.profilePicture,
         description = userGroup.description,
-        users = userGroup.users
+        users = userGroup.users?.map{UserProfileDTO(it)}?.toMutableSet()
     )
 }
