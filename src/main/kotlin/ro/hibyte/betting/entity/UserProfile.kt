@@ -17,28 +17,29 @@ data class UserProfile(
     var profilePicture: Long? = null,
     var description: String? = null,
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
-    @JoinColumn(name = "userId")
-    var bets: Set<Bet>? = null,
+    @OneToMany(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    var bets: MutableSet<Bet>? = null,
+
 
     var coins: Number = 50,
 
     ){
-    constructor(dtoUser: UserProfileDTO): this(
+    constructor(dtoUser: UserProfileDTO) : this(
         userId = dtoUser.userId,
         keycloakId = dtoUser.keycloakId,
         username = dtoUser.username,
         profilePicture = dtoUser.profilePicture,
         description = dtoUser.description,
         coins = dtoUser.coins,
-        bets = dtoUser.bets?.map { Bet(it) }?.toSet()
+        bets = dtoUser.bets?.map { it }?.toMutableSet()
     )
-
-    fun update(dtoUser: UserProfileDTO){
+    fun update(dtoUser: UserProfileDTO) {
         username = dtoUser.username
         profilePicture = dtoUser.profilePicture
         description = dtoUser.description
+
     }
+
 
 
 }

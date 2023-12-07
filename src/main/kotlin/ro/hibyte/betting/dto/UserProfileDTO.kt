@@ -10,7 +10,7 @@ class UserProfileDTO(
     var username: String? = null,
     var profilePicture: Long? = null,
     var description: String? = null,
-    var bets: Set<BetDTO>? = null,
+    var bets: MutableSet<Bet>? = null,
     var coins: Number = 50,
 ) {
     constructor(userProfile: UserProfile) : this(
@@ -20,6 +20,6 @@ class UserProfileDTO(
         profilePicture = userProfile.profilePicture,
         description = userProfile.description,
         coins = userProfile.coins,
-        bets = userProfile.bets?.map { BetDTO(it) }?.toSet()
+        bets = userProfile.bets?.map { it }?.toMutableSet()
     )
 }

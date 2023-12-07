@@ -9,9 +9,9 @@ data class Bet(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val betId: Long? = null,
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    @ManyToOne
     @JoinColumn(name = "userId")
-    var user: UserProfile,
+    var user: UserProfile? = null,
 
     //event
     //betType

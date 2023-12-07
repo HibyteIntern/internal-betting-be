@@ -1,18 +1,12 @@
 package ro.hibyte.betting.controller
 
 
-import org.springframework.web.bind.annotation.CrossOrigin
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestPart
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
+import ro.hibyte.betting.dto.BetDTO
 import ro.hibyte.betting.dto.UserProfileDTO
+import ro.hibyte.betting.entity.Bet
+import ro.hibyte.betting.service.BetService
 import ro.hibyte.betting.service.UserProfileService
 import ro.hibyte.betting.service.WaspService
 
@@ -20,7 +14,7 @@ import ro.hibyte.betting.service.WaspService
 @CrossOrigin(origins = ["http://localhost:4200"])
 @RestController
 @RequestMapping("/api/user-profiles")
-class UserProfileController(private val userProfileService: UserProfileService, private val waspService: WaspService) {
+class UserProfileController(private val userProfileService: UserProfileService, private val betService: BetService) {
 
     @GetMapping
     fun getAll(): List<UserProfileDTO>{
@@ -49,10 +43,12 @@ class UserProfileController(private val userProfileService: UserProfileService, 
     @DeleteMapping("/{userId}")
     fun delete(@PathVariable userId: Long) = userProfileService.delete(userId)
 
+
     @PostMapping("/{userId}/addPhoto")
     fun addPhoto(@RequestPart("photo") photo: MultipartFile, @PathVariable userId: Long): Long? {
         return userProfileService.addPhoto(userId, photo)
     }
+
 
 
 

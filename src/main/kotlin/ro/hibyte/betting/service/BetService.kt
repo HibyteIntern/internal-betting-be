@@ -5,6 +5,7 @@ import ro.hibyte.betting.repository.BetRepository
 import org.springframework.stereotype.Service
 import ro.hibyte.betting.dto.BetDTO
 import ro.hibyte.betting.entity.Bet
+import ro.hibyte.betting.entity.UserProfile
 
 @Service
 class BetService(private val betRepository: BetRepository) {
@@ -17,8 +18,9 @@ class BetService(private val betRepository: BetRepository) {
         }
     }
 
-    fun create(dtoBet: BetDTO): Bet {
-        val bet = Bet(dtoBet)
+    fun create(dto: BetDTO, userProfile: UserProfile): Bet {
+        val bet = Bet(dto)
+        bet.user = userProfile
         return betRepository.save(bet)
     }
 
