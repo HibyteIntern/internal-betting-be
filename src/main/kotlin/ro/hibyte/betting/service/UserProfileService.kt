@@ -2,7 +2,9 @@ package ro.hibyte.betting.service
 
 import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
+import ro.hibyte.betting.dto.BetDTO
 import ro.hibyte.betting.dto.UserProfileDTO
+import ro.hibyte.betting.entity.Bet
 import ro.hibyte.betting.entity.UserProfile
 import ro.hibyte.betting.repository.UserProfileRepository
 
@@ -47,7 +49,10 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
         return userProfile.profilePicture
     }
 
-    fun getId(userProfile: UserProfile): Long?{
-        return userProfile.userId
+    fun createBet(userProfile: UserProfile, betDto: BetDTO) {
+        val bet = Bet(betDto)
+        userProfileRepository.save(userProfile)
     }
+
+
 }
