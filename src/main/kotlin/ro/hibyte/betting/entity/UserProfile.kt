@@ -30,16 +30,16 @@ data class UserProfile(
         keycloakId = dtoUser.keycloakId,
         profilePicture = dtoUser.profilePicture,
         description = dtoUser.description,
+        username = dtoUser.username,
         coins = dtoUser.coins
     )
 
     fun update(dtoUser: UserProfileDTO){
-        keycloakId = dtoUser.keycloakId
-        profilePicture = dtoUser.profilePicture
-        description = dtoUser.description
-        coins = dtoUser.coins
-        //groups = dtoUser.groups
-        username = dtoUser.username
+        dtoUser.keycloakId?.let { keycloakId = it }
+        dtoUser.profilePicture?.let { profilePicture = it }
+        dtoUser.description?.let { description = it }
+        dtoUser.coins?.let { coins = it }
+        dtoUser.username?. let { username = it }
     }
 
     override fun equals(other: Any?): Boolean {

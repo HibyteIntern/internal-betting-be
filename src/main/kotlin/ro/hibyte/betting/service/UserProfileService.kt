@@ -24,9 +24,9 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
     }
 
 
-    fun update(dtoUser: UserProfileDTO): UserProfile {
-        val userProfile = userProfileRepository.findById(dtoUser.userId!!).orElseThrow {
-            NoSuchElementException("UserProfile not found with userId: ${dtoUser.userId}")
+    fun update(id: Long, dtoUser: UserProfileDTO): UserProfile {
+        val userProfile = userProfileRepository.findById(id).orElseThrow {
+            NoSuchElementException("UserProfile not found with userId: $id")
         }
 
         userProfile.update(dtoUser)

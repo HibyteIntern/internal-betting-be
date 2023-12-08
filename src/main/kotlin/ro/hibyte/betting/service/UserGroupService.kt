@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
 import ro.hibyte.betting.dto.UserGroupDto
 import ro.hibyte.betting.entity.UserGroup
+import ro.hibyte.betting.entity.UserProfile
 import ro.hibyte.betting.repository.UserGroupRepository
 import ro.hibyte.betting.repository.UserProfileRepository
 
@@ -29,10 +30,10 @@ class UserGroupService(
         val existingUserGroup = userGroupRepository.findById(id).orElseThrow {
             NoSuchElementException("User Group not found with id: ${userGroupDto.userGroupId}")
         }
-
         existingUserGroup.update(userGroupDto)
         return userGroupRepository.save(existingUserGroup)
     }
+
     fun create(userGroupDto: UserGroupDto): UserGroup {
         var userGroup = UserGroup(userGroupDto)
         userGroupRepository.save(userGroup)

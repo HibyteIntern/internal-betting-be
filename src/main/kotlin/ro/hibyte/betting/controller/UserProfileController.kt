@@ -47,7 +47,7 @@ class UserProfileController(private val userProfileService: UserProfileService, 
 
     @PutMapping("/{userId}")
     fun update(@PathVariable userId: Long, @RequestBody userProfileDto: UserProfileDTO): UserProfileDTO{
-        val userProfile = userProfileService.update(userProfileDto)
+        val userProfile = userProfileService.update(userId, userProfileDto)
         return UserProfileDTO(userProfile)
     }
 

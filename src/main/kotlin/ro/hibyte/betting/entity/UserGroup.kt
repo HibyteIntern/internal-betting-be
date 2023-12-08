@@ -9,6 +9,7 @@ data class UserGroup(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val userGroupId: Long,
+    var groupName: String?,
     var profilePicture: Long?,
     var description: String?,
 
@@ -23,14 +24,21 @@ data class UserGroup(
 ){
     constructor(dto: UserGroupDto): this(
         userGroupId = dto.userGroupId,
+        groupName = dto.groupName,
         profilePicture = dto.profilePicture,
         description = dto.description,
         users = dto.users?.map { UserProfile(it) }?.toMutableSet()
     )
     fun update(userGroupDto: UserGroupDto){
-        profilePicture = userGroupDto.profilePicture
-        description = userGroupDto.description
-        users = userGroupDto.users?.map{UserProfile(it)}?.toMutableSet()
+        userGroupDto.groupName?.let { groupName = it }
+        userGroupDto.profilePicture?.let { profilePicture = it }
+        userGroupDto.description?.let { description = it }
+
+        userGroupDto.users?.let { updatedUsers ->
+            val updatedUserProfiles = updatedUsers.map { UserProfile(it) }.toMutableSet()
+            users?.clear()
+            users?.addAll(updatedUserProfiles)
+        }
     }
 
     override fun equals(other: Any?): Boolean {
