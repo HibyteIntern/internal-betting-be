@@ -9,6 +9,7 @@ import ro.hibyte.betting.service.EventService
 
 @RestController
 @RequestMapping("/api/events")
+@CrossOrigin(origins = ["http://localhost:4200"])
 class EventController(private val eventService: EventService) {
 
     @PostMapping("/add")
