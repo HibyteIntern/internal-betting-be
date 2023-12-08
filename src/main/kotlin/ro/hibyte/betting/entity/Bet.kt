@@ -9,16 +9,16 @@ data class Bet(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val betId: Long? = null,
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_profile_id")
-    val user: UserProfile,
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    var user: UserProfile? = null,
 
     //event
     //betType
 
-    val amount: Number,
-    val odds: Double,
-    val value: String,
+    var amount: Number,
+    var odds: Double,
+    var value: String,
 ){
     constructor(betDto: BetDTO): this(
         betId = betDto.betId,
@@ -27,4 +27,11 @@ data class Bet(
         odds = betDto.odds,
         value = betDto.value,
     )
+
+    fun update(dtoBet: BetDTO){
+        amount = dtoBet.amount
+        odds = dtoBet.odds
+        value = dtoBet.value
+
+    }
 }
