@@ -37,9 +37,10 @@ class UserGroupService(
         var userGroup = UserGroup(userGroupDto)
         userGroupRepository.save(userGroup)
         userGroup.users?.forEach { userProfile ->
-            userProfile.groups?.add(userGroup.userGroupId)
+            userProfile.groups?.add(userGroup)
             userProfileRepository.save(userProfile)
         }
+
         return userGroupRepository.save(userGroup)
     }
 

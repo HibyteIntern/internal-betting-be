@@ -1,5 +1,6 @@
 package ro.hibyte.betting.entity
 
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.*
 import ro.hibyte.betting.dto.UserGroupDto
 
@@ -11,7 +12,8 @@ data class UserGroup(
     var profilePicture: Long?,
     var description: String?,
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JsonManagedReference
     @JoinTable(
         name = "user_group_users",
         joinColumns = [JoinColumn(name = "user_group_id")],
@@ -31,9 +33,18 @@ data class UserGroup(
         users = userGroupDto.users?.map{UserProfile(it)}?.toMutableSet()
     }
 
-//    fun addUser(userProfile: UserProfile) {
-//        users?.add(userProfile)
-//        userProfile.groups?.add(this.userGroupId)
-//    }
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as UserGroup
+
+        return userGroupId == other.userGroupId
+    }
+
+    override fun hashCode(): Int {
+        return userGroupId.hashCode()
+    }
+
 
 }

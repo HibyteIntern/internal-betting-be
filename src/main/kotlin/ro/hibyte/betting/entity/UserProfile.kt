@@ -1,5 +1,6 @@
 package ro.hibyte.betting.entity
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import jakarta.persistence.*
 import ro.hibyte.betting.dto.UserProfileDTO
 
@@ -19,8 +20,9 @@ data class UserProfile(
 
     var coins: Number = 50,
 
-    @ElementCollection
-    var groups: MutableSet<Long>? = null
+    @ManyToMany( fetch = FetchType.LAZY ,mappedBy = "users")
+    @JsonBackReference
+    var groups: MutableSet<UserGroup>? = mutableSetOf()
 
 ){
     constructor(dtoUser: UserProfileDTO): this(
@@ -28,8 +30,7 @@ data class UserProfile(
         keycloakId = dtoUser.keycloakId,
         profilePicture = dtoUser.profilePicture,
         description = dtoUser.description,
-        coins = dtoUser.coins,
-        groups = dtoUser.groups
+        coins = dtoUser.coins
     )
 
     fun update(dtoUser: UserProfileDTO){
@@ -37,9 +38,28 @@ data class UserProfile(
         profilePicture = dtoUser.profilePicture
         description = dtoUser.description
         coins = dtoUser.coins
-        groups = dtoUser.groups
+        //groups = dtoUser.groups
         username = dtoUser.username
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as UserProfile
+
+        if (userId != other.userId) return false
+        if (keycloakId != other.keycloakId) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = userId.hashCode()
+        result = 31 * result + (keycloakId?.hashCode() ?: 0)
+        return result
+    }
+
 
 }
 
