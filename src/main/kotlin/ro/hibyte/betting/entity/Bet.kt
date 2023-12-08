@@ -9,7 +9,7 @@ data class Bet(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val betId: Long? = null,
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId")
     var user: UserProfile? = null,
 
@@ -22,7 +22,6 @@ data class Bet(
 ){
     constructor(betDto: BetDTO): this(
         betId = betDto.betId,
-        user = betDto.user,
         amount = betDto.amount,
         odds = betDto.odds,
         value = betDto.value,

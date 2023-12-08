@@ -49,10 +49,4 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
         return userProfile.profilePicture
     }
 
-    fun createBet(userProfile: UserProfile, betDto: BetDTO) {
-        val bet = Bet(betDto)
-        userProfileRepository.save(userProfile)
-    }
-
-
 }

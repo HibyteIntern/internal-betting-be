@@ -5,7 +5,7 @@ import ro.hibyte.betting.entity.UserProfile
 
 class BetDTO(
     val betId: Long? = null,
-    var user: UserProfile? = null,
+    var user: Long? = null,
 
     //event
     //betType
@@ -16,7 +16,7 @@ class BetDTO(
 ) {
     constructor(bet: Bet): this(
         betId = bet.betId,
-        user = bet.user,
+        user = bet.user?.userId,
         amount = bet.amount,
         odds = bet.odds,
         value = bet.value,
