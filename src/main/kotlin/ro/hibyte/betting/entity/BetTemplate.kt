@@ -28,7 +28,6 @@ data class BetTemplate (
 
 ) {
 
-
     companion object {
         //this method ensures that no MULTIPLE_CHOICE BetTemplates can be created if the number of options is less than 2
         fun validateAndCorrect(betTemplate: BetTemplate) {

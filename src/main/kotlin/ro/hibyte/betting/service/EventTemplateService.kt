@@ -5,30 +5,29 @@ import ro.hibyte.betting.dto.EventTemplateRequest
 import ro.hibyte.betting.entity.BetTemplate
 import ro.hibyte.betting.entity.EventTemplate
 import ro.hibyte.betting.exceptions.types.EntityNotFoundException
-import ro.hibyte.betting.repository.BetTemplateRepository
 import ro.hibyte.betting.repository.EventTemplateRepository
 
 @Service
 class EventTemplateService(
     private var eventTemplateRepository: EventTemplateRepository,
-    private var betTemplateRepository: BetTemplateRepository
+    private var betTemplateService: BetTemplateService,
 ) {
 
-    private fun getBetTemplateListFromIdList(templateIds: List<Long>): MutableList<BetTemplate> {
-        val betTemplates: MutableList<BetTemplate> = ArrayList()
-        templateIds.forEach{templateId ->
-            betTemplates.add(
-                betTemplateRepository.findById(templateId).orElseThrow{ EntityNotFoundException("Bet Template", templateId)}
+    private fun createBetTemplates(betTemplates: List<BetTemplate>): MutableList<BetTemplate> {
+        val betTemplatesFromRepo: MutableList<BetTemplate> = ArrayList()
+        betTemplates.forEach{template ->
+            betTemplatesFromRepo.add(
+               betTemplateService.create(template)
             )
         }
-        return betTemplates
+        return betTemplatesFromRepo
     }
 
     fun create(eventTemplateRequest: EventTemplateRequest): EventTemplate {
         val eventTemplate = EventTemplate(
             null,
             eventTemplateRequest.name,
-            getBetTemplateListFromIdList(eventTemplateRequest.betTemplates)
+            createBetTemplates(eventTemplateRequest.betTemplates)
         )
         return eventTemplateRepository.save(eventTemplate)
     }
@@ -45,12 +44,14 @@ class EventTemplateService(
         val eventTemplate = EventTemplate(
             null,
             eventTemplateRequest.name,
-            getBetTemplateListFromIdList(eventTemplateRequest.betTemplates)
+            createBetTemplates(eventTemplateRequest.betTemplates)
         )
         eventTemplateToUpdate.update(eventTemplate)
         return eventTemplateRepository.save(eventTemplateToUpdate)
     }
 
-    fun delete(id: Long) =
+    fun delete(id: Long) {
+        eventTemplateRepository.findById(id).orElseThrow{EntityNotFoundException("Event Template", id)}
         eventTemplateRepository.deleteById(id)
+    }
 }

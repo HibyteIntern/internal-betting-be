@@ -2,7 +2,6 @@ package ro.hibyte.betting.service
 
 import org.springframework.stereotype.Service
 import ro.hibyte.betting.entity.BetTemplate
-import ro.hibyte.betting.exceptions.types.EntityAlreadyExistsException
 import ro.hibyte.betting.exceptions.types.EntityNotFoundException
 import ro.hibyte.betting.repository.BetTemplateRepository
 
@@ -11,8 +10,9 @@ class BetTemplateService(private val betTemplateRepository: BetTemplateRepositor
 
     fun create(betTemplate: BetTemplate): BetTemplate {
         BetTemplate.validateAndCorrect(betTemplate)
-        if(BetTemplate.checkEntityAlreadyExists(betTemplate, betTemplateRepository) != null)
-            throw EntityAlreadyExistsException("Bet template with this name, type and options already exists")
+        val existingTemplate = BetTemplate.checkEntityAlreadyExists(betTemplate, betTemplateRepository)
+        if(existingTemplate != null)
+            return existingTemplate
         return betTemplateRepository.save(betTemplate)
     }
 
@@ -24,8 +24,9 @@ class BetTemplateService(private val betTemplateRepository: BetTemplateRepositor
 
     fun update(id: Long, betTemplate: BetTemplate): BetTemplate {
         val templateToUpdate = betTemplateRepository.findById(id).orElseThrow { EntityNotFoundException("Bet Template", id) }
-        if(BetTemplate.checkEntityAlreadyExists(betTemplate, betTemplateRepository) != null)
-            throw EntityAlreadyExistsException("Bet template with this name, type and options already exists")
+        val existingTemplate = BetTemplate.checkEntityAlreadyExists(betTemplate, betTemplateRepository)
+        if(existingTemplate != null)
+            return existingTemplate
         templateToUpdate.update(betTemplate)
         return betTemplateRepository.save(templateToUpdate)
     }
