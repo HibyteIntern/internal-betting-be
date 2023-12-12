@@ -42,6 +42,8 @@ class BetTypeController(private val betTypeService: BetTypeService) {
         )
 
     @DeleteMapping("/{id}")
-    fun delete(@PathVariable id: Long) =
+    fun delete(@PathVariable id: Long): ResponseEntity<Void> {
         betTypeService.delete(id)
+        return ResponseEntity.noContent().build()
+    }
 }

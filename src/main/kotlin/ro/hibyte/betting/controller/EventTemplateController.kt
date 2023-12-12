@@ -37,6 +37,9 @@ class EventTemplateController(private val eventTemplateService: EventTemplateSer
         eventTemplateService.update(eventTemplateRequest, id)
 
     @DeleteMapping("/{id}")
-    fun delete(@PathVariable id: Long) =
+    fun delete(@PathVariable id: Long): ResponseEntity<Void> {
         eventTemplateService.delete(id)
+        return ResponseEntity.noContent().build()
+    }
+
 }
