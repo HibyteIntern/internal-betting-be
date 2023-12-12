@@ -49,4 +49,18 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
         return userProfile.profilePicture
     }
 
+    fun getId(userProfile: UserProfile): Long?{
+        return userProfile.userId}
+
+    fun createUserProfileIfNonExistent(userProfileDTO: UserProfileDTO): UserProfile{
+        val userId: Long = userProfileDTO.userId?:0
+        var userProfile = userProfileRepository.findById(userId)
+        if (userProfile.isPresent){
+            return userProfile.get()
+        }
+        else{
+            val user= UserProfile(userProfileDTO)
+            return userProfileRepository.save(user)
+        }
+    }
 }
