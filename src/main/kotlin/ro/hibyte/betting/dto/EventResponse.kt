@@ -12,6 +12,7 @@ data class EventResponse(
     var userGroups : List<String> ,
     var userProfiles : List<Long?>,
     var completeBetTypeDtoList: List<CompleteBetTypeDto>,
+    var bets:List<BetDTO>,
     var created : Instant,
     var lastModified : Instant,
     var startsAt : Instant,

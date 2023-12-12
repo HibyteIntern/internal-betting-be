@@ -18,7 +18,9 @@ data class Event(
     @OneToMany
     @JoinColumn(name  = "eventId")
     var betTypes:List<BetType> = emptyList(),
-//    bets
+    @OneToMany
+    @JoinColumn(name = "eventId")
+    var bets:MutableList<Bet> = arrayListOf(),
     @OneToMany
     @JoinColumn(name = "eventId")
     var users:List<UserProfile> = emptyList(),
@@ -39,6 +41,7 @@ data class Event(
         template: String,
         tags: List<String>,
         betTypes: List<BetType>,
+        bets: MutableList<Bet>,
         users:List<UserProfile>,
         userGroups: List<String>,
         userProfiles: List<Long?>,
@@ -55,6 +58,7 @@ data class Event(
         template,
         tags,
         betTypes,
+        bets,
         users,
         userGroups,
         userProfiles,

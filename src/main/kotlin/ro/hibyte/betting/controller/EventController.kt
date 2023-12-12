@@ -3,8 +3,8 @@ package ro.hibyte.betting.controller
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import ro.hibyte.betting.dto.EventRequest
-import ro.hibyte.betting.dto.EventResponse
+import ro.hibyte.betting.dto.*
+import ro.hibyte.betting.entity.UserProfile
 import ro.hibyte.betting.service.EventService
 
 @RestController
@@ -34,6 +34,12 @@ class EventController(private val eventService: EventService) {
     fun getAllEvents(): ResponseEntity<List<EventResponse>> {
         val events = eventService.getAllEvents()
         return ResponseEntity(events, HttpStatus.OK)
+    }
+
+    @PostMapping("/bet/{eventId}")
+    fun addBet(@PathVariable eventId: Long, @RequestBody complexBetByUserDto: ComplexBetByUserDto):ResponseEntity<Unit>{
+        eventService.addBetForEvent(eventId,complexBetByUserDto.betDTO,complexBetByUserDto.userProfileDTO)
+        return ResponseEntity(HttpStatus.OK)
     }
 
     @GetMapping("/get/{eventId}")

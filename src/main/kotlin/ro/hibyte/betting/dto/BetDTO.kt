@@ -7,7 +7,6 @@ class BetDTO(
     val betId: Long? = null,
     var user: Long? = null,
 
-    //event
     //betType
 
     val amount: Number,

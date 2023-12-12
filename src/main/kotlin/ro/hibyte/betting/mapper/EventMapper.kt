@@ -1,9 +1,11 @@
 package ro.hibyte.betting.mapper
 
 import org.springframework.stereotype.Component
+import ro.hibyte.betting.dto.BetDTO
 import ro.hibyte.betting.dto.CompleteBetTypeDto
 import ro.hibyte.betting.dto.EventRequest
 import ro.hibyte.betting.dto.EventResponse
+import ro.hibyte.betting.entity.Bet
 import ro.hibyte.betting.entity.BetType
 import ro.hibyte.betting.entity.Event
 import ro.hibyte.betting.entity.UserProfile
@@ -13,7 +15,8 @@ import java.sql.Timestamp
 import java.util.stream.Collectors
 
 @Component
-class EventMapper(private val betTypeMapper: BetTypeMapper, private val userProfileService: UserProfileService) {
+class EventMapper(private val betTypeMapper: BetTypeMapper, private val userProfileService: UserProfileService,
+    private val betMapper: BetMapper) {
     fun mapEventRequestToEvent(eventRequest: EventRequest, betTypeService: BetTypeService): Event {
         val defaultCreator = ""
         val defaultUserGroups = emptyList<String>()
@@ -44,6 +47,7 @@ class EventMapper(private val betTypeMapper: BetTypeMapper, private val userProf
             creator = defaultCreator,
             tags = tags,
             users = users,
+            bets = arrayListOf(),
             userGroups = defaultUserGroups,
             userProfiles = userProfiles,
             created = defaultTimestamp,
@@ -57,6 +61,11 @@ class EventMapper(private val betTypeMapper: BetTypeMapper, private val userProf
         val completeBetTypeDtoList:List<CompleteBetTypeDto> = event.betTypes.stream()
             .map(betTypeMapper::betTypeToCompleteBetTypeDto)
             .collect(Collectors.toList())
+
+        val betList:List<BetDTO> = event.bets.stream()
+            .map(betMapper::mapBetToBetDto)
+            .collect(Collectors.toList())
+
         return EventResponse(
             eventId = event.eventId,
             name = event.name,
@@ -70,7 +79,8 @@ class EventMapper(private val betTypeMapper: BetTypeMapper, private val userProf
             lastModified = event.lastModified.toInstant(),
             startsAt = event.startsAt.toInstant(),
             endsAt = event.endsAt.toInstant(),
-            status = event.status
+            status = event.status,
+            bets = betList,
         )
     }
 }
