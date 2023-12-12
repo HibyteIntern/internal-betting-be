@@ -1,7 +1,10 @@
 package ro.hibyte.betting.dto
 
 import ro.hibyte.betting.entity.Competition
+import ro.hibyte.betting.entity.Event
 import ro.hibyte.betting.entity.Status
+import ro.hibyte.betting.entity.UserProfile
+import ro.hibyte.betting.service.CompetitionService
 import java.time.Instant
 
 data class CompetitionDto(
@@ -14,7 +17,7 @@ data class CompetitionDto(
     var events: List<Event> = emptyList(),
     var created : Instant = Instant.now(),
     var lastModified : Instant = Instant.now(),
-    var status: Status = Status.Draft
+    var status: Status = Status.DRAFT,
 ) {
     constructor(competition: Competition) : this(
         id = competition.competitionId,
@@ -26,6 +29,22 @@ data class CompetitionDto(
         events = competition.events,
         created = competition.created.toInstant(),
         lastModified = competition.lastModified.toInstant(),
-        status = competition.status
+        status = competition.status,
     )
+
+    constructor(competitionRequest: CompetitionRequest) : this(
+        name = competitionRequest.name,
+        creator = "",
+        users = CompetitionService.getUserProfilesFromIds(competitionRequest.users),
+        userGroups = competitionRequest.userGroups,
+        userProfiles = competitionRequest.userProfiles,
+        events = CompetitionService.getEventsFromIds(competitionRequest.events),
+        created = Instant.now(),
+        lastModified = Instant.now(),
+        status = competitionRequest.status,
+    )
+
+    fun update(competitionRequest: CompetitionRequest) {
+
+    }
 }

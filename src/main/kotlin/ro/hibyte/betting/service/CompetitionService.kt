@@ -5,33 +5,28 @@ import org.springframework.stereotype.Service
 import ro.hibyte.betting.dto.CompetitionDto
 import ro.hibyte.betting.dto.CompetitionRequest
 import ro.hibyte.betting.entity.Competition
+import ro.hibyte.betting.entity.Event
+import ro.hibyte.betting.entity.UserProfile
 import ro.hibyte.betting.exceptions.types.*
 import ro.hibyte.betting.repository.CompetitionRepository
+import ro.hibyte.betting.repository.EventRepository
+import ro.hibyte.betting.repository.UserProfileRepository
 import java.time.Instant
 
 @Service
 class CompetitionService {
-    @Autowired
-    private lateinit var competitionRepository : CompetitionRepository
-    @Autowired
-    private lateinit var eventRepository: EventRepository
-    @Autowired
-    private lateinit var userProfileRepository: UserProfileRepository
 
-    fun getEventsFromIds(eventIDs: List<Long>): List<Event> {
-        val events: MutableList<Event> = ArrayList()
 
-        eventIDs.forEach{ id -> events.add(eventRepository.findById(id).orElseThrow{ EventNotFoundException(id) }) }
+    companion object {
+        @Autowired
+        private lateinit var competitionRepository : CompetitionRepository
+        @Autowired
+        private lateinit var eventRepository: EventRepository
+        @Autowired
+        private lateinit var userProfileRepository: UserProfileRepository
+        fun getEventsFromIds(eventIDs: List<Long>): List<Event> = eventIDs.map { id -> eventRepository.findById(id).orElseThrow{ EntityNotFoundException("Event", id) } }.toList()
 
-        return events
-    }
-
-    fun getUserProfilesFromIds(userIDs: List<Long>): Set<UserProfile> {
-        val userProfiles: MutableSet<UserProfile> = mutableSetOf()
-
-        userIDs.forEach{ id -> userProfiles.add(userProfileRepository.findById(id).orElseThrow { UserProfileNotFoundException(id) }) }
-
-        return userProfiles
+        fun getUserProfilesFromIds(userIDs: List<Long>): Set<UserProfile> = userIDs.map { id -> userProfileRepository.findById(id).orElseThrow { EntityNotFoundException("User Profile", id) } }.toSet()
     }
 
     fun getAll(): List<CompetitionDto> {
@@ -40,27 +35,13 @@ class CompetitionService {
         return competitions.map { CompetitionDto(it) }
     }
 
-    fun getOne(id: Long): Competition = competitionRepository.findById(id).orElseThrow{ CompetitionNotFoundException(id) }
+    fun getOne(id: Long): Competition = competitionRepository.findById(id).orElseThrow{ EntityNotFoundException("Competition", id) }
 
-    fun create(dto: CompetitionRequest): Competition {
-        val competition = CompetitionDto()
-
-        competition.name = dto.name
-        competition.creator = ""
-        competition.users = getUserProfilesFromIds(dto.users)
-        competition.userGroups = dto.userGroups
-        competition.userProfiles = dto.userProfiles
-        competition.events = getEventsFromIds(dto.events)
-        competition.created = Instant.now()
-        competition.lastModified = Instant.now()
-        competition.status = dto.status
-
-        return competitionRepository.save(Competition(competition))
-    }
+    fun create(competitionRequest: CompetitionRequest): Competition = competitionRepository.save(Competition(CompetitionDto(competitionRequest)))
 
 
     fun update(id: Long, competitionRequest: CompetitionRequest): Competition {
-        val competition = competitionRepository.findById(id).orElseThrow{ CompetitionNotFoundException(id) }
+        val competition = competitionRepository.findById(id).orElseThrow{ EntityNotFoundException("Competition", id) }
 
         val newCompetitionDto = CompetitionDto(competition)
 

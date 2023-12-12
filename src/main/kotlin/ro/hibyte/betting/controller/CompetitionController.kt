@@ -19,7 +19,7 @@ import ro.hibyte.betting.service.CompetitionService
 
 @CrossOrigin(origins = ["http://localhost:4200"])
 @RestController
-@RequestMapping("/api/competitions")
+@RequestMapping("/api/v1/competitions")
 class CompetitionController {
     @Autowired
     private lateinit var competitionService: CompetitionService
@@ -54,6 +54,6 @@ class CompetitionController {
     fun deleteOne(@PathVariable id: Long): ResponseEntity<Void> {
         competitionService.delete(id)
 
-        return ResponseEntity(HttpStatus.OK)
+        return ResponseEntity(HttpStatus.NO_CONTENT)
     }
 }

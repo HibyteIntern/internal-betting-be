@@ -8,5 +8,5 @@ data class CompetitionRequest(
     var userGroups: List<String>,
     var userProfiles: List<String>,
     var events: List<Long>,
-    var status: Status
+    var status: Status,
 )
