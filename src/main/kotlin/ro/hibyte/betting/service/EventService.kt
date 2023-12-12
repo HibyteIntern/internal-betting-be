@@ -58,5 +58,7 @@ class EventService(private val eventRepository: EventRepository , private val ev
             throw RuntimeException("event not found")
         }
     }
+
+
 }
 

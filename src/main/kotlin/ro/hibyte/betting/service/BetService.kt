@@ -6,9 +6,15 @@ import org.springframework.stereotype.Service
 import ro.hibyte.betting.dto.BetDTO
 import ro.hibyte.betting.entity.Bet
 import ro.hibyte.betting.entity.UserProfile
+import ro.hibyte.betting.repository.BetTypeRepository
+import ro.hibyte.betting.repository.EventRepository
+import ro.hibyte.betting.repository.UserProfileRepository
 
 @Service
-class BetService(private val betRepository: BetRepository, private val userProfileService: UserProfileService) {
+class BetService(private val betRepository: BetRepository, private val eventService: EventService, private val betTypeService: BetTypeService, private val userRepository: UserProfileRepository,
+                 private val eventRepository: EventRepository,
+                 private val betTypeRepository: BetTypeRepository
+) {
 
     fun getAll(): List<Bet> = betRepository.findAll()
 
@@ -18,12 +24,25 @@ class BetService(private val betRepository: BetRepository, private val userProfi
         }
     }
 
-    fun create(dto: BetDTO, userProfile: UserProfile): Bet {
+//    fun create(dto: BetDTO, userProfile: UserProfile): Bet {
+//
+//        val bet = Bet(dto, eventService, betTypeService)
+//        bet.user = userProfile
+//
+//        return betRepository.save(bet)
+//    }
 
-        val bet = Bet(dto)
+    fun create(betDto: BetDTO, userProfile: UserProfile): Bet {
+
+        val betType = betDto.betType?.let { betTypeRepository.findById(it).orElse(null) }
+
+        val bet = Bet(betDto, betType)
         bet.user = userProfile
+
         return betRepository.save(bet)
+
     }
+
 
     fun update(dtoBet: BetDTO): Bet {
         val bet = betRepository.findById(dtoBet.betId!!).orElseThrow {
@@ -42,6 +61,8 @@ class BetService(private val betRepository: BetRepository, private val userProfi
             throw NoSuchElementException("Bet not found with betId: $betId")
         }
     }
+
+
 
 
 }
