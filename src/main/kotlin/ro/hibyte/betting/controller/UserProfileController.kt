@@ -50,6 +50,4 @@ class UserProfileController(private val userProfileService: UserProfileService, 
     }
 
 
-
-
 }

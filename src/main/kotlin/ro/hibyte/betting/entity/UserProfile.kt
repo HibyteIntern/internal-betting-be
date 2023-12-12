@@ -1,5 +1,8 @@
 package ro.hibyte.betting.entity
 
+import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import jakarta.persistence.*
 import ro.hibyte.betting.dto.BetDTO
 import ro.hibyte.betting.dto.UserProfileDTO
@@ -17,8 +20,9 @@ data class UserProfile(
     var profilePicture: Long? = null,
     var description: String? = null,
 
-    @OneToMany(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
-    var bets: MutableSet<Bet>? = null,
+
+    @OneToMany(cascade = [CascadeType.ALL], mappedBy = "user", fetch = FetchType.EAGER)
+    var bets: MutableList<Bet>? = null,
 
 
     var coins: Number = 50,
@@ -31,13 +35,12 @@ data class UserProfile(
         profilePicture = dtoUser.profilePicture,
         description = dtoUser.description,
         coins = dtoUser.coins,
-        bets = dtoUser.bets?.map { it }?.toMutableSet()
+        bets = mutableListOf()
     )
     fun update(dtoUser: UserProfileDTO) {
         username = dtoUser.username
         profilePicture = dtoUser.profilePicture
         description = dtoUser.description
-
     }
 
 

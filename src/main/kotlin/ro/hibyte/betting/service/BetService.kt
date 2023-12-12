@@ -8,7 +8,7 @@ import ro.hibyte.betting.entity.Bet
 import ro.hibyte.betting.entity.UserProfile
 
 @Service
-class BetService(private val betRepository: BetRepository) {
+class BetService(private val betRepository: BetRepository, private val userProfileService: UserProfileService) {
 
     fun getAll(): List<Bet> = betRepository.findAll()
 
@@ -19,6 +19,7 @@ class BetService(private val betRepository: BetRepository) {
     }
 
     fun create(dto: BetDTO, userProfile: UserProfile): Bet {
+
         val bet = Bet(dto)
         bet.user = userProfile
         return betRepository.save(bet)
