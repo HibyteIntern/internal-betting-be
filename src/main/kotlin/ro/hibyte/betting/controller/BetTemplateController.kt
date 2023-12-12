@@ -15,27 +15,27 @@ import ro.hibyte.betting.entity.BetTemplate
 import ro.hibyte.betting.service.BetTemplateService
 
 @RestController
-@RequestMapping("/api/bet-templates")
+@RequestMapping("/api/v1/bet-templates")
 @CrossOrigin(origins = ["http://localhost:4200"])
 class BetTemplateController(private val betTemplateService: BetTemplateService) {
 
     @PostMapping
-    fun createBetTemplate(@RequestBody betTemplate: BetTemplate): ResponseEntity<BetTemplate> =
-        ResponseEntity(betTemplateService.createBetTemplate(betTemplate), HttpStatus.CREATED)
+    fun create(@RequestBody betTemplate: BetTemplate): ResponseEntity<BetTemplate> =
+        ResponseEntity(betTemplateService.create(betTemplate), HttpStatus.CREATED)
 
     @GetMapping
-    fun getBetTemplates(): List<BetTemplate> =
-        betTemplateService.getBetTemplates()
+    fun getAll(): List<BetTemplate> =
+        betTemplateService.getAll()
 
     @GetMapping("/{id}")
-    fun getBetTemplateById(@PathVariable id: Long): BetTemplate =
-        betTemplateService.getBetTemplateById(id)
+    fun getById(@PathVariable id: Long): BetTemplate =
+        betTemplateService.getById(id)
 
     @PutMapping("/{id}")
-    fun updateBetTemplate(@PathVariable id: Long, @RequestBody betTemplate: BetTemplate): ResponseEntity<BetTemplate> =
-        ResponseEntity(betTemplateService.updateBetTemplate(id, betTemplate), HttpStatus.OK)
+    fun update(@PathVariable id: Long, @RequestBody betTemplate: BetTemplate): ResponseEntity<BetTemplate> =
+        ResponseEntity(betTemplateService.update(id, betTemplate), HttpStatus.OK)
 
     @DeleteMapping("/{id}")
-    fun deleteBetTemplate(@PathVariable id: Long) =
-        betTemplateService.deleteBetTemplate(id)
+    fun delete(@PathVariable id: Long) =
+        betTemplateService.delete(id)
 }

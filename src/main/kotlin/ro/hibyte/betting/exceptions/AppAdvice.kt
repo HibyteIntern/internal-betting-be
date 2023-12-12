@@ -5,25 +5,19 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseBody
+import ro.hibyte.betting.dto.ErrorResponse
 import ro.hibyte.betting.exceptions.types.*
-import java.time.LocalDateTime
 
 @ControllerAdvice
 class AppAdvice {
 
     @ResponseBody
     @ExceptionHandler(value = [
-        BetTemplateNotFoundException::class,
-        BetTypeNotFoundException::class,
-        EventTemplateNotFoundException::class
+        EntityNotFoundException::class
     ])
     fun entityNotFoundHandler(ex: RuntimeException): ResponseEntity<Any> {
-        val body: MutableMap<String, Any> = mutableMapOf()
-        body["message"] = ex.message ?: "error"
-        body["status"] = HttpStatus.NOT_FOUND
-        body["time"] = LocalDateTime.now()
-
-        return ResponseEntity(body, HttpStatus.NOT_FOUND)
+        val errorResponse = ErrorResponse(ex.message ?: "error", HttpStatus.NOT_FOUND)
+        return ResponseEntity(errorResponse, HttpStatus.NOT_FOUND)
     }
 
     @ResponseBody
@@ -31,12 +25,8 @@ class AppAdvice {
         EntityAlreadyExistsException::class
     ])
     fun entityAlreadyExistsHandler(ex: EntityAlreadyExistsException): ResponseEntity<Any> {
-        val body: MutableMap<String, Any> = mutableMapOf()
-        body["message"] = ex.message ?: "error"
-        body["status"] = HttpStatus.CONFLICT
-        body["time"] = LocalDateTime.now()
-
-        return ResponseEntity(body, HttpStatus.CONFLICT)
+        val errorResponse = ErrorResponse(ex.message ?: "error", HttpStatus.CONFLICT)
+        return ResponseEntity(errorResponse, HttpStatus.CONFLICT)
     }
 
     @ResponseBody
@@ -44,11 +34,7 @@ class AppAdvice {
         BadRequestException::class
     ])
     fun badRequestExceptionHandler(ex: RuntimeException): ResponseEntity<Any> {
-        val body: MutableMap<String, Any> = mutableMapOf()
-        body["message"] = ex.message ?: "error"
-        body["status"] = HttpStatus.BAD_REQUEST
-        body["time"] = LocalDateTime.now()
-
-        return ResponseEntity(body, HttpStatus.BAD_REQUEST)
+        val errorResponse = ErrorResponse(ex.message ?: "error", HttpStatus.BAD_REQUEST)
+        return ResponseEntity(errorResponse, HttpStatus.BAD_REQUEST)
     }
 }

@@ -4,13 +4,14 @@ import org.springframework.stereotype.Service
 import ro.hibyte.betting.dto.CompleteBetTypeDto
 import ro.hibyte.betting.entity.BetTemplate
 import ro.hibyte.betting.entity.BetType
-import ro.hibyte.betting.exceptions.types.BetTypeNotFoundException
+import ro.hibyte.betting.exceptions.types.EntityNotFoundException
 import ro.hibyte.betting.repository.BetTemplateRepository
 import ro.hibyte.betting.repository.BetTypeRepository
 
 @Service
 class BetTypeService(private val betTypeRepository: BetTypeRepository,
-                     private val betTemplateRepository: BetTemplateRepository) {
+                     private val betTemplateRepository: BetTemplateRepository,
+) {
 
     /*
     this method checks if a BetTemplate with these properties already exists. If it does, it can be assigned
@@ -27,26 +28,26 @@ class BetTypeService(private val betTypeRepository: BetTypeRepository,
         return betType
     }
 
-    fun createBetType(completeType: CompleteBetTypeDto): BetType {
+    fun create(completeType: CompleteBetTypeDto): BetType {
         val betType = BetType(completeType)
         checkExistingBetTemplateAndAssignBetTemplate(betType)
         return betTypeRepository.save(betType)
     }
 
-    fun getBetType(id: Long): BetType =
-        betTypeRepository.findById(id).orElseThrow{BetTypeNotFoundException(id)}
+    fun getById(id: Long): BetType =
+        betTypeRepository.findById(id).orElseThrow{EntityNotFoundException("Bet Type", id)}
 
-    fun getBetTypes(): List<BetType> =
+    fun getAll(): List<BetType> =
         betTypeRepository.findAll()
 
-    fun updateBetType(id: Long, completeType: CompleteBetTypeDto): BetType {
-        val betTypeToUpdate: BetType = betTypeRepository.findById(id).orElseThrow{BetTypeNotFoundException(id)}
+    fun update(id: Long, completeType: CompleteBetTypeDto): BetType {
+        val betTypeToUpdate: BetType = betTypeRepository.findById(id).orElseThrow{EntityNotFoundException("Bet Type", id)}
         val betType = BetType(completeType)
         checkExistingBetTemplateAndAssignBetTemplate(betType)
         betTypeToUpdate.update(betType)
         return betTypeRepository.save(betTypeToUpdate)
     }
 
-    fun deleteBetType(id: Long) =
+    fun delete(id: Long) =
         betTypeRepository.deleteById(id)
 }
