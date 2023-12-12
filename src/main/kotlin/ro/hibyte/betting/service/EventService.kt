@@ -23,7 +23,6 @@ class EventService(
     private val betTypeService: BetTypeService,
     private val betMapper: BetMapper,
     private val betService: BetService,
-    private val userProfileRepository: UserProfileRepository,
     private val userProfileService: UserProfileService
 ) {
     fun addEvent(eventRequest: EventRequest) {
