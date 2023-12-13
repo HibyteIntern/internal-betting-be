@@ -8,7 +8,6 @@ import ro.hibyte.betting.dto.UserProfileDTO
 import ro.hibyte.betting.entity.Bet
 import ro.hibyte.betting.service.BetService
 import ro.hibyte.betting.service.UserProfileService
-import ro.hibyte.betting.service.WaspService
 
 
 @CrossOrigin(origins = ["http://localhost:4200"])
