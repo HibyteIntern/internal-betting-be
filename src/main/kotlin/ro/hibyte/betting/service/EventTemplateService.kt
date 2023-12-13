@@ -4,54 +4,54 @@ import org.springframework.stereotype.Service
 import ro.hibyte.betting.dto.EventTemplateRequest
 import ro.hibyte.betting.entity.BetTemplate
 import ro.hibyte.betting.entity.EventTemplate
-import ro.hibyte.betting.exceptions.types.BetTemplateNotFoundException
-import ro.hibyte.betting.exceptions.types.EventTemplateNotFoundException
-import ro.hibyte.betting.repository.BetTemplateRepository
+import ro.hibyte.betting.exceptions.types.EntityNotFoundException
 import ro.hibyte.betting.repository.EventTemplateRepository
 
 @Service
 class EventTemplateService(
     private var eventTemplateRepository: EventTemplateRepository,
-    private var betTemplateRepository: BetTemplateRepository
+    private var betTemplateService: BetTemplateService,
 ) {
 
-    private fun getBetTemplateListFroIdList(templateIds: List<Long>): MutableList<BetTemplate> {
-        val betTemplates: MutableList<BetTemplate> = ArrayList()
-        templateIds.forEach{templateId ->
-            betTemplates.add(
-                betTemplateRepository.findById(templateId).orElseThrow{ BetTemplateNotFoundException(templateId)}
+    private fun createBetTemplates(betTemplates: List<BetTemplate>): MutableList<BetTemplate> {
+        val betTemplatesFromRepo: MutableList<BetTemplate> = ArrayList()
+        betTemplates.forEach{template ->
+            betTemplatesFromRepo.add(
+               betTemplateService.create(template)
             )
         }
-        return betTemplates
+        return betTemplatesFromRepo
     }
 
-    fun createEventTemplate(eventTemplateRequest: EventTemplateRequest): EventTemplate {
+    fun create(eventTemplateRequest: EventTemplateRequest): EventTemplate {
         val eventTemplate = EventTemplate(
             null,
             eventTemplateRequest.name,
-            getBetTemplateListFroIdList(eventTemplateRequest.betTemplates)
+            createBetTemplates(eventTemplateRequest.betTemplates)
         )
         return eventTemplateRepository.save(eventTemplate)
     }
 
-    fun getEventTemplate(id: Long): EventTemplate =
-        eventTemplateRepository.findById(id).orElseThrow { EventTemplateNotFoundException(id) }
+    fun getById(id: Long): EventTemplate =
+        eventTemplateRepository.findById(id).orElseThrow { EntityNotFoundException("Event Template", id) }
 
 
-    fun getEventTemplates(): List<EventTemplate> =
+    fun getAll(): List<EventTemplate> =
         eventTemplateRepository.findAll()
 
-    fun updateEventTemplate(eventTemplateRequest: EventTemplateRequest, id: Long): EventTemplate {
-        val eventTemplateToUpdate = eventTemplateRepository.findById(id).orElseThrow{EventTemplateNotFoundException(id)}
+    fun update(eventTemplateRequest: EventTemplateRequest, id: Long): EventTemplate {
+        val eventTemplateToUpdate: EventTemplate = eventTemplateRepository.findById(id).orElseThrow{EntityNotFoundException("Event Template", id)}
         val eventTemplate = EventTemplate(
             null,
             eventTemplateRequest.name,
-            getBetTemplateListFroIdList(eventTemplateRequest.betTemplates)
+            createBetTemplates(eventTemplateRequest.betTemplates)
         )
         eventTemplateToUpdate.update(eventTemplate)
         return eventTemplateRepository.save(eventTemplateToUpdate)
     }
 
-    fun deleteEventTemplate(id: Long) =
+    fun delete(id: Long) {
+        eventTemplateRepository.findById(id).orElseThrow{EntityNotFoundException("Event Template", id)}
         eventTemplateRepository.deleteById(id)
+    }
 }
