@@ -8,7 +8,7 @@ import ro.hibyte.betting.repository.UserProfileRepository
 import java.lang.RuntimeException
 import java.util.*
 
-@Component
+@Service
 class BetMapper(private val userProfileRepository: UserProfileRepository) {
     fun mapBetToBetDto(bet: Bet): BetDTO{
         return BetDTO(
