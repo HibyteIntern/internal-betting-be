@@ -7,14 +7,12 @@ import ro.hibyte.betting.dto.EventRequest
 import ro.hibyte.betting.dto.EventResponse
 import ro.hibyte.betting.dto.UserProfileDTO
 import ro.hibyte.betting.entity.Event
-import ro.hibyte.betting.entity.UserProfile
 import ro.hibyte.betting.mapper.BetMapper
 import ro.hibyte.betting.mapper.EventMapper
 import ro.hibyte.betting.repository.EventRepository
-import ro.hibyte.betting.repository.UserProfileRepository
-import java.lang.RuntimeException
 import java.sql.Timestamp
 import java.util.stream.Collectors
+import kotlin.RuntimeException
 
 @Service
 class EventService(
@@ -32,58 +30,38 @@ class EventService(
 
     @Transactional
     fun editEvent(eventId: Long, updatedEvent: EventRequest) {
-        val existingEvent = eventRepository.findById(eventId)
-        if (existingEvent.isPresent) {
-            val event = existingEvent.get()
-            event.name = updatedEvent.name
-            event.description = updatedEvent.description
-            event.tags = Regex("#\\w+").findAll(updatedEvent.description)
-                .map { it.value }
-                .toMutableList();
-            event.startsAt = Timestamp.from(updatedEvent.startsAt)
-            event.endsAt = Timestamp.from(updatedEvent.endsAt)
-            event.status = updatedEvent.status
-            eventRepository.save(event)
-        } else {
-            throw RuntimeException("Event Not Found")
-        }
+        val existingEvent = eventRepository.findById(eventId).orElseThrow { RuntimeException("event not present") }
+        existingEvent.name = updatedEvent.name
+        existingEvent.description = updatedEvent.description
+        existingEvent.tags = Regex("#\\w+").findAll(updatedEvent.description)
+            .map { it.value }
+            .toMutableList();
+        existingEvent.startsAt = Timestamp.from(updatedEvent.startsAt)
+        existingEvent.endsAt = Timestamp.from(updatedEvent.endsAt)
+        existingEvent.status = updatedEvent.status
+        eventRepository.save(existingEvent)
     }
 
     fun addBetForEvent(eventId: Long, betDTO: BetDTO, userProfileDTO: UserProfileDTO) {
-
-        val bets = userProfileDTO.bets?.stream()
-            ?.map(betMapper::mapBetDtoToBet)
-            ?.collect(Collectors.toList())
-
         val userProfile = userProfileService.createUserProfileIfNonExistent(userProfileDTO)
 
-        val existingEvent = eventRepository.findById(eventId)
-        if (existingEvent.isPresent) {
-            val event = existingEvent.get()
-            event.bets.add(betService.create(betDTO, userProfile))
-            eventRepository.save(event)
-        }
+        val event = eventRepository.findById(eventId).orElseThrow { RuntimeException("no such event found") }
+
+        event.bets.add(betService.create(betDTO, userProfile))
+        eventRepository.save(event)
     }
 
 
-    fun deleteEvent(eventId: Long) {
-        eventRepository.deleteById(eventId)
-    }
-
+    fun deleteEvent(eventId: Long) = eventRepository.deleteById(eventId)
     fun getAllEvents(): List<EventResponse> {
         return eventRepository.findAll()
-            .stream()
             .map(eventMapper::mapEventToEventResponse)
-            .collect(Collectors.toList())
+            .toList()
     }
 
     fun getOneEvent(eventId: Long): EventResponse {
-        val event = eventRepository.findById(eventId)
-        if (event.isPresent) {
-            return eventMapper.mapEventToEventResponse(event.get())
-        } else {
-            throw RuntimeException("event not found")
-        }
+        val event = eventRepository.findById(eventId).orElseThrow { RuntimeException("no such event found") }
+        return eventMapper.mapEventToEventResponse(event)
     }
 
 

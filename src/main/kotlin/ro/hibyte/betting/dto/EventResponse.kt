@@ -18,5 +18,4 @@ data class EventResponse(
     var startsAt : Instant,
     var endsAt : Instant,
     var status: Status
-) {
-}
+)

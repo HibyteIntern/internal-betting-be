@@ -11,8 +11,7 @@ import ro.hibyte.betting.repository.EventRepository
 import ro.hibyte.betting.repository.UserProfileRepository
 
 @Service
-class BetService(private val betRepository: BetRepository, private val eventService: EventService, private val betTypeService: BetTypeService, private val userRepository: UserProfileRepository,
-                 private val eventRepository: EventRepository,
+class BetService(private val betRepository: BetRepository,
                  private val betTypeRepository: BetTypeRepository
 ) {
 
@@ -23,14 +22,6 @@ class BetService(private val betRepository: BetRepository, private val eventServ
             NoSuchElementException("Bet not found with betId: $betId")
         }
     }
-
-//    fun create(dto: BetDTO, userProfile: UserProfile): Bet {
-//
-//        val bet = Bet(dto, eventService, betTypeService)
-//        bet.user = userProfile
-//
-//        return betRepository.save(bet)
-//    }
 
     fun create(betDto: BetDTO, userProfile: UserProfile): Bet {
 

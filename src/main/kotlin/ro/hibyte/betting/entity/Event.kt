@@ -1,6 +1,5 @@
 package ro.hibyte.betting.entity
 
-import com.fasterxml.jackson.databind.BeanDescription
 import jakarta.persistence.*
 import java.sql.Timestamp
 
@@ -11,28 +10,28 @@ data class Event(
     var eventId: Long = 0,
     var name: String = "",
     var description: String = "",
-    var creator:String = "",
-    var template:String = "",
+    var creator: String = "",
+    var template: String = "",
     @ElementCollection
     var tags: List<String> = emptyList(),
     @OneToMany
-    @JoinColumn(name  = "eventId")
-    var betTypes:List<BetType> = emptyList(),
+    @JoinColumn(name = "eventId")
+    var betTypes: List<BetType> = emptyList(),
     @OneToMany
     @JoinColumn(name = "eventId")
-    var bets:MutableList<Bet> = arrayListOf(),
+    var bets: MutableList<Bet> = arrayListOf(),
     @OneToMany
     @JoinColumn(name = "eventId")
-    var users:List<UserProfile> = emptyList(),
+    var users: List<UserProfile> = emptyList(),
     @ElementCollection
-    var userGroups : List<String> = emptyList(),
+    var userGroups: List<String> = emptyList(),
     @ElementCollection
-    var userProfiles : List<Long?> = emptyList(),
-    var created : Timestamp = Timestamp(System.currentTimeMillis()),
-    var lastModified :Timestamp = Timestamp(System.currentTimeMillis()),
-    var startsAt :Timestamp = Timestamp(System.currentTimeMillis()),
-    var endsAt :Timestamp = Timestamp(System.currentTimeMillis()),
-    var status: Status = Status.Draft
+    var userProfiles: List<Long?> = emptyList(),
+    var created: Timestamp = Timestamp(System.currentTimeMillis()),
+    var lastModified: Timestamp = Timestamp(System.currentTimeMillis()),
+    var startsAt: Timestamp = Timestamp(System.currentTimeMillis()),
+    var endsAt: Timestamp = Timestamp(System.currentTimeMillis()),
+    var status: Status = Status.DRAFT
 ) {
     constructor(
         name: String,
@@ -42,7 +41,7 @@ data class Event(
         tags: List<String>,
         betTypes: List<BetType>,
         bets: MutableList<Bet>,
-        users:List<UserProfile>,
+        users: List<UserProfile>,
         userGroups: List<String>,
         userProfiles: List<Long?>,
         created: Timestamp,
