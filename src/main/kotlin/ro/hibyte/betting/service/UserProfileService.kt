@@ -49,11 +49,6 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
         return userProfile.profilePicture
     }
 
-    fun createBet(userProfile: UserProfile, betDto: BetDTO) {
-        val bet = Bet(betDto)
-        userProfileRepository.save(userProfile)
-    }
-
     fun createUserProfileIfNonExistent(userProfileDTO: UserProfileDTO): UserProfile{
         val userId: Long = userProfileDTO.userId?:0
         var userProfile = userProfileRepository.findById(userId)

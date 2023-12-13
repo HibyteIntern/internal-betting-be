@@ -1,5 +1,6 @@
 package ro.hibyte.betting
 
+
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.autoconfigure.domain.EntityScan
 import org.springframework.boot.runApplication
@@ -13,3 +14,4 @@ class BettingApplication
 fun main(args: Array<String>) {
 	runApplication<BettingApplication>(*args)
 }
+
