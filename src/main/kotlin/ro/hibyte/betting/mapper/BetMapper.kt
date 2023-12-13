@@ -1,6 +1,7 @@
 package ro.hibyte.betting.mapper
 
 import org.springframework.stereotype.Component
+import org.springframework.stereotype.Service
 import ro.hibyte.betting.dto.BetDTO
 import ro.hibyte.betting.entity.Bet
 import ro.hibyte.betting.entity.UserProfile

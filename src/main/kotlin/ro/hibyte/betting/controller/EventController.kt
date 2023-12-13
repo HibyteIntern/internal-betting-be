@@ -8,7 +8,7 @@ import ro.hibyte.betting.entity.UserProfile
 import ro.hibyte.betting.service.EventService
 
 @RestController
-@RequestMapping("/api/events")
+@RequestMapping("/api/v1/events")
 @CrossOrigin(origins = ["http://localhost:4200"])
 class EventController(private val eventService: EventService) {
 
@@ -27,7 +27,7 @@ class EventController(private val eventService: EventService) {
     @DeleteMapping("/delete/{eventId}")
     fun deleteEvent(@PathVariable eventId: Long): ResponseEntity<Unit> {
         eventService.deleteEvent(eventId)
-        return ResponseEntity(HttpStatus.OK)
+        return ResponseEntity(HttpStatus.NO_CONTENT)
     }
 
     @GetMapping

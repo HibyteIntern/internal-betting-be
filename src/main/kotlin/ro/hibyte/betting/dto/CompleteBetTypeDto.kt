@@ -13,7 +13,7 @@ data class CompleteBetTypeDto(
     constructor(betType: BetType) : this(
         id = betType.id,
         name = betType.betTemplate.name,
-        type = betType.betTemplate.type,
+        type = betType.betTemplate.type.name,
         multipleChoiceOptions = betType.betTemplate.multipleChoiceOptions,
         odds = betType.odds
     )

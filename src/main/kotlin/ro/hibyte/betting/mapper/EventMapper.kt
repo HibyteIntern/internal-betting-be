@@ -30,7 +30,7 @@ class EventMapper(private val betTypeMapper: BetTypeMapper, private val userProf
         val completeBetTypeDtoList: List<CompleteBetTypeDto> = eventRequest.completeBetTypeDtoList
 
         val betTypes:List<BetType> =  completeBetTypeDtoList.stream()
-            .map(betTypeService::createBetType)
+            .map(betTypeService::create)
             .collect(Collectors.toList())
 
         val users: List<UserProfile> = eventRequest.userProfileIdList.stream()
