@@ -42,7 +42,7 @@ class EventTemplateService(
         eventTemplateRepository.findAll()
 
     fun updateEventTemplate(eventTemplateRequest: EventTemplateRequest, id: Long): EventTemplate {
-        val eventTemplateToUpdate: EventTemplate = eventTemplateRepository.findById(id).orElseThrow{EventTemplateNotFoundException(id)}
+        val eventTemplateToUpdate = eventTemplateRepository.findById(id).orElseThrow{EventTemplateNotFoundException(id)}
         val eventTemplate = EventTemplate(
             null,
             eventTemplateRequest.name,
