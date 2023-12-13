@@ -32,39 +32,4 @@ data class Event(
     var startsAt: Timestamp = Timestamp(System.currentTimeMillis()),
     var endsAt: Timestamp = Timestamp(System.currentTimeMillis()),
     var status: Status = Status.DRAFT
-) {
-    constructor(
-        name: String,
-        description: String,
-        creator: String,
-        template: String,
-        tags: List<String>,
-        betTypes: List<BetType>,
-        bets: MutableList<Bet>,
-        users: List<UserProfile>,
-        userGroups: List<String>,
-        userProfiles: List<Long?>,
-        created: Timestamp,
-        lastModified: Timestamp,
-        startsAt: Timestamp,
-        endsAt: Timestamp,
-        status: Status
-    ) : this(
-        0,
-        name,
-        description,
-        creator,
-        template,
-        tags,
-        betTypes,
-        bets,
-        users,
-        userGroups,
-        userProfiles,
-        created,
-        lastModified,
-        startsAt,
-        endsAt,
-        status
-    )
-}
+)
