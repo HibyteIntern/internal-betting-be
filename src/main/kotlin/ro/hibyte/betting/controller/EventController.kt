@@ -4,7 +4,6 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import ro.hibyte.betting.dto.*
-import ro.hibyte.betting.entity.UserProfile
 import ro.hibyte.betting.service.EventService
 
 @RestController
@@ -13,13 +12,13 @@ import ro.hibyte.betting.service.EventService
 class EventController(private val eventService: EventService) {
 
     @PostMapping("/add")
-    fun addEvent(@RequestBody eventRequest: EventRequest): ResponseEntity<Unit> {
+    fun addEvent(@RequestBody eventRequest: EventDTO): ResponseEntity<Unit> {
         eventService.addEvent(eventRequest)
         return ResponseEntity(HttpStatus.CREATED)
     }
 
     @PutMapping("/edit/{eventId}")
-    fun editEvent(@PathVariable eventId: Long, @RequestBody updatedEvent: EventRequest): ResponseEntity<Unit> {
+    fun editEvent(@PathVariable eventId: Long, @RequestBody updatedEvent: EventDTO): ResponseEntity<Unit> {
         eventService.editEvent(eventId, updatedEvent)
         return ResponseEntity(HttpStatus.OK)
     }
@@ -31,7 +30,7 @@ class EventController(private val eventService: EventService) {
     }
 
     @GetMapping
-    fun getAllEvents(): ResponseEntity<List<EventResponse>> {
+    fun getAllEvents(): ResponseEntity<List<EventDTO>> {
         val events = eventService.getAllEvents()
         return ResponseEntity(events, HttpStatus.OK)
     }
@@ -43,7 +42,7 @@ class EventController(private val eventService: EventService) {
     }
 
     @GetMapping("/get/{eventId}")
-    fun getOneEvent(@PathVariable eventId: Long): ResponseEntity<EventResponse> {
+    fun getOneEvent(@PathVariable eventId: Long): ResponseEntity<EventDTO> {
         val event = eventService.getOneEvent(eventId)
         return ResponseEntity(event, HttpStatus.OK)
     }
