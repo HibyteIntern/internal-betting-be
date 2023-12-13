@@ -26,7 +26,7 @@ class BetController(private val betService: BetService, private val userProfileS
     }
 
     @PostMapping("/{userId}")
-    fun create(@PathVariable userId: Long?, @RequestBody betDto: BetDTO): BetDTO {
+    fun create(@PathVariable userId: Long, @RequestBody betDto: BetDTO): BetDTO {
         var userProfile = userProfileService.get(userId!!)
         val bet = betService.create(betDto, userProfile)
 
