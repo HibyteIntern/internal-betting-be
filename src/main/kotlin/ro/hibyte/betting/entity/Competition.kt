@@ -37,5 +37,5 @@ data class Competition(
     var created : Timestamp = Timestamp(System.currentTimeMillis()),
     @Temporal(TemporalType.TIMESTAMP)
     var lastModified : Timestamp = Timestamp(System.currentTimeMillis()),
-    var status: Status = Status.DRAFT
+    var status: Status = Status.DRAFT,
 )
