@@ -43,5 +43,5 @@ class UserProfileController(private val userProfileService: UserProfileService, 
         return userProfileService.addPhoto(userId, photo)
     }
 
-
 }
+

@@ -23,3 +23,4 @@ class UserProfileDTO(
         bets = userProfile.bets?.map { BetDTO(it) }?.toMutableList()
     )
 }
+

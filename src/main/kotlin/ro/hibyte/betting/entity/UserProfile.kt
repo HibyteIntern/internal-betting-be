@@ -43,7 +43,6 @@ data class UserProfile(
         description = dtoUser.description
     }
 
-
-
 }
+
 

@@ -24,14 +24,6 @@ class BetService(private val betRepository: BetRepository, private val eventServ
         }
     }
 
-//    fun create(dto: BetDTO, userProfile: UserProfile): Bet {
-//
-//        val bet = Bet(dto, eventService, betTypeService)
-//        bet.user = userProfile
-//
-//        return betRepository.save(bet)
-//    }
-
     fun create(betDto: BetDTO, userProfile: UserProfile): Bet {
 
         val betType = betDto.betType?.let { betTypeRepository.findById(it).orElse(null) }
@@ -42,7 +34,6 @@ class BetService(private val betRepository: BetRepository, private val eventServ
         return betRepository.save(bet)
 
     }
-
 
     fun update(dtoBet: BetDTO): Bet {
         val bet = betRepository.findById(dtoBet.betId!!).orElseThrow {
@@ -62,7 +53,5 @@ class BetService(private val betRepository: BetRepository, private val eventServ
         }
     }
 
-
-
-
 }
+
