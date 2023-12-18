@@ -39,7 +39,7 @@ class EventTemplateService(
     fun getAll(): List<EventTemplate> =
         eventTemplateRepository.findAll()
 
-    fun searchByName(name: String) =
+    fun searchByName(name: String): List<EventTemplate> =
         eventTemplateRepository.findAllByNameContainsIgnoreCase(name)
 
     fun update(eventTemplateRequest: EventTemplateRequest, id: Long): EventTemplate {
