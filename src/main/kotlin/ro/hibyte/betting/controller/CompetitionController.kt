@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import ro.hibyte.betting.dto.CompetitionDto
 import ro.hibyte.betting.dto.CompetitionRequest
@@ -19,7 +20,7 @@ import ro.hibyte.betting.service.CompetitionService
 
 @CrossOrigin(origins = ["http://localhost:4200"])
 @RestController
-@RequestMapping("/api/v1/competitions")
+@RequestMapping("/api/v2/competitions")
 class CompetitionController {
     @Autowired
     private lateinit var competitionService: CompetitionService
@@ -28,7 +29,8 @@ class CompetitionController {
     private lateinit var competitionMapper: CompetitionMapper
 
     @GetMapping
-    fun getAll(): List<CompetitionDto> = competitionService.getAll()
+    fun getAll(@RequestParam name: String?): List<CompetitionDto> =
+        name?.let { competitionService.searchByName(name) } ?: competitionService.getAll()
 
     @GetMapping("/{id}")
     fun getOneById(@PathVariable id: Long): CompetitionDto {
