@@ -31,11 +31,7 @@ class EventTemplateController(private val eventTemplateService: EventTemplateSer
 
     @GetMapping
     fun getAll(@RequestParam name: String?): List<EventTemplate> =
-        if(!name.isNullOrEmpty()) {
-            eventTemplateService.searchByName(name)
-        } else {
-            eventTemplateService.getAll()
-        }
+        name?.let { eventTemplateService.searchByName(it) } ?: eventTemplateService.getAll()
 
     @PutMapping("/{id}")
     fun update(@RequestBody eventTemplateRequest: EventTemplateRequest, @PathVariable id: Long): EventTemplate =
