@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import ro.hibyte.betting.dto.EventTemplateRequest
 import ro.hibyte.betting.entity.EventTemplate
@@ -29,8 +30,8 @@ class EventTemplateController(private val eventTemplateService: EventTemplateSer
         eventTemplateService.getById(id)
 
     @GetMapping
-    fun getAll(): List<EventTemplate> =
-        eventTemplateService.getAll()
+    fun getAll(@RequestParam name: String?): List<EventTemplate> =
+        name?.let { eventTemplateService.searchByName(it) } ?: eventTemplateService.getAll()
 
     @PutMapping("/{id}")
     fun update(@RequestBody eventTemplateRequest: EventTemplateRequest, @PathVariable id: Long): EventTemplate =
