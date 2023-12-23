@@ -1,6 +1,9 @@
 package ro.hibyte.betting.controller
 
 
+import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
 import ro.hibyte.betting.dto.BetDTO
@@ -64,6 +67,26 @@ class UserProfileController(private val userProfileService: UserProfileService) 
     fun addPhoto(@RequestPart("photo") photo: MultipartFile, @PathVariable userId: Long): Long? {
         return userProfileService.addPhoto(userId, photo)
     }
+
+    @GetMapping("/{userId}/photo")
+    fun getPhoto(@PathVariable userId: Long): ResponseEntity<ByteArray> {
+        return try {
+            val photo: ByteArray? = userProfileService.getPhoto(userId)
+            if (photo != null) {
+                ResponseEntity.ok()
+                    .contentType(MediaType.IMAGE_JPEG)
+                    .body(photo)
+            } else {
+                ResponseEntity.notFound().build()
+            }
+        } catch (e: IllegalArgumentException) {
+            ResponseEntity.badRequest().build()
+        } catch (e: Exception) {
+            ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
+        }
+    }
+
+
 
 }
 

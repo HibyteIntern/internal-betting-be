@@ -55,6 +55,13 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
         return userProfile.profilePicture
     }
 
+    fun getPhoto(userId: Long): ByteArray? {
+        val userProfile = userProfileRepository.findById(userId).orElseThrow()
+        val photoId = userProfile.profilePicture ?: throw IllegalArgumentException("Profile picture not set for user $userId")
+
+        return waspService.getPhotoFromWasp(photoId)
+    }
+
     fun getId(userProfile: UserProfile): Long?{
         return userProfile.userId}
 
