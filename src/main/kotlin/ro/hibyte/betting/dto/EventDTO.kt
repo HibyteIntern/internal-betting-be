@@ -17,5 +17,6 @@ data class EventDTO(
     var lastModified : Instant?=null,
     var startsAt : Instant?=null,
     var endsAt : Instant?=null,
-    var status: Status?=null
+    var status: Status?=null,
+    var selectedTemplate: String?=null
 )

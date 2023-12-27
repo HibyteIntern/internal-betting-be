@@ -46,5 +46,11 @@ class EventController(private val eventService: EventService) {
         val event = eventService.getOneEvent(eventId)
         return ResponseEntity(event, HttpStatus.OK)
     }
+
+    @GetMapping("/get/tags")
+    fun getTags():ResponseEntity<List<String>>{
+        val tags = eventService.getAllTags()
+        return ResponseEntity(tags,HttpStatus.OK)
+    }
 }
 

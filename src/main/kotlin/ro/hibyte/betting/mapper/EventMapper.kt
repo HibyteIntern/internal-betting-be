@@ -17,9 +17,7 @@ import java.util.stream.Collectors
 class EventMapper(private val betTypeMapper: BetTypeMapper, private val userProfileService: UserProfileService,
     private val betMapper: BetMapper) {
     fun mapEventRequestToEvent(eventRequest: EventDTO, betTypeService: BetTypeService): Event {
-        val defaultCreator = ""
         val defaultUserGroups = emptyList<String>()
-        val defaultUserProfiles = emptyList<Long?>()
         val defaultTimestamp = Timestamp(System.currentTimeMillis())
         // Extract words starting with '#' from the description to populate tags
         val tags = eventRequest.description?.let {
@@ -47,7 +45,7 @@ class EventMapper(private val betTypeMapper: BetTypeMapper, private val userProf
             name = eventRequest.name?: "",
             description = eventRequest.description?:"",
             betTypes = betTypes,
-            creator = defaultCreator,
+            creator = eventRequest.creator?:"",
             tags = tags?: emptyList(),
             users = users,
             bets = arrayListOf(),
@@ -85,5 +83,9 @@ class EventMapper(private val betTypeMapper: BetTypeMapper, private val userProf
             status = event.status,
             bets = betList,
         )
+    }
+
+    fun mapToTags(event: Event): List<String> {
+        return event.tags;
     }
 }
