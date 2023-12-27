@@ -68,5 +68,11 @@ class EventService(
             .flatMap { event -> eventMapper.mapToTags(event) }
             .toList()
     }
+
+    fun getEventsByName(name:String):List<EventDTO>{
+        return eventRepository.findByName(name)
+              .map(eventMapper::mapEventToEventResponse)
+              .toList()
+    }
 }
 
