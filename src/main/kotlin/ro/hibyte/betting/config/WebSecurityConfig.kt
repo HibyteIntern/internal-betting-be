@@ -19,7 +19,7 @@ class WebSecurityConfig {
             .csrf { it.disable() }
             .authorizeHttpRequests {
                 it.requestMatchers(HttpMethod.OPTIONS).permitAll()
-                    .anyRequest().authenticated()
+                    .anyRequest().permitAll()
             }
             .oauth2ResourceServer { it.jwt(Customizer.withDefaults()) }
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }

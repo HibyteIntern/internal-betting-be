@@ -8,7 +8,7 @@ import java.sql.Timestamp
 data class PrizeDraw(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long,
+    var id: Long? = null,
     var title: String,
     var description: String,
     var status: Status,
@@ -18,7 +18,7 @@ data class PrizeDraw(
     var type: DrawType,
     @ManyToOne
     @JoinColumn(name = "user_profile_id")
-    var winner: UserProfile,
+    var winner: UserProfile?,
 
     @OneToMany(mappedBy = "prizeDraw", cascade = [CascadeType.ALL])
     @JsonManagedReference
