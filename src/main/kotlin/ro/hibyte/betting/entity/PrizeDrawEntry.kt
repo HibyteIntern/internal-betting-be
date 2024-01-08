@@ -11,11 +11,11 @@ import jakarta.persistence.ManyToOne
 data class PrizeDrawEntry(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long,
+    var id: Long?,
     @ManyToOne
     @JsonBackReference
     var user: UserProfile,
-    var amount: Int,
+    var amount: Int?,
     @ManyToOne
     @JsonBackReference
     var prizeDraw: PrizeDraw

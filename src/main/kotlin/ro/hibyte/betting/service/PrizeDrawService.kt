@@ -3,19 +3,44 @@ package ro.hibyte.betting.service
 import org.springframework.stereotype.Service
 import ro.hibyte.betting.dto.PrizeDrawRequest
 import ro.hibyte.betting.dto.PrizeDrawResponse
+import ro.hibyte.betting.entity.DrawType
+import ro.hibyte.betting.entity.PrizeDraw
+import ro.hibyte.betting.entity.PrizeDrawEntry
 import ro.hibyte.betting.exceptions.types.EntityNotFoundException
 import ro.hibyte.betting.mapper.PrizeDrawMapper
+import ro.hibyte.betting.repository.PrizeDrawEntryRepository
 import ro.hibyte.betting.repository.PrizeDrawRepository
+import ro.hibyte.betting.repository.UserProfileRepository
 
 @Service
 class PrizeDrawService(
     private val prizeDrawRepository: PrizeDrawRepository,
     private val prizeDrawMapper: PrizeDrawMapper,
+    private val userProfileRepository: UserProfileRepository,
+    private val prizeDrawEntryRepository: PrizeDrawEntryRepository
 ) {
+
+    private fun createRoulette(prizeDraw: PrizeDraw): PrizeDrawResponse {
+        return prizeDrawMapper.prizeDrawToPrizeDrawResponse(prizeDrawRepository.save(prizeDraw))
+    }
+
+    private fun createMostPoints(prizeDraw: PrizeDraw): PrizeDrawResponse {
+        val savedPrizeDraw: PrizeDraw = prizeDrawRepository.save(prizeDraw)
+        userProfileRepository
+                .findAll()
+                .stream()
+                .map { PrizeDrawEntry(null, it, null, prizeDraw) }
+                .forEach { prizeDrawEntryRepository.save(it) }
+
+        savedPrizeDraw.entries = prizeDrawEntryRepository.getAllByPrizeDraw_Id(savedPrizeDraw.id!!)
+        return prizeDrawMapper.prizeDrawToPrizeDrawResponse(prizeDrawRepository.save(savedPrizeDraw))
+    }
 
     fun create(prizeDrawRequest: PrizeDrawRequest): PrizeDrawResponse {
         val prizeDraw = prizeDrawMapper.prizeDrawRequestToPrizeDraw(prizeDrawRequest)
-        return prizeDrawMapper.prizeDrawToPrizeDrawResponse(prizeDrawRepository.save(prizeDraw))
+        if(prizeDraw.type == DrawType.ROULETTE)
+            return createRoulette(prizeDraw)
+        return createMostPoints(prizeDraw)
     }
 
     fun getById(id: Long): PrizeDrawResponse =
