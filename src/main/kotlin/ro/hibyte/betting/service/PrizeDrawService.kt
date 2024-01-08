@@ -6,6 +6,7 @@ import ro.hibyte.betting.dto.PrizeDrawResponse
 import ro.hibyte.betting.entity.DrawType
 import ro.hibyte.betting.entity.PrizeDraw
 import ro.hibyte.betting.entity.PrizeDrawEntry
+import ro.hibyte.betting.exceptions.types.BadRequestException
 import ro.hibyte.betting.exceptions.types.EntityNotFoundException
 import ro.hibyte.betting.mapper.PrizeDrawMapper
 import ro.hibyte.betting.repository.PrizeDrawEntryRepository
@@ -29,7 +30,7 @@ class PrizeDrawService(
         userProfileRepository
                 .findAll()
                 .stream()
-                .map { PrizeDrawEntry(null, it, null, prizeDraw) }
+                .map { PrizeDrawEntry(null, it, it.coins, prizeDraw) }
                 .forEach { prizeDrawEntryRepository.save(it) }
 
         savedPrizeDraw.entries = prizeDrawEntryRepository.getAllByPrizeDraw_Id(savedPrizeDraw.id!!)
@@ -38,9 +39,8 @@ class PrizeDrawService(
 
     fun create(prizeDrawRequest: PrizeDrawRequest): PrizeDrawResponse {
         val prizeDraw = prizeDrawMapper.prizeDrawRequestToPrizeDraw(prizeDrawRequest)
-        if(prizeDraw.type == DrawType.ROULETTE)
-            return createRoulette(prizeDraw)
-        return createMostPoints(prizeDraw)
+        return if (prizeDraw.type == DrawType.ROULETTE)
+            createRoulette(prizeDraw) else createMostPoints(prizeDraw)
     }
 
     fun getById(id: Long): PrizeDrawResponse =
@@ -55,5 +55,10 @@ class PrizeDrawService(
     fun delete(id: Long) {
         prizeDrawRepository.findById(id).orElseThrow{EntityNotFoundException("Prize Draw", id)}
         prizeDrawRepository.deleteById(id)
+    }
+
+    fun addEntry(id: Long, amount: Number) {
+        val foundPrizeDraw: PrizeDraw  = prizeDrawRepository.findById(id).orElseThrow{EntityNotFoundException("Prize Draw", id)}
+        if (foundPrizeDraw.type == DrawType.MOST_POINTS) throw BadRequestException("Cannot manually add entries to a MOST_POINTS draw")
     }
 }

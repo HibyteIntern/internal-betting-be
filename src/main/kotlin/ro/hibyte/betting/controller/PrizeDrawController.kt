@@ -39,4 +39,8 @@ class PrizeDrawController(private val prizeDrawService: PrizeDrawService) {
         prizeDrawService.delete(id)
         return ResponseEntity.noContent().build()
     }
+
+    @PostMapping("/{id}/entry/{amount}")
+    fun addEntry(@PathVariable id: Long, @PathVariable amount: Number) =
+        prizeDrawService.addEntry(id, amount)
 }

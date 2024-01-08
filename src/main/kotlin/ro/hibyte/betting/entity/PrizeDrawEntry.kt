@@ -13,9 +13,8 @@ data class PrizeDrawEntry(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long?,
     @ManyToOne
-    @JsonBackReference
     var user: UserProfile,
-    var amount: Int?,
+    var amount: Number,
     @ManyToOne
     @JsonBackReference
     var prizeDraw: PrizeDraw
