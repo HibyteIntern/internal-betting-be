@@ -1,11 +1,13 @@
 package ro.hibyte.betting.service
 
 import org.springframework.stereotype.Service
+import ro.hibyte.betting.dto.PrizeDrawEntryRequest
 import ro.hibyte.betting.dto.PrizeDrawRequest
 import ro.hibyte.betting.dto.PrizeDrawResponse
 import ro.hibyte.betting.entity.DrawType
 import ro.hibyte.betting.entity.PrizeDraw
 import ro.hibyte.betting.entity.PrizeDrawEntry
+import ro.hibyte.betting.entity.UserProfile
 import ro.hibyte.betting.exceptions.types.BadRequestException
 import ro.hibyte.betting.exceptions.types.EntityNotFoundException
 import ro.hibyte.betting.mapper.PrizeDrawMapper
@@ -57,8 +59,24 @@ class PrizeDrawService(
         prizeDrawRepository.deleteById(id)
     }
 
-    fun addEntry(id: Long, amount: Number) {
-        val foundPrizeDraw: PrizeDraw  = prizeDrawRepository.findById(id).orElseThrow{EntityNotFoundException("Prize Draw", id)}
+    fun addEntry(prizeDrawEntryRequest: PrizeDrawEntryRequest): PrizeDrawEntry {
+        val foundPrizeDraw: PrizeDraw  = prizeDrawRepository
+            .findById(prizeDrawEntryRequest.prizeDrawId)
+            .orElseThrow{ EntityNotFoundException("Prize Draw", prizeDrawEntryRequest.prizeDrawId) }
+
+        val foundUser: UserProfile = userProfileRepository
+            .findById(prizeDrawEntryRequest.userId)
+            .orElseThrow{ EntityNotFoundException("User Profile", prizeDrawEntryRequest.userId) }
+
         if (foundPrizeDraw.type == DrawType.MOST_POINTS) throw BadRequestException("Cannot manually add entries to a MOST_POINTS draw")
+
+        return prizeDrawEntryRepository.save(
+            PrizeDrawEntry(
+                null,
+                foundUser,
+                prizeDrawEntryRequest.amount,
+                foundPrizeDraw
+            )
+        )
     }
 }

@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import ro.hibyte.betting.dto.PrizeDrawEntryRequest
 import ro.hibyte.betting.dto.PrizeDrawRequest
 import ro.hibyte.betting.dto.PrizeDrawResponse
+import ro.hibyte.betting.entity.PrizeDrawEntry
 import ro.hibyte.betting.service.PrizeDrawService
 
 @RestController
@@ -40,7 +42,7 @@ class PrizeDrawController(private val prizeDrawService: PrizeDrawService) {
         return ResponseEntity.noContent().build()
     }
 
-    @PostMapping("/{id}/entry/{amount}")
-    fun addEntry(@PathVariable id: Long, @PathVariable amount: Number) =
-        prizeDrawService.addEntry(id, amount)
+    @PostMapping("/entry")
+    fun addEntry(@RequestBody prizeDrawEntryRequest: PrizeDrawEntryRequest): PrizeDrawEntry =
+        prizeDrawService.addEntry(prizeDrawEntryRequest)
 }
