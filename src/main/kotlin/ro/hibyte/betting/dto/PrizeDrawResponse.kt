@@ -16,5 +16,6 @@ data class PrizeDrawResponse(
     var prizeDescription: String,
     var type: DrawType,
     var winner: UserProfile?,
-    var entries: List<PrizeDrawEntry>
+    var entries: List<PrizeDrawEntry>,
+    var currentLeader: PrizeDrawEntry?
 )

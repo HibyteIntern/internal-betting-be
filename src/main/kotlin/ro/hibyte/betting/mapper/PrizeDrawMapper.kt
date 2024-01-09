@@ -4,12 +4,17 @@ import org.springframework.stereotype.Service
 import ro.hibyte.betting.dto.PrizeDrawRequest
 import ro.hibyte.betting.dto.PrizeDrawResponse
 import ro.hibyte.betting.entity.PrizeDraw
+import ro.hibyte.betting.entity.PrizeDrawEntry
 import ro.hibyte.betting.entity.Status
 import java.sql.Timestamp
 
 
 @Service
 class PrizeDrawMapper {
+
+    fun getCurrentLeader(prizeDraw: PrizeDraw): PrizeDrawEntry? =
+        prizeDraw.entries.maxByOrNull { it.amount.toDouble() }
+
     fun prizeDrawRequestToPrizeDraw(prizeDrawRequest: PrizeDrawRequest): PrizeDraw {
         return PrizeDraw(
             null,
@@ -35,7 +40,8 @@ class PrizeDrawMapper {
             prizeDraw.prizeDescription,
             prizeDraw.type,
             prizeDraw.winner,
-            prizeDraw.entries
+            prizeDraw.entries,
+            getCurrentLeader(prizeDraw)
         )
     }
 }

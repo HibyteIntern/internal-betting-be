@@ -4,10 +4,7 @@ import org.springframework.stereotype.Service
 import ro.hibyte.betting.dto.PrizeDrawEntryRequest
 import ro.hibyte.betting.dto.PrizeDrawRequest
 import ro.hibyte.betting.dto.PrizeDrawResponse
-import ro.hibyte.betting.entity.DrawType
-import ro.hibyte.betting.entity.PrizeDraw
-import ro.hibyte.betting.entity.PrizeDrawEntry
-import ro.hibyte.betting.entity.UserProfile
+import ro.hibyte.betting.entity.*
 import ro.hibyte.betting.exceptions.types.BadRequestException
 import ro.hibyte.betting.exceptions.types.EntityNotFoundException
 import ro.hibyte.betting.mapper.PrizeDrawMapper
@@ -53,6 +50,10 @@ class PrizeDrawService(
 
     fun getAll(): List<PrizeDrawResponse> =
         prizeDrawRepository.findAll().map { prizeDrawMapper.prizeDrawToPrizeDrawResponse(it) }
+
+    fun getByStatus(status: Status): List<PrizeDrawResponse> =
+        prizeDrawRepository.findAllByStatus(status).map { prizeDrawMapper.prizeDrawToPrizeDrawResponse(it) }
+
 
     fun delete(id: Long) {
         prizeDrawRepository.findById(id).orElseThrow{EntityNotFoundException("Prize Draw", id)}

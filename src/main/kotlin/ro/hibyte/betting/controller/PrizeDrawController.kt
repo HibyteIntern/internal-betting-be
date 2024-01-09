@@ -14,6 +14,7 @@ import ro.hibyte.betting.dto.PrizeDrawEntryRequest
 import ro.hibyte.betting.dto.PrizeDrawRequest
 import ro.hibyte.betting.dto.PrizeDrawResponse
 import ro.hibyte.betting.entity.PrizeDrawEntry
+import ro.hibyte.betting.entity.Status
 import ro.hibyte.betting.service.PrizeDrawService
 
 @RestController
@@ -35,6 +36,14 @@ class PrizeDrawController(private val prizeDrawService: PrizeDrawService) {
     @GetMapping
     fun getAll(): List<PrizeDrawResponse> =
         prizeDrawService.getAll()
+
+    @GetMapping("/active")
+    fun getActive(): List<PrizeDrawResponse> =
+        prizeDrawService.getByStatus(Status.OPEN)
+
+    @GetMapping("/past")
+    fun getPast(): List<PrizeDrawResponse> =
+        prizeDrawService.getByStatus(Status.CLOSED)
 
     @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Long): ResponseEntity<Void> {

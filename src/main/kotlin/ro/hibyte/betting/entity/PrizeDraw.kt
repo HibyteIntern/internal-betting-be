@@ -10,10 +10,12 @@ data class PrizeDraw(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
     var title: String,
+    @Column(length = 2048)
     var description: String,
     var status: Status,
     var createdAt: Timestamp = Timestamp(System.currentTimeMillis()),
     var endsAt: Timestamp,
+    @Column(length = 1024)
     var prizeDescription: String,
     var type: DrawType,
     @ManyToOne
