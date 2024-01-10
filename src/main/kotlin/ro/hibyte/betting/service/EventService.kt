@@ -70,7 +70,7 @@ class EventService(
     }
 
     fun getEventsByName(name:String):List<EventDTO>{
-        return eventRepository.findByName(name)
+        return eventRepository.findAllByNameContainsIgnoreCase(name)
               .map(eventMapper::mapEventToEventResponse)
               .toList()
     }
