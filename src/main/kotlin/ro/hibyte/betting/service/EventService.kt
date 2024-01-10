@@ -66,6 +66,7 @@ class EventService(
     fun getAllTags():List<String>{
         return eventRepository.findAll()
             .flatMap { event -> eventMapper.mapToTags(event) }
+            .distinct()
             .toList()
     }
 

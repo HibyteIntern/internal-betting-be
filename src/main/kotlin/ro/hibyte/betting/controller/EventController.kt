@@ -58,7 +58,5 @@ class EventController(private val eventService: EventService) {
         val events = name?.let { eventService.getEventsByName(it) } ?: eventService.getAllEvents()
         return ResponseEntity(events,HttpStatus.OK)
     }
-
-
 }
 
