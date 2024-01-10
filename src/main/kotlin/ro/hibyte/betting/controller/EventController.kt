@@ -53,16 +53,12 @@ class EventController(private val eventService: EventService) {
         return ResponseEntity(tags,HttpStatus.OK)
     }
 
-    @GetMapping("/get/name/{name}")
-    fun getEventsByName(@PathVariable name:String?):ResponseEntity<List<EventDTO>>{
+    @GetMapping("/get/name")
+    fun getEventsByName(@RequestParam name:String?):ResponseEntity<List<EventDTO>>{
         val events = name?.let { eventService.getEventsByName(it) } ?: eventService.getAllEvents()
         return ResponseEntity(events,HttpStatus.OK)
     }
-    @GetMapping("/get/name/")
-    fun getAllEvents2(): ResponseEntity<List<EventDTO>> {
-        val events = eventService.getAllEvents()
-        return ResponseEntity(events, HttpStatus.OK)
-    }
+
 
 }
 
