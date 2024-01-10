@@ -58,5 +58,11 @@ class EventController(private val eventService: EventService) {
         val events = name?.let { eventService.getEventsByName(it) } ?: eventService.getAllEvents()
         return ResponseEntity(events,HttpStatus.OK)
     }
+    @GetMapping("/get/name/")
+    fun getAllEvents2(): ResponseEntity<List<EventDTO>> {
+        val events = eventService.getAllEvents()
+        return ResponseEntity(events, HttpStatus.OK)
+    }
+
 }
 
