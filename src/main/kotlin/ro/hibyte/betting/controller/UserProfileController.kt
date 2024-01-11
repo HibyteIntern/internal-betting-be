@@ -1,18 +1,16 @@
 package ro.hibyte.betting.controller
 
 
-import org.springframework.web.bind.annotation.CrossOrigin
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestPart
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
+import ro.hibyte.betting.dto.BetDTO
 import ro.hibyte.betting.dto.UserProfileDTO
+import ro.hibyte.betting.entity.Bet
+import ro.hibyte.betting.entity.UserProfile
+import ro.hibyte.betting.service.BetService
 import ro.hibyte.betting.service.UserProfileService
 import ro.hibyte.betting.service.WaspService
 
@@ -34,9 +32,20 @@ class UserProfileController(private val userProfileService: UserProfileService, 
         return UserProfileDTO(userProfile)
     }
 
-    @PostMapping("/{userId}/addPhoto")
-    fun addPhoto(@RequestPart("photo") photo: MultipartFile, @PathVariable userId: Long): Long? {
-        return userProfileService.addPhoto(userId, photo)
+    @GetMapping("/byKeycloakId/{keycloakId}")
+    fun getByKeycloakId(@PathVariable keycloakId: String): UserProfileDTO {
+        val userProfile = userProfileService.getByKeycloakId(keycloakId)
+        if (userProfile != null) {
+            return UserProfileDTO(userProfile)
+        } else {
+
+            val newUserProfile = UserProfile()
+            newUserProfile.keycloakId = keycloakId
+
+            val createdUserProfile = userProfileService.create(UserProfileDTO(newUserProfile))
+
+            return UserProfileDTO(createdUserProfile)
+        }
     }
 
     @PostMapping
@@ -47,7 +56,7 @@ class UserProfileController(private val userProfileService: UserProfileService, 
 
     @PutMapping("/{userId}")
     fun update(@PathVariable userId: Long, @RequestBody userProfileDto: UserProfileDTO): UserProfileDTO{
-        val userProfile = userProfileService.update(userId, userProfileDto)
+        val userProfile = userProfileService.update(userProfileDto)
         return UserProfileDTO(userProfile)
     }
 
@@ -55,5 +64,31 @@ class UserProfileController(private val userProfileService: UserProfileService, 
     fun delete(@PathVariable userId: Long) = userProfileService.delete(userId)
 
 
+    @PostMapping("/{userId}/addPhoto")
+    fun addPhoto(@RequestPart("photo") photo: MultipartFile, @PathVariable userId: Long): Long? {
+        return userProfileService.addPhoto(userId, photo)
+    }
+
+    @GetMapping("/{userId}/photo")
+    fun getPhoto(@PathVariable userId: Long): ResponseEntity<ByteArray> {
+        return try {
+            val photo: ByteArray? = userProfileService.getPhoto(userId)
+            if (photo != null) {
+                ResponseEntity.ok()
+                    .contentType(MediaType.IMAGE_JPEG)
+                    .body(photo)
+            } else {
+                ResponseEntity.notFound().build()
+            }
+        } catch (e: IllegalArgumentException) {
+            ResponseEntity.badRequest().build()
+        } catch (e: Exception) {
+            ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
+        }
+    }
+
+
 
 }
+
+

@@ -1,14 +1,15 @@
 package ro.hibyte.betting.dto
 
+import ro.hibyte.betting.entity.Bet
 import ro.hibyte.betting.entity.UserProfile
 
 class UserProfileDTO(
-    var userId: Long,
+    val userId: Long? = null,
     var keycloakId: String? = null,
+    var username: String? = null,
     var profilePicture: Long? = null,
     var description: String? = null,
-    var username: String? = null,
-    //bets
+    var bets: MutableList<BetDTO>? = null,
     var coins: Number = 50,
     var groups: MutableSet<Long>? = mutableSetOf()
 ) {
@@ -19,7 +20,8 @@ class UserProfileDTO(
         description = userProfile.description,
         coins = userProfile.coins,
         groups = userProfile.groups?.map{it.userGroupId}?.toMutableSet(),
-        username = userProfile.username
+        username = userProfile.username,
+        bets = userProfile.bets?.map { BetDTO(it) }?.toMutableList()
     )
 
     override fun equals(other: Any?): Boolean {
@@ -41,3 +43,5 @@ class UserProfileDTO(
     }
 
 }
+
+

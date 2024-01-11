@@ -2,6 +2,7 @@ package ro.hibyte.betting.entity
 
 import com.fasterxml.jackson.annotation.JsonBackReference
 import jakarta.persistence.*
+import ro.hibyte.betting.dto.BetDTO
 import ro.hibyte.betting.dto.UserProfileDTO
 
 
@@ -10,13 +11,16 @@ data class UserProfile(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var userId: Long,
+    var userId: Long? = null,
     var keycloakId: String? = null,
+    var username: String? = null,
     var profilePicture: Long? = null,
     var description: String? = null,
-    var username: String? = null,
 
-    //bets
+
+    @OneToMany(cascade = [CascadeType.ALL], mappedBy = "user", fetch = FetchType.EAGER)
+    var bets: MutableList<Bet>? = null,
+
 
     var coins: Number = 50,
 
@@ -28,19 +32,11 @@ data class UserProfile(
     constructor(dtoUser: UserProfileDTO): this(
         userId = dtoUser.userId,
         keycloakId = dtoUser.keycloakId,
+        username = dtoUser.username,
         profilePicture = dtoUser.profilePicture,
         description = dtoUser.description,
-        username = dtoUser.username,
         coins = dtoUser.coins
     )
-
-    fun update(dtoUser: UserProfileDTO){
-        dtoUser.keycloakId?.let { keycloakId = it }
-        dtoUser.profilePicture?.let { profilePicture = it }
-        dtoUser.description?.let { description = it }
-        dtoUser.coins?.let { coins = it }
-        dtoUser.username?. let { username = it }
-    }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -61,5 +57,12 @@ data class UserProfile(
     }
 
 
+    fun update(dtoUser: UserProfileDTO) {
+        username = dtoUser.username
+        profilePicture = dtoUser.profilePicture
+        description = dtoUser.description
+    }
+
 }
+
 

@@ -35,15 +35,20 @@ class UserGroupService(
     }
 
     fun create(userGroupDto: UserGroupDto): UserGroup {
-        var userGroup = UserGroup(userGroupDto)
-        userGroupRepository.save(userGroup)
-        userGroup.users?.forEach { userProfile ->
-            userProfile.groups?.add(userGroup)
-            userProfileRepository.save(userProfile)
-        }
+        try {
+            var userGroup = UserGroup(userGroupDto)
+            userGroupRepository.save(userGroup)
+            userGroup.users?.forEach { userProfile ->
+                userProfile.groups?.add(userGroup)
+                userProfileRepository.save(userProfile)
+            }
 
-        return userGroupRepository.save(userGroup)
+            return userGroupRepository.save(userGroup)
+        } catch (e: Exception) {
+            throw RuntimeException("User Group could not be created")
+        }
     }
+
 
     fun addPhoto(userId: Long, photo: MultipartFile): Long?{
         var userGroup = userGroupRepository.findById(userId).orElseThrow()
