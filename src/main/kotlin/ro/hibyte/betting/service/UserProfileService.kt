@@ -11,12 +11,10 @@ import ro.hibyte.betting.repository.UserProfileRepository
 @Service
 class UserProfileService(private val userProfileRepository: UserProfileRepository, private val waspService: WaspService) {
 
-
-    fun getAll(): List<UserProfile> {
-        return userProfileRepository.findAll()
-    }
+    fun getAll(): List<UserProfile> = userProfileRepository.findAll()
 
     fun get(userId: Long): UserProfile {
+
         return userProfileRepository.findById(userId).orElseThrow {
             NoSuchElementException("UserProfile not found with userId: $userId")
         }
@@ -75,9 +73,6 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
         return waspService.getPhotoFromWasp(photoId)
     }
 
-    fun getId(userProfile: UserProfile): Long?{
-        return userProfile.userId}
-
     fun createUserProfileIfNonExistent(userProfileDTO: UserProfileDTO): UserProfile{
         val userId: Long = userProfileDTO.userId?:0
         var userProfile = userProfileRepository.findById(userId)
@@ -89,4 +84,9 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
             return userProfileRepository.save(user)
         }
     }
+
+    fun getId (user:UserProfile) : Long?{
+        return user.userId
+    }
+
 }

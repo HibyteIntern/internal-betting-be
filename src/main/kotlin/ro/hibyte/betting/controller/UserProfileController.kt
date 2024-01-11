@@ -6,18 +6,15 @@ import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
-import ro.hibyte.betting.dto.BetDTO
 import ro.hibyte.betting.dto.UserProfileDTO
-import ro.hibyte.betting.entity.Bet
 import ro.hibyte.betting.entity.UserProfile
-import ro.hibyte.betting.service.BetService
 import ro.hibyte.betting.service.UserProfileService
 import ro.hibyte.betting.service.WaspService
 
 
 @CrossOrigin(origins = ["http://localhost:4200"])
 @RestController
-@RequestMapping("/api/user-profiles")
+@RequestMapping("/api/user-profile")
 class UserProfileController(private val userProfileService: UserProfileService, private val waspService: WaspService) {
 
     @GetMapping
