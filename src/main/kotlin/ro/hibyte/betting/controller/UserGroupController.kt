@@ -20,7 +20,7 @@ class UserGroupController (private val userGroupService: UserGroupService){
 
     @PostMapping
     fun create(@RequestBody userGroupDto: UserGroupDto) : UserGroupDto {
-        var userGroup = userGroupService.create(userGroupDto)
+        val userGroup = userGroupService.create(userGroupDto)
         return UserGroupDto(userGroup)
     }
 

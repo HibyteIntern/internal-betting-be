@@ -1,6 +1,5 @@
 package ro.hibyte.betting.dto
 
-import ro.hibyte.betting.entity.BetTemplateType
 import ro.hibyte.betting.entity.BetType
 
 data class CompleteBetTypeDto(

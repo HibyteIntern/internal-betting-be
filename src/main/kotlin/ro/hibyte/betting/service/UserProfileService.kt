@@ -2,9 +2,7 @@ package ro.hibyte.betting.service
 
 import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
-import ro.hibyte.betting.dto.BetDTO
 import ro.hibyte.betting.dto.UserProfileDTO
-import ro.hibyte.betting.entity.Bet
 import ro.hibyte.betting.entity.UserProfile
 import ro.hibyte.betting.repository.UserProfileRepository
 
@@ -29,15 +27,6 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
         return userProfileRepository.save(userProfile)
     }
 
-
-    fun updateWithIdParam(id: Long, dtoUser: UserProfileDTO): UserProfile {
-        val userProfile = userProfileRepository.findById(id).orElseThrow {
-            NoSuchElementException("UserProfile not found with userId: $id")
-        }
-
-        userProfile.update(dtoUser)
-        return userProfileRepository.save(userProfile)
-    }
 
     fun update(dtoUser: UserProfileDTO): UserProfile {
         val userProfile = userProfileRepository.findById(dtoUser.userId!!).orElseThrow {

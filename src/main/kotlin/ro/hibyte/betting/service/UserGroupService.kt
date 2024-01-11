@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
 import ro.hibyte.betting.dto.UserGroupDto
 import ro.hibyte.betting.entity.UserGroup
-import ro.hibyte.betting.entity.UserProfile
 import ro.hibyte.betting.repository.UserGroupRepository
 import ro.hibyte.betting.repository.UserProfileRepository
 
@@ -26,7 +25,7 @@ class UserGroupService(
         userGroupRepository.deleteById(id)
     }
 
-    fun update(id: Long, userGroupDto: UserGroupDto): UserGroup {
+    fun update(id:Long, userGroupDto: UserGroupDto): UserGroup {
         val existingUserGroup = userGroupRepository.findById(id).orElseThrow {
             NoSuchElementException("User Group not found with id: ${userGroupDto.userGroupId}")
         }
@@ -36,7 +35,7 @@ class UserGroupService(
 
     fun create(userGroupDto: UserGroupDto): UserGroup {
         try {
-            var userGroup = UserGroup(userGroupDto)
+            val userGroup = UserGroup(userGroupDto)
             userGroupRepository.save(userGroup)
             userGroup.users?.forEach { userProfile ->
                 userProfile.groups?.add(userGroup)
@@ -51,7 +50,7 @@ class UserGroupService(
 
 
     fun addPhoto(userId: Long, photo: MultipartFile): Long?{
-        var userGroup = userGroupRepository.findById(userId).orElseThrow()
+        val userGroup = userGroupRepository.findById(userId).orElseThrow()
         userGroup.profilePicture = waspService.sendPhotoToWasp(photo)
         userGroupRepository.save(userGroup)
         return userGroup.profilePicture
