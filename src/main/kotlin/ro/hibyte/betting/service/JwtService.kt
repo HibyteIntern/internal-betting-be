@@ -22,10 +22,10 @@ class JwtService(private var userProfileService: UserProfileService) {
     private fun extractInformationFromToken(token: String): UserPermissions? {
         return try {
             val decodedJWT = JWT.decode(token)
-            UserPermissions(
-                userProfileService.getUserProfileFromKeycloakId(decodedJWT.subject),
-                Role.USER
-            )
+            val userProfile = userProfileService.getUserProfileFromKeycloakId(decodedJWT.subject)
+            userProfile?.let {
+                UserPermissions(it, Role.USER)
+            }
         } catch (e: JWTDecodeException) {
             null
         }
