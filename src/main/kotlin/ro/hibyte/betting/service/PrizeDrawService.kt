@@ -60,14 +60,14 @@ class PrizeDrawService(
         prizeDrawRepository.deleteById(id)
     }
 
-    fun addEntry(prizeDrawEntryRequest: PrizeDrawEntryRequest): PrizeDrawEntry {
+    fun addEntry(prizeDrawEntryRequest: PrizeDrawEntryRequest, userId: Long): PrizeDrawEntry {
         val foundPrizeDraw: PrizeDraw  = prizeDrawRepository
             .findById(prizeDrawEntryRequest.prizeDrawId)
             .orElseThrow{ EntityNotFoundException("Prize Draw", prizeDrawEntryRequest.prizeDrawId) }
 
         val foundUser: UserProfile = userProfileRepository
-            .findById(prizeDrawEntryRequest.userId)
-            .orElseThrow{ EntityNotFoundException("User Profile", prizeDrawEntryRequest.userId) }
+            .findById(userId)
+            .orElseThrow{ EntityNotFoundException("User Profile", userId) }
 
         if (foundPrizeDraw.type == DrawType.MOST_POINTS) throw BadRequestException("Cannot manually add entries to a MOST_POINTS draw")
 

@@ -1,5 +1,6 @@
 package ro.hibyte.betting.controller
 
+import jakarta.servlet.http.HttpServletRequest
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.CrossOrigin
@@ -13,14 +14,20 @@ import org.springframework.web.bind.annotation.RestController
 import ro.hibyte.betting.dto.PrizeDrawEntryRequest
 import ro.hibyte.betting.dto.PrizeDrawRequest
 import ro.hibyte.betting.dto.PrizeDrawResponse
+import ro.hibyte.betting.dto.UserPermissions
 import ro.hibyte.betting.entity.PrizeDrawEntry
 import ro.hibyte.betting.entity.Status
+import ro.hibyte.betting.exceptions.types.EntityNotFoundException
+import ro.hibyte.betting.service.JwtService
 import ro.hibyte.betting.service.PrizeDrawService
 
 @RestController
 @RequestMapping("api/v1/prize-draws")
 @CrossOrigin(origins = ["http://localhost:4200"])
-class PrizeDrawController(private val prizeDrawService: PrizeDrawService) {
+class PrizeDrawController(
+    private val prizeDrawService: PrizeDrawService,
+    private val jwtService: JwtService,
+) {
 
     @PostMapping
     fun create(@RequestBody prizeDrawRequest: PrizeDrawRequest): ResponseEntity<PrizeDrawResponse> =
@@ -52,6 +59,10 @@ class PrizeDrawController(private val prizeDrawService: PrizeDrawService) {
     }
 
     @PostMapping("/entry")
-    fun addEntry(@RequestBody prizeDrawEntryRequest: PrizeDrawEntryRequest): PrizeDrawEntry =
-        prizeDrawService.addEntry(prizeDrawEntryRequest)
+    fun addEntry(@RequestBody prizeDrawEntryRequest: PrizeDrawEntryRequest, request: HttpServletRequest): PrizeDrawEntry {
+        val userPermissions: UserPermissions? = jwtService.getUserProfileAndPermissionsFromRequest(request)
+        userPermissions?.let {
+            return prizeDrawService.addEntry(prizeDrawEntryRequest, it.userProfile.userId!!)
+        } ?: throw EntityNotFoundException("User Profile", 0)
+    }
 }
