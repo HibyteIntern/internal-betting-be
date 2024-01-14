@@ -6,6 +6,7 @@ import ro.hibyte.betting.dto.PrizeDrawRequest
 import ro.hibyte.betting.dto.PrizeDrawResponse
 import ro.hibyte.betting.entity.*
 import ro.hibyte.betting.exceptions.types.BadRequestException
+import ro.hibyte.betting.exceptions.types.ConflictException
 import ro.hibyte.betting.exceptions.types.EntityNotFoundException
 import ro.hibyte.betting.mapper.PrizeDrawMapper
 import ro.hibyte.betting.repository.PrizeDrawEntryRepository
@@ -60,6 +61,16 @@ class PrizeDrawService(
         prizeDrawRepository.deleteById(id)
     }
 
+    private fun verifyEntryBadRequest(prizeDraw: PrizeDraw,
+                                      user: UserProfile,
+                                      prizeDrawEntryRequest: PrizeDrawEntryRequest,
+    ) {
+        if (prizeDraw.type == DrawType.MOST_POINTS) throw BadRequestException("Cannot manually add entries to a MOST_POINTS draw")
+        if(prizeDraw.status != Status.OPEN) throw BadRequestException("Cannot add entries to a closed draw")
+        if(user.coins.toInt() < prizeDrawEntryRequest.amount.toInt()) throw BadRequestException("Insufficient coins")
+        if(prizeDrawEntryRequest.amount.toInt() <= 0) throw BadRequestException("Amount must be greater than 0")
+    }
+
     fun addEntry(prizeDrawEntryRequest: PrizeDrawEntryRequest, userId: Long): PrizeDrawEntry {
         val foundPrizeDraw: PrizeDraw  = prizeDrawRepository
             .findById(prizeDrawEntryRequest.prizeDrawId)
@@ -69,7 +80,8 @@ class PrizeDrawService(
             .findById(userId)
             .orElseThrow{ EntityNotFoundException("User Profile", userId) }
 
-        if (foundPrizeDraw.type == DrawType.MOST_POINTS) throw BadRequestException("Cannot manually add entries to a MOST_POINTS draw")
+        verifyEntryBadRequest(foundPrizeDraw, foundUser, prizeDrawEntryRequest)
+        if(foundPrizeDraw.entries.any { it.user.userId == foundUser.userId }) throw ConflictException("User already has an entry in this draw")
 
         return prizeDrawEntryRepository.save(
             PrizeDrawEntry(
