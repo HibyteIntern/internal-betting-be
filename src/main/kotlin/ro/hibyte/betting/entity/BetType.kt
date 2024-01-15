@@ -23,7 +23,7 @@ data class BetType (
         id = completeBet.id,
         betTemplate = BetTemplate(
             name = completeBet.name,
-            type = completeBet.type,
+            type = BetTemplateType.valueOf(completeBet.type),
             multipleChoiceOptions = completeBet.multipleChoiceOptions ?: emptyList()
         ),
         odds = completeBet.odds ?: ArrayList()

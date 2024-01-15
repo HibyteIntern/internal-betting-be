@@ -11,8 +11,7 @@ import ro.hibyte.betting.repository.EventRepository
 import ro.hibyte.betting.repository.UserProfileRepository
 
 @Service
-class BetService(private val betRepository: BetRepository, private val eventService: EventService, private val betTypeService: BetTypeService, private val userRepository: UserProfileRepository,
-                 private val eventRepository: EventRepository,
+class BetService(private val betRepository: BetRepository,
                  private val betTypeRepository: BetTypeRepository
 ) {
 

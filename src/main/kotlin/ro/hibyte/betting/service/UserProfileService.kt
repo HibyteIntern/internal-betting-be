@@ -11,10 +11,7 @@ import ro.hibyte.betting.repository.UserProfileRepository
 @Service
 class UserProfileService(private val userProfileRepository: UserProfileRepository, private val waspService: WaspService) {
 
-
-    fun getAll(): List<UserProfile> {
-        return userProfileRepository.findAll()
-    }
+    fun getAll(): List<UserProfile> = userProfileRepository.findAll()
 
     fun get(userId: Long): UserProfile {
         return userProfileRepository.findById(userId).orElseThrow {

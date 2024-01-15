@@ -10,33 +10,37 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import ro.hibyte.betting.dto.EventTemplateRequest
 import ro.hibyte.betting.entity.EventTemplate
 import ro.hibyte.betting.service.EventTemplateService
 
 @RestController
-@RequestMapping("/api/event-templates")
+@RequestMapping("/api/v1/event-templates")
 @CrossOrigin(origins = ["http://localhost:4200"])
 class EventTemplateController(private val eventTemplateService: EventTemplateService) {
 
     @PostMapping
-    fun createEventTemplate(@RequestBody eventTemplateRequest: EventTemplateRequest): ResponseEntity<EventTemplate> =
-        ResponseEntity(eventTemplateService.createEventTemplate(eventTemplateRequest), HttpStatus.CREATED)
+    fun create(@RequestBody eventTemplateRequest: EventTemplateRequest): ResponseEntity<EventTemplate> =
+        ResponseEntity(eventTemplateService.create(eventTemplateRequest), HttpStatus.CREATED)
 
     @GetMapping("/{id}")
-    fun getEventTemplate(@PathVariable id: Long): EventTemplate =
-        eventTemplateService.getEventTemplate(id)
+    fun getById(@PathVariable id: Long): EventTemplate =
+        eventTemplateService.getById(id)
 
     @GetMapping
-    fun getEventTemplates(): List<EventTemplate> =
-        eventTemplateService.getEventTemplates()
+    fun getAll(@RequestParam name: String?): List<EventTemplate> =
+        name?.let { eventTemplateService.searchByName(it) } ?: eventTemplateService.getAll()
 
     @PutMapping("/{id}")
-    fun updateEventTemplate(@RequestBody eventTemplateRequest: EventTemplateRequest, @PathVariable id: Long): EventTemplate =
-        eventTemplateService.updateEventTemplate(eventTemplateRequest, id)
+    fun update(@RequestBody eventTemplateRequest: EventTemplateRequest, @PathVariable id: Long): EventTemplate =
+        eventTemplateService.update(eventTemplateRequest, id)
 
     @DeleteMapping("/{id}")
-    fun deleteEventTemplate(@PathVariable id: Long) =
-        eventTemplateService.deleteEventTemplate(id)
+    fun delete(@PathVariable id: Long): ResponseEntity<Void> {
+        eventTemplateService.delete(id)
+        return ResponseEntity.noContent().build()
+    }
+
 }

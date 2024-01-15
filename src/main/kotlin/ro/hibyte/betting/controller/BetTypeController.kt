@@ -15,33 +15,35 @@ import ro.hibyte.betting.dto.CompleteBetTypeDto
 import ro.hibyte.betting.service.BetTypeService
 
 @RestController
-@RequestMapping("/api/bet-types")
+@RequestMapping("/api/v1/bet-types")
 @CrossOrigin(origins = ["http://localhost:4200"])
 class BetTypeController(private val betTypeService: BetTypeService) {
 
     @PostMapping
-    fun createBetType(@RequestBody completeBet: CompleteBetTypeDto): ResponseEntity<CompleteBetTypeDto> =
+    fun create(@RequestBody completeBet: CompleteBetTypeDto): ResponseEntity<CompleteBetTypeDto> =
         ResponseEntity(
-            CompleteBetTypeDto(betTypeService.createBetType(completeBet)),
+            CompleteBetTypeDto(betTypeService.create(completeBet)),
             HttpStatus.CREATED
         )
 
     @GetMapping("/{id}")
-    fun getBetType(@PathVariable id: Long): CompleteBetTypeDto =
-       CompleteBetTypeDto(betTypeService.getBetType(id))
+    fun getById(@PathVariable id: Long): CompleteBetTypeDto =
+       CompleteBetTypeDto(betTypeService.getById(id))
 
     @GetMapping
-    fun getBetTypes(): List<CompleteBetTypeDto> =
-        betTypeService.getBetTypes().map{ CompleteBetTypeDto(it) }
+    fun getAll(): List<CompleteBetTypeDto> =
+        betTypeService.getAll().map{ CompleteBetTypeDto(it) }
 
     @PutMapping("/{id}")
-    fun updateBetType(@PathVariable id: Long, @RequestBody completeBet: CompleteBetTypeDto): ResponseEntity<CompleteBetTypeDto> =
+    fun update(@PathVariable id: Long, @RequestBody completeBet: CompleteBetTypeDto): ResponseEntity<CompleteBetTypeDto> =
         ResponseEntity(
-            CompleteBetTypeDto(betTypeService.updateBetType(id, completeBet)),
+            CompleteBetTypeDto(betTypeService.update(id, completeBet)),
             HttpStatus.OK
         )
 
     @DeleteMapping("/{id}")
-    fun deleteBetType(@PathVariable id: Long) =
-        betTypeService.deleteBetType(id)
+    fun delete(@PathVariable id: Long): ResponseEntity<Void> {
+        betTypeService.delete(id)
+        return ResponseEntity.noContent().build()
+    }
 }
