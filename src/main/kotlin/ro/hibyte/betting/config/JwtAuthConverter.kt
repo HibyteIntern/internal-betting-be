@@ -1,4 +1,4 @@
-package ro.hibyte.betting.service
+package ro.hibyte.betting.config
 
 import org.springframework.core.convert.converter.Converter
 import org.springframework.security.authentication.AbstractAuthenticationToken
