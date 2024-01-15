@@ -10,7 +10,7 @@ import ro.hibyte.betting.service.UserProfileService
 
 @CrossOrigin(origins = ["http://localhost:4200"])
 @RestController
-@RequestMapping("/api/bets")
+@RequestMapping("/api/v1/bets")
 class BetController(private val betService: BetService, private val userProfileService: UserProfileService) {
 
     @GetMapping
@@ -29,7 +29,6 @@ class BetController(private val betService: BetService, private val userProfileS
     fun create(@PathVariable userId: Long, @RequestBody betDto: BetDTO): BetDTO {
         var userProfile = userProfileService.get(userId!!)
         val bet = betService.create(betDto, userProfile)
-
         return BetDTO(bet)
     }
 

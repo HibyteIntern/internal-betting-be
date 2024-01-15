@@ -16,13 +16,11 @@ import ro.hibyte.betting.service.UserProfileService
 
 @CrossOrigin(origins = ["http://localhost:4200"])
 @RestController
-@RequestMapping("/api/user-profile")
+@RequestMapping("/api/v1/user-profile")
 class UserProfileController(private val userProfileService: UserProfileService) {
 
     @GetMapping()
-    fun getAll(): List<UserProfile> {
-        return userProfileService.getAll()
-    }
+    fun getAll(): List<UserProfile> = userProfileService.getAll()
 
     @GetMapping("/{userId}")
     fun get(@PathVariable userId: Long) : UserProfileDTO{
@@ -63,9 +61,8 @@ class UserProfileController(private val userProfileService: UserProfileService) 
 
 
     @PostMapping("/{userId}/addPhoto")
-    fun addPhoto(@RequestPart("photo") photo: MultipartFile, @PathVariable userId: Long): Long? {
-        return userProfileService.addPhoto(userId, photo)
-    }
+    fun addPhoto(@RequestPart("photo") photo: MultipartFile, @PathVariable userId: Long): Long? = userProfileService.addPhoto(userId, photo)
+
 
     @GetMapping("/{userId}/photo")
     fun getPhoto(@PathVariable userId: Long): ResponseEntity<ByteArray> {

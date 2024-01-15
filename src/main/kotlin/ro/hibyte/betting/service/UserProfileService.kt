@@ -19,9 +19,8 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
         }
     }
 
-    fun getByKeycloakId(keycloakId: String): UserProfile? {
-        return userProfileRepository.findByKeycloakId(keycloakId)
-    }
+    fun getByKeycloakId(keycloakId: String): UserProfile? = userProfileRepository.findByKeycloakId(keycloakId)
+
 
     fun create(dtoUser: UserProfileDTO): UserProfile {
         val userProfile = UserProfile(dtoUser)
@@ -59,8 +58,7 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
         return waspService.getPhotoFromWasp(photoId)
     }
 
-    fun getId(userProfile: UserProfile): Long?{
-        return userProfile.userId}
+    fun getId(userProfile: UserProfile): Long? = userProfile.userId
 
     fun createUserProfileIfNonExistent(userProfileDTO: UserProfileDTO): UserProfile{
         val userId: Long = userProfileDTO.userId?:0
