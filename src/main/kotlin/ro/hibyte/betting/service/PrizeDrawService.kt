@@ -55,6 +55,11 @@ class PrizeDrawService(
     fun getByStatus(status: Status): List<PrizeDrawResponse> =
         prizeDrawRepository.findAllByStatus(status).map { prizeDrawMapper.prizeDrawToPrizeDrawResponse(it) }
 
+    fun update(id: Long, prizeDrawRequest: PrizeDrawRequest) {
+        val foundPrizeDraw = prizeDrawRepository.findById(id).orElseThrow{ EntityNotFoundException("Prize Draw", id) }
+        foundPrizeDraw.update(prizeDrawRequest)
+        prizeDrawRepository.save(foundPrizeDraw)
+    }
 
     fun delete(id: Long) {
         prizeDrawRepository.findById(id).orElseThrow{EntityNotFoundException("Prize Draw", id)}

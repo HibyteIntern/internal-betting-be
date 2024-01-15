@@ -2,6 +2,7 @@ package ro.hibyte.betting.entity
 
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.*
+import ro.hibyte.betting.dto.PrizeDrawRequest
 import java.sql.Timestamp
 
 @Entity
@@ -25,4 +26,11 @@ data class PrizeDraw(
     @OneToMany(mappedBy = "prizeDraw", cascade = [CascadeType.ALL])
     @JsonManagedReference
     var entries: List<PrizeDrawEntry> = emptyList(),
-)
+) {
+    fun update(prizeDrawRequest: PrizeDrawRequest) {
+        this.title = prizeDrawRequest.title
+        this.description = prizeDrawRequest.description
+        this.endsAt = Timestamp.from(prizeDrawRequest.endsAt)
+        this.prizeDescription = prizeDrawRequest.prizeDescription
+    }
+}
