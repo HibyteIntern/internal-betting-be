@@ -13,11 +13,14 @@ class UserGroupService(
     private val waspService: WaspService,
     private val userProfileRepository: UserProfileRepository
 ) {
+
     fun getAll(): List<UserGroup> = userGroupRepository.findAll()
+
     fun getOne(id: Long): UserGroup =
         userGroupRepository.findById(id).orElseThrow {
             NoSuchElementException("User Group with id $id was not found")
         }
+
     fun delete(id: Long) {
         userGroupRepository.findById(id).orElseThrow {
             NoSuchElementException("User Group with id $id was not found")
