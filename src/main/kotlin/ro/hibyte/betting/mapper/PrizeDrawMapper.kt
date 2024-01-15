@@ -12,7 +12,7 @@ import java.sql.Timestamp
 @Service
 class PrizeDrawMapper {
 
-    fun getCurrentLeader(prizeDraw: PrizeDraw): PrizeDrawEntry? =
+    private fun getCurrentLeader(prizeDraw: PrizeDraw): PrizeDrawEntry? =
         prizeDraw.entries.maxByOrNull { it.amount.toDouble() }
 
     fun prizeDrawRequestToPrizeDraw(prizeDrawRequest: PrizeDrawRequest): PrizeDraw {
