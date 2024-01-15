@@ -18,7 +18,7 @@ class PrizeDrawService(
     private val prizeDrawRepository: PrizeDrawRepository,
     private val prizeDrawMapper: PrizeDrawMapper,
     private val userProfileRepository: UserProfileRepository,
-    private val prizeDrawEntryRepository: PrizeDrawEntryRepository
+    private val prizeDrawEntryRepository: PrizeDrawEntryRepository,
 ) {
 
     private fun createRoulette(prizeDraw: PrizeDraw): PrizeDrawResponse {
@@ -76,22 +76,22 @@ class PrizeDrawService(
         if(prizeDrawEntryRequest.amount.toInt() <= 0) throw BadRequestException("Amount must be greater than 0")
     }
 
-    fun addEntry(prizeDrawEntryRequest: PrizeDrawEntryRequest, userId: Long): PrizeDrawEntry {
+    fun addEntry(prizeDrawEntryRequest: PrizeDrawEntryRequest, keycloakId: String): PrizeDrawEntry {
+
+        val userProfile: UserProfile = userProfileRepository
+            .findByKeycloakId(keycloakId).orElseThrow { EntityNotFoundException("User Profile", 0) }
+
         val foundPrizeDraw: PrizeDraw  = prizeDrawRepository
             .findById(prizeDrawEntryRequest.prizeDrawId)
             .orElseThrow{ EntityNotFoundException("Prize Draw", prizeDrawEntryRequest.prizeDrawId) }
 
-        val foundUser: UserProfile = userProfileRepository
-            .findById(userId)
-            .orElseThrow{ EntityNotFoundException("User Profile", userId) }
-
-        verifyEntryBadRequest(foundPrizeDraw, foundUser, prizeDrawEntryRequest)
-        if(foundPrizeDraw.entries.any { it.user.userId == foundUser.userId }) throw ConflictException("User already has an entry in this draw")
+        verifyEntryBadRequest(foundPrizeDraw, userProfile, prizeDrawEntryRequest)
+        if(foundPrizeDraw.entries.any { it.user.userId == userProfile.userId }) throw ConflictException("User already has an entry in this draw")
 
         return prizeDrawEntryRepository.save(
             PrizeDrawEntry(
                 null,
-                foundUser,
+                userProfile,
                 prizeDrawEntryRequest.amount,
                 foundPrizeDraw
             )

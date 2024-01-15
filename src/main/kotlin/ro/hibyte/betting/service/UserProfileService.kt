@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile
 import ro.hibyte.betting.dto.UserProfileDTO
 import ro.hibyte.betting.entity.UserProfile
 import ro.hibyte.betting.repository.UserProfileRepository
+import kotlin.NoSuchElementException
 
 @Service
 class UserProfileService(private val userProfileRepository: UserProfileRepository, private val waspService: WaspService) {
@@ -61,7 +62,4 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
     fun getId (user:UserProfile) : Long?{
         return user.userId
     }
-
-    fun getUserProfileFromKeycloakId(keycloakId: String): UserProfile? =
-        userProfileRepository.findByKeycloakId(keycloakId)
 }

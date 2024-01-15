@@ -1,34 +1,21 @@
 package ro.hibyte.betting.controller
 
-import jakarta.servlet.http.HttpServletRequest
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.CrossOrigin
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.security.core.Authentication
+import org.springframework.security.oauth2.jwt.Jwt
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken
+import org.springframework.web.bind.annotation.*
 import ro.hibyte.betting.dto.PrizeDrawEntryRequest
 import ro.hibyte.betting.dto.PrizeDrawRequest
 import ro.hibyte.betting.dto.PrizeDrawResponse
-import ro.hibyte.betting.dto.UserPermissions
-import ro.hibyte.betting.entity.PrizeDrawEntry
 import ro.hibyte.betting.entity.Status
-import ro.hibyte.betting.exceptions.types.EntityNotFoundException
-import ro.hibyte.betting.service.JwtService
 import ro.hibyte.betting.service.PrizeDrawService
 
 @RestController
 @RequestMapping("api/v1/prize-draws")
 @CrossOrigin(origins = ["http://localhost:4200"])
-class PrizeDrawController(
-    private val prizeDrawService: PrizeDrawService,
-    private val jwtService: JwtService,
-) {
+class PrizeDrawController(private val prizeDrawService: PrizeDrawService) {
 
     @PostMapping
     fun create(@RequestBody prizeDrawRequest: PrizeDrawRequest): ResponseEntity<PrizeDrawResponse> =
@@ -65,10 +52,8 @@ class PrizeDrawController(
     }
 
     @PostMapping("/entry")
-    fun addEntry(@RequestBody prizeDrawEntryRequest: PrizeDrawEntryRequest, request: HttpServletRequest): PrizeDrawEntry {
-        val userPermissions: UserPermissions? = jwtService.getUserProfileAndPermissionsFromRequest(request)
-        userPermissions?.let {
-            return prizeDrawService.addEntry(prizeDrawEntryRequest, it.userProfile.userId!!)
-        } ?: throw EntityNotFoundException("User Profile", 0)
+    fun addEntry(@RequestBody prizeDrawEntryRequest: PrizeDrawEntryRequest, authentication: Authentication) {
+        val jwt = (authentication as JwtAuthenticationToken).principal as Jwt
+        prizeDrawService.addEntry(prizeDrawEntryRequest, jwt.subject)
     }
 }
