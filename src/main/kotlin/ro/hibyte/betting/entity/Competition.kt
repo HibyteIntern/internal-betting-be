@@ -21,7 +21,7 @@ data class Competition(
         joinColumns = [JoinColumn(name = "competition_id")],
         inverseJoinColumns = [JoinColumn(name = "user_profile_id")]
     )
-    var users: Set<UserProfile> = emptySet(),
+    var users: List<UserProfile> = emptyList(),
     @ElementCollection
     var userGroups: List<String> = emptyList(),
     @ElementCollection

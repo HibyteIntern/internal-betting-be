@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile
 import ro.hibyte.betting.dto.UserProfileDTO
 import ro.hibyte.betting.entity.UserProfile
 import ro.hibyte.betting.service.UserProfileService
+import ro.hibyte.betting.service.WaspService
 
 
 @CrossOrigin(origins = ["http://localhost:4200"])
