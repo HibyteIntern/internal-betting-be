@@ -44,7 +44,6 @@ class UserGroupService(
                 userProfile.groups?.add(userGroup)
                 userProfileRepository.save(userProfile)
             }
-
             return userGroupRepository.save(userGroup)
         } catch (e: Exception) {
             throw RuntimeException("User Group could not be created")
@@ -57,5 +56,11 @@ class UserGroupService(
         userGroup.profilePicture = waspService.sendPhotoToWasp(photo)
         userGroupRepository.save(userGroup)
         return userGroup.profilePicture
+    }
+
+    fun getPhoto(groupId: Long): ByteArray? {
+        val userGroup = userGroupRepository.findById(groupId).orElseThrow()
+        val photoId = userGroup.profilePicture ?: throw IllegalArgumentException("Profile picture not set for user group $groupId")
+        return waspService.getPhotoFromWasp(photoId)
     }
 }

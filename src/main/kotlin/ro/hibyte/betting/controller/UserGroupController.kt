@@ -35,4 +35,8 @@ class UserGroupController (private val userGroupService: UserGroupService){
     @PostMapping("/{userGroupId}/addPhoto")
     fun addPhoto(@RequestPart("photo") photo: MultipartFile, @PathVariable userGroupId: Long): Long? =
         userGroupService.addPhoto(userGroupId, photo)
+
+    @GetMapping("/{userGroupId}/photo")
+    fun getPhoto(@PathVariable userGroupId: Long): ByteArray? =
+        userGroupService.getPhoto(userGroupId)
 }

@@ -14,7 +14,7 @@ import ro.hibyte.betting.service.WaspService
 
 @CrossOrigin(origins = ["http://localhost:4200"])
 @RestController
-@RequestMapping("/api/user-profile")
+@RequestMapping("/api/v1/user-profile")
 class UserProfileController(private val userProfileService: UserProfileService, private val waspService: WaspService) {
 
     @GetMapping

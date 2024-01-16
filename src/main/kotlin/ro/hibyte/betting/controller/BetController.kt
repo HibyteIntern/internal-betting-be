@@ -2,15 +2,12 @@ package ro.hibyte.betting.controller
 
 import org.springframework.web.bind.annotation.*
 import ro.hibyte.betting.dto.BetDTO
-import ro.hibyte.betting.dto.UserProfileDTO
-import ro.hibyte.betting.entity.Bet
-import ro.hibyte.betting.entity.UserProfile
 import ro.hibyte.betting.service.BetService
 import ro.hibyte.betting.service.UserProfileService
 
 @CrossOrigin(origins = ["http://localhost:4200"])
 @RestController
-@RequestMapping("/api/bets")
+@RequestMapping("/api/v1/bets")
 class BetController(private val betService: BetService, private val userProfileService: UserProfileService) {
 
     @GetMapping

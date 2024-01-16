@@ -5,7 +5,7 @@ import jakarta.persistence.*
 import ro.hibyte.betting.dto.UserGroupDto
 
 @Entity
-data class UserGroup(
+class UserGroup(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val userGroupId: Long,
@@ -40,4 +40,19 @@ data class UserGroup(
             users?.addAll(updatedUserProfiles)
         }
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as UserGroup
+
+        return userGroupId == other.userGroupId
+    }
+
+    override fun hashCode(): Int {
+        return userGroupId.hashCode()
+    }
+
+
 }
