@@ -2,7 +2,7 @@ package ro.hibyte.betting.entity
 
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.*
-import ro.hibyte.betting.dto.PrizeDrawRequest
+import ro.hibyte.betting.dto.PrizeDrawDTO
 import java.sql.Timestamp
 
 @Entity
@@ -27,7 +27,7 @@ data class PrizeDraw(
     @JsonManagedReference
     var entries: List<PrizeDrawEntry> = emptyList(),
 ) {
-    fun update(prizeDrawRequest: PrizeDrawRequest) {
+    fun update(prizeDrawRequest: PrizeDrawDTO) {
         this.title = prizeDrawRequest.title
         this.description = prizeDrawRequest.description
         this.endsAt = Timestamp.from(prizeDrawRequest.endsAt)
