@@ -20,7 +20,7 @@ import ro.hibyte.betting.service.CompetitionService
 
 @CrossOrigin(origins = ["http://localhost:4200"])
 @RestController
-@RequestMapping("/api/v2/competitions")
+@RequestMapping("/api/v1/competitions")
 class CompetitionController {
     @Autowired
     private lateinit var competitionService: CompetitionService
