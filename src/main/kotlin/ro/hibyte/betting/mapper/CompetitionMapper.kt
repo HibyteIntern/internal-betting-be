@@ -7,14 +7,10 @@ import ro.hibyte.betting.dto.CompetitionRequest
 import ro.hibyte.betting.entity.Competition
 import ro.hibyte.betting.entity.Event
 import ro.hibyte.betting.entity.UserProfile
-import ro.hibyte.betting.exceptions.types.EntityNotFoundByNameException
-import ro.hibyte.betting.exceptions.types.EntityNotFoundException
-import ro.hibyte.betting.repository.CompetitionRepository
 import ro.hibyte.betting.repository.EventRepository
 import ro.hibyte.betting.repository.UserGroupRepository
 import ro.hibyte.betting.repository.UserProfileRepository
 import java.sql.Timestamp
-import java.time.Instant
 
 @Service
 class CompetitionMapper {
@@ -26,29 +22,32 @@ class CompetitionMapper {
     private lateinit var userGroupRepository: UserGroupRepository
 
     fun getEventsFromNames(eventNames: List<String>): List<Event> = eventNames.map { name -> eventRepository.findByName(name).first() }.toList()
-    fun getUserProfilesFromUserGroupNamesAndUsernames(userGroupNames: List<String>, usernames: List<String>): List<UserProfile> =
-        setOf(
-            userProfileRepository.findByGroups(userGroupNames.map{ name -> userGroupRepository.findByGroupName(name) }.toList()),
-            usernames.map{ username -> userProfileRepository.findByUsername(username) }.toList()
-        ).flatten()
 
-        fun mapCompetitionRequestToCompetition(competitionRequest: CompetitionRequest): Competition {
-        return Competition(
-            name = competitionRequest.name,
-            description = competitionRequest.description,
-            creator = "",
-            users = getUserProfilesFromUserGroupNamesAndUsernames(competitionRequest.userGroups, competitionRequest.userProfiles),
-            userGroups = competitionRequest.userGroups,
-            userProfiles = competitionRequest.userProfiles,
-            events = getEventsFromNames(competitionRequest.events),
-            created = Timestamp(System.currentTimeMillis()),
-            lastModified = Timestamp(System.currentTimeMillis()),
-            status = competitionRequest.status,
-        )
+    fun getUserProfilesFromUserGroupNamesAndUsernames(userGroupNames: List<String>, usernames: List<String>): List<UserProfile> {
+        val userGroupsFromNames = userGroupNames.map{ groupName -> userGroupRepository.findByGroupName(groupName) }.toList()
+        val userGroupSet = userGroupsFromNames.map { group -> group.users }
+        val usersFromGroups = userGroupSet.flatMap { it.orEmpty() }.toSet().toList()
+        val userProfilesFromGivenUsernames = usernames.map{ username -> userProfileRepository.findByUsername(username) }.toList()
+
+        return listOf(usersFromGroups, userProfilesFromGivenUsernames).flatten().toSet().toList()
     }
 
-    fun mapCompetitionRequestToCompetition(competitionRequest: CompetitionRequest, initialCompetition: Competition): Competition {
-        return Competition(
+        fun mapCompetitionRequestToCompetition(competitionRequest: CompetitionRequest): Competition =
+            Competition(
+                name = competitionRequest.name,
+                description = competitionRequest.description,
+                creator = "",
+                users = getUserProfilesFromUserGroupNamesAndUsernames(competitionRequest.userGroups, competitionRequest.userProfiles),
+                userGroups = competitionRequest.userGroups,
+                userProfiles = competitionRequest.userProfiles,
+                events = getEventsFromNames(competitionRequest.events),
+                created = Timestamp(System.currentTimeMillis()),
+                lastModified = Timestamp(System.currentTimeMillis()),
+                status = competitionRequest.status,
+            )
+
+    fun mapCompetitionRequestToCompetition(competitionRequest: CompetitionRequest, initialCompetition: Competition): Competition =
+        Competition(
             competitionId = initialCompetition.competitionId,
             name = competitionRequest.name,
             description = competitionRequest.description,
@@ -61,9 +60,9 @@ class CompetitionMapper {
             lastModified = Timestamp(System.currentTimeMillis()),
             status = competitionRequest.status,
         )
-    }
-    fun mapCompetitionToCompetitionDto(competition: Competition): CompetitionDto {
-        return CompetitionDto(
+
+    fun mapCompetitionToCompetitionDto(competition: Competition): CompetitionDto =
+        CompetitionDto(
             id = competition.competitionId,
             name = competition.name,
             description = competition.description,
@@ -76,5 +75,4 @@ class CompetitionMapper {
             lastModified = competition.lastModified.toInstant(),
             status = competition.status,
         )
-    }
 }
