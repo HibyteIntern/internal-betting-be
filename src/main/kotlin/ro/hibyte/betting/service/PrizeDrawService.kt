@@ -1,8 +1,8 @@
 package ro.hibyte.betting.service
 
 import org.springframework.stereotype.Service
-import ro.hibyte.betting.dto.PrizeDrawEntryDTO
 import ro.hibyte.betting.dto.PrizeDrawDTO
+import ro.hibyte.betting.dto.PrizeDrawEntryDTO
 import ro.hibyte.betting.entity.*
 import ro.hibyte.betting.exceptions.types.BadRequestException
 import ro.hibyte.betting.exceptions.types.ConflictException
@@ -11,6 +11,7 @@ import ro.hibyte.betting.mapper.PrizeDrawMapper
 import ro.hibyte.betting.repository.PrizeDrawEntryRepository
 import ro.hibyte.betting.repository.PrizeDrawRepository
 import ro.hibyte.betting.repository.UserProfileRepository
+import kotlin.random.Random
 
 @Service
 class PrizeDrawService(
@@ -34,6 +35,32 @@ class PrizeDrawService(
 
         savedPrizeDraw.entries = prizeDrawEntryRepository.getAllByPrizeDraw_Id(savedPrizeDraw.id!!)
         return prizeDrawMapper.prizeDrawToPrizeDrawDTO(prizeDrawRepository.save(savedPrizeDraw))
+    }
+
+    private fun calculateMostPointsWinner(prizeDraw: PrizeDraw): UserProfile? {
+        return prizeDraw.entries.map { it.user }.maxByOrNull { it.coins.toDouble() }
+    }
+
+    private fun calculateRouletteWinner(prizeDraw: PrizeDraw): UserProfile? {
+        val totalCoins = prizeDraw.entries.sumOf { it.amount.toInt() }
+        var randomPoint = Random.nextInt(totalCoins)
+
+        var winner: UserProfile? = null
+        for (entry in prizeDraw.entries) {
+            randomPoint -= entry.amount.toInt()
+            if (randomPoint < 0) {
+                winner = entry.user
+                break
+            }
+        }
+        return winner
+    }
+
+    private fun resetCoins(users: List<UserProfile>) {
+        users.forEach { user ->
+            user.coins = 0
+            userProfileRepository.save(user)
+        }
     }
 
     fun create(prizeDrawDTO: PrizeDrawDTO): PrizeDrawDTO {
@@ -65,9 +92,10 @@ class PrizeDrawService(
         prizeDrawRepository.deleteById(id)
     }
 
-    private fun verifyEntryBadRequest(prizeDraw: PrizeDraw,
-                                      user: UserProfile,
-                                      prizeDrawEntryDTO: PrizeDrawEntryDTO,
+    private fun verifyEntryBadRequest(
+        prizeDraw: PrizeDraw,
+        user: UserProfile,
+        prizeDrawEntryDTO: PrizeDrawEntryDTO,
     ) {
         if (prizeDraw.type == DrawType.MOST_POINTS) throw BadRequestException("Cannot manually add entries to a MOST_POINTS draw")
         if(prizeDraw.status != Status.OPEN) throw BadRequestException("Cannot add entries to a closed draw")
@@ -87,6 +115,8 @@ class PrizeDrawService(
         verifyEntryBadRequest(foundPrizeDraw, userProfile, prizeDrawEntryDTO)
         if(foundPrizeDraw.entries.any { it.user.userId == userProfile.userId }) throw ConflictException("User already has an entry in this draw")
 
+        userProfile.coins = userProfile.coins.toInt() - prizeDrawEntryDTO.amount.toInt()
+        userProfileRepository.save(userProfile)
         return prizeDrawEntryRepository.save(
             PrizeDrawEntry(
                 null,
@@ -95,5 +125,19 @@ class PrizeDrawService(
                 foundPrizeDraw
             )
         )
+    }
+
+    fun endDraw(id: Long): PrizeDrawDTO {
+        val foundPrizeDraw: PrizeDraw = prizeDrawRepository.findById(id).orElseThrow{ EntityNotFoundException("Prize Draw", id) }
+        if(foundPrizeDraw.status == Status.CLOSED) throw BadRequestException("Draw is already closed")
+
+        if(foundPrizeDraw.type == DrawType.MOST_POINTS) {
+            foundPrizeDraw.winner = calculateMostPointsWinner(foundPrizeDraw)
+            resetCoins(foundPrizeDraw.entries.map { it.user })
+        }
+        else foundPrizeDraw.winner = calculateRouletteWinner(foundPrizeDraw)
+
+        foundPrizeDraw.status = Status.CLOSED
+        return prizeDrawMapper.prizeDrawToPrizeDrawDTO(prizeDrawRepository.save(foundPrizeDraw))
     }
 }

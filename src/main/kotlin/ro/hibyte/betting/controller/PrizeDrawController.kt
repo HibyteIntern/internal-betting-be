@@ -8,6 +8,7 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.web.bind.annotation.*
 import ro.hibyte.betting.dto.PrizeDrawEntryDTO
 import ro.hibyte.betting.dto.PrizeDrawDTO
+import ro.hibyte.betting.entity.PrizeDrawEntry
 import ro.hibyte.betting.entity.Status
 import ro.hibyte.betting.service.PrizeDrawService
 
@@ -40,7 +41,7 @@ class PrizeDrawController(private val prizeDrawService: PrizeDrawService) {
         prizeDrawService.getByStatus(Status.CLOSED)
 
     @PutMapping("/{id}")
-    fun update(@PathVariable id: Long, @RequestBody prizeDrawDTO: PrizeDrawDTO) =
+    fun update(@PathVariable id: Long, @RequestBody prizeDrawDTO: PrizeDrawDTO): PrizeDrawDTO =
         prizeDrawService.update(id, prizeDrawDTO)
 
 
@@ -51,8 +52,12 @@ class PrizeDrawController(private val prizeDrawService: PrizeDrawService) {
     }
 
     @PostMapping("/entry")
-    fun addEntry(@RequestBody prizeDrawEntryDTO: PrizeDrawEntryDTO, authentication: Authentication) {
+    fun addEntry(@RequestBody prizeDrawEntryDTO: PrizeDrawEntryDTO, authentication: Authentication): PrizeDrawEntry {
         val jwt = (authentication as JwtAuthenticationToken).principal as Jwt
-        prizeDrawService.addEntry(prizeDrawEntryDTO, jwt.subject)
+        return prizeDrawService.addEntry(prizeDrawEntryDTO, jwt.subject)
     }
+
+    @PutMapping("/{id}/end")
+    fun end(@PathVariable id: Long): PrizeDrawDTO =
+        prizeDrawService.endDraw(id)
 }
