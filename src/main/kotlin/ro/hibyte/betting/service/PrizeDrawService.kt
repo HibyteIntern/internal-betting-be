@@ -1,5 +1,6 @@
 package ro.hibyte.betting.service
 
+import org.springframework.security.core.Authentication
 import org.springframework.stereotype.Service
 import ro.hibyte.betting.dto.PrizeDrawEntryDTO
 import ro.hibyte.betting.dto.PrizeDrawDTO
@@ -75,10 +76,10 @@ class PrizeDrawService(
         if(prizeDrawEntryDTO.amount.toInt() <= 0) throw BadRequestException("Amount must be greater than 0")
     }
 
-    fun addEntry(prizeDrawEntryDTO: PrizeDrawEntryDTO, keycloakId: String): PrizeDrawEntry {
+    fun addEntry(prizeDrawEntryDTO: PrizeDrawEntryDTO, authentication: Authentication): PrizeDrawEntry {
 
         val userProfile: UserProfile = userProfileRepository
-            .findByKeycloakId(keycloakId).orElseThrow { EntityNotFoundException("User Profile", 0) }
+            .findByKeycloakId(authentication.name).orElseThrow { EntityNotFoundException("User Profile", 0) }
 
         val foundPrizeDraw: PrizeDraw  = prizeDrawRepository
             .findById(prizeDrawEntryDTO.prizeDrawId)
