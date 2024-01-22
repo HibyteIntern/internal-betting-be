@@ -6,4 +6,6 @@ import ro.hibyte.betting.entity.Event;
 
 @Repository
 interface EventRepository : JpaRepository<Event, Long> {
+    fun findByName(name:String) : List<Event>
+    fun findAllByNameContainsIgnoreCase(name: String) : List<Event>
 }

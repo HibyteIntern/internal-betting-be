@@ -1,12 +1,9 @@
 package ro.hibyte.betting.entity
 
 import com.fasterxml.jackson.annotation.JsonBackReference
-import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import jakarta.persistence.*
 import ro.hibyte.betting.dto.BetDTO
 import ro.hibyte.betting.dto.UserProfileDTO
-import java.util.UUID
 
 
 @Entity
@@ -14,7 +11,7 @@ data class UserProfile(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val userId: Long? = null,
+    var userId: Long? = null,
     var keycloakId: String? = null,
     var username: String? = null,
     var profilePicture: Long? = null,
@@ -25,16 +22,39 @@ data class UserProfile(
 
     var coins: Number = 50,
 
-    ){
-    constructor(dtoUser: UserProfileDTO) : this(
+    @ManyToMany( fetch = FetchType.LAZY ,mappedBy = "users")
+    @JsonBackReference
+    var groups: MutableSet<UserGroup>? = mutableSetOf()
+
+){
+    constructor(dtoUser: UserProfileDTO): this(
         userId = dtoUser.userId,
         keycloakId = dtoUser.keycloakId,
         username = dtoUser.username,
         profilePicture = dtoUser.profilePicture,
         description = dtoUser.description,
-        coins = dtoUser.coins,
-        bets = mutableListOf()
+        coins = dtoUser.coins
     )
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as UserProfile
+
+        if (userId != other.userId) return false
+        if (keycloakId != other.keycloakId) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = userId.hashCode()
+        result = 31 * result + (keycloakId?.hashCode() ?: 0)
+        return result
+    }
+
+
     fun update(dtoUser: UserProfileDTO) {
         username = dtoUser.username
         profilePicture = dtoUser.profilePicture

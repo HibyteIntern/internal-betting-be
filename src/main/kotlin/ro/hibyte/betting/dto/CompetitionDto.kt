@@ -12,7 +12,7 @@ data class CompetitionDto(
     var name: String = "",
     var description: String = "",
     var creator: String = "",
-    var users: Set<UserProfile> = emptySet(),
+    var users: List<UserProfile> = emptyList(),
     var userGroups: List<String> = emptyList(),
     var userProfiles: List<String> = emptyList(),
     var events: List<Event> = emptyList(),

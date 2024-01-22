@@ -19,8 +19,11 @@ import ro.hibyte.betting.service.UserProfileService
 @RequestMapping("/api/v1/user-profile")
 class UserProfileController(private val userProfileService: UserProfileService) {
 
-    @GetMapping()
-    fun getAll(): List<UserProfile> = userProfileService.getAll()
+    @GetMapping
+    fun getAll(): List<UserProfileDTO>{
+        val userProfiles = userProfileService.getAll()
+        return userProfiles.map { UserProfileDTO(it) }
+    }
 
     @GetMapping("/{userId}")
     fun get(@PathVariable userId: Long) : UserProfileDTO{
