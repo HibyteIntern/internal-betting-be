@@ -34,7 +34,6 @@ class BetService(private val betRepository: BetRepository,
 
     }
 
-
     fun update(dtoBet: BetDTO): Bet {
         val bet = betRepository.findById(dtoBet.betId!!).orElseThrow {
             NoSuchElementException("Bet not found with betId: ${dtoBet.betId}")
@@ -53,7 +52,5 @@ class BetService(private val betRepository: BetRepository,
         }
     }
 
-
-
-
 }
+

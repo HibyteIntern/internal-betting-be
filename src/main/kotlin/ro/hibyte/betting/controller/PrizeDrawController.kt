@@ -41,7 +41,7 @@ class PrizeDrawController(private val prizeDrawService: PrizeDrawService) {
         prizeDrawService.getByStatus(Status.CLOSED)
 
     @PutMapping("/{id}")
-    fun update(@PathVariable id: Long, @RequestBody prizeDrawDTO: PrizeDrawDTO): PrizeDrawDTO =
+    fun update(@PathVariable id: Long, @RequestBody prizeDrawDTO: PrizeDrawDTO) =
         prizeDrawService.update(id, prizeDrawDTO)
 
 
@@ -52,9 +52,8 @@ class PrizeDrawController(private val prizeDrawService: PrizeDrawService) {
     }
 
     @PostMapping("/entry")
-    fun addEntry(@RequestBody prizeDrawEntryDTO: PrizeDrawEntryDTO, authentication: Authentication): PrizeDrawEntry {
-        val jwt = (authentication as JwtAuthenticationToken).principal as Jwt
-        return prizeDrawService.addEntry(prizeDrawEntryDTO, jwt.subject)
+    fun addEntry(@RequestBody prizeDrawEntryDTO: PrizeDrawEntryDTO, authentication: Authentication) {
+        prizeDrawService.addEntry(prizeDrawEntryDTO, authentication)
     }
 
     @PutMapping("/{id}/end")

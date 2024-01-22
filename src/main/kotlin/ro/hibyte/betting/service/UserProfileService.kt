@@ -13,15 +13,21 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
     fun getAll(): List<UserProfile> = userProfileRepository.findAll()
 
     fun get(userId: Long): UserProfile {
+
         return userProfileRepository.findById(userId).orElseThrow {
             NoSuchElementException("UserProfile not found with userId: $userId")
         }
+    }
+
+    fun getByKeycloakId(keycloakId: String): UserProfile? {
+        return userProfileRepository.findByKeycloakId(keycloakId)
     }
 
     fun create(dtoUser: UserProfileDTO): UserProfile {
         val userProfile = UserProfile(dtoUser)
         return userProfileRepository.save(userProfile)
     }
+
 
     fun update(dtoUser: UserProfileDTO): UserProfile {
         val userProfile = userProfileRepository.findById(dtoUser.userId!!).orElseThrow {
@@ -45,6 +51,16 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
         userProfile.profilePicture = waspService.sendPhotoToWasp(photo)
         userProfileRepository.save(userProfile)
         return userProfile.profilePicture
+    }
+
+
+
+
+    fun getPhoto(userId: Long): ByteArray? {
+        val userProfile = userProfileRepository.findById(userId).orElseThrow()
+        val photoId = userProfile.profilePicture ?: throw IllegalArgumentException("Profile picture not set for user $userId")
+
+        return waspService.getPhotoFromWasp(photoId)
     }
 
     fun createUserProfileIfNonExistent(userProfileDTO: UserProfileDTO): UserProfile{
