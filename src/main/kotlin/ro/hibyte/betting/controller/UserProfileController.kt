@@ -6,16 +6,16 @@ import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
+import ro.hibyte.betting.dto.FullUserProfileDto
 import ro.hibyte.betting.dto.UserProfileDTO
 import ro.hibyte.betting.entity.UserProfile
 import ro.hibyte.betting.service.UserProfileService
-import ro.hibyte.betting.service.WaspService
 
 
 @CrossOrigin(origins = ["http://localhost:4200"])
 @RestController
 @RequestMapping("/api/v1/user-profile")
-class UserProfileController(private val userProfileService: UserProfileService, private val waspService: WaspService) {
+class UserProfileController(private val userProfileService: UserProfileService) {
 
     @GetMapping
     fun getAll(): List<UserProfileDTO>{
@@ -27,6 +27,12 @@ class UserProfileController(private val userProfileService: UserProfileService, 
     fun getOne(@PathVariable userId: Long) : UserProfileDTO{
         val userProfile = userProfileService.get(userId)
         return UserProfileDTO(userProfile)
+    }
+
+    @GetMapping("/{userId}/full-dto")
+    fun getOneFull(@PathVariable userId: Long) : FullUserProfileDto{
+        val userProfile = userProfileService.get(userId)
+        return FullUserProfileDto(userProfile)
     }
 
     @GetMapping("/byKeycloakId/{keycloakId}")

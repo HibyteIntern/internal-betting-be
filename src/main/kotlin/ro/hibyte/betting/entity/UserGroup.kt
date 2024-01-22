@@ -2,7 +2,7 @@ package ro.hibyte.betting.entity
 
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.*
-import ro.hibyte.betting.dto.UserGroupDto
+import ro.hibyte.betting.dto.FullUserGroupDto
 
 @Entity
 class UserGroup(
@@ -22,14 +22,14 @@ class UserGroup(
     )
     var users: MutableSet<UserProfile>?
 ){
-    constructor(dto: UserGroupDto): this(
+    constructor(dto: FullUserGroupDto): this(
         userGroupId = dto.userGroupId,
         groupName = dto.groupName,
         profilePicture = dto.profilePicture,
         description = dto.description,
         users = dto.users?.map { UserProfile(it) }?.toMutableSet()
     )
-    fun update(userGroupDto: UserGroupDto){
+    fun update(userGroupDto: FullUserGroupDto){
         userGroupDto.groupName?.let { groupName = it }
         userGroupDto.profilePicture?.let { profilePicture = it }
         userGroupDto.description?.let { description = it }
