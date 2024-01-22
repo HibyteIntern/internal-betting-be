@@ -113,9 +113,8 @@ class PrizeDrawService(
     }
 
     fun addEntry(prizeDrawEntryDTO: PrizeDrawEntryDTO, authentication: Authentication): PrizeDrawEntry {
-
-        val userProfile: UserProfile = userProfileRepository
-            .findByKeycloakId(authentication.name).orElseThrow { EntityNotFoundException("User Profile", 0) }
+        val userProfile: UserProfile = userProfileRepository.findByKeycloakId(authentication.name)
+            ?: throw EntityNotFoundException("User Profile", 0)
 
         val foundPrizeDraw: PrizeDraw  = prizeDrawRepository
             .findById(prizeDrawEntryDTO.prizeDrawId)
