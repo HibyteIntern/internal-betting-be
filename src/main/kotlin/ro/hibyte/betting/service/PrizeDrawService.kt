@@ -63,6 +63,13 @@ class PrizeDrawService(
         }
     }
 
+    private fun giveBackCoins(entries: List<PrizeDrawEntry>) {
+        entries.forEach { entry ->
+            entry.user.coins = entry.user.coins.toInt() + entry.amount.toInt()
+            userProfileRepository.save(entry.user)
+        }
+    }
+
     fun create(prizeDrawDTO: PrizeDrawDTO): PrizeDrawDTO {
         val prizeDraw = prizeDrawMapper.prizeDrawDTOToPrizeDraw(prizeDrawDTO)
         return if (prizeDraw.type == DrawType.ROULETTE)
@@ -88,7 +95,8 @@ class PrizeDrawService(
     }
 
     fun delete(id: Long) {
-        prizeDrawRepository.findById(id).orElseThrow{EntityNotFoundException("Prize Draw", id)}
+        val foundPrizeDraw: PrizeDraw = prizeDrawRepository.findById(id).orElseThrow{EntityNotFoundException("Prize Draw", id)}
+        if(foundPrizeDraw.type == DrawType.ROULETTE) giveBackCoins(foundPrizeDraw.entries)
         prizeDrawRepository.deleteById(id)
     }
 
