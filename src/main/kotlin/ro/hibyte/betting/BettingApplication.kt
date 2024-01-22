@@ -14,4 +14,3 @@ class BettingApplication
 fun main(args: Array<String>) {
 	runApplication<BettingApplication>(*args)
 }
-

@@ -24,6 +24,9 @@ class CompetitionService {
         return competitions.map { competitionMapper.mapCompetitionToCompetitionDto(it) }
     }
 
+    fun searchByName(name: String): List<CompetitionDto> =
+        competitionRepository.findAllByNameContainsIgnoreCase(name).map { competitionMapper.mapCompetitionToCompetitionDto(it) }
+
     fun getOne(id: Long): Competition = competitionRepository.findById(id).orElseThrow{ EntityNotFoundException("Competition", id) }
 
     fun create(competitionRequest: CompetitionRequest): Competition = competitionRepository.save(competitionMapper.mapCompetitionRequestToCompetition(competitionRequest))

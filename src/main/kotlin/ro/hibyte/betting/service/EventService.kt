@@ -63,6 +63,17 @@ class EventService(
         return eventMapper.mapEventToEventResponse(event)
     }
 
+    fun getAllTags():List<String>{
+        return eventRepository.findAll()
+            .flatMap { event -> eventMapper.mapToTags(event) }
+            .distinct()
+            .toList()
+    }
 
+    fun getEventsByName(name:String):List<EventDTO>{
+        return eventRepository.findAllByNameContainsIgnoreCase(name)
+              .map(eventMapper::mapEventToEventResponse)
+              .toList()
+    }
 }
 
