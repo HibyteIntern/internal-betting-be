@@ -16,7 +16,7 @@ data class Bet(
     var user: UserProfile? = null,
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "betTypetId")
+    @JoinColumn(name = "betTypeId")
     var betType: BetType? = null,
 
     var amount: Number,

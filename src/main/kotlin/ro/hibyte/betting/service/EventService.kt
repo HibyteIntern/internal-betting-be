@@ -1,9 +1,11 @@
 package ro.hibyte.betting.service
 
+import com.sun.java.accessibility.util.EventID
 import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 import ro.hibyte.betting.dto.BetDTO
 import ro.hibyte.betting.dto.EventDTO
+import ro.hibyte.betting.dto.ResolveOutcomeDTO
 import ro.hibyte.betting.dto.UserProfileDTO
 import ro.hibyte.betting.entity.Event
 import ro.hibyte.betting.entity.Status
@@ -12,6 +14,7 @@ import ro.hibyte.betting.mapper.EventMapper
 import ro.hibyte.betting.repository.EventRepository
 import java.sql.Timestamp
 import kotlin.RuntimeException
+
 
 @Service
 class EventService(
@@ -62,6 +65,38 @@ class EventService(
         val event = eventRepository.findById(eventId).orElseThrow { RuntimeException("no such event found") }
         return eventMapper.mapEventToEventResponse(event)
     }
+
+    fun populateBetTypeOutcome(eventId: Long, resolveOutcomeDTO: ResolveOutcomeDTO) {
+        val event = eventRepository.findById(eventId).orElseThrow { RuntimeException("no such event found") }
+
+        event.betTypes.forEach { betType ->
+            resolveOutcomeDTO.betTypeOutcomes?.get(betType.id)?.let { outcome ->
+                betType.finalOutcome = outcome
+            }
+
+        }
+    }
+
+    fun processBets(eventId: Long) {
+        val event = eventRepository.findById(eventId).orElseThrow { RuntimeException("no such event found") }
+
+        event.bets.forEach { bet ->
+            event.betTypes.stream()
+                .filter { betType -> betType.id == bet.betType?.id }
+                .findFirst()
+                .ifPresent { matchedBetType ->
+                    if (matchedBetType.finalOutcome == bet.value) {
+                        val amount = bet.amount.toDouble()
+                        val odds = bet.odds
+                        val winnings = amount * odds
+                        bet.user?.coins = (bet.user?.coins?.toDouble() ?: 0.0) + winnings
+                    }
+                }
+        }
+    }
+
+
+
 
 
 }

@@ -16,7 +16,9 @@ data class BetType (
     @ElementCollection
     @CollectionTable(name = "bet_type_odds", joinColumns = [JoinColumn(name = "bet_type_id")])
     @Column(name = "odds")
-    var odds: List<Double> = ArrayList()
+    var odds: List<Double> = ArrayList(),
+
+    var finalOutcome : String? = null
 ) {
 
     constructor(completeBet: CompleteBetTypeDto) : this(
