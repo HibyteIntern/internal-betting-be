@@ -49,9 +49,6 @@ class EventService(
         val events = eventRepository.findAll()
         events.forEach { event ->
             run {
-                println(event.endsAt.toInstant())
-                println(Instant.now())
-                println(event.endsAt.toInstant().isBefore(Instant.now()))
                 if (event.endsAt.toInstant().isBefore(Instant.now())) {
                     val competitions = competitionRepository.findCompetitionsByEventsContains(event)
                     competitions.forEach { competition ->
