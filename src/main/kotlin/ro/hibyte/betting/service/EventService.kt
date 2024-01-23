@@ -21,7 +21,6 @@ class EventService(
     private val eventRepository: EventRepository,
     private val eventMapper: EventMapper,
     private val betTypeService: BetTypeService,
-    private val betMapper: BetMapper,
     private val betService: BetService,
     private val userProfileService: UserProfileService
 ) {
@@ -94,10 +93,5 @@ class EventService(
                 }
         }
     }
-
-
-
-
-
 }
 
