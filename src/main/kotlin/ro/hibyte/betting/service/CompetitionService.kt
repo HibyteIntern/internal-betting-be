@@ -1,14 +1,16 @@
 package ro.hibyte.betting.service
 
+import org.hibernate.Hibernate
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import ro.hibyte.betting.dto.CompetitionDto
 import ro.hibyte.betting.dto.CompetitionRequest
 import ro.hibyte.betting.entity.Competition
+import ro.hibyte.betting.entity.Status
 import ro.hibyte.betting.exceptions.types.*
 import ro.hibyte.betting.mapper.CompetitionMapper
 import ro.hibyte.betting.repository.CompetitionRepository
-import java.sql.Timestamp
 
 @Service
 class CompetitionService {
@@ -37,6 +39,27 @@ class CompetitionService {
         val newCompetition = competitionMapper.mapCompetitionRequestToCompetition(competitionRequest, competition)
 
         return competitionRepository.save(newCompetition)
+    }
+    @Transactional
+    fun checkStatus(competitionId: Long) {
+        val competition = competitionRepository.findById(competitionId).orElseThrow{ EntityNotFoundException("Competition", competitionId) }
+        Hibernate.initialize(competition.events)
+
+        var completedEvents = 0
+
+        competition.events.forEach { event ->
+            run {
+                if(event.status == Status.CLOSED) {
+                    completedEvents++
+                }
+            }
+        }
+
+
+        if (completedEvents == competition.events.size) {
+            competition.status = Status.CLOSED
+            competitionRepository.save(competition)
+        }
     }
 
     fun delete(id: Long) = competitionRepository.deleteById(id)
