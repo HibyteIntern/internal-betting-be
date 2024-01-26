@@ -31,7 +31,6 @@ class LeaderboardService(
             }
         }
 
-        // Populate the result DTO
         return LeaderboardDTO(
             startDate = leaderboardDTO.startDate,
             endDate = leaderboardDTO.endDate,
