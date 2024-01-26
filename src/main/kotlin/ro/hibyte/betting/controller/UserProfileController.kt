@@ -88,5 +88,15 @@ class UserProfileController(private val userProfileService: UserProfileService) 
         }
     }
 
+    @GetMapping("/isUsernameTaken")
+    fun isUsernameTaken(@RequestParam username: String, authentication: Authentication): ResponseEntity<Boolean> {
+        val userProfile = userProfileService.getByKeycloakId(authentication.name)
+        val currentUserId: Long? = userProfile?.userId
+        val isTaken = userProfileService.isUsernameTaken(username, currentUserId)
+        return ResponseEntity.ok(isTaken)
+    }
+
+
+
 }
 
