@@ -55,7 +55,6 @@ class CompetitionService {
             }
         }
 
-
         if (completedEvents == competition.events.size) {
             competition.status = Status.CLOSED
             competitionRepository.save(competition)

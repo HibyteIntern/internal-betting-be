@@ -46,8 +46,7 @@ class EventService(
     }
 
     fun checkEventsEndDate() {
-        val events = eventRepository.findAll()
-        events.forEach { event ->
+        eventRepository.findAllByStatus(Status.OPEN).forEach { event ->
             run {
                 if (event.endsAt.toInstant().isBefore(Instant.now())) {
                     val competitions = competitionRepository.findCompetitionsByEventsContains(event)
@@ -57,10 +56,8 @@ class EventService(
                         }
                     }
 
-                    if(event.status != Status.CLOSED) {
-                        event.status = Status.CLOSED
-                        eventRepository.save(event)
-                    }
+                    event.status = Status.CLOSED
+                    eventRepository.save(event)
                 }
             }
         }
