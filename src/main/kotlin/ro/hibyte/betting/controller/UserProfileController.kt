@@ -7,13 +7,8 @@ import org.springframework.http.ResponseEntity
 import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
-import org.springframework.web.server.ResponseStatusException
-import ro.hibyte.betting.dto.BetDTO
-import ro.hibyte.betting.dto.PrizeDrawEntryDTO
 import ro.hibyte.betting.dto.UserProfileDTO
-import ro.hibyte.betting.entity.Bet
 import ro.hibyte.betting.entity.UserProfile
-import ro.hibyte.betting.service.BetService
 import ro.hibyte.betting.service.UserProfileService
 
 
@@ -31,8 +26,8 @@ class UserProfileController(private val userProfileService: UserProfileService) 
     @GetMapping("/getMe")
     fun getMe(authentication: Authentication): UserProfileDTO {
         val userProfile = userProfileService.getByKeycloakId(authentication.name)
-        if (userProfile != null) {
-            return UserProfileDTO(userProfile)
+        return if (userProfile != null) {
+            UserProfileDTO(userProfile, authentication.authorities)
         } else {
 
             val newUserProfile = UserProfile()
@@ -40,7 +35,7 @@ class UserProfileController(private val userProfileService: UserProfileService) 
 
             val createdUserProfile = userProfileService.create(UserProfileDTO(newUserProfile))
 
-            return UserProfileDTO(createdUserProfile)
+            UserProfileDTO(createdUserProfile, authentication.authorities)
         }
     }
 

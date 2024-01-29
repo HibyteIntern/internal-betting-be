@@ -1,6 +1,6 @@
 package ro.hibyte.betting.dto
 
-import ro.hibyte.betting.entity.Bet
+import org.springframework.security.core.GrantedAuthority
 import ro.hibyte.betting.entity.UserProfile
 
 class UserProfileDTO(
@@ -11,7 +11,8 @@ class UserProfileDTO(
     var description: String? = null,
     var bets: MutableList<BetDTO>? = null,
     var coins: Number = 50,
-    var groups: MutableSet<Long>? = mutableSetOf()
+    var groups: MutableSet<Long>? = mutableSetOf(),
+    var roles: List<String> = listOf()
 ) {
     constructor(userProfile: UserProfile) : this(
         userId = userProfile.userId,
@@ -22,6 +23,18 @@ class UserProfileDTO(
         groups = userProfile.groups?.map{it.userGroupId}?.toMutableSet(),
         username = userProfile.username,
         bets = userProfile.bets?.map { BetDTO(it) }?.toMutableList()
+    )
+
+    constructor(userProfile: UserProfile, roles: Collection<GrantedAuthority>) : this(
+        userId = userProfile.userId,
+        keycloakId = userProfile.keycloakId,
+        profilePicture = userProfile.profilePicture,
+        description = userProfile.description,
+        coins = userProfile.coins,
+        groups = userProfile.groups?.map{it.userGroupId}?.toMutableSet(),
+        username = userProfile.username,
+        bets = userProfile.bets?.map { BetDTO(it) }?.toMutableList(),
+        roles = roles.map { it.authority }
     )
 
     override fun equals(other: Any?): Boolean {

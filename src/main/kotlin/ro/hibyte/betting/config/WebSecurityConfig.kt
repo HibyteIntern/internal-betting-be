@@ -18,6 +18,12 @@ class WebSecurityConfig {
             .csrf { it.disable() }
             .authorizeHttpRequests {
                 it.requestMatchers(HttpMethod.OPTIONS).permitAll()
+                    .requestMatchers("/api/v1/event-templates/**").hasAuthority("ADMIN")
+                    .requestMatchers("/api/v1/bet-templates/**").hasAuthority("ADMIN")
+                    .requestMatchers("/api/v1/bet-types/**").hasAuthority("ADMIN")
+                    .requestMatchers("/api/v1/prize-draws/**").hasAuthority("ADMIN")
+                    .requestMatchers("/api/v1/user-profile/**").authenticated()
+                    .requestMatchers(HttpMethod.GET, "/**").permitAll()
                     .anyRequest().authenticated()
             }
             .oauth2ResourceServer { oauth2 ->
