@@ -15,7 +15,7 @@ data class Bet(
     @JoinColumn(name = "userId")
     var user: UserProfile? = null,
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "betTypetId")
     var betType: BetType? = null,
 
@@ -28,15 +28,15 @@ data class Bet(
         user = betDto.user?.let { UserProfile(userId = it) },
         betType = betType,
         amount = betDto.amount,
-        odds = betDto.odds,
+        odds = betType?.betTemplate?.multipleChoiceOptions?.indexOf(betDto.value)?.let { (betType.odds[it]) } ?: 0.0,
         value = betDto.value,
     )
 
-    fun update(dtoBet: BetDTO){
-        amount = dtoBet.amount
-        odds = dtoBet.odds
-        value = dtoBet.value
-
-    }
+//    fun update(dtoBet: BetDTO){
+//        amount = dtoBet.amount
+//        odds = dtoBet.odds
+//        value = dtoBet.value
+//
+//    }
 }
 

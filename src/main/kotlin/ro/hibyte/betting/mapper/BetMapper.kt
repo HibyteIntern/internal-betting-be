@@ -17,15 +17,15 @@ class BetMapper(private val userProfileRepository: UserProfileRepository) {
             value = bet.value
        )
     }
-    fun mapBetDtoToBet(betDTO: BetDTO): Bet{
-        val userId: Long = betDTO.user?:0
-        val user = userProfileRepository.findById(userId).orElseThrow{RuntimeException("no such user exists")}
-        return Bet(
-            betId = betDTO.betId,
-            user = user,
-            amount = betDTO.amount,
-            odds = betDTO.odds,
-            value = betDTO.value
-        )
-    }
+//    fun mapBetDtoToBet(betDTO: BetDTO): Bet{
+//        val userId: Long = betDTO.user?:0
+//        val user = userProfileRepository.findById(userId).orElseThrow{RuntimeException("no such user exists")}
+//        return Bet(
+//            betId = betDTO.betId,
+//            user = user,
+//            amount = betDTO.amount,
+//            odds = betDTO.odds,
+//            value = betDTO.value
+//        )
+//    }
 }

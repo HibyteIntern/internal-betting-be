@@ -17,7 +17,7 @@ data class UserProfile(
     var profilePicture: Long? = null,
     var description: String? = null,
 
-    @OneToMany(cascade = [CascadeType.ALL], mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(cascade = [CascadeType.ALL], mappedBy = "user", fetch = FetchType.LAZY)
     var bets: MutableList<Bet>? = null,
 
     var coins: Number = 50,

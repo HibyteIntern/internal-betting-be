@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 import ro.hibyte.betting.dto.BetDTO
 import ro.hibyte.betting.dto.EventDTO
+import ro.hibyte.betting.dto.ResolveOutcomeDTO
 import ro.hibyte.betting.dto.UserProfileDTO
 import ro.hibyte.betting.entity.Event
 import ro.hibyte.betting.entity.Status
@@ -41,15 +42,6 @@ class EventService(
         eventRepository.save(existingEvent)
     }
 
-    fun addBetForEvent(eventId: Long, betDTO: BetDTO, userProfileDTO: UserProfileDTO) {
-        val userProfile = userProfileService.createUserProfileIfNonExistent(userProfileDTO)
-
-        val event = eventRepository.findById(eventId).orElseThrow { RuntimeException("no such event found") }
-
-        event.bets.add(betService.create(betDTO, userProfile))
-        eventRepository.save(event)
-    }
-
 
     fun deleteEvent(eventId: Long) = eventRepository.deleteById(eventId)
     fun getAllEvents(): List<EventDTO> {
@@ -75,5 +67,34 @@ class EventService(
               .map(eventMapper::mapEventToEventResponse)
               .toList()
     }
+
+    fun populateBetTypeOutcome(eventId: Long, resolveOutcomeDTO: ResolveOutcomeDTO) {
+        val event = eventRepository.findById(eventId).orElseThrow { RuntimeException("no such event found") }
+
+        event.betTypes.forEach { betType ->
+            resolveOutcomeDTO[betType.id]?.let { betTypeService.setFinalOutcome(betType, it) }
+        }
+
+        event.betTypes.flatMap { it.bets }.forEach { bet ->
+            betService.processBet(bet)
+        }
+    }
+
+//    fun processBets(eventId: Long) {
+//        val event = eventRepository.findById(eventId).orElseThrow { RuntimeException("no such event found") }
+//
+//        event.bets.forEach { bet ->
+//            event.betTypes
+//                .find { betType -> betType.id == bet.betType?.id }
+//                .ifPresent { matchedBetType ->
+//                    if (matchedBetType.finalOutcome == bet.value) {
+//                        val amount = bet.amount.toDouble()
+//                        val odds = bet.odds
+//                        val winnings = amount * odds
+//                        bet.user?.coins = (bet.user?.coins?.toDouble() ?: 0.0) + winnings
+//                    }
+//                }
+//        }
+//    }
 }
 

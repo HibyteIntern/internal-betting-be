@@ -23,7 +23,7 @@ class BetController(private val betService: BetService, private val userProfileS
     }
 
     @PostMapping
-    fun create(@PathVariable userId: Long, @RequestBody betDto: BetDTO): BetDTO {
+    fun create(@RequestBody betDto: BetDTO): BetDTO {
         var userProfile = userProfileService.get(betDto.user!!)
         val bet = betService.create(betDto, userProfile)
         return BetDTO(bet)
@@ -37,11 +37,11 @@ class BetController(private val betService: BetService, private val userProfileS
         return bets.map { BetDTO(it) }
     }
 
-    @PutMapping("/{betId}")
-    fun update(@PathVariable betId: Long, @RequestBody betDto: BetDTO): BetDTO {
-        val bet = betService.update(betDto)
-        return BetDTO(bet)
-    }
+//    @PutMapping("/{betId}")
+//    fun update(@PathVariable betId: Long, @RequestBody betDto: BetDTO): BetDTO {
+//        val bet = betService.update(betDto)
+//        return BetDTO(bet)
+//    }
 
     @DeleteMapping("/{betId}")
     fun delete(@PathVariable betId: Long) = betService.delete(betId)

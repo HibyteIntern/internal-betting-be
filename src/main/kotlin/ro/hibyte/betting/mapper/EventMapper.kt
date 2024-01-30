@@ -38,9 +38,8 @@ class EventMapper(private val betTypeMapper: BetTypeMapper, private val userProf
             ?.mapNotNull { it?.let { userProfileService.get(it) } }
             ?: emptyList()
 
-        val userProfiles: List<Long?> = users.stream()
-            .map(userProfileService::getId)
-            .collect(Collectors.toList())
+        val userProfiles: List<Long?> = users.map { it.userId }
+
         return Event(
             name = eventRequest.name?: "",
             description = eventRequest.description?:"",
@@ -48,7 +47,6 @@ class EventMapper(private val betTypeMapper: BetTypeMapper, private val userProf
             creator = eventRequest.creator?:"",
             tags = tags?: emptyList(),
             users = users,
-            bets = arrayListOf(),
             userGroups = defaultUserGroups,
             userProfiles = userProfiles,
             created = defaultTimestamp,
@@ -63,9 +61,7 @@ class EventMapper(private val betTypeMapper: BetTypeMapper, private val userProf
             .map(betTypeMapper::betTypeToCompleteBetTypeDto)
             .collect(Collectors.toList())
 
-        val betList:List<BetDTO> = event.bets.stream()
-            .map(betMapper::mapBetToBetDto)
-            .collect(Collectors.toList())
+        val betList:List<BetDTO> = event.betTypes.flatMap { it.bets.map { betMapper.mapBetToBetDto(it) } }
 
         return EventDTO(
             eventId = event.eventId,
