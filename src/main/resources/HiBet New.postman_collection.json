@@ -1,0 +1,924 @@
+{
+	"info": {
+		"_postman_id": "0cc5141f-4f16-4de5-a2b1-bcfc8793d800",
+		"name": "HiBet New",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2789758"
+	},
+	"item": [
+		{
+			"name": "BetTemplate",
+			"item": [
+				{
+					"name": "GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bet-templates/557",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bet-templates",
+								"557"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bet-templates",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bet-templates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"What is you guess ?\",\r\n        \"type\": \"STRING\",\r\n        \"multipleChoiceOptions\":[\"me\", \"Donald Trump\", \"Joe Biden\", \"as\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/bet-templates",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bet-templates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bet-templates/502",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bet-templates",
+								"502"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"Who will the next president of the USA be ?\",\r\n        \"type\": \"MULTIPLE_CHOICE\",\r\n        \"multipleChoiceOptions\": [\r\n            \"me\",\r\n            \"Donald Trump\",\r\n            \"Joe Biden\",\r\n            \"Obama\"\r\n        ]\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/bet-templates/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bet-templates",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bet",
+			"item": [
+				{
+					"name": "GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bet-templates/557",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bet-templates",
+								"557"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Bets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bets",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": 1,\r\n    \"betType\": 1,\r\n    \"amount\": 5,\r\n    \"value\": \"Arsenal\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/bets",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bets/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bets",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"Who will the next president of the USA be ?\",\r\n        \"type\": \"MULTIPLE_CHOICE\",\r\n        \"multipleChoiceOptions\": [\r\n            \"me\",\r\n            \"Donald Trump\",\r\n            \"Joe Biden\",\r\n            \"Obama\"\r\n        ]\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/bet-templates/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bet-templates",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Profiles",
+			"item": [
+				{
+					"name": "GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bet-templates/557",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bet-templates",
+								"557"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user-profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"What is you guess ?\",\r\n        \"type\": \"STRING\",\r\n        \"multipleChoiceOptions\":[\"me\", \"Donald Trump\", \"Joe Biden\", \"as\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/bet-templates",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bet-templates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bet-templates/502",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bet-templates",
+								"502"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"Who will the next president of the USA be ?\",\r\n        \"type\": \"MULTIPLE_CHOICE\",\r\n        \"multipleChoiceOptions\": [\r\n            \"me\",\r\n            \"Donald Trump\",\r\n            \"Joe Biden\",\r\n            \"Obama\"\r\n        ]\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/bet-templates/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bet-templates",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Event",
+			"item": [
+				{
+					"name": "GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/events/add",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Events",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/events",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Event",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Arsenal vs Chelsea Premier League Match\",\r\n  \"description\": \"A highly anticipated Premier League match between Arsenal and Chelsea.\",\r\n  \"creator\": \"PremierLeagueScheduler\",\r\n  \"tags\": [\"Football\", \"Premier League\", \"Arsenal\", \"Chelsea\"],\r\n  \"userGroups\": [],\r\n  \"userProfiles\": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],\r\n  \"completeBetTypeDtoList\": [\r\n    {\r\n      \"name\": \"Match Winner\",\r\n      \"type\": \"MULTIPLE_CHOICE\",\r\n      \"multipleChoiceOptions\": [\"Arsenal\", \"Draw\", \"Chelsea\"],\r\n      \"odds\": [1.5, 2, 3]\r\n    },\r\n    {\r\n      \"name\": \"Total Goals\",\r\n      \"type\": \"MULTIPLE_CHOICE\",\r\n      \"multipleChoiceOptions\": [\"Over 2.5\", \"Under 2.5\"],\r\n      \"odds\": [1.5, 2]\r\n    }\r\n  ],\r\n  \"bets\": [],\r\n  \"created\": \"2024-01-01T12:00:00Z\",\r\n  \"lastModified\": \"2024-01-05T15:00:00Z\",\r\n  \"startsAt\": \"2024-02-15T16:00:00Z\",\r\n  \"endsAt\": \"2024-02-15T18:00:00Z\",\r\n  \"status\": \"OPEN\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/events/add",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/events/delete/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"Who will the next president of the USA be ?\",\r\n        \"type\": \"MULTIPLE_CHOICE\",\r\n        \"multipleChoiceOptions\": [\r\n            \"me\",\r\n            \"Donald Trump\",\r\n            \"Joe Biden\",\r\n            \"Obama\"\r\n        ]\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/bet-templates/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bet-templates",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "populate outcomes",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"1\": \"Arsenal\",\n    \"2\": \"Over 2.5\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/events/outcome/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events",
+								"outcome",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BetTypes",
+			"item": [
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bet-types/306",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bet-types",
+								"306"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Bet Types",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bet-types",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bet-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Penalties\",\r\n    \"type\":\"MULTIPLE_CHOICE\",\r\n    \"multipleChoiceOptions\":[\"A lot\", \"Not that many\"],\r\n    \"odds\": [1.2, 1.12, 0.3, 4, 5]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/bet-types",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bet-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"Penalties\",\r\n        \"type\": \"MULTIPLE_CHOICE\",\r\n        \"multipleChoiceOptions\": [\r\n            \"A lot\",\r\n            \"Not that many\"\r\n        ],\r\n        \"odds\": [0.5, 1.2\r\n        ]\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/bet-types/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bet-types",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bet-types/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bet-types",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "EventTemplates",
+			"item": [
+				{
+					"name": "Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Football game\",\r\n    \"betTemplates\":[\r\n        {\r\n            \"name\":\"First team wins\",\r\n            \"type\":\"BOOLEAN\"\r\n        }, {\r\n             \"name\":\"Second team wins\",\r\n            \"type\":\"BOOLEAN\"\r\n        }, {\r\n           \"name\":\"Draw\",\r\n            \"type\":\"BOOLEAN\" \r\n        }, {\r\n            \"name\": \"number of red cards\",\r\n            \"type\": \"NUMERIC\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/event-templates",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"event-templates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/event-templates/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"event-templates",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/event-templates",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"event-templates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/event-templates/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"event-templates",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Competitons",
+			"item": [
+				{
+					"name": "Add",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/competitons",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"competitons"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PrizeDraws",
+			"item": [
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"This is a a test for an entity with a fairly long name i need more.\",\r\n    \"description\":\"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\",\r\n    \"endsAt\":\"2024-01-10T10:15:30.00Z\",\r\n    \"prizeDescription\":\"2 extra days\",\r\n    \"type\":\"MOST_POINTS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/prize-draws",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"prize-draws"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/prize-draws",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"prize-draws"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/prize-draws/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"prize-draws",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addEntry",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"prizeDrawId\":1,\r\n    \"amount\":30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/prize-draws/entry",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"prize-draws",
+								"entry"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Leaderboard",
+			"item": [
+				{
+					"name": "Create Leaderboard",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"All Users, All Bets\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/leaderboards",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"leaderboards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Leaderboard Configs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/leaderboards",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"leaderboards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Compute Leaderboard",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"leaderboardId\": 1,\n    \"metrics\": [\"numberOfBets\", \"wonBets\"],\n    \"sortedBy\": \"wonBets\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/leaderboards",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"leaderboards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Leaderboard",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/leaderboards/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"leaderboards",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080/api/v1",
+			"type": "string"
+		}
+	]
+}
