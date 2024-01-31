@@ -61,6 +61,11 @@ data class UserProfile(
         description = dtoUser.description
     }
 
+    override fun toString(): String {
+        return "UserProfile(userId=$userId, username=$username)"
+    }
+
+
 }
 
 

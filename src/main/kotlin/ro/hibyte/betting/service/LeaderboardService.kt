@@ -2,14 +2,17 @@ package ro.hibyte.betting.service
 
 import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
-import ro.hibyte.betting.dto.LeaderboardConfig
-import ro.hibyte.betting.dto.LeaderboardDTO
-import ro.hibyte.betting.dto.LeaderboardRequest
+import ro.hibyte.betting.dto.*
 import ro.hibyte.betting.entity.Leaderboard
 import ro.hibyte.betting.exceptions.types.EntityNotFoundException
+import ro.hibyte.betting.metrics.FewestLosses
+import ro.hibyte.betting.metrics.HighestEarner
+import ro.hibyte.betting.metrics.MostBetsMetric
+import ro.hibyte.betting.metrics.MostWinsMetric
 import ro.hibyte.betting.repository.EventRepository
 import ro.hibyte.betting.repository.LeaderboardRepository
 import ro.hibyte.betting.repository.UserProfileRepository
+import java.util.*
 
 @Service
 class LeaderboardService(
@@ -45,9 +48,22 @@ class LeaderboardService(
 
         // compute leaderboard according to metrics from request
 
+        val specifiedMetric = when (leaderboardRequest.sortedBy.lowercase(Locale.getDefault())) {
+            "mostbets" -> MostBetsMetric()
+            "mostwins" -> MostWinsMetric()
+            "fewestlosses" -> FewestLosses()
+            "highestearner" -> HighestEarner()
+            else -> null
+        }
+
+        val leaderboardUsers = specifiedMetric?.calculateRank(users, events).orEmpty().map { user ->
+            UserProfileDTO(userId = user.userId, username = user.username, bets = user.bets?.map { BetDTO(it) }?.toMutableList())
+        }.toSet()
+
         return LeaderboardDTO(
             id = leaderboard.id,
             name = leaderboard.name,
+            users = leaderboardUsers,
             // somehow the users with all their metrics scores and sorted by the desired metric
         )
     }
