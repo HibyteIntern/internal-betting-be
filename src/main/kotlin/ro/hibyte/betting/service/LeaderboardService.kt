@@ -46,15 +46,15 @@ class LeaderboardService(
 
         for (metric in metrics) {
             val result = when (metric) {
-                "Most Bets" -> computeMetricsService.usersWithMostBets()
-                "Most Wins" -> computeMetricsService.usersWithMostWins()
-                "Fewest Losses" -> computeMetricsService.usersWithFewestLosses()
-                "Highest Earner" -> computeMetricsService.usersHighestEarners()
-                "Highest Looser" -> computeMetricsService.usersLowestEarners()
-                "Largest Single Bet" -> computeMetricsService.usersLargestBets()
-                "Largest Single Win" -> computeMetricsService.usersSortedByLargestSingleWin()
-                "Largest Single Loss" -> computeMetricsService.usersSortedByLargestSingleLoss()
-                "Win/Loss Ratio" -> computeMetricsService.usersSortedByWinLossRatio()
+                "Most Bets" -> computeMetricsService.usersWithMostBets(users)
+                "Most Wins" -> computeMetricsService.usersWithMostWins(users)
+                "Fewest Losses" -> computeMetricsService.usersWithFewestLosses(users)
+                "Highest Earner" -> computeMetricsService.usersHighestEarners(users)
+                "Highest Looser" -> computeMetricsService.usersLowestEarners(users)
+                "Largest Single Bet" -> computeMetricsService.usersLargestBets(users)
+                "Largest Single Win" -> computeMetricsService.usersSortedByLargestSingleWin(users)
+                "Largest Single Loss" -> computeMetricsService.usersSortedByLargestSingleLoss(users)
+                "Win/Loss Ratio" -> computeMetricsService.usersSortedByWinLossRatio(users)
                 else -> emptyList()
             }
 

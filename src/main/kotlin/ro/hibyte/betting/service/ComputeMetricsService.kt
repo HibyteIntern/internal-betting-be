@@ -4,16 +4,13 @@ import org.springframework.stereotype.Service
 import ro.hibyte.betting.dto.UserProfileDTO
 import ro.hibyte.betting.entity.UserProfile
 import ro.hibyte.betting.repository.EventRepository
-import ro.hibyte.betting.repository.LeaderboardRepository
 import ro.hibyte.betting.repository.UserProfileRepository
+
 @Service
 class ComputeMetricsService(
     private val eventRepository: EventRepository,
     private val userProfileRepository: UserProfileRepository
 ) {
-    val allUsers: List<UserProfile> = userProfileRepository.findAll()
-
-    
 
     private fun calculateWinLossRatio(wins: Int, losses: Int): Double {
         if (losses == 0) {
@@ -23,8 +20,8 @@ class ComputeMetricsService(
         return wins.toDouble() / losses.toDouble()
     }
 
-    fun usersWithMostBets(): List<UserProfileDTO> {
-        val sortedUsers = allUsers.sortedBy { user ->
+    fun usersWithMostBets(profiles: Set<UserProfile>): List<UserProfileDTO> {
+        val sortedUsers = profiles.sortedBy { user ->
             user.bets?.size ?: 0
         }
 
@@ -40,8 +37,8 @@ class ComputeMetricsService(
         }
     }
 
-    fun usersWithFewestLosses(): List<UserProfileDTO> {
-        val sortedUsers = allUsers.sortedBy { user ->
+    fun usersWithFewestLosses(profiles: Set<UserProfile>): List<UserProfileDTO> {
+        val sortedUsers = profiles.sortedBy { user ->
             user.bets?.count { bet ->
                 bet.betType?.finalOutcome != bet.value
             } ?: 0
@@ -59,8 +56,9 @@ class ComputeMetricsService(
             )
         }
     }
-    fun usersWithMostWins(): List<UserProfileDTO> {
-        val sortedUsers = allUsers.sortedBy { user ->
+
+    fun usersWithMostWins(profiles: Set<UserProfile>): List<UserProfileDTO> {
+        val sortedUsers = profiles.sortedBy { user ->
             user.bets?.count { bet ->
                 bet.betType?.finalOutcome == bet.value
             } ?: 0
@@ -78,8 +76,8 @@ class ComputeMetricsService(
         }
     }
 
-    fun usersLowestEarners(): List<UserProfileDTO> {
-        val sortedUsers = allUsers.sortedByDescending { user ->
+    fun usersLowestEarners(profiles: Set<UserProfile>): List<UserProfileDTO> {
+        val sortedUsers = profiles.sortedByDescending { user ->
             user.coins.toDouble()
         }
 
@@ -95,8 +93,8 @@ class ComputeMetricsService(
         }
     }
 
-    fun usersHighestEarners(): List<UserProfileDTO> {
-        val sortedUsers = allUsers.sortedBy { user ->
+    fun usersHighestEarners(profiles: Set<UserProfile>): List<UserProfileDTO> {
+        val sortedUsers = profiles.sortedBy { user ->
             user.coins.toDouble()
         }
 
@@ -112,9 +110,9 @@ class ComputeMetricsService(
         }
     }
 
-    fun usersLargestBets(): List<UserProfileDTO> {
+    fun usersLargestBets(profiles: Set<UserProfile>): List<UserProfileDTO> {
 
-        val sortedUsers = allUsers.sortedBy { user ->
+        val sortedUsers = profiles.sortedBy { user ->
             user.bets?.maxOfOrNull { bet ->
                 bet.amount.toDouble()
             } ?: 0.0
@@ -131,9 +129,10 @@ class ComputeMetricsService(
             )
         }
     }
-    fun usersSortedByLargestSingleWin(): List<UserProfileDTO> {
 
-        val sortedUsers = allUsers.sortedBy { user ->
+    fun usersSortedByLargestSingleWin(profiles: Set<UserProfile>): List<UserProfileDTO> {
+
+        val sortedUsers = profiles.sortedBy { user ->
             user.bets?.filter { bet ->
                 bet.betType?.finalOutcome == bet.value
             }?.maxOfOrNull { bet ->
@@ -153,9 +152,9 @@ class ComputeMetricsService(
         }
     }
 
-    fun usersSortedByLargestSingleLoss(): List<UserProfileDTO> {
+    fun usersSortedByLargestSingleLoss(profiles: Set<UserProfile>): List<UserProfileDTO> {
 
-        val sortedUsers = allUsers.sortedBy { user ->
+        val sortedUsers = profiles.sortedBy { user ->
             user.bets?.filter { bet ->
                 bet.betType?.finalOutcome != bet.value
             }?.maxOfOrNull { bet ->
@@ -175,10 +174,8 @@ class ComputeMetricsService(
         }
     }
 
-    fun usersSortedByWinLossRatio(): List<UserProfileDTO> {
-        val allUsers = userProfileRepository.findAll()
-
-        val sortedUsers = allUsers.sortedByDescending { user ->
+    fun usersSortedByWinLossRatio(profiles: Set<UserProfile>): List<UserProfileDTO> {
+        val sortedUsers = profiles.sortedByDescending { user ->
             val wins = user.bets?.count { bet ->
                 bet.betType?.finalOutcome == bet.value
             } ?: 0
