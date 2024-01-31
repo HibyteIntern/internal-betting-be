@@ -21,9 +21,14 @@ class WebSecurityConfig {
                     .requestMatchers("/api/v1/event-templates/**").hasAuthority("ADMIN")
                     .requestMatchers("/api/v1/bet-templates/**").hasAuthority("ADMIN")
                     .requestMatchers("/api/v1/bet-types/**").hasAuthority("ADMIN")
-                    .requestMatchers("/api/v1/prize-draws/**").hasAuthority("ADMIN")
-                    .requestMatchers("/api/v1/user-profile/**").authenticated()
+
                     .requestMatchers(HttpMethod.GET, "/**").permitAll()
+
+                    .requestMatchers("/api/v1/prize-draws/entry").authenticated()
+                    .requestMatchers("/api/v1/prize-draws/**").hasAuthority("ADMIN")
+
+                    .requestMatchers("/api/v1/user-profile/**").authenticated()
+
                     .anyRequest().authenticated()
             }
             .oauth2ResourceServer { oauth2 ->
