@@ -16,10 +16,8 @@ class UserProfile(
     var profilePicture: Long? = null,
     var description: String? = null,
 
-
     @OneToMany(cascade = [CascadeType.ALL], mappedBy = "user", fetch = FetchType.EAGER)
     var bets: MutableList<Bet>? = null,
-
 
     var coins: Number = 50,
 

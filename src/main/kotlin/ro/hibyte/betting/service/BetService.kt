@@ -24,12 +24,9 @@ class BetService(private val betRepository: BetRepository,
     }
 
     fun create(betDto: BetDTO, userProfile: UserProfile): Bet {
-
         val betType = betDto.betType?.let { betTypeRepository.findById(it).orElse(null) }
-
         val bet = Bet(betDto, betType)
         bet.user = userProfile
-
         return betRepository.save(bet)
 
     }
@@ -38,9 +35,7 @@ class BetService(private val betRepository: BetRepository,
         val bet = betRepository.findById(dtoBet.betId!!).orElseThrow {
             NoSuchElementException("Bet not found with betId: ${dtoBet.betId}")
         }
-
         bet.update(dtoBet)
-
         return betRepository.save(bet)
     }
 

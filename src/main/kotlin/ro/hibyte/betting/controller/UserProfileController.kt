@@ -4,11 +4,17 @@ package ro.hibyte.betting.controller
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
+import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
+import org.springframework.web.server.ResponseStatusException
+import ro.hibyte.betting.dto.BetDTO
+import ro.hibyte.betting.dto.PrizeDrawEntryDTO
 import ro.hibyte.betting.dto.FullUserProfileDto
 import ro.hibyte.betting.dto.UserProfileDTO
+import ro.hibyte.betting.entity.Bet
 import ro.hibyte.betting.entity.UserProfile
+import ro.hibyte.betting.service.BetService
 import ro.hibyte.betting.service.UserProfileService
 
 
@@ -35,15 +41,15 @@ class UserProfileController(private val userProfileService: UserProfileService) 
         return FullUserProfileDto(userProfile)
     }
 
-    @GetMapping("/byKeycloakId/{keycloakId}")
-    fun getByKeycloakId(@PathVariable keycloakId: String): UserProfileDTO {
-        val userProfile = userProfileService.getByKeycloakId(keycloakId)
+    @GetMapping("/getMe")
+    fun getMe(authentication: Authentication): UserProfileDTO {
+        val userProfile = userProfileService.getByKeycloakId(authentication.name)
         if (userProfile != null) {
             return UserProfileDTO(userProfile)
         } else {
 
             val newUserProfile = UserProfile()
-            newUserProfile.keycloakId = keycloakId
+            newUserProfile.keycloakId = authentication.name
 
             val createdUserProfile = userProfileService.create(UserProfileDTO(newUserProfile))
 
@@ -57,25 +63,30 @@ class UserProfileController(private val userProfileService: UserProfileService) 
         return UserProfileDTO(userProfile)
     }
 
-    @PutMapping("/{userId}")
-    fun update(@PathVariable userId: Long, @RequestBody userProfileDto: UserProfileDTO): UserProfileDTO{
+    @PutMapping
+    fun update(@RequestBody userProfileDto: UserProfileDTO): UserProfileDTO{
         val userProfile = userProfileService.update(userProfileDto)
         return UserProfileDTO(userProfile)
     }
 
-    @DeleteMapping("/{userId}")
-    fun delete(@PathVariable userId: Long) = userProfileService.delete(userId)
-
-
-    @PostMapping("/{userId}/addPhoto")
-    fun addPhoto(@RequestPart("photo") photo: MultipartFile, @PathVariable userId: Long): Long? {
-        return userProfileService.addPhoto(userId, photo)
+    @DeleteMapping
+    fun delete(authentication: Authentication) {
+        val userProfile = userProfileService.getByKeycloakId(authentication.name)
+        userProfile?.userId?.let { userProfileService.delete(it) }
     }
 
-    @GetMapping("/{userId}/photo")
-    fun getPhoto(@PathVariable userId: Long): ResponseEntity<ByteArray> {
+
+    @PostMapping("/addPhoto")
+    fun addPhoto(@RequestPart("photo") photo: MultipartFile, authentication: Authentication): Long? {
+        val userProfile = userProfileService.getByKeycloakId(authentication.name)
+        return userProfile?.userId?.let { userProfileService.addPhoto(it, photo) }
+    }
+
+    @GetMapping("/getPhoto")
+    fun getPhoto(authentication: Authentication): ResponseEntity<ByteArray> {
         return try {
-            val photo: ByteArray? = userProfileService.getPhoto(userId)
+            val userProfile = userProfileService.getByKeycloakId(authentication.name)
+            val photo: ByteArray? = userProfile?.userId?.let { userProfileService.getPhoto(it) }
             if (photo != null) {
                 ResponseEntity.ok()
                     .contentType(MediaType.IMAGE_JPEG)
@@ -90,8 +101,5 @@ class UserProfileController(private val userProfileService: UserProfileService) 
         }
     }
 
-
-
 }
-
 

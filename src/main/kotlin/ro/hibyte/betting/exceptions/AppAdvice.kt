@@ -37,4 +37,13 @@ class AppAdvice {
         val errorResponse = ErrorResponse(ex.message ?: "error", HttpStatus.BAD_REQUEST)
         return ResponseEntity(errorResponse, HttpStatus.BAD_REQUEST)
     }
+
+    @ResponseBody
+    @ExceptionHandler(value = [
+        ConflictException::class
+    ])
+    fun conflictExceptionHandler(ex: RuntimeException): ResponseEntity<Any> {
+        val errorResponse = ErrorResponse(ex.message ?: "error", HttpStatus.CONFLICT)
+        return ResponseEntity(errorResponse, HttpStatus.CONFLICT)
+    }
 }

@@ -26,7 +26,6 @@ class BetController(private val betService: BetService, private val userProfileS
     fun create(@PathVariable userId: Long, @RequestBody betDto: BetDTO): BetDTO {
         var userProfile = userProfileService.get(userId!!)
         val bet = betService.create(betDto, userProfile)
-
         return BetDTO(bet)
     }
 
