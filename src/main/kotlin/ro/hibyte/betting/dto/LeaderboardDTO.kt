@@ -1,7 +1,10 @@
 package ro.hibyte.betting.dto
 
+import ro.hibyte.betting.entity.LeaderboardEntry
+
 data class LeaderboardDTO(
     val id: Long,
     val name: String,
-    // somehow the users with all their metrics scores and sorted by the desired metric
+    val entries: List<LeaderboardEntry>
+
 )

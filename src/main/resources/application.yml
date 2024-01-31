@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/betting
+    url: jdbc:postgresql://localhost:5433/betting
     username: postgres
     password: admin
   jpa:
