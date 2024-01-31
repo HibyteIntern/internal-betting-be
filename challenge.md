@@ -15,12 +15,13 @@ The rankings of a leaderboard can be done by using a variety of metrics. The fol
 * Most Bets
 * Most Wins
 * Fewest Losses
-* Highest Earner
+* Highest Earner                                           
 * Highest Loser
 * Largest Single Bet
 * Largest Single Win
 * Largest Single Loss
 * _Win/Loss Ratio_
+* win/loss ratio is wins divided by losses
 * _Highest Average Bet_
 * _Highest Average Win_
 * **Longest Winning Streak**
