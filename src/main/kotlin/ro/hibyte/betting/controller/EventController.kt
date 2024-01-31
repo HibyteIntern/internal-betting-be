@@ -58,5 +58,18 @@ class EventController(private val eventService: EventService) {
         val events = name?.let { eventService.getEventsByName(it) } ?: eventService.getAllEvents()
         return ResponseEntity(events,HttpStatus.OK)
     }
+
+    @PutMapping("/outcome/{eventId}")
+    fun populateBetTypesOutcome(@PathVariable eventId: Long,@RequestBody resolveOutcomeDTO: ResolveOutcomeDTO): ResponseEntity<Unit>{
+        eventService.populateBetTypeOutcome(eventId,resolveOutcomeDTO)
+        return ResponseEntity(HttpStatus.OK)
+    }
+
+    @PutMapping("/outcome/process/{eventId}")
+    fun processBetsAndAddWinnings(@PathVariable eventId: Long): ResponseEntity<Unit>{
+        eventService.processBets(eventId)
+        return ResponseEntity(HttpStatus.OK)
+    }
+
 }
 
