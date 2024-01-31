@@ -36,7 +36,13 @@ class BetService(
         if (betType?.betTemplate?.type == BetTemplateType.MULTIPLE_CHOICE) {
             val bet = Bet(betDto, betType)
             bet.user = userProfile
-            return betRepository.save(bet)
+
+            val savedBet = betRepository.save(bet)
+
+            userProfile.coins = userProfile.coins.toInt() - bet.amount.toInt()
+            userProfileRepository.save(userProfile)
+
+            return savedBet
         }
 
         throw IllegalArgumentException("BetType with id ${betDto.betType} is not a multiple choice bet type")

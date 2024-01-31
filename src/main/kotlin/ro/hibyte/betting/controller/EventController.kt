@@ -17,6 +17,12 @@ class EventController(private val eventService: EventService) {
         return ResponseEntity(HttpStatus.CREATED)
     }
 
+    @PostMapping("/many")
+    fun addEvents(@RequestBody events: List<EventDTO>): ResponseEntity<List<EventDTO>> {
+        val response = eventService.addEvents(events)
+        return ResponseEntity(response, HttpStatus.CREATED)
+    }
+
     @PutMapping("/edit/{eventId}")
     fun editEvent(@PathVariable eventId: Long, @RequestBody updatedEvent: EventDTO): ResponseEntity<Unit> {
         eventService.editEvent(eventId, updatedEvent)

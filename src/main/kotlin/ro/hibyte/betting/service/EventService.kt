@@ -24,7 +24,7 @@ class EventService(
     private val userProfileService: UserProfileService
 ) {
     fun addEvent(eventRequest: EventDTO) {
-        val event: Event = eventMapper.mapEventRequestToEvent(eventRequest, betTypeService)
+        val event: Event = eventMapper.mapEventRequestToEvent(eventRequest)
         eventRepository.save(event)
     }
 
@@ -78,6 +78,11 @@ class EventService(
         event.betTypes.flatMap { it.bets }.forEach { bet ->
             betService.processBet(bet)
         }
+    }
+
+    fun addEvents(events: List<EventDTO>): List<EventDTO> {
+        return eventRepository.saveAll(events.map{eventMapper.mapEventRequestToEvent(it)})
+            .map { eventMapper.mapEventToEventResponse(it) }
     }
 
 //    fun processBets(eventId: Long) {

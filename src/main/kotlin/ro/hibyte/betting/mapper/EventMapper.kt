@@ -14,9 +14,13 @@ import java.sql.Timestamp
 import java.util.stream.Collectors
 
 @Component
-class EventMapper(private val betTypeMapper: BetTypeMapper, private val userProfileService: UserProfileService,
-    private val betMapper: BetMapper) {
-    fun mapEventRequestToEvent(eventRequest: EventDTO, betTypeService: BetTypeService): Event {
+class EventMapper(
+    private val betTypeMapper: BetTypeMapper,
+    private val userProfileService: UserProfileService,
+    private val betMapper: BetMapper,
+    private val betTypeService: BetTypeService
+) {
+    fun mapEventRequestToEvent(eventRequest: EventDTO): Event {
         val defaultUserGroups = emptyList<String>()
         val defaultTimestamp = Timestamp(System.currentTimeMillis())
         // Extract words starting with '#' from the description to populate tags

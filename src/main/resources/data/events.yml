@@ -1,0 +1,6473 @@
+- name: West Bromwich Albion vs Burnley Premier League Match
+  description: A highly anticipated Premier League match between West Bromwich Albion
+    and Burnley.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - West Bromwich Albion
+    - Burnley
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - West Bromwich Albion
+        - Draw
+        - Burnley
+      odds:
+        - 2.2
+        - 1.7
+        - 1.8
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.8
+        - 2.2
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.9
+        - 1.5
+        - 2.5
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.0
+        - 1.7
+        - 2.4
+  created: '2023-12-17T12:00:00Z'
+  lastModified: '2023-12-22T12:00:00Z'
+  startsAt: '2024-01-01T12:00:00Z'
+  endsAt: '2024-01-01T14:00:00Z'
+  status: OPEN
+- name: Newcastle United vs Liverpool Premier League Match
+  description: A highly anticipated Premier League match between Newcastle United
+    and Liverpool.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Newcastle United
+    - Liverpool
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Newcastle United
+        - Draw
+        - Liverpool
+      odds:
+        - 2.6
+        - 1.7
+        - 2.5
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.0
+        - 2.0
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.2
+        - 1.6
+        - 2.9
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.2
+        - 1.5
+        - 2.9
+  created: '2023-12-24T12:00:00Z'
+  lastModified: '2023-12-29T12:00:00Z'
+  startsAt: '2024-01-08T12:00:00Z'
+  endsAt: '2024-01-08T14:00:00Z'
+  status: OPEN
+- name: Tottenham Hotspur vs Wolves Premier League Match
+  description: A highly anticipated Premier League match between Tottenham Hotspur
+    and Wolves.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Tottenham Hotspur
+    - Wolves
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Tottenham Hotspur
+        - Draw
+        - Wolves
+      odds:
+        - 1.7
+        - 2.6
+        - 1.6
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.3
+        - 1.7
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 1.9
+        - 1.5
+        - 2.2
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.5
+        - 1.6
+        - 2.2
+  created: '2023-12-31T12:00:00Z'
+  lastModified: '2024-01-05T12:00:00Z'
+  startsAt: '2024-01-15T12:00:00Z'
+  endsAt: '2024-01-15T14:00:00Z'
+  status: OPEN
+- name: Crystal Palace vs Manchester City Premier League Match
+  description: A highly anticipated Premier League match between Crystal Palace and
+    Manchester City.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Crystal Palace
+    - Manchester City
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Crystal Palace
+        - Draw
+        - Manchester City
+      odds:
+        - 2.2
+        - 2.5
+        - 2.4
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.3
+        - 1.9
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.0
+        - 1.6
+        - 2.1
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.5
+        - 1.6
+        - 2.5
+  created: '2024-01-07T12:00:00Z'
+  lastModified: '2024-01-12T12:00:00Z'
+  startsAt: '2024-01-22T12:00:00Z'
+  endsAt: '2024-01-22T14:00:00Z'
+  status: OPEN
+- name: Wolves vs Leeds United Premier League Match
+  description: A highly anticipated Premier League match between Wolves and Leeds
+    United.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Wolves
+    - Leeds United
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Wolves
+        - Draw
+        - Leeds United
+      odds:
+        - 1.7
+        - 1.5
+        - 2.2
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.8
+        - 1.9
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.0
+        - 1.5
+        - 2.7
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.7
+        - 1.7
+        - 2.5
+  created: '2024-01-14T12:00:00Z'
+  lastModified: '2024-01-19T12:00:00Z'
+  startsAt: '2024-01-29T12:00:00Z'
+  endsAt: '2024-01-29T14:00:00Z'
+  status: OPEN
+- name: Burnley vs Fulham Premier League Match
+  description: A highly anticipated Premier League match between Burnley and Fulham.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Burnley
+    - Fulham
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Burnley
+        - Draw
+        - Fulham
+      odds:
+        - 2.4
+        - 2.4
+        - 1.6
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.3
+        - 1.9
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.3
+        - 1.5
+        - 2.6
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.0
+        - 1.6
+        - 2.3
+  created: '2024-01-21T12:00:00Z'
+  lastModified: '2024-01-26T12:00:00Z'
+  startsAt: '2024-02-05T12:00:00Z'
+  endsAt: '2024-02-05T14:00:00Z'
+  status: OPEN
+- name: Fulham vs Arsenal Premier League Match
+  description: A highly anticipated Premier League match between Fulham and Arsenal.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Fulham
+    - Arsenal
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Fulham
+        - Draw
+        - Arsenal
+      odds:
+        - 2.3
+        - 1.8
+        - 1.9
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.8
+        - 1.5
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.5
+        - 1.6
+        - 2.9
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.8
+        - 1.6
+        - 1.9
+  created: '2024-01-28T12:00:00Z'
+  lastModified: '2024-02-02T12:00:00Z'
+  startsAt: '2024-02-12T12:00:00Z'
+  endsAt: '2024-02-12T14:00:00Z'
+  status: OPEN
+- name: Everton vs Burnley Premier League Match
+  description: A highly anticipated Premier League match between Everton and Burnley.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Everton
+    - Burnley
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Everton
+        - Draw
+        - Burnley
+      odds:
+        - 2.7
+        - 2.7
+        - 2.1
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.0
+        - 2.0
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.4
+        - 1.5
+        - 2.2
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.7
+        - 1.6
+        - 2.2
+  created: '2024-02-04T12:00:00Z'
+  lastModified: '2024-02-09T12:00:00Z'
+  startsAt: '2024-02-19T12:00:00Z'
+  endsAt: '2024-02-19T14:00:00Z'
+  status: OPEN
+- name: Wolves vs Burnley Premier League Match
+  description: A highly anticipated Premier League match between Wolves and Burnley.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Wolves
+    - Burnley
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Wolves
+        - Draw
+        - Burnley
+      odds:
+        - 2.1
+        - 2.5
+        - 2.5
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.3
+        - 1.7
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.8
+        - 1.5
+        - 2.8
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.5
+        - 1.7
+        - 2.6
+  created: '2024-02-11T12:00:00Z'
+  lastModified: '2024-02-16T12:00:00Z'
+  startsAt: '2024-02-26T12:00:00Z'
+  endsAt: '2024-02-26T14:00:00Z'
+  status: OPEN
+- name: Southampton vs Burnley Premier League Match
+  description: A highly anticipated Premier League match between Southampton and Burnley.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Southampton
+    - Burnley
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Southampton
+        - Draw
+        - Burnley
+      odds:
+        - 2.2
+        - 2.7
+        - 2.6
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.5
+        - 1.7
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.5
+        - 1.7
+        - 2.4
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.5
+        - 1.6
+        - 2.5
+  created: '2024-02-18T12:00:00Z'
+  lastModified: '2024-02-23T12:00:00Z'
+  startsAt: '2024-03-04T12:00:00Z'
+  endsAt: '2024-03-04T14:00:00Z'
+  status: OPEN
+- name: Leeds United vs Fulham Premier League Match
+  description: A highly anticipated Premier League match between Leeds United and
+    Fulham.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Leeds United
+    - Fulham
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Leeds United
+        - Draw
+        - Fulham
+      odds:
+        - 2.7
+        - 1.5
+        - 1.8
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.9
+        - 2.4
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.3
+        - 1.7
+        - 1.9
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.9
+        - 1.7
+        - 2.1
+  created: '2024-02-25T12:00:00Z'
+  lastModified: '2024-03-01T12:00:00Z'
+  startsAt: '2024-03-11T12:00:00Z'
+  endsAt: '2024-03-11T14:00:00Z'
+  status: OPEN
+- name: Newcastle United vs Aston Villa Premier League Match
+  description: A highly anticipated Premier League match between Newcastle United
+    and Aston Villa.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Newcastle United
+    - Aston Villa
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Newcastle United
+        - Draw
+        - Aston Villa
+      odds:
+        - 2.8
+        - 2.3
+        - 2.1
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.2
+        - 2.3
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.3
+        - 1.5
+        - 2.8
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.0
+        - 1.6
+        - 2.4
+  created: '2024-03-03T12:00:00Z'
+  lastModified: '2024-03-08T12:00:00Z'
+  startsAt: '2024-03-18T12:00:00Z'
+  endsAt: '2024-03-18T14:00:00Z'
+  status: OPEN
+- name: Aston Villa vs Newcastle United Premier League Match
+  description: A highly anticipated Premier League match between Aston Villa and Newcastle
+    United.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Aston Villa
+    - Newcastle United
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Aston Villa
+        - Draw
+        - Newcastle United
+      odds:
+        - 2.5
+        - 2.5
+        - 2.1
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.8
+        - 1.8
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.8
+        - 1.7
+        - 2.5
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.1
+        - 1.7
+        - 2.4
+  created: '2024-03-10T12:00:00Z'
+  lastModified: '2024-03-15T12:00:00Z'
+  startsAt: '2024-03-25T12:00:00Z'
+  endsAt: '2024-03-25T14:00:00Z'
+  status: OPEN
+- name: Chelsea vs Manchester City Premier League Match
+  description: A highly anticipated Premier League match between Chelsea and Manchester
+    City.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Chelsea
+    - Manchester City
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Chelsea
+        - Draw
+        - Manchester City
+      odds:
+        - 2.2
+        - 1.9
+        - 2.7
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.8
+        - 1.7
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.9
+        - 1.5
+        - 2.8
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 1.9
+        - 1.5
+        - 2.0
+  created: '2024-03-17T12:00:00Z'
+  lastModified: '2024-03-22T12:00:00Z'
+  startsAt: '2024-04-01T12:00:00Z'
+  endsAt: '2024-04-01T14:00:00Z'
+  status: OPEN
+- name: Everton vs Burnley Premier League Match
+  description: A highly anticipated Premier League match between Everton and Burnley.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Everton
+    - Burnley
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Everton
+        - Draw
+        - Burnley
+      odds:
+        - 1.8
+        - 2.7
+        - 2.3
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.6
+        - 2.0
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.2
+        - 1.7
+        - 2.6
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.2
+        - 1.5
+        - 2.4
+  created: '2024-03-24T12:00:00Z'
+  lastModified: '2024-03-29T12:00:00Z'
+  startsAt: '2024-04-08T12:00:00Z'
+  endsAt: '2024-04-08T14:00:00Z'
+  status: OPEN
+- name: Chelsea vs Arsenal Premier League Match
+  description: A highly anticipated Premier League match between Chelsea and Arsenal.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Chelsea
+    - Arsenal
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Chelsea
+        - Draw
+        - Arsenal
+      odds:
+        - 2.3
+        - 1.9
+        - 2.9
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.2
+        - 1.9
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.6
+        - 1.5
+        - 2.4
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.2
+        - 1.5
+        - 2.5
+  created: '2024-03-31T12:00:00Z'
+  lastModified: '2024-04-05T12:00:00Z'
+  startsAt: '2024-04-15T12:00:00Z'
+  endsAt: '2024-04-15T14:00:00Z'
+  status: OPEN
+- name: West Bromwich Albion vs Sheffield United Premier League Match
+  description: A highly anticipated Premier League match between West Bromwich Albion
+    and Sheffield United.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - West Bromwich Albion
+    - Sheffield United
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - West Bromwich Albion
+        - Draw
+        - Sheffield United
+      odds:
+        - 2.2
+        - 2.0
+        - 1.6
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.2
+        - 2.3
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.3
+        - 1.6
+        - 2.8
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.8
+        - 1.6
+        - 2.4
+  created: '2024-04-07T12:00:00Z'
+  lastModified: '2024-04-12T12:00:00Z'
+  startsAt: '2024-04-22T12:00:00Z'
+  endsAt: '2024-04-22T14:00:00Z'
+  status: OPEN
+- name: Leicester City vs Southampton Premier League Match
+  description: A highly anticipated Premier League match between Leicester City and
+    Southampton.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Leicester City
+    - Southampton
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Leicester City
+        - Draw
+        - Southampton
+      odds:
+        - 2.8
+        - 1.9
+        - 1.9
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.0
+        - 1.5
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.4
+        - 1.6
+        - 1.8
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.4
+        - 1.6
+        - 3.0
+  created: '2024-04-14T12:00:00Z'
+  lastModified: '2024-04-19T12:00:00Z'
+  startsAt: '2024-04-29T12:00:00Z'
+  endsAt: '2024-04-29T14:00:00Z'
+  status: OPEN
+- name: Aston Villa vs Southampton Premier League Match
+  description: A highly anticipated Premier League match between Aston Villa and Southampton.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Aston Villa
+    - Southampton
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Aston Villa
+        - Draw
+        - Southampton
+      odds:
+        - 2.2
+        - 2.1
+        - 2.2
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.0
+        - 2.4
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.6
+        - 1.5
+        - 2.2
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.1
+        - 1.7
+        - 1.9
+  created: '2024-04-21T12:00:00Z'
+  lastModified: '2024-04-26T12:00:00Z'
+  startsAt: '2024-05-06T12:00:00Z'
+  endsAt: '2024-05-06T14:00:00Z'
+  status: OPEN
+- name: Aston Villa vs Chelsea Premier League Match
+  description: A highly anticipated Premier League match between Aston Villa and Chelsea.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Aston Villa
+    - Chelsea
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Aston Villa
+        - Draw
+        - Chelsea
+      odds:
+        - 2.8
+        - 1.5
+        - 2.0
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.8
+        - 1.7
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.5
+        - 1.7
+        - 2.6
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 1.9
+        - 1.7
+        - 2.3
+  created: '2024-04-28T12:00:00Z'
+  lastModified: '2024-05-03T12:00:00Z'
+  startsAt: '2024-05-13T12:00:00Z'
+  endsAt: '2024-05-13T14:00:00Z'
+  status: OPEN
+- name: Wolves vs Liverpool Premier League Match
+  description: A highly anticipated Premier League match between Wolves and Liverpool.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Wolves
+    - Liverpool
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Wolves
+        - Draw
+        - Liverpool
+      odds:
+        - 2.8
+        - 2.2
+        - 2.0
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.6
+        - 2.5
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.9
+        - 1.7
+        - 2.9
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.6
+        - 1.7
+        - 2.7
+  created: '2024-05-05T12:00:00Z'
+  lastModified: '2024-05-10T12:00:00Z'
+  startsAt: '2024-05-20T12:00:00Z'
+  endsAt: '2024-05-20T14:00:00Z'
+  status: OPEN
+- name: Brighton vs Wolves Premier League Match
+  description: A highly anticipated Premier League match between Brighton and Wolves.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Brighton
+    - Wolves
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Brighton
+        - Draw
+        - Wolves
+      odds:
+        - 1.6
+        - 2.2
+        - 2.1
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.9
+        - 1.7
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.8
+        - 1.6
+        - 2.6
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.8
+        - 1.7
+        - 1.9
+  created: '2024-05-12T12:00:00Z'
+  lastModified: '2024-05-17T12:00:00Z'
+  startsAt: '2024-05-27T12:00:00Z'
+  endsAt: '2024-05-27T14:00:00Z'
+  status: OPEN
+- name: Manchester United vs West Bromwich Albion Premier League Match
+  description: A highly anticipated Premier League match between Manchester United
+    and West Bromwich Albion.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Manchester United
+    - West Bromwich Albion
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Manchester United
+        - Draw
+        - West Bromwich Albion
+      odds:
+        - 1.6
+        - 2.7
+        - 1.6
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.4
+        - 2.0
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.4
+        - 1.6
+        - 2.8
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.5
+        - 1.6
+        - 2.1
+  created: '2024-05-19T12:00:00Z'
+  lastModified: '2024-05-24T12:00:00Z'
+  startsAt: '2024-06-03T12:00:00Z'
+  endsAt: '2024-06-03T14:00:00Z'
+  status: OPEN
+- name: Tottenham Hotspur vs Sheffield United Premier League Match
+  description: A highly anticipated Premier League match between Tottenham Hotspur
+    and Sheffield United.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Tottenham Hotspur
+    - Sheffield United
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Tottenham Hotspur
+        - Draw
+        - Sheffield United
+      odds:
+        - 2.1
+        - 3.0
+        - 2.8
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.4
+        - 1.7
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.5
+        - 1.7
+        - 2.3
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.3
+        - 1.5
+        - 2.4
+  created: '2024-05-26T12:00:00Z'
+  lastModified: '2024-05-31T12:00:00Z'
+  startsAt: '2024-06-10T12:00:00Z'
+  endsAt: '2024-06-10T14:00:00Z'
+  status: OPEN
+- name: Aston Villa vs Manchester United Premier League Match
+  description: A highly anticipated Premier League match between Aston Villa and Manchester
+    United.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Aston Villa
+    - Manchester United
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Aston Villa
+        - Draw
+        - Manchester United
+      odds:
+        - 2.2
+        - 1.9
+        - 2.7
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.0
+        - 2.2
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.9
+        - 1.7
+        - 2.2
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.5
+        - 1.7
+        - 2.3
+  created: '2024-06-02T12:00:00Z'
+  lastModified: '2024-06-07T12:00:00Z'
+  startsAt: '2024-06-17T12:00:00Z'
+  endsAt: '2024-06-17T14:00:00Z'
+  status: OPEN
+- name: Newcastle United vs Arsenal Premier League Match
+  description: A highly anticipated Premier League match between Newcastle United
+    and Arsenal.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Newcastle United
+    - Arsenal
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Newcastle United
+        - Draw
+        - Arsenal
+      odds:
+        - 2.0
+        - 1.8
+        - 1.7
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.6
+        - 2.1
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.3
+        - 1.5
+        - 2.4
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.4
+        - 1.6
+        - 2.2
+  created: '2024-06-09T12:00:00Z'
+  lastModified: '2024-06-14T12:00:00Z'
+  startsAt: '2024-06-24T12:00:00Z'
+  endsAt: '2024-06-24T14:00:00Z'
+  status: OPEN
+- name: Leicester City vs Crystal Palace Premier League Match
+  description: A highly anticipated Premier League match between Leicester City and
+    Crystal Palace.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Leicester City
+    - Crystal Palace
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Leicester City
+        - Draw
+        - Crystal Palace
+      odds:
+        - 2.3
+        - 2.4
+        - 2.0
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.3
+        - 2.3
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.1
+        - 1.7
+        - 2.8
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 3.0
+        - 1.6
+        - 2.1
+  created: '2024-06-16T12:00:00Z'
+  lastModified: '2024-06-21T12:00:00Z'
+  startsAt: '2024-07-01T12:00:00Z'
+  endsAt: '2024-07-01T14:00:00Z'
+  status: OPEN
+- name: West Ham United vs Arsenal Premier League Match
+  description: A highly anticipated Premier League match between West Ham United and
+    Arsenal.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - West Ham United
+    - Arsenal
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - West Ham United
+        - Draw
+        - Arsenal
+      odds:
+        - 1.6
+        - 2.9
+        - 2.2
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.4
+        - 1.8
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.4
+        - 1.7
+        - 2.5
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.8
+        - 1.6
+        - 2.8
+  created: '2024-06-23T12:00:00Z'
+  lastModified: '2024-06-28T12:00:00Z'
+  startsAt: '2024-07-08T12:00:00Z'
+  endsAt: '2024-07-08T14:00:00Z'
+  status: OPEN
+- name: Sheffield United vs Southampton Premier League Match
+  description: A highly anticipated Premier League match between Sheffield United
+    and Southampton.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Sheffield United
+    - Southampton
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Sheffield United
+        - Draw
+        - Southampton
+      odds:
+        - 2.8
+        - 1.8
+        - 1.6
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.6
+        - 1.7
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.0
+        - 1.7
+        - 2.0
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.3
+        - 1.6
+        - 2.6
+  created: '2024-06-30T12:00:00Z'
+  lastModified: '2024-07-05T12:00:00Z'
+  startsAt: '2024-07-15T12:00:00Z'
+  endsAt: '2024-07-15T14:00:00Z'
+  status: OPEN
+- name: Arsenal vs Crystal Palace Premier League Match
+  description: A highly anticipated Premier League match between Arsenal and Crystal
+    Palace.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Arsenal
+    - Crystal Palace
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Arsenal
+        - Draw
+        - Crystal Palace
+      odds:
+        - 1.8
+        - 2.0
+        - 2.1
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.6
+        - 1.9
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.1
+        - 1.6
+        - 2.4
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.6
+        - 1.7
+        - 1.9
+  created: '2024-07-07T12:00:00Z'
+  lastModified: '2024-07-12T12:00:00Z'
+  startsAt: '2024-07-22T12:00:00Z'
+  endsAt: '2024-07-22T14:00:00Z'
+  status: OPEN
+- name: Leeds United vs Southampton Premier League Match
+  description: A highly anticipated Premier League match between Leeds United and
+    Southampton.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Leeds United
+    - Southampton
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Leeds United
+        - Draw
+        - Southampton
+      odds:
+        - 2.2
+        - 1.5
+        - 2.0
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.0
+        - 2.0
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.8
+        - 1.6
+        - 2.9
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.8
+        - 1.6
+        - 2.0
+  created: '2024-07-14T12:00:00Z'
+  lastModified: '2024-07-19T12:00:00Z'
+  startsAt: '2024-07-29T12:00:00Z'
+  endsAt: '2024-07-29T14:00:00Z'
+  status: OPEN
+- name: Southampton vs Liverpool Premier League Match
+  description: A highly anticipated Premier League match between Southampton and Liverpool.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Southampton
+    - Liverpool
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Southampton
+        - Draw
+        - Liverpool
+      odds:
+        - 1.8
+        - 3.0
+        - 2.0
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.4
+        - 1.5
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 1.9
+        - 1.5
+        - 2.3
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.4
+        - 1.7
+        - 1.8
+  created: '2024-07-21T12:00:00Z'
+  lastModified: '2024-07-26T12:00:00Z'
+  startsAt: '2024-08-05T12:00:00Z'
+  endsAt: '2024-08-05T14:00:00Z'
+  status: OPEN
+- name: Leeds United vs Sheffield United Premier League Match
+  description: A highly anticipated Premier League match between Leeds United and
+    Sheffield United.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Leeds United
+    - Sheffield United
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Leeds United
+        - Draw
+        - Sheffield United
+      odds:
+        - 2.9
+        - 2.1
+        - 2.9
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.8
+        - 1.6
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.8
+        - 1.6
+        - 2.9
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.1
+        - 1.6
+        - 2.1
+  created: '2024-07-28T12:00:00Z'
+  lastModified: '2024-08-02T12:00:00Z'
+  startsAt: '2024-08-12T12:00:00Z'
+  endsAt: '2024-08-12T14:00:00Z'
+  status: OPEN
+- name: Liverpool vs Aston Villa Premier League Match
+  description: A highly anticipated Premier League match between Liverpool and Aston
+    Villa.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Liverpool
+    - Aston Villa
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Liverpool
+        - Draw
+        - Aston Villa
+      odds:
+        - 1.7
+        - 2.3
+        - 1.8
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.3
+        - 1.5
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.4
+        - 1.6
+        - 2.6
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.4
+        - 1.7
+        - 1.9
+  created: '2024-08-04T12:00:00Z'
+  lastModified: '2024-08-09T12:00:00Z'
+  startsAt: '2024-08-19T12:00:00Z'
+  endsAt: '2024-08-19T14:00:00Z'
+  status: OPEN
+- name: Chelsea vs Newcastle United Premier League Match
+  description: A highly anticipated Premier League match between Chelsea and Newcastle
+    United.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Chelsea
+    - Newcastle United
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Chelsea
+        - Draw
+        - Newcastle United
+      odds:
+        - 2.2
+        - 2.9
+        - 2.5
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.3
+        - 2.0
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.6
+        - 1.6
+        - 2.7
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.0
+        - 1.6
+        - 2.0
+  created: '2024-08-11T12:00:00Z'
+  lastModified: '2024-08-16T12:00:00Z'
+  startsAt: '2024-08-26T12:00:00Z'
+  endsAt: '2024-08-26T14:00:00Z'
+  status: OPEN
+- name: Burnley vs West Bromwich Albion Premier League Match
+  description: A highly anticipated Premier League match between Burnley and West
+    Bromwich Albion.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Burnley
+    - West Bromwich Albion
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Burnley
+        - Draw
+        - West Bromwich Albion
+      odds:
+        - 2.7
+        - 2.5
+        - 1.8
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.9
+        - 1.9
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.6
+        - 1.6
+        - 2.8
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.1
+        - 1.6
+        - 2.0
+  created: '2024-08-18T12:00:00Z'
+  lastModified: '2024-08-23T12:00:00Z'
+  startsAt: '2024-09-02T12:00:00Z'
+  endsAt: '2024-09-02T14:00:00Z'
+  status: OPEN
+- name: Arsenal vs Leeds United Premier League Match
+  description: A highly anticipated Premier League match between Arsenal and Leeds
+    United.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Arsenal
+    - Leeds United
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Arsenal
+        - Draw
+        - Leeds United
+      odds:
+        - 2.0
+        - 1.9
+        - 1.6
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.2
+        - 1.6
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.8
+        - 1.6
+        - 3.0
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.1
+        - 1.7
+        - 2.7
+  created: '2024-08-25T12:00:00Z'
+  lastModified: '2024-08-30T12:00:00Z'
+  startsAt: '2024-09-09T12:00:00Z'
+  endsAt: '2024-09-09T14:00:00Z'
+  status: OPEN
+- name: Arsenal vs Leicester City Premier League Match
+  description: A highly anticipated Premier League match between Arsenal and Leicester
+    City.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Arsenal
+    - Leicester City
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Arsenal
+        - Draw
+        - Leicester City
+      odds:
+        - 2.5
+        - 2.6
+        - 2.1
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.4
+        - 1.6
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.0
+        - 1.6
+        - 2.0
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.7
+        - 1.7
+        - 2.6
+  created: '2024-09-01T12:00:00Z'
+  lastModified: '2024-09-06T12:00:00Z'
+  startsAt: '2024-09-16T12:00:00Z'
+  endsAt: '2024-09-16T14:00:00Z'
+  status: OPEN
+- name: Newcastle United vs Leicester City Premier League Match
+  description: A highly anticipated Premier League match between Newcastle United
+    and Leicester City.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Newcastle United
+    - Leicester City
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Newcastle United
+        - Draw
+        - Leicester City
+      odds:
+        - 1.8
+        - 1.5
+        - 2.6
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.5
+        - 1.7
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.1
+        - 1.6
+        - 2.3
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.1
+        - 1.6
+        - 2.4
+  created: '2024-09-08T12:00:00Z'
+  lastModified: '2024-09-13T12:00:00Z'
+  startsAt: '2024-09-23T12:00:00Z'
+  endsAt: '2024-09-23T14:00:00Z'
+  status: OPEN
+- name: Crystal Palace vs Burnley Premier League Match
+  description: A highly anticipated Premier League match between Crystal Palace and
+    Burnley.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Crystal Palace
+    - Burnley
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Crystal Palace
+        - Draw
+        - Burnley
+      odds:
+        - 2.5
+        - 2.7
+        - 2.7
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.9
+        - 2.2
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.1
+        - 1.6
+        - 2.9
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.7
+        - 1.5
+        - 2.5
+  created: '2024-09-15T12:00:00Z'
+  lastModified: '2024-09-20T12:00:00Z'
+  startsAt: '2024-09-30T12:00:00Z'
+  endsAt: '2024-09-30T14:00:00Z'
+  status: OPEN
+- name: Brighton vs Liverpool Premier League Match
+  description: A highly anticipated Premier League match between Brighton and Liverpool.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Brighton
+    - Liverpool
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Brighton
+        - Draw
+        - Liverpool
+      odds:
+        - 1.5
+        - 2.0
+        - 1.5
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.4
+        - 2.3
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.4
+        - 1.6
+        - 2.0
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.6
+        - 1.6
+        - 2.4
+  created: '2024-09-22T12:00:00Z'
+  lastModified: '2024-09-27T12:00:00Z'
+  startsAt: '2024-10-07T12:00:00Z'
+  endsAt: '2024-10-07T14:00:00Z'
+  status: OPEN
+- name: Aston Villa vs Brighton Premier League Match
+  description: A highly anticipated Premier League match between Aston Villa and Brighton.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Aston Villa
+    - Brighton
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Aston Villa
+        - Draw
+        - Brighton
+      odds:
+        - 2.7
+        - 1.6
+        - 2.0
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.2
+        - 2.1
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.1
+        - 1.5
+        - 2.9
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.3
+        - 1.6
+        - 2.9
+  created: '2024-09-29T12:00:00Z'
+  lastModified: '2024-10-04T12:00:00Z'
+  startsAt: '2024-10-14T12:00:00Z'
+  endsAt: '2024-10-14T14:00:00Z'
+  status: OPEN
+- name: Crystal Palace vs Aston Villa Premier League Match
+  description: A highly anticipated Premier League match between Crystal Palace and
+    Aston Villa.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Crystal Palace
+    - Aston Villa
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Crystal Palace
+        - Draw
+        - Aston Villa
+      odds:
+        - 2.5
+        - 2.8
+        - 2.0
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.4
+        - 2.4
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.8
+        - 1.7
+        - 2.4
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.6
+        - 1.5
+        - 2.8
+  created: '2024-10-06T12:00:00Z'
+  lastModified: '2024-10-11T12:00:00Z'
+  startsAt: '2024-10-21T12:00:00Z'
+  endsAt: '2024-10-21T14:00:00Z'
+  status: OPEN
+- name: Tottenham Hotspur vs Leicester City Premier League Match
+  description: A highly anticipated Premier League match between Tottenham Hotspur
+    and Leicester City.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Tottenham Hotspur
+    - Leicester City
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Tottenham Hotspur
+        - Draw
+        - Leicester City
+      odds:
+        - 1.7
+        - 1.5
+        - 2.6
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.2
+        - 2.2
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.7
+        - 1.7
+        - 2.5
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.5
+        - 1.7
+        - 2.7
+  created: '2024-10-13T12:00:00Z'
+  lastModified: '2024-10-18T12:00:00Z'
+  startsAt: '2024-10-28T12:00:00Z'
+  endsAt: '2024-10-28T14:00:00Z'
+  status: OPEN
+- name: Leeds United vs Burnley Premier League Match
+  description: A highly anticipated Premier League match between Leeds United and
+    Burnley.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Leeds United
+    - Burnley
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Leeds United
+        - Draw
+        - Burnley
+      odds:
+        - 2.0
+        - 2.3
+        - 2.2
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.2
+        - 1.6
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 1.9
+        - 1.6
+        - 2.0
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.2
+        - 1.7
+        - 2.3
+  created: '2024-10-20T12:00:00Z'
+  lastModified: '2024-10-25T12:00:00Z'
+  startsAt: '2024-11-04T12:00:00Z'
+  endsAt: '2024-11-04T14:00:00Z'
+  status: OPEN
+- name: West Bromwich Albion vs Leeds United Premier League Match
+  description: A highly anticipated Premier League match between West Bromwich Albion
+    and Leeds United.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - West Bromwich Albion
+    - Leeds United
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - West Bromwich Albion
+        - Draw
+        - Leeds United
+      odds:
+        - 2.7
+        - 1.7
+        - 2.1
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.9
+        - 2.5
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.6
+        - 1.5
+        - 2.3
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.9
+        - 1.6
+        - 2.3
+  created: '2024-10-27T12:00:00Z'
+  lastModified: '2024-11-01T12:00:00Z'
+  startsAt: '2024-11-11T12:00:00Z'
+  endsAt: '2024-11-11T14:00:00Z'
+  status: OPEN
+- name: Manchester United vs Chelsea Premier League Match
+  description: A highly anticipated Premier League match between Manchester United
+    and Chelsea.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Manchester United
+    - Chelsea
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Manchester United
+        - Draw
+        - Chelsea
+      odds:
+        - 2.5
+        - 2.9
+        - 2.6
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.2
+        - 2.2
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.9
+        - 1.6
+        - 2.9
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.2
+        - 1.5
+        - 2.0
+  created: '2024-11-03T12:00:00Z'
+  lastModified: '2024-11-08T12:00:00Z'
+  startsAt: '2024-11-18T12:00:00Z'
+  endsAt: '2024-11-18T14:00:00Z'
+  status: OPEN
+- name: Leeds United vs Newcastle United Premier League Match
+  description: A highly anticipated Premier League match between Leeds United and
+    Newcastle United.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Leeds United
+    - Newcastle United
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Leeds United
+        - Draw
+        - Newcastle United
+      odds:
+        - 1.5
+        - 1.5
+        - 2.6
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.7
+        - 2.2
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.1
+        - 1.6
+        - 2.1
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.8
+        - 1.7
+        - 2.1
+  created: '2024-11-10T12:00:00Z'
+  lastModified: '2024-11-15T12:00:00Z'
+  startsAt: '2024-11-25T12:00:00Z'
+  endsAt: '2024-11-25T14:00:00Z'
+  status: OPEN
+- name: Wolves vs Fulham Premier League Match
+  description: A highly anticipated Premier League match between Wolves and Fulham.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Wolves
+    - Fulham
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Wolves
+        - Draw
+        - Fulham
+      odds:
+        - 2.7
+        - 2.6
+        - 3.0
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.0
+        - 2.0
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.4
+        - 1.6
+        - 2.6
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.8
+        - 1.5
+        - 2.7
+  created: '2024-11-17T12:00:00Z'
+  lastModified: '2024-11-22T12:00:00Z'
+  startsAt: '2024-12-02T12:00:00Z'
+  endsAt: '2024-12-02T14:00:00Z'
+  status: OPEN
+- name: Leeds United vs Liverpool Premier League Match
+  description: A highly anticipated Premier League match between Leeds United and
+    Liverpool.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Leeds United
+    - Liverpool
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Leeds United
+        - Draw
+        - Liverpool
+      odds:
+        - 2.3
+        - 2.7
+        - 2.2
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.2
+        - 1.6
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 1.8
+        - 1.7
+        - 2.2
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 1.8
+        - 1.6
+        - 2.1
+  created: '2024-11-24T12:00:00Z'
+  lastModified: '2024-11-29T12:00:00Z'
+  startsAt: '2024-12-09T12:00:00Z'
+  endsAt: '2024-12-09T14:00:00Z'
+  status: OPEN
+- name: Southampton vs Tottenham Hotspur Premier League Match
+  description: A highly anticipated Premier League match between Southampton and Tottenham
+    Hotspur.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Southampton
+    - Tottenham Hotspur
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Southampton
+        - Draw
+        - Tottenham Hotspur
+      odds:
+        - 1.8
+        - 2.9
+        - 2.4
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.7
+        - 1.6
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.3
+        - 1.5
+        - 2.5
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.8
+        - 1.5
+        - 1.8
+  created: '2024-12-01T12:00:00Z'
+  lastModified: '2024-12-06T12:00:00Z'
+  startsAt: '2024-12-16T12:00:00Z'
+  endsAt: '2024-12-16T14:00:00Z'
+  status: OPEN
+- name: Southampton vs Burnley Premier League Match
+  description: A highly anticipated Premier League match between Southampton and Burnley.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Southampton
+    - Burnley
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Southampton
+        - Draw
+        - Burnley
+      odds:
+        - 2.1
+        - 2.1
+        - 2.0
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.7
+        - 2.0
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.0
+        - 1.6
+        - 2.9
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 1.9
+        - 1.6
+        - 2.7
+  created: '2024-12-08T12:00:00Z'
+  lastModified: '2024-12-13T12:00:00Z'
+  startsAt: '2024-12-23T12:00:00Z'
+  endsAt: '2024-12-23T14:00:00Z'
+  status: OPEN
+- name: Southampton vs Leicester City Premier League Match
+  description: A highly anticipated Premier League match between Southampton and Leicester
+    City.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Southampton
+    - Leicester City
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Southampton
+        - Draw
+        - Leicester City
+      odds:
+        - 1.7
+        - 2.6
+        - 1.5
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.7
+        - 1.9
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.1
+        - 1.6
+        - 2.2
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.2
+        - 1.6
+        - 2.6
+  created: '2024-12-15T12:00:00Z'
+  lastModified: '2024-12-20T12:00:00Z'
+  startsAt: '2024-12-30T12:00:00Z'
+  endsAt: '2024-12-30T14:00:00Z'
+  status: OPEN
+- name: Manchester City vs Liverpool Premier League Match
+  description: A highly anticipated Premier League match between Manchester City and
+    Liverpool.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Manchester City
+    - Liverpool
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Manchester City
+        - Draw
+        - Liverpool
+      odds:
+        - 2.0
+        - 2.8
+        - 2.7
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.2
+        - 2.4
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.7
+        - 1.6
+        - 3.0
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.1
+        - 1.5
+        - 2.4
+  created: '2024-12-22T12:00:00Z'
+  lastModified: '2024-12-27T12:00:00Z'
+  startsAt: '2025-01-06T12:00:00Z'
+  endsAt: '2025-01-06T14:00:00Z'
+  status: OPEN
+- name: Manchester United vs Crystal Palace Premier League Match
+  description: A highly anticipated Premier League match between Manchester United
+    and Crystal Palace.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Manchester United
+    - Crystal Palace
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Manchester United
+        - Draw
+        - Crystal Palace
+      odds:
+        - 2.3
+        - 1.9
+        - 2.8
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.0
+        - 2.1
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.9
+        - 1.6
+        - 2.9
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.0
+        - 1.5
+        - 2.1
+  created: '2024-12-29T12:00:00Z'
+  lastModified: '2025-01-03T12:00:00Z'
+  startsAt: '2025-01-13T12:00:00Z'
+  endsAt: '2025-01-13T14:00:00Z'
+  status: OPEN
+- name: Tottenham Hotspur vs Sheffield United Premier League Match
+  description: A highly anticipated Premier League match between Tottenham Hotspur
+    and Sheffield United.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Tottenham Hotspur
+    - Sheffield United
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Tottenham Hotspur
+        - Draw
+        - Sheffield United
+      odds:
+        - 2.1
+        - 1.7
+        - 2.2
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.6
+        - 1.9
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.2
+        - 1.5
+        - 2.0
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 1.9
+        - 1.6
+        - 2.4
+  created: '2025-01-05T12:00:00Z'
+  lastModified: '2025-01-10T12:00:00Z'
+  startsAt: '2025-01-20T12:00:00Z'
+  endsAt: '2025-01-20T14:00:00Z'
+  status: OPEN
+- name: Chelsea vs Everton Premier League Match
+  description: A highly anticipated Premier League match between Chelsea and Everton.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Chelsea
+    - Everton
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Chelsea
+        - Draw
+        - Everton
+      odds:
+        - 2.1
+        - 2.7
+        - 1.9
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.9
+        - 2.0
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.9
+        - 1.6
+        - 2.2
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.4
+        - 1.5
+        - 2.4
+  created: '2025-01-12T12:00:00Z'
+  lastModified: '2025-01-17T12:00:00Z'
+  startsAt: '2025-01-27T12:00:00Z'
+  endsAt: '2025-01-27T14:00:00Z'
+  status: OPEN
+- name: Crystal Palace vs Southampton Premier League Match
+  description: A highly anticipated Premier League match between Crystal Palace and
+    Southampton.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Crystal Palace
+    - Southampton
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Crystal Palace
+        - Draw
+        - Southampton
+      odds:
+        - 2.9
+        - 3.0
+        - 2.7
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.3
+        - 2.3
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.0
+        - 1.6
+        - 2.8
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 1.8
+        - 1.6
+        - 1.8
+  created: '2025-01-19T12:00:00Z'
+  lastModified: '2025-01-24T12:00:00Z'
+  startsAt: '2025-02-03T12:00:00Z'
+  endsAt: '2025-02-03T14:00:00Z'
+  status: OPEN
+- name: Liverpool vs Leicester City Premier League Match
+  description: A highly anticipated Premier League match between Liverpool and Leicester
+    City.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Liverpool
+    - Leicester City
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Liverpool
+        - Draw
+        - Leicester City
+      odds:
+        - 2.0
+        - 2.8
+        - 2.4
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.9
+        - 2.1
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.7
+        - 1.5
+        - 2.7
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.3
+        - 1.6
+        - 2.0
+  created: '2025-01-26T12:00:00Z'
+  lastModified: '2025-01-31T12:00:00Z'
+  startsAt: '2025-02-10T12:00:00Z'
+  endsAt: '2025-02-10T14:00:00Z'
+  status: OPEN
+- name: Fulham vs Tottenham Hotspur Premier League Match
+  description: A highly anticipated Premier League match between Fulham and Tottenham
+    Hotspur.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Fulham
+    - Tottenham Hotspur
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Fulham
+        - Draw
+        - Tottenham Hotspur
+      odds:
+        - 1.5
+        - 1.8
+        - 2.7
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.0
+        - 1.7
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 1.9
+        - 1.5
+        - 1.8
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 1.9
+        - 1.5
+        - 1.9
+  created: '2025-02-02T12:00:00Z'
+  lastModified: '2025-02-07T12:00:00Z'
+  startsAt: '2025-02-17T12:00:00Z'
+  endsAt: '2025-02-17T14:00:00Z'
+  status: OPEN
+- name: Sheffield United vs Tottenham Hotspur Premier League Match
+  description: A highly anticipated Premier League match between Sheffield United
+    and Tottenham Hotspur.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Sheffield United
+    - Tottenham Hotspur
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Sheffield United
+        - Draw
+        - Tottenham Hotspur
+      odds:
+        - 2.9
+        - 1.8
+        - 1.8
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.5
+        - 2.2
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 1.8
+        - 1.7
+        - 2.2
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.3
+        - 1.7
+        - 2.9
+  created: '2025-02-09T12:00:00Z'
+  lastModified: '2025-02-14T12:00:00Z'
+  startsAt: '2025-02-24T12:00:00Z'
+  endsAt: '2025-02-24T14:00:00Z'
+  status: OPEN
+- name: Burnley vs Manchester United Premier League Match
+  description: A highly anticipated Premier League match between Burnley and Manchester
+    United.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Burnley
+    - Manchester United
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Burnley
+        - Draw
+        - Manchester United
+      odds:
+        - 2.2
+        - 1.9
+        - 2.7
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.6
+        - 2.0
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.8
+        - 1.6
+        - 2.0
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.3
+        - 1.5
+        - 2.7
+  created: '2025-02-16T12:00:00Z'
+  lastModified: '2025-02-21T12:00:00Z'
+  startsAt: '2025-03-03T12:00:00Z'
+  endsAt: '2025-03-03T14:00:00Z'
+  status: OPEN
+- name: West Bromwich Albion vs Newcastle United Premier League Match
+  description: A highly anticipated Premier League match between West Bromwich Albion
+    and Newcastle United.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - West Bromwich Albion
+    - Newcastle United
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - West Bromwich Albion
+        - Draw
+        - Newcastle United
+      odds:
+        - 1.5
+        - 2.8
+        - 2.9
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.8
+        - 2.2
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.8
+        - 1.7
+        - 2.2
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.6
+        - 1.6
+        - 2.4
+  created: '2025-02-23T12:00:00Z'
+  lastModified: '2025-02-28T12:00:00Z'
+  startsAt: '2025-03-10T12:00:00Z'
+  endsAt: '2025-03-10T14:00:00Z'
+  status: OPEN
+- name: Newcastle United vs Everton Premier League Match
+  description: A highly anticipated Premier League match between Newcastle United
+    and Everton.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Newcastle United
+    - Everton
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Newcastle United
+        - Draw
+        - Everton
+      odds:
+        - 2.7
+        - 2.7
+        - 1.6
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.0
+        - 2.3
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.0
+        - 1.7
+        - 2.8
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.2
+        - 1.6
+        - 2.2
+  created: '2025-03-02T12:00:00Z'
+  lastModified: '2025-03-07T12:00:00Z'
+  startsAt: '2025-03-17T12:00:00Z'
+  endsAt: '2025-03-17T14:00:00Z'
+  status: OPEN
+- name: Manchester City vs Liverpool Premier League Match
+  description: A highly anticipated Premier League match between Manchester City and
+    Liverpool.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Manchester City
+    - Liverpool
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Manchester City
+        - Draw
+        - Liverpool
+      odds:
+        - 1.7
+        - 2.6
+        - 2.2
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.7
+        - 1.9
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.9
+        - 1.6
+        - 2.9
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.7
+        - 1.7
+        - 1.9
+  created: '2025-03-09T12:00:00Z'
+  lastModified: '2025-03-14T12:00:00Z'
+  startsAt: '2025-03-24T12:00:00Z'
+  endsAt: '2025-03-24T14:00:00Z'
+  status: OPEN
+- name: Manchester United vs Tottenham Hotspur Premier League Match
+  description: A highly anticipated Premier League match between Manchester United
+    and Tottenham Hotspur.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Manchester United
+    - Tottenham Hotspur
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Manchester United
+        - Draw
+        - Tottenham Hotspur
+      odds:
+        - 1.9
+        - 1.7
+        - 1.5
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.7
+        - 1.9
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 1.9
+        - 1.6
+        - 2.5
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 3.0
+        - 1.6
+        - 1.9
+  created: '2025-03-16T12:00:00Z'
+  lastModified: '2025-03-21T12:00:00Z'
+  startsAt: '2025-03-31T12:00:00Z'
+  endsAt: '2025-03-31T14:00:00Z'
+  status: OPEN
+- name: Sheffield United vs Leicester City Premier League Match
+  description: A highly anticipated Premier League match between Sheffield United
+    and Leicester City.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Sheffield United
+    - Leicester City
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Sheffield United
+        - Draw
+        - Leicester City
+      odds:
+        - 2.3
+        - 2.5
+        - 2.4
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.9
+        - 1.7
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.9
+        - 1.5
+        - 2.9
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 1.9
+        - 1.6
+        - 2.6
+  created: '2025-03-23T12:00:00Z'
+  lastModified: '2025-03-28T12:00:00Z'
+  startsAt: '2025-04-07T12:00:00Z'
+  endsAt: '2025-04-07T14:00:00Z'
+  status: OPEN
+- name: Aston Villa vs Fulham Premier League Match
+  description: A highly anticipated Premier League match between Aston Villa and Fulham.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Aston Villa
+    - Fulham
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Aston Villa
+        - Draw
+        - Fulham
+      odds:
+        - 1.5
+        - 2.9
+        - 2.9
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.0
+        - 2.4
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.2
+        - 1.7
+        - 2.7
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 1.8
+        - 1.7
+        - 2.4
+  created: '2025-03-30T12:00:00Z'
+  lastModified: '2025-04-04T12:00:00Z'
+  startsAt: '2025-04-14T12:00:00Z'
+  endsAt: '2025-04-14T14:00:00Z'
+  status: OPEN
+- name: Wolves vs West Bromwich Albion Premier League Match
+  description: A highly anticipated Premier League match between Wolves and West Bromwich
+    Albion.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Wolves
+    - West Bromwich Albion
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Wolves
+        - Draw
+        - West Bromwich Albion
+      odds:
+        - 2.2
+        - 2.7
+        - 2.1
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.9
+        - 2.4
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.8
+        - 1.6
+        - 2.7
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.8
+        - 1.5
+        - 2.8
+  created: '2025-04-06T12:00:00Z'
+  lastModified: '2025-04-11T12:00:00Z'
+  startsAt: '2025-04-21T12:00:00Z'
+  endsAt: '2025-04-21T14:00:00Z'
+  status: OPEN
+- name: Southampton vs Wolves Premier League Match
+  description: A highly anticipated Premier League match between Southampton and Wolves.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Southampton
+    - Wolves
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Southampton
+        - Draw
+        - Wolves
+      odds:
+        - 1.8
+        - 1.7
+        - 2.2
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.0
+        - 2.5
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.0
+        - 1.6
+        - 2.0
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.0
+        - 1.6
+        - 2.3
+  created: '2025-04-13T12:00:00Z'
+  lastModified: '2025-04-18T12:00:00Z'
+  startsAt: '2025-04-28T12:00:00Z'
+  endsAt: '2025-04-28T14:00:00Z'
+  status: OPEN
+- name: West Bromwich Albion vs Manchester City Premier League Match
+  description: A highly anticipated Premier League match between West Bromwich Albion
+    and Manchester City.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - West Bromwich Albion
+    - Manchester City
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - West Bromwich Albion
+        - Draw
+        - Manchester City
+      odds:
+        - 2.5
+        - 2.7
+        - 2.9
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.1
+        - 2.0
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.9
+        - 1.7
+        - 2.4
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.4
+        - 1.6
+        - 1.9
+  created: '2025-04-20T12:00:00Z'
+  lastModified: '2025-04-25T12:00:00Z'
+  startsAt: '2025-05-05T12:00:00Z'
+  endsAt: '2025-05-05T14:00:00Z'
+  status: OPEN
+- name: Brighton vs Leeds United Premier League Match
+  description: A highly anticipated Premier League match between Brighton and Leeds
+    United.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Brighton
+    - Leeds United
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Brighton
+        - Draw
+        - Leeds United
+      odds:
+        - 2.6
+        - 2.9
+        - 1.6
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.8
+        - 1.9
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.1
+        - 1.6
+        - 2.1
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.1
+        - 1.5
+        - 2.7
+  created: '2025-04-27T12:00:00Z'
+  lastModified: '2025-05-02T12:00:00Z'
+  startsAt: '2025-05-12T12:00:00Z'
+  endsAt: '2025-05-12T14:00:00Z'
+  status: OPEN
+- name: Arsenal vs Chelsea Premier League Match
+  description: A highly anticipated Premier League match between Arsenal and Chelsea.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Arsenal
+    - Chelsea
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Arsenal
+        - Draw
+        - Chelsea
+      odds:
+        - 2.4
+        - 2.9
+        - 2.2
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.1
+        - 2.3
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.2
+        - 1.6
+        - 2.9
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.7
+        - 1.6
+        - 2.1
+  created: '2025-05-04T12:00:00Z'
+  lastModified: '2025-05-09T12:00:00Z'
+  startsAt: '2025-05-19T12:00:00Z'
+  endsAt: '2025-05-19T14:00:00Z'
+  status: OPEN
+- name: Everton vs Southampton Premier League Match
+  description: A highly anticipated Premier League match between Everton and Southampton.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Everton
+    - Southampton
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Everton
+        - Draw
+        - Southampton
+      odds:
+        - 2.2
+        - 2.3
+        - 2.6
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.0
+        - 2.0
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.2
+        - 1.7
+        - 3.0
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.9
+        - 1.6
+        - 2.4
+  created: '2025-05-11T12:00:00Z'
+  lastModified: '2025-05-16T12:00:00Z'
+  startsAt: '2025-05-26T12:00:00Z'
+  endsAt: '2025-05-26T14:00:00Z'
+  status: OPEN
+- name: Leeds United vs Wolves Premier League Match
+  description: A highly anticipated Premier League match between Leeds United and
+    Wolves.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Leeds United
+    - Wolves
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Leeds United
+        - Draw
+        - Wolves
+      odds:
+        - 1.9
+        - 2.1
+        - 2.0
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.2
+        - 1.6
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.1
+        - 1.5
+        - 1.9
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.3
+        - 1.5
+        - 2.3
+  created: '2025-05-18T12:00:00Z'
+  lastModified: '2025-05-23T12:00:00Z'
+  startsAt: '2025-06-02T12:00:00Z'
+  endsAt: '2025-06-02T14:00:00Z'
+  status: OPEN
+- name: Southampton vs Manchester City Premier League Match
+  description: A highly anticipated Premier League match between Southampton and Manchester
+    City.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Southampton
+    - Manchester City
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Southampton
+        - Draw
+        - Manchester City
+      odds:
+        - 3.0
+        - 2.8
+        - 1.6
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.6
+        - 2.1
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.1
+        - 1.7
+        - 2.7
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.2
+        - 1.5
+        - 1.9
+  created: '2025-05-25T12:00:00Z'
+  lastModified: '2025-05-30T12:00:00Z'
+  startsAt: '2025-06-09T12:00:00Z'
+  endsAt: '2025-06-09T14:00:00Z'
+  status: OPEN
+- name: Manchester United vs Aston Villa Premier League Match
+  description: A highly anticipated Premier League match between Manchester United
+    and Aston Villa.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Manchester United
+    - Aston Villa
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Manchester United
+        - Draw
+        - Aston Villa
+      odds:
+        - 1.7
+        - 2.9
+        - 2.8
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.6
+        - 2.1
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.9
+        - 1.5
+        - 2.9
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 1.8
+        - 1.6
+        - 2.6
+  created: '2025-06-01T12:00:00Z'
+  lastModified: '2025-06-06T12:00:00Z'
+  startsAt: '2025-06-16T12:00:00Z'
+  endsAt: '2025-06-16T14:00:00Z'
+  status: OPEN
+- name: Sheffield United vs Chelsea Premier League Match
+  description: A highly anticipated Premier League match between Sheffield United
+    and Chelsea.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Sheffield United
+    - Chelsea
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Sheffield United
+        - Draw
+        - Chelsea
+      odds:
+        - 1.8
+        - 2.4
+        - 2.7
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.1
+        - 2.1
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.1
+        - 1.6
+        - 2.7
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.9
+        - 1.6
+        - 2.4
+  created: '2025-06-08T12:00:00Z'
+  lastModified: '2025-06-13T12:00:00Z'
+  startsAt: '2025-06-23T12:00:00Z'
+  endsAt: '2025-06-23T14:00:00Z'
+  status: OPEN
+- name: Newcastle United vs Wolves Premier League Match
+  description: A highly anticipated Premier League match between Newcastle United
+    and Wolves.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Newcastle United
+    - Wolves
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Newcastle United
+        - Draw
+        - Wolves
+      odds:
+        - 3.0
+        - 2.6
+        - 2.9
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.7
+        - 2.4
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.3
+        - 1.6
+        - 2.9
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.0
+        - 1.5
+        - 2.0
+  created: '2025-06-15T12:00:00Z'
+  lastModified: '2025-06-20T12:00:00Z'
+  startsAt: '2025-06-30T12:00:00Z'
+  endsAt: '2025-06-30T14:00:00Z'
+  status: OPEN
+- name: Manchester United vs Leicester City Premier League Match
+  description: A highly anticipated Premier League match between Manchester United
+    and Leicester City.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Manchester United
+    - Leicester City
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Manchester United
+        - Draw
+        - Leicester City
+      odds:
+        - 2.3
+        - 1.6
+        - 1.7
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.0
+        - 1.8
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.0
+        - 1.5
+        - 2.6
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.9
+        - 1.6
+        - 2.8
+  created: '2025-06-22T12:00:00Z'
+  lastModified: '2025-06-27T12:00:00Z'
+  startsAt: '2025-07-07T12:00:00Z'
+  endsAt: '2025-07-07T14:00:00Z'
+  status: OPEN
+- name: Tottenham Hotspur vs Southampton Premier League Match
+  description: A highly anticipated Premier League match between Tottenham Hotspur
+    and Southampton.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Tottenham Hotspur
+    - Southampton
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Tottenham Hotspur
+        - Draw
+        - Southampton
+      odds:
+        - 2.5
+        - 2.5
+        - 2.7
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.7
+        - 1.8
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 3.0
+        - 1.6
+        - 2.6
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.2
+        - 1.6
+        - 2.7
+  created: '2025-06-29T12:00:00Z'
+  lastModified: '2025-07-04T12:00:00Z'
+  startsAt: '2025-07-14T12:00:00Z'
+  endsAt: '2025-07-14T14:00:00Z'
+  status: OPEN
+- name: Manchester United vs Wolves Premier League Match
+  description: A highly anticipated Premier League match between Manchester United
+    and Wolves.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Manchester United
+    - Wolves
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Manchester United
+        - Draw
+        - Wolves
+      odds:
+        - 2.8
+        - 2.7
+        - 2.6
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.9
+        - 2.4
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.0
+        - 1.6
+        - 2.5
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 3.0
+        - 1.6
+        - 1.8
+  created: '2025-07-06T12:00:00Z'
+  lastModified: '2025-07-11T12:00:00Z'
+  startsAt: '2025-07-21T12:00:00Z'
+  endsAt: '2025-07-21T14:00:00Z'
+  status: OPEN
+- name: Liverpool vs West Bromwich Albion Premier League Match
+  description: A highly anticipated Premier League match between Liverpool and West
+    Bromwich Albion.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Liverpool
+    - West Bromwich Albion
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Liverpool
+        - Draw
+        - West Bromwich Albion
+      odds:
+        - 2.0
+        - 2.4
+        - 2.2
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.0
+        - 1.6
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.3
+        - 1.6
+        - 2.4
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.0
+        - 1.5
+        - 2.7
+  created: '2025-07-13T12:00:00Z'
+  lastModified: '2025-07-18T12:00:00Z'
+  startsAt: '2025-07-28T12:00:00Z'
+  endsAt: '2025-07-28T14:00:00Z'
+  status: OPEN
+- name: West Bromwich Albion vs Everton Premier League Match
+  description: A highly anticipated Premier League match between West Bromwich Albion
+    and Everton.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - West Bromwich Albion
+    - Everton
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - West Bromwich Albion
+        - Draw
+        - Everton
+      odds:
+        - 1.8
+        - 2.7
+        - 1.7
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.6
+        - 2.0
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.5
+        - 1.7
+        - 2.0
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.9
+        - 1.6
+        - 2.3
+  created: '2025-07-20T12:00:00Z'
+  lastModified: '2025-07-25T12:00:00Z'
+  startsAt: '2025-08-04T12:00:00Z'
+  endsAt: '2025-08-04T14:00:00Z'
+  status: OPEN
+- name: Leeds United vs Manchester City Premier League Match
+  description: A highly anticipated Premier League match between Leeds United and
+    Manchester City.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Leeds United
+    - Manchester City
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Leeds United
+        - Draw
+        - Manchester City
+      odds:
+        - 1.9
+        - 2.0
+        - 2.4
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.4
+        - 2.0
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.8
+        - 1.6
+        - 2.9
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 1.9
+        - 1.6
+        - 2.6
+  created: '2025-07-27T12:00:00Z'
+  lastModified: '2025-08-01T12:00:00Z'
+  startsAt: '2025-08-11T12:00:00Z'
+  endsAt: '2025-08-11T14:00:00Z'
+  status: OPEN
+- name: Manchester United vs Liverpool Premier League Match
+  description: A highly anticipated Premier League match between Manchester United
+    and Liverpool.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Manchester United
+    - Liverpool
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Manchester United
+        - Draw
+        - Liverpool
+      odds:
+        - 2.2
+        - 2.2
+        - 2.3
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.5
+        - 1.8
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.9
+        - 1.7
+        - 2.4
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.2
+        - 1.7
+        - 2.5
+  created: '2025-08-03T12:00:00Z'
+  lastModified: '2025-08-08T12:00:00Z'
+  startsAt: '2025-08-18T12:00:00Z'
+  endsAt: '2025-08-18T14:00:00Z'
+  status: OPEN
+- name: Aston Villa vs Burnley Premier League Match
+  description: A highly anticipated Premier League match between Aston Villa and Burnley.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Aston Villa
+    - Burnley
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Aston Villa
+        - Draw
+        - Burnley
+      odds:
+        - 2.2
+        - 3.0
+        - 2.6
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.6
+        - 1.9
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.8
+        - 1.7
+        - 2.5
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.7
+        - 1.7
+        - 2.0
+  created: '2025-08-10T12:00:00Z'
+  lastModified: '2025-08-15T12:00:00Z'
+  startsAt: '2025-08-25T12:00:00Z'
+  endsAt: '2025-08-25T14:00:00Z'
+  status: OPEN
+- name: Leicester City vs Burnley Premier League Match
+  description: A highly anticipated Premier League match between Leicester City and
+    Burnley.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Leicester City
+    - Burnley
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Leicester City
+        - Draw
+        - Burnley
+      odds:
+        - 2.5
+        - 2.9
+        - 1.6
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.0
+        - 1.9
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.5
+        - 1.6
+        - 3.0
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.9
+        - 1.5
+        - 2.2
+  created: '2025-08-17T12:00:00Z'
+  lastModified: '2025-08-22T12:00:00Z'
+  startsAt: '2025-09-01T12:00:00Z'
+  endsAt: '2025-09-01T14:00:00Z'
+  status: OPEN
+- name: Brighton vs West Bromwich Albion Premier League Match
+  description: A highly anticipated Premier League match between Brighton and West
+    Bromwich Albion.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Brighton
+    - West Bromwich Albion
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Brighton
+        - Draw
+        - West Bromwich Albion
+      odds:
+        - 2.2
+        - 2.5
+        - 1.9
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.9
+        - 1.7
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.7
+        - 1.6
+        - 2.7
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.9
+        - 1.5
+        - 1.9
+  created: '2025-08-24T12:00:00Z'
+  lastModified: '2025-08-29T12:00:00Z'
+  startsAt: '2025-09-08T12:00:00Z'
+  endsAt: '2025-09-08T14:00:00Z'
+  status: OPEN
+- name: Crystal Palace vs Chelsea Premier League Match
+  description: A highly anticipated Premier League match between Crystal Palace and
+    Chelsea.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Crystal Palace
+    - Chelsea
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Crystal Palace
+        - Draw
+        - Chelsea
+      odds:
+        - 2.4
+        - 2.6
+        - 1.7
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.8
+        - 1.7
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.1
+        - 1.5
+        - 1.9
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.7
+        - 1.6
+        - 2.1
+  created: '2025-08-31T12:00:00Z'
+  lastModified: '2025-09-05T12:00:00Z'
+  startsAt: '2025-09-15T12:00:00Z'
+  endsAt: '2025-09-15T14:00:00Z'
+  status: OPEN
+- name: Chelsea vs Arsenal Premier League Match
+  description: A highly anticipated Premier League match between Chelsea and Arsenal.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Chelsea
+    - Arsenal
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Chelsea
+        - Draw
+        - Arsenal
+      odds:
+        - 2.6
+        - 2.8
+        - 2.8
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.3
+        - 2.0
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.8
+        - 1.6
+        - 1.8
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.5
+        - 1.6
+        - 1.9
+  created: '2025-09-07T12:00:00Z'
+  lastModified: '2025-09-12T12:00:00Z'
+  startsAt: '2025-09-22T12:00:00Z'
+  endsAt: '2025-09-22T14:00:00Z'
+  status: OPEN
+- name: Fulham vs Leicester City Premier League Match
+  description: A highly anticipated Premier League match between Fulham and Leicester
+    City.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Fulham
+    - Leicester City
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Fulham
+        - Draw
+        - Leicester City
+      odds:
+        - 2.1
+        - 2.9
+        - 1.6
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.8
+        - 2.4
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.3
+        - 1.6
+        - 1.9
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.2
+        - 1.7
+        - 2.5
+  created: '2025-09-14T12:00:00Z'
+  lastModified: '2025-09-19T12:00:00Z'
+  startsAt: '2025-09-29T12:00:00Z'
+  endsAt: '2025-09-29T14:00:00Z'
+  status: OPEN
+- name: Manchester United vs Tottenham Hotspur Premier League Match
+  description: A highly anticipated Premier League match between Manchester United
+    and Tottenham Hotspur.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Manchester United
+    - Tottenham Hotspur
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Manchester United
+        - Draw
+        - Tottenham Hotspur
+      odds:
+        - 2.7
+        - 1.6
+        - 1.7
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.5
+        - 2.2
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.4
+        - 1.5
+        - 2.2
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.9
+        - 1.7
+        - 2.5
+  created: '2025-09-21T12:00:00Z'
+  lastModified: '2025-09-26T12:00:00Z'
+  startsAt: '2025-10-06T12:00:00Z'
+  endsAt: '2025-10-06T14:00:00Z'
+  status: OPEN
+- name: Everton vs Tottenham Hotspur Premier League Match
+  description: A highly anticipated Premier League match between Everton and Tottenham
+    Hotspur.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Everton
+    - Tottenham Hotspur
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Everton
+        - Draw
+        - Tottenham Hotspur
+      odds:
+        - 2.1
+        - 2.5
+        - 2.2
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.9
+        - 2.0
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.3
+        - 1.6
+        - 2.4
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 3.0
+        - 1.6
+        - 2.2
+  created: '2025-09-28T12:00:00Z'
+  lastModified: '2025-10-03T12:00:00Z'
+  startsAt: '2025-10-13T12:00:00Z'
+  endsAt: '2025-10-13T14:00:00Z'
+  status: OPEN
+- name: Arsenal vs Wolves Premier League Match
+  description: A highly anticipated Premier League match between Arsenal and Wolves.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Arsenal
+    - Wolves
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Arsenal
+        - Draw
+        - Wolves
+      odds:
+        - 1.9
+        - 1.8
+        - 2.0
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 2.4
+        - 1.8
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.8
+        - 1.5
+        - 3.0
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 1.9
+        - 1.6
+        - 2.4
+  created: '2025-10-05T12:00:00Z'
+  lastModified: '2025-10-10T12:00:00Z'
+  startsAt: '2025-10-20T12:00:00Z'
+  endsAt: '2025-10-20T14:00:00Z'
+  status: OPEN
+- name: Tottenham Hotspur vs Crystal Palace Premier League Match
+  description: A highly anticipated Premier League match between Tottenham Hotspur
+    and Crystal Palace.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Tottenham Hotspur
+    - Crystal Palace
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Tottenham Hotspur
+        - Draw
+        - Crystal Palace
+      odds:
+        - 3.0
+        - 1.7
+        - 1.9
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.9
+        - 1.5
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.4
+        - 1.7
+        - 2.0
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.2
+        - 1.5
+        - 2.7
+  created: '2025-10-12T12:00:00Z'
+  lastModified: '2025-10-17T12:00:00Z'
+  startsAt: '2025-10-27T12:00:00Z'
+  endsAt: '2025-10-27T14:00:00Z'
+  status: OPEN
+- name: Aston Villa vs Everton Premier League Match
+  description: A highly anticipated Premier League match between Aston Villa and Everton.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Aston Villa
+    - Everton
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Aston Villa
+        - Draw
+        - Everton
+      odds:
+        - 2.9
+        - 2.9
+        - 2.4
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.8
+        - 2.2
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 1.8
+        - 1.7
+        - 2.7
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 1.9
+        - 1.6
+        - 2.6
+  created: '2025-10-19T12:00:00Z'
+  lastModified: '2025-10-24T12:00:00Z'
+  startsAt: '2025-11-03T12:00:00Z'
+  endsAt: '2025-11-03T14:00:00Z'
+  status: OPEN
+- name: Everton vs Wolves Premier League Match
+  description: A highly anticipated Premier League match between Everton and Wolves.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Everton
+    - Wolves
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Everton
+        - Draw
+        - Wolves
+      odds:
+        - 2.9
+        - 1.9
+        - 1.5
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.5
+        - 2.5
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.1
+        - 1.7
+        - 1.9
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 1.9
+        - 1.7
+        - 2.8
+  created: '2025-10-26T12:00:00Z'
+  lastModified: '2025-10-31T12:00:00Z'
+  startsAt: '2025-11-10T12:00:00Z'
+  endsAt: '2025-11-10T14:00:00Z'
+  status: OPEN
+- name: Manchester United vs Leeds United Premier League Match
+  description: A highly anticipated Premier League match between Manchester United
+    and Leeds United.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Manchester United
+    - Leeds United
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Manchester United
+        - Draw
+        - Leeds United
+      odds:
+        - 2.1
+        - 2.6
+        - 2.9
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.7
+        - 2.2
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.1
+        - 1.6
+        - 2.7
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.6
+        - 1.5
+        - 1.9
+  created: '2025-11-02T12:00:00Z'
+  lastModified: '2025-11-07T12:00:00Z'
+  startsAt: '2025-11-17T12:00:00Z'
+  endsAt: '2025-11-17T14:00:00Z'
+  status: OPEN
+- name: Burnley vs Chelsea Premier League Match
+  description: A highly anticipated Premier League match between Burnley and Chelsea.
+  creator: PremierLeagueScheduler
+  tags:
+    - Football
+    - Premier League
+    - Burnley
+    - Chelsea
+  userGroups: []
+  userProfiles:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+  completeBetTypeDtoList:
+    - name: Match Winner
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Burnley
+        - Draw
+        - Chelsea
+      odds:
+        - 1.9
+        - 2.2
+        - 2.2
+    - name: Total Goals
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Over 2.5
+        - Under 2.5
+      odds:
+        - 1.6
+        - 2.3
+    - name: Number of Yellow Cards
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 3
+        - 3-6
+        - Over 6
+      odds:
+        - 2.7
+        - 1.6
+        - 2.2
+    - name: Number of Fouls
+      type: MULTIPLE_CHOICE
+      multipleChoiceOptions:
+        - Under 5
+        - 5-15
+        - Over 15
+      odds:
+        - 2.2
+        - 1.5
+        - 2.2
+  created: '2025-11-09T12:00:00Z'
+  lastModified: '2025-11-14T12:00:00Z'
+  startsAt: '2025-11-24T12:00:00Z'
+  endsAt: '2025-11-24T14:00:00Z'
+  status: OPEN
