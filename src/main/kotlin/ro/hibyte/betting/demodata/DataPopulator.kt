@@ -15,14 +15,14 @@ fun main() {
     val yamlReader = YamlReader()
 
     val restTemplate = RestTemplate()
-//    createUsers(restTemplate, yamlReader)
+    createUsers(restTemplate, yamlReader)
 
-//    createEvents(restTemplate, yamlReader)
+    createEvents(restTemplate, yamlReader)
 
     val allUsers: Array<UserProfileDTO>  = restTemplate.getForObject("http://localhost:8080/api/v1/user-profile", Array<UserProfileDTO>::class.java)!!
     val betTypes: Array<CompleteBetTypeDto> = restTemplate.getForObject("http://localhost:8080/api/v1/bet-types", Array<CompleteBetTypeDto>::class.java)!!
 
-    val bets = createRandomBets(allUsers, betTypes)
+    createRandomBets(allUsers, betTypes)
 }
 
 fun createRandomBets(allUsers: Array<UserProfileDTO>, betTypes: Array<CompleteBetTypeDto>): Any {
