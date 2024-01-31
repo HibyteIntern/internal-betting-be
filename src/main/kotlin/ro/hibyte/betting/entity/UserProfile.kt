@@ -11,7 +11,7 @@ data class UserProfile(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var userId: Long? = null,
+    var userId: Long? = 0,
     var keycloakId: String? = null,
     var username: String? = null,
     var profilePicture: Long? = null,

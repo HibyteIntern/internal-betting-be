@@ -7,7 +7,7 @@ import jakarta.persistence.*
 data class Leaderboard(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null,
+    var id: Long = 0,
 
     var name: String,
 
