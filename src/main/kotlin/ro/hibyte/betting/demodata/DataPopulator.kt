@@ -5,10 +5,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import org.springframework.http.HttpEntity
 import org.springframework.web.client.RestTemplate
-import ro.hibyte.betting.dto.BetDTO
-import ro.hibyte.betting.dto.CompleteBetTypeDto
-import ro.hibyte.betting.dto.EventDTO
-import ro.hibyte.betting.dto.UserProfileDTO
+import ro.hibyte.betting.dto.*
 
 fun main() {
     val yamlReader = YamlReader()
@@ -29,6 +26,17 @@ fun main() {
         restTemplate.getForObject("http://localhost:8080/api/v1/events", Array<EventDTO>::class.java)!!
 
     findRandomOutcomes(restTemplate, events, betTypes)
+
+    createLeaderboard(restTemplate, "Default Leaderboard")
+}
+
+fun createLeaderboard(restTemplate: RestTemplate, name: String, events: List<Long> = emptyList(), users: List<Long> = emptyList()) {
+    val response: LeaderboardConfig = restTemplate.postForEntity(
+        "http://localhost:8080/api/v1/leaderboards",
+        HttpEntity(LeaderboardConfig(name = name, events = events, userProfiles = users)),
+        LeaderboardConfig::class.java
+    ).body!!
+    println("Created leaderboard entry with id ${response.id}")
 }
 
 fun findRandomOutcomes(restTemplate: RestTemplate, events: Array<EventDTO>, betTypes: Array<CompleteBetTypeDto>) {
