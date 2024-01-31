@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 import ro.hibyte.betting.dto.LeaderboardConfig
 import ro.hibyte.betting.dto.LeaderboardDTO
+import ro.hibyte.betting.dto.LeaderboardEntry
 import ro.hibyte.betting.dto.LeaderboardRequest
 import ro.hibyte.betting.entity.Leaderboard
 import ro.hibyte.betting.exceptions.types.EntityNotFoundException
@@ -15,7 +16,8 @@ import ro.hibyte.betting.repository.UserProfileRepository
 class LeaderboardService(
     private val leaderboardRepository: LeaderboardRepository,
     private val eventRepository: EventRepository,
-    private val userProfileRepository: UserProfileRepository
+    private val userProfileRepository: UserProfileRepository,
+    private val metricService: MetricService
 ) {
 
     fun createLeaderboard(request: LeaderboardConfig): LeaderboardConfig {
@@ -43,12 +45,21 @@ class LeaderboardService(
         val events = leaderboard.events
         val users = leaderboard.userProfiles
 
-        // compute leaderboard according to metrics from request
+        val leaderboardEntries: MutableList<LeaderboardEntry> = mutableListOf()
+        users.forEach{
+            leaderboardEntries.add(
+                metricService.computeLeaderboardEntryForUser(
+                    it,
+                    events,
+                    leaderboardRequest.metrics
+                )
+            )
+        }
 
         return LeaderboardDTO(
             id = leaderboard.id,
             name = leaderboard.name,
-            // somehow the users with all their metrics scores and sorted by the desired metric
+            entries = metricService.sortByMetric(leaderboardRequest.sortedBy, leaderboardEntries)
         )
     }
 
