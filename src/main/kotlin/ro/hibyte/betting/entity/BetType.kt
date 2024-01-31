@@ -15,7 +15,7 @@ data class BetType (
 
     @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name = "bet_template_id")
-    var bets: List<Bet> = mutableListOf(),
+    var bets: MutableList<Bet> = mutableListOf(),
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "eventId")

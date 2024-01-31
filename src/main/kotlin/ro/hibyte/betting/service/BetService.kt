@@ -39,6 +39,9 @@ class BetService(
 
             val savedBet = betRepository.save(bet)
 
+            betType.bets.add(bet)
+            betTypeRepository.save(betType)
+
             userProfile.coins = userProfile.coins.toInt() - bet.amount.toInt()
             userProfileRepository.save(userProfile)
 

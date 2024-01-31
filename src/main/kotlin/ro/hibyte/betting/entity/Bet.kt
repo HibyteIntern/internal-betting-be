@@ -11,11 +11,11 @@ data class Bet(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val betId: Long? = null,
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST, CascadeType.MERGE])
     @JoinColumn(name = "userId")
     var user: UserProfile? = null,
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST, CascadeType.MERGE])
     @JoinColumn(name = "betTypetId")
     var betType: BetType? = null,
 

@@ -9,7 +9,6 @@ import ro.hibyte.betting.dto.BetDTO
 import ro.hibyte.betting.dto.CompleteBetTypeDto
 import ro.hibyte.betting.dto.EventDTO
 import ro.hibyte.betting.dto.UserProfileDTO
-import ro.hibyte.betting.entity.BetType
 
 fun main() {
     val yamlReader = YamlReader()
@@ -19,10 +18,28 @@ fun main() {
 
     createEvents(restTemplate, yamlReader)
 
-    val allUsers: Array<UserProfileDTO>  = restTemplate.getForObject("http://localhost:8080/api/v1/user-profile", Array<UserProfileDTO>::class.java)!!
-    val betTypes: Array<CompleteBetTypeDto> = restTemplate.getForObject("http://localhost:8080/api/v1/bet-types", Array<CompleteBetTypeDto>::class.java)!!
+    val allUsers: Array<UserProfileDTO> =
+        restTemplate.getForObject("http://localhost:8080/api/v1/user-profile", Array<UserProfileDTO>::class.java)!!
+    val betTypes: Array<CompleteBetTypeDto> =
+        restTemplate.getForObject("http://localhost:8080/api/v1/bet-types", Array<CompleteBetTypeDto>::class.java)!!
 
     createRandomBets(allUsers, betTypes)
+
+    val events: Array<EventDTO> =
+        restTemplate.getForObject("http://localhost:8080/api/v1/events", Array<EventDTO>::class.java)!!
+
+    findRandomOutcomes(restTemplate, events, betTypes)
+}
+
+fun findRandomOutcomes(restTemplate: RestTemplate, events: Array<EventDTO>, betTypes: Array<CompleteBetTypeDto>) {
+    val betTypeOutcomes: Map<Long?, String> = betTypes.associate { it.id to (it.multipleChoiceOptions?.random() ?: "") }
+    val eventNo = events.map { event ->
+        restTemplate.put(
+            "http://localhost:8080/api/v1/events/outcome/${event.eventId}",
+            HttpEntity(betTypeOutcomes),
+        )
+    }.count()
+    println("Created $eventNo outcomes")
 }
 
 fun createRandomBets(allUsers: Array<UserProfileDTO>, betTypes: Array<CompleteBetTypeDto>): Any {
@@ -42,10 +59,10 @@ fun createRandomBets(allUsers: Array<UserProfileDTO>, betTypes: Array<CompleteBe
             )
         }
     }
-    val response: Array<BetType> = restTemplate.postForEntity(
+    val response: Array<BetDTO> = restTemplate.postForEntity(
         "http://localhost:8080/api/v1/bets/many",
         HttpEntity(bets),
-        Array<BetType>::class.java
+        Array<BetDTO>::class.java
     ).body!!
     println("Created ${response.size} bets")
     return response
