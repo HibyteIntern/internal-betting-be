@@ -10,7 +10,9 @@ import ro.hibyte.betting.entity.Status
 import ro.hibyte.betting.mapper.BetMapper
 import ro.hibyte.betting.mapper.EventMapper
 import ro.hibyte.betting.repository.EventRepository
+import ro.hibyte.betting.repository.CompetitionRepository
 import java.sql.Timestamp
+import java.time.Instant
 import kotlin.RuntimeException
 
 @Service
@@ -20,7 +22,9 @@ class EventService(
     private val betTypeService: BetTypeService,
     private val betMapper: BetMapper,
     private val betService: BetService,
-    private val userProfileService: UserProfileService
+    private val userProfileService: UserProfileService,
+    private val competitionService: CompetitionService,
+    private val competitionRepository: CompetitionRepository
 ) {
     fun addEvent(eventRequest: EventDTO) {
         val event: Event = eventMapper.mapEventRequestToEvent(eventRequest, betTypeService)
@@ -41,6 +45,24 @@ class EventService(
         eventRepository.save(existingEvent)
     }
 
+    fun checkEventsEndDate() {
+        eventRepository.findAllByStatus(Status.OPEN).forEach { event ->
+            run {
+                if (event.endsAt.toInstant().isBefore(Instant.now())) {
+                    val competitions = competitionRepository.findCompetitionsByEventsContains(event)
+                    competitions.forEach { competition ->
+                        run {
+                            competitionService.checkStatus(competition.competitionId)
+                        }
+                    }
+
+                    event.status = Status.CLOSED
+                    eventRepository.save(event)
+                }
+            }
+        }
+    }
+
     fun addBetForEvent(eventId: Long, betDTO: BetDTO, userProfileDTO: UserProfileDTO) {
         val userProfile = userProfileService.createUserProfileIfNonExistent(userProfileDTO)
 
@@ -50,8 +72,19 @@ class EventService(
         eventRepository.save(event)
     }
 
+    fun deleteEvent(eventId: Long) {
+        val event = eventRepository.findById(eventId).orElseThrow { RuntimeException("no such event found") }
+        val competitionsWithEvent = competitionRepository.findCompetitionsByEventsContains(event)
 
-    fun deleteEvent(eventId: Long) = eventRepository.deleteById(eventId)
+        competitionsWithEvent.forEach { competition ->
+            run {
+                competition.events = competition.events.filterNot { it == event }
+                competitionRepository.save(competition)
+            }
+        }
+        eventRepository.deleteById(eventId)
+    }
+
     fun getAllEvents(): List<EventDTO> {
         return eventRepository.findAll()
             .map(eventMapper::mapEventToEventResponse)
