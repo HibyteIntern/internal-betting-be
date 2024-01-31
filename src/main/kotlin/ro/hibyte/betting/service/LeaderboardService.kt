@@ -5,10 +5,7 @@ import org.springframework.stereotype.Service
 import ro.hibyte.betting.dto.*
 import ro.hibyte.betting.entity.Leaderboard
 import ro.hibyte.betting.exceptions.types.EntityNotFoundException
-import ro.hibyte.betting.metrics.FewestLosses
-import ro.hibyte.betting.metrics.HighestEarner
-import ro.hibyte.betting.metrics.MostBetsMetric
-import ro.hibyte.betting.metrics.MostWinsMetric
+import ro.hibyte.betting.metrics.*
 import ro.hibyte.betting.repository.EventRepository
 import ro.hibyte.betting.repository.LeaderboardRepository
 import ro.hibyte.betting.repository.UserProfileRepository
@@ -53,6 +50,7 @@ class LeaderboardService(
             "mostwins" -> MostWinsMetric()
             "fewestlosses" -> FewestLosses()
             "highestearner" -> HighestEarner()
+            //"largestsinglebet" -> LargestSingleBet()
             else -> null
         }
 
