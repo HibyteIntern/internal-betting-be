@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component
 import ro.hibyte.betting.dto.BetDTO
 import ro.hibyte.betting.dto.CompleteBetTypeDto
 import ro.hibyte.betting.dto.EventDTO
+import ro.hibyte.betting.dto.UserProfileDTO
 import ro.hibyte.betting.entity.BetType
 import ro.hibyte.betting.entity.Event
 import ro.hibyte.betting.entity.Status
@@ -14,9 +15,13 @@ import java.sql.Timestamp
 import java.util.stream.Collectors
 
 @Component
-class EventMapper(private val betTypeMapper: BetTypeMapper, private val userProfileService: UserProfileService,
-    private val betMapper: BetMapper) {
-    fun mapEventRequestToEvent(eventRequest: EventDTO, betTypeService: BetTypeService): Event {
+class EventMapper(
+    private val betTypeMapper: BetTypeMapper,
+    private val userProfileService: UserProfileService,
+    private val betMapper: BetMapper,
+    private val betTypeService: BetTypeService
+) {
+    fun mapEventRequestToEvent(eventRequest: EventDTO, creator: UserProfile): Event {
         val defaultUserGroups = emptyList<String>()
         val defaultTimestamp = Timestamp(System.currentTimeMillis())
         // Extract words starting with '#' from the description to populate tags
@@ -45,7 +50,7 @@ class EventMapper(private val betTypeMapper: BetTypeMapper, private val userProf
             name = eventRequest.name?: "",
             description = eventRequest.description?:"",
             betTypes = betTypes,
-            creator = eventRequest.creator?:"",
+            creator = creator,
             tags = tags?: emptyList(),
             users = users,
             bets = arrayListOf(),
@@ -67,11 +72,16 @@ class EventMapper(private val betTypeMapper: BetTypeMapper, private val userProf
             .map(betMapper::mapBetToBetDto)
             .collect(Collectors.toList())
 
+        var creator: UserProfileDTO? = null
+        if(event.creator != null) {
+            creator = UserProfileDTO(event.creator!!)
+        }
+
         return EventDTO(
             eventId = event.eventId,
             name = event.name,
             description = event.description,
-            creator = event.creator,
+            creator = creator,
             tags = event.tags,
             completeBetTypeDtoList = completeBetTypeDtoList,
             userGroups = event.userGroups,
@@ -86,6 +96,6 @@ class EventMapper(private val betTypeMapper: BetTypeMapper, private val userProf
     }
 
     fun mapToTags(event: Event): List<String> {
-        return event.tags;
+        return event.tags
     }
 }

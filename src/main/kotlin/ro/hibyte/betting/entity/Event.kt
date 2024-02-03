@@ -10,7 +10,8 @@ data class Event(
     var eventId: Long = 0,
     var name: String = "",
     var description: String = "",
-    var creator: String = "",
+    @ManyToOne
+    var creator: UserProfile? = null,
     var template: String = "",
     @ElementCollection
     var tags: List<String> = emptyList(),

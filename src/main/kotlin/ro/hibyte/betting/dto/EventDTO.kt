@@ -7,7 +7,7 @@ data class EventDTO(
     var eventId: Long? =null,
     var name: String?=null,
     var description: String?=null ,
-    var creator:String? = null ,
+    var creator:UserProfileDTO? = null ,
     var tags: List<String>? = null,
     var userGroups : List<String>? = null ,
     var userProfiles : List<Long?>?=null,
