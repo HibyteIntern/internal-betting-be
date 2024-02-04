@@ -22,6 +22,7 @@ class WebSecurityConfig {
                     .requestMatchers("/api/v1/bet-templates/**").hasAuthority("ADMIN")
                     .requestMatchers("/api/v1/bet-types/**").hasAuthority("ADMIN")
 
+                    .requestMatchers("/api/v1/user-profile/getMe").authenticated()
                     .requestMatchers(HttpMethod.GET, "/**").permitAll()
 
                     .requestMatchers("/api/v1/prize-draws/entry").authenticated()
