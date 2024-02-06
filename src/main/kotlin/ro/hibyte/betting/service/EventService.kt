@@ -8,8 +8,8 @@ import ro.hibyte.betting.dto.UserProfileDTO
 import ro.hibyte.betting.entity.Status
 import ro.hibyte.betting.entity.UserProfile
 import ro.hibyte.betting.exceptions.types.EntityNotFoundByNameException
+import ro.hibyte.betting.exceptions.types.EntityNotFoundException
 import ro.hibyte.betting.exceptions.types.ForbiddenException
-import ro.hibyte.betting.mapper.BetMapper
 import ro.hibyte.betting.mapper.EventMapper
 import ro.hibyte.betting.repository.EventRepository
 import ro.hibyte.betting.repository.CompetitionRepository
@@ -21,8 +21,6 @@ import kotlin.RuntimeException
 class EventService(
     private val eventRepository: EventRepository,
     private val eventMapper: EventMapper,
-    private val betTypeService: BetTypeService,
-    private val betMapper: BetMapper,
     private val betService: BetService,
     private val userProfileService: UserProfileService,
     private val competitionService: CompetitionService,
@@ -36,7 +34,7 @@ class EventService(
 
     @Transactional
     fun editEvent(eventId: Long, updatedEvent: EventDTO, keycloakId: String): EventDTO {
-        val existingEvent = eventRepository.findById(eventId).orElseThrow { RuntimeException("event not present") }
+        val existingEvent = eventRepository.findById(eventId).orElseThrow { EntityNotFoundException("Event", eventId) }
         val user: UserProfile = userProfileService.getByKeycloakId(keycloakId) ?: throw EntityNotFoundByNameException("User Profile", keycloakId)
         if (existingEvent.creator?.userId != user.userId) {
             throw ForbiddenException("You are not allowed to edit this event")
