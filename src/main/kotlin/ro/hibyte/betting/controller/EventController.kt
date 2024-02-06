@@ -37,7 +37,7 @@ class EventController(private val eventService: EventService) {
 
     @PostMapping("/bet/{eventId}")
     fun addBet(@PathVariable eventId: Long, @RequestBody complexBetByUserDto: ComplexBetByUserDto):ResponseEntity<Unit>{
-        eventService.addBetForEvent(eventId,complexBetByUserDto.betDTO,complexBetByUserDto.userProfileDTO)
+        eventService.addBetForEvent(eventId,complexBetByUserDto)
         return ResponseEntity(HttpStatus.OK)
     }
 

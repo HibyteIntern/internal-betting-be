@@ -3,8 +3,8 @@ package ro.hibyte.betting.service
 import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 import ro.hibyte.betting.dto.BetDTO
+import ro.hibyte.betting.dto.ComplexBetByUserDto
 import ro.hibyte.betting.dto.EventDTO
-import ro.hibyte.betting.dto.UserProfileDTO
 import ro.hibyte.betting.entity.Event
 import ro.hibyte.betting.entity.Status
 import ro.hibyte.betting.mapper.BetMapper
@@ -41,12 +41,19 @@ class EventService(
         eventRepository.save(existingEvent)
     }
 
-    fun addBetForEvent(eventId: Long, betDTO: BetDTO, userProfileDTO: UserProfileDTO) {
-        val userProfile = userProfileService.createUserProfileIfNonExistent(userProfileDTO)
+    fun addBetForEvent(eventId: Long, complexBetByUserDto: ComplexBetByUserDto,) {
+        val userProfile = complexBetByUserDto.user?.let { userProfileService.createUserProfileIfNonExistent(it) }
 
         val event = eventRepository.findById(eventId).orElseThrow { RuntimeException("no such event found") }
 
-        event.bets.add(betService.create(betDTO, userProfile))
+        val betDTO = BetDTO(complexBetByUserDto)
+        println(betDTO.betType)
+        val bet = userProfile?.let { betService.create(betDTO, it) }
+        if (bet != null) {
+            event.bets.add(bet)
+        }
+        println(bet?.betType?.id)
+
         eventRepository.save(event)
     }
 

@@ -1,7 +1,6 @@
 package ro.hibyte.betting.dto
 
 import ro.hibyte.betting.entity.Bet
-import ro.hibyte.betting.entity.UserProfile
 
 class BetDTO(
     val betId: Long? = null,
@@ -18,5 +17,12 @@ class BetDTO(
         amount = bet.amount,
         odds = bet.odds,
         value = bet.value,
+    )
+    constructor(complexBetByUserDto: ComplexBetByUserDto): this(
+        user = complexBetByUserDto.user?.userId,
+        betType =complexBetByUserDto.betType.id,
+        amount = complexBetByUserDto.amount,
+        odds = complexBetByUserDto.odds,
+        value = complexBetByUserDto.value
     )
 }

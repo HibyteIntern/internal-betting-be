@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/betting
+    url: jdbc:postgresql://localhost:5432/internship
     username: postgres
-    password: admin
+    password: password
   jpa:
     hibernate:
       ddl-auto: update

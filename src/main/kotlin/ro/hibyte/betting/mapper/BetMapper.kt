@@ -6,11 +6,13 @@ import ro.hibyte.betting.entity.Bet
 import ro.hibyte.betting.repository.UserProfileRepository
 import java.lang.RuntimeException
 
+
 @Service
 class BetMapper(private val userProfileRepository: UserProfileRepository) {
     fun mapBetToBetDto(bet: Bet): BetDTO{
         return BetDTO(
             betId = bet.betId,
+            betType = bet.betType?.id,
             user = bet.user?.userId,
             amount = bet.amount,
             odds = bet.odds,
