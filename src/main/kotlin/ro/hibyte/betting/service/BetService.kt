@@ -1,26 +1,21 @@
 package ro.hibyte.betting.service
 
 import jakarta.transaction.Transactional
-import ro.hibyte.betting.repository.BetRepository
-
 import org.springframework.stereotype.Service
 import ro.hibyte.betting.dto.BetDTO
-import ro.hibyte.betting.dto.UserProfileDTO
 import ro.hibyte.betting.entity.Bet
 import ro.hibyte.betting.entity.BetTemplateType
 import ro.hibyte.betting.entity.UserProfile
+import ro.hibyte.betting.repository.BetRepository
 import ro.hibyte.betting.repository.BetTypeRepository
-import ro.hibyte.betting.repository.EventRepository
 import ro.hibyte.betting.repository.UserProfileRepository
 import kotlin.math.ceil
-import kotlin.math.roundToInt
 
 @Service
 class BetService(
     private val betRepository: BetRepository,
     private val betTypeRepository: BetTypeRepository,
     private val userProfileRepository: UserProfileRepository,
-    private val userProfileService: UserProfileService,
 ) {
 
     fun getAll(): List<Bet> = betRepository.findAll()
@@ -50,19 +45,6 @@ class BetService(
 
         throw IllegalArgumentException("BetType with id ${betDto.betType} is not a multiple choice bet type")
     }
-
-    fun addBetForEvent(betDTO: BetDTO, userProfileDTO: UserProfileDTO) {
-        userProfileService.createUserProfileIfNonExistent(userProfileDTO)
-    }
-
-
-//    fun update(dtoBet: BetDTO): Bet {
-//        val bet = betRepository.findById(dtoBet.betId!!).orElseThrow {
-//            NoSuchElementException("Bet not found with betId: ${dtoBet.betId}")
-//        }
-//        bet.update(dtoBet)
-//        return betRepository.save(bet)
-//    }
 
     @Transactional
     fun delete(betId: Long) {

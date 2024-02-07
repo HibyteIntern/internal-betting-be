@@ -19,7 +19,7 @@ class WebSecurityConfig {
             .authorizeHttpRequests {
                 it.requestMatchers(HttpMethod.OPTIONS).permitAll()
                 it.anyRequest().permitAll()
-//                    .anyRequest().authenticated()
+                    .anyRequest().authenticated()
             }
             .oauth2ResourceServer { oauth2 ->
                 oauth2.jwt {

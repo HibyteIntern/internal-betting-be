@@ -2,26 +2,20 @@ package ro.hibyte.betting.service
 
 import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
-import ro.hibyte.betting.dto.BetDTO
 import ro.hibyte.betting.dto.EventDTO
 import ro.hibyte.betting.dto.ResolveOutcomeDTO
-import ro.hibyte.betting.dto.UserProfileDTO
 import ro.hibyte.betting.entity.Event
 import ro.hibyte.betting.entity.Status
-import ro.hibyte.betting.mapper.BetMapper
 import ro.hibyte.betting.mapper.EventMapper
 import ro.hibyte.betting.repository.EventRepository
 import java.sql.Timestamp
-import kotlin.RuntimeException
 
 @Service
 class EventService(
     private val eventRepository: EventRepository,
     private val eventMapper: EventMapper,
     private val betTypeService: BetTypeService,
-    private val betMapper: BetMapper,
-    private val betService: BetService,
-    private val userProfileService: UserProfileService
+    private val betService: BetService
 ) {
     fun addEvent(eventRequest: EventDTO) {
         val event: Event = eventMapper.mapEventRequestToEvent(eventRequest)
@@ -35,7 +29,7 @@ class EventService(
         existingEvent.description = updatedEvent.description?:""
         existingEvent.tags = Regex("#\\w+").findAll(updatedEvent.description?:"")
             .map { it.value }
-            .toMutableList();
+            .toMutableList()
         existingEvent.startsAt = Timestamp.from(updatedEvent.startsAt)
         existingEvent.endsAt = Timestamp.from(updatedEvent.endsAt)
         existingEvent.status = updatedEvent.status?:Status.DRAFT
@@ -84,22 +78,5 @@ class EventService(
         return eventRepository.saveAll(events.map{eventMapper.mapEventRequestToEvent(it)})
             .map { eventMapper.mapEventToEventResponse(it) }
     }
-
-//    fun processBets(eventId: Long) {
-//        val event = eventRepository.findById(eventId).orElseThrow { RuntimeException("no such event found") }
-//
-//        event.bets.forEach { bet ->
-//            event.betTypes
-//                .find { betType -> betType.id == bet.betType?.id }
-//                .ifPresent { matchedBetType ->
-//                    if (matchedBetType.finalOutcome == bet.value) {
-//                        val amount = bet.amount.toDouble()
-//                        val odds = bet.odds
-//                        val winnings = amount * odds
-//                        bet.user?.coins = (bet.user?.coins?.toDouble() ?: 0.0) + winnings
-//                    }
-//                }
-//        }
-//    }
 }
 

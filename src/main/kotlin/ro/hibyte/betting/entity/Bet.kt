@@ -2,8 +2,6 @@ package ro.hibyte.betting.entity
 
 import jakarta.persistence.*
 import ro.hibyte.betting.dto.BetDTO
-import ro.hibyte.betting.service.BetTypeService
-import ro.hibyte.betting.service.EventService
 
 @Entity
 data class Bet(
@@ -31,12 +29,5 @@ data class Bet(
         odds = betType?.betTemplate?.multipleChoiceOptions?.indexOf(betDto.value)?.let { (betType.odds[it]) } ?: 0.0,
         value = betDto.value,
     )
-
-//    fun update(dtoBet: BetDTO){
-//        amount = dtoBet.amount
-//        odds = dtoBet.odds
-//        value = dtoBet.value
-//
-//    }
 }
 
