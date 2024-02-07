@@ -14,20 +14,17 @@ import ro.hibyte.betting.service.UserGroupService
 class UserGroupController (private val userGroupService: UserGroupService){
 
     @GetMapping
-    fun getAll(): List<FullUserGroupDto> =
-        userGroupService.getAll().map{ FullUserGroupDto(it) }
+    fun getAll(): List<FullUserGroupDto> = userGroupService.getAll()
 
     @GetMapping("/{id}")
-    fun getOne(@PathVariable id: Long): FullUserGroupDto =
-        FullUserGroupDto(userGroupService.getOne(id))
+    fun getOne(@PathVariable id: Long): FullUserGroupDto = userGroupService.getOne(id)
 
     @PostMapping
     fun create(@RequestBody userGroupDto: UserGroupDto) : ResponseEntity<UserGroupDto> =
         ResponseEntity(userGroupService.create(userGroupDto), HttpStatus.CREATED)
 
     @PutMapping("/{id}")
-    fun update(@PathVariable id: Long, @RequestBody userGroupDto: FullUserGroupDto): FullUserGroupDto =
-        FullUserGroupDto(userGroupService.update(id, userGroupDto))
+    fun update(@PathVariable id: Long, @RequestBody userGroupDto: FullUserGroupDto): FullUserGroupDto = userGroupService.update(id, userGroupDto)
 
     @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Long): ResponseEntity<Unit> =

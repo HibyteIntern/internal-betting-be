@@ -5,8 +5,8 @@ import ro.hibyte.betting.dto.BetDTO
 import ro.hibyte.betting.dto.CompleteBetTypeDto
 import ro.hibyte.betting.dto.EventDTO
 import ro.hibyte.betting.entity.*
+import ro.hibyte.betting.repository.UserGroupRepository
 import ro.hibyte.betting.service.BetTypeService
-import ro.hibyte.betting.service.UserGroupService
 import ro.hibyte.betting.service.UserProfileService
 import java.sql.Timestamp
 import java.util.stream.Collectors
@@ -17,7 +17,7 @@ class EventMapper(
     private val userProfileService: UserProfileService,
     private val betMapper: BetMapper,
     private val betTypeService: BetTypeService,
-    private val userGroupService: UserGroupService
+    private val userGroupRepository: UserGroupRepository
 ) {
     fun mapEventRequestToEvent(eventRequest: EventDTO): Event {
         val defaultTimestamp = Timestamp(System.currentTimeMillis())
@@ -39,7 +39,7 @@ class EventMapper(
         val userGroupIds: Set<Long> = eventRequest.userGroupIds?: emptySet()
 
         val usersFromGroups: Set<UserProfile> = userGroupIds
-            .mapNotNull { it?.let { userGroupService.getOne(it)} }
+            .mapNotNull { it.let { userGroupRepository.findById(it).orElse(null)} }
             .toSet()
             .flatMap { it.users.orEmpty() }
             .toSet()
@@ -99,6 +99,6 @@ class EventMapper(
     }
 
     fun mapToTags(event: Event): List<String> {
-        return event.tags;
+        return event.tags
     }
 }
