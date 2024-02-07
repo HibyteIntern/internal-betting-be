@@ -57,8 +57,6 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
         return waspService.getPhotoFromWasp(photoId)
     }
 
-    fun getId(userProfile: UserProfile): Long? = userProfile.userId
-
     fun createUserProfileIfNonExistent(userProfileDTO: UserProfileDTO): UserProfile{
         val userId: Long = userProfileDTO.userId?:0
         var userProfile = userProfileRepository.findById(userId)

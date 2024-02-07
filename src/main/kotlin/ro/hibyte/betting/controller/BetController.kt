@@ -22,17 +22,19 @@ class BetController(private val betService: BetService, private val userProfileS
         return BetDTO(bet)
     }
 
-    @PostMapping("/{userId}")
-    fun create(@PathVariable userId: Long, @RequestBody betDto: BetDTO): BetDTO {
-        var userProfile = userProfileService.get(userId!!)
+    @PostMapping
+    fun create(@RequestBody betDto: BetDTO): BetDTO {
+        val userProfile = userProfileService.get(betDto.user!!)
         val bet = betService.create(betDto, userProfile)
         return BetDTO(bet)
     }
 
-    @PutMapping("/{betId}")
-    fun update(@PathVariable betId: Long, @RequestBody betDto: BetDTO): BetDTO {
-        val bet = betService.update(betDto)
-        return BetDTO(bet)
+    @PostMapping("/many")
+    fun createMany(@RequestBody betsDto: List<BetDTO>): List<BetDTO> {
+        val bets = betsDto.mapNotNull { betDTO ->
+            betDTO.user?.let { userProfileService.get(it) }?.let { betService.create(betDTO, it) }
+        }
+        return bets.map { BetDTO(it) }
     }
 
     @DeleteMapping("/{betId}")

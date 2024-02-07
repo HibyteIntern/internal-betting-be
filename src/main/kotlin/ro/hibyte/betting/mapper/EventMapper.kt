@@ -14,9 +14,13 @@ import java.sql.Timestamp
 import java.util.stream.Collectors
 
 @Component
-class EventMapper(private val betTypeMapper: BetTypeMapper, private val userProfileService: UserProfileService,
-    private val betMapper: BetMapper) {
-    fun mapEventRequestToEvent(eventRequest: EventDTO, betTypeService: BetTypeService): Event {
+class EventMapper(
+    private val betTypeMapper: BetTypeMapper,
+    private val userProfileService: UserProfileService,
+    private val betMapper: BetMapper,
+    private val betTypeService: BetTypeService
+) {
+    fun mapEventRequestToEvent(eventRequest: EventDTO): Event {
         val defaultUserGroups = emptyList<String>()
         val defaultTimestamp = Timestamp(System.currentTimeMillis())
         // Extract words starting with '#' from the description to populate tags
@@ -38,9 +42,8 @@ class EventMapper(private val betTypeMapper: BetTypeMapper, private val userProf
             ?.mapNotNull { it?.let { userProfileService.get(it) } }
             ?: emptyList()
 
-        val userProfiles: List<Long?> = users.stream()
-            .map(userProfileService::getId)
-            .collect(Collectors.toList())
+        val userProfiles: List<Long?> = users.map { it.userId }
+
         return Event(
             name = eventRequest.name?: "",
             description = eventRequest.description?:"",
@@ -48,7 +51,6 @@ class EventMapper(private val betTypeMapper: BetTypeMapper, private val userProf
             creator = eventRequest.creator?:"",
             tags = tags?: emptyList(),
             users = users,
-            bets = arrayListOf(),
             userGroups = defaultUserGroups,
             userProfiles = userProfiles,
             created = defaultTimestamp,
@@ -63,9 +65,7 @@ class EventMapper(private val betTypeMapper: BetTypeMapper, private val userProf
             .map(betTypeMapper::betTypeToCompleteBetTypeDto)
             .collect(Collectors.toList())
 
-        val betList:List<BetDTO> = event.bets.stream()
-            .map(betMapper::mapBetToBetDto)
-            .collect(Collectors.toList())
+        val betList:List<BetDTO> = event.betTypes.flatMap { it.bets.map { betMapper.mapBetToBetDto(it) } }
 
         return EventDTO(
             eventId = event.eventId,

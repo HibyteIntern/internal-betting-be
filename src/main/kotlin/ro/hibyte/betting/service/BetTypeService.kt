@@ -49,4 +49,9 @@ class BetTypeService(private val betTypeRepository: BetTypeRepository,
         betTypeRepository.findById(id).orElseThrow{EntityNotFoundException("Event Type", id)}
         betTypeRepository.deleteById(id)
     }
+
+    fun setFinalOutcome(betType: BetType, finalOutcome: String) {
+        betType.finalOutcome = finalOutcome
+        betTypeRepository.save(betType)
+    }
 }

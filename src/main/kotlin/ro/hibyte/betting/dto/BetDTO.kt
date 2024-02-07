@@ -8,7 +8,8 @@ class BetDTO(
     var user: Long? = null,
     var betType: Long? = null,
     val amount: Number,
-    val odds: Double,
+    val odds: Double? = null,
+    val event: Long? = null,
     val value: String,
 ) {
     constructor(bet: Bet): this(

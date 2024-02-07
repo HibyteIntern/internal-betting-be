@@ -63,6 +63,12 @@ class UserProfileController(private val userProfileService: UserProfileService) 
         return UserProfileDTO(userProfile)
     }
 
+    @PostMapping("/many")
+    fun createMany(@RequestBody userProfilesDto: List<UserProfileDTO>) : List<UserProfileDTO>{
+        val userProfiles = userProfilesDto.map { userProfileService.create(it) }
+        return userProfiles.map { UserProfileDTO(it) }
+    }
+
     @PutMapping
     fun update(@RequestBody userProfileDto: UserProfileDTO): UserProfileDTO{
         val userProfile = userProfileService.update(userProfileDto)
