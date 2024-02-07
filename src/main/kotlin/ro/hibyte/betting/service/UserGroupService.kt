@@ -2,8 +2,8 @@ package ro.hibyte.betting.service
 
 import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
-import ro.hibyte.betting.dto.FullUserGroupDto
-import ro.hibyte.betting.dto.UserGroupDto
+import ro.hibyte.betting.dto.FullUserGroupDTO
+import ro.hibyte.betting.dto.UserGroupDTO
 import ro.hibyte.betting.entity.UserGroup
 import ro.hibyte.betting.repository.UserGroupRepository
 import ro.hibyte.betting.repository.UserProfileRepository
@@ -16,11 +16,11 @@ class UserGroupService(
     private val userProfileService: UserProfileService
 ) {
 
-    fun getAll(): List<FullUserGroupDto> = userGroupRepository.findAll().map { FullUserGroupDto(it) }
+    fun getAll(): List<FullUserGroupDTO> = userGroupRepository.findAll().map { FullUserGroupDTO(it) }
 
-    fun getOne(id: Long): FullUserGroupDto =
+    fun getOne(id: Long): FullUserGroupDTO =
         userGroupRepository.findById(id)
-            .map { FullUserGroupDto(it) }
+            .map { FullUserGroupDTO(it) }
             .orElseThrow {
             NoSuchElementException("User Group with id $id was not found")
         }
@@ -32,15 +32,15 @@ class UserGroupService(
         userGroupRepository.deleteById(id)
     }
 
-    fun update(id:Long, userGroupDto: FullUserGroupDto): FullUserGroupDto {
+    fun update(id:Long, userGroupDto: FullUserGroupDTO): FullUserGroupDTO {
         val existingUserGroup = userGroupRepository.findById(id).orElseThrow {
             NoSuchElementException("User Group not found with id: ${userGroupDto.userGroupId}")
         }
         existingUserGroup.update(userGroupDto)
-        return FullUserGroupDto(userGroupRepository.save(existingUserGroup))
+        return FullUserGroupDTO(userGroupRepository.save(existingUserGroup))
     }
 
-    fun create(userGroupDto: UserGroupDto): UserGroupDto {
+    fun create(userGroupDto: UserGroupDTO): UserGroupDTO {
         try {
             val userProfiles = userGroupDto.users?.mapNotNull { userId ->
                 userProfileService.findById(userId)
@@ -56,7 +56,7 @@ class UserGroupService(
                 it.groups?.add(userGroup)
                 userProfileRepository.save(it)
             }
-            return UserGroupDto(userGroup)
+            return UserGroupDTO(userGroup)
         } catch (e: Exception) {
             throw RuntimeException("User Group could not be created", e)
         }

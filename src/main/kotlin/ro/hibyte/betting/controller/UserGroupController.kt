@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
-import ro.hibyte.betting.dto.FullUserGroupDto
-import ro.hibyte.betting.dto.UserGroupDto
+import ro.hibyte.betting.dto.FullUserGroupDTO
+import ro.hibyte.betting.dto.UserGroupDTO
 import ro.hibyte.betting.service.UserGroupService
 
 @RestController
@@ -14,17 +14,17 @@ import ro.hibyte.betting.service.UserGroupService
 class UserGroupController (private val userGroupService: UserGroupService){
 
     @GetMapping
-    fun getAll(): List<FullUserGroupDto> = userGroupService.getAll()
+    fun getAll(): List<FullUserGroupDTO> = userGroupService.getAll()
 
     @GetMapping("/{id}")
-    fun getOne(@PathVariable id: Long): FullUserGroupDto = userGroupService.getOne(id)
+    fun getOne(@PathVariable id: Long): FullUserGroupDTO = userGroupService.getOne(id)
 
     @PostMapping
-    fun create(@RequestBody userGroupDto: UserGroupDto) : ResponseEntity<UserGroupDto> =
+    fun create(@RequestBody userGroupDto: UserGroupDTO) : ResponseEntity<UserGroupDTO> =
         ResponseEntity(userGroupService.create(userGroupDto), HttpStatus.CREATED)
 
     @PutMapping("/{id}")
-    fun update(@PathVariable id: Long, @RequestBody userGroupDto: FullUserGroupDto): FullUserGroupDto = userGroupService.update(id, userGroupDto)
+    fun update(@PathVariable id: Long, @RequestBody userGroupDto: FullUserGroupDTO): FullUserGroupDTO = userGroupService.update(id, userGroupDto)
 
     @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Long): ResponseEntity<Unit> =

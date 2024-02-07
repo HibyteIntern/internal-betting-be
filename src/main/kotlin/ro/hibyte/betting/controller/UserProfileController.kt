@@ -7,14 +7,9 @@ import org.springframework.http.ResponseEntity
 import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
-import org.springframework.web.server.ResponseStatusException
-import ro.hibyte.betting.dto.BetDTO
-import ro.hibyte.betting.dto.PrizeDrawEntryDTO
-import ro.hibyte.betting.dto.FullUserProfileDto
+import ro.hibyte.betting.dto.FullUserProfileDTO
 import ro.hibyte.betting.dto.UserProfileDTO
-import ro.hibyte.betting.entity.Bet
 import ro.hibyte.betting.entity.UserProfile
-import ro.hibyte.betting.service.BetService
 import ro.hibyte.betting.service.UserProfileService
 
 
@@ -36,9 +31,9 @@ class UserProfileController(private val userProfileService: UserProfileService) 
     }
 
     @GetMapping("/{userId}/full-dto")
-    fun getOneFull(@PathVariable userId: Long) : FullUserProfileDto{
+    fun getOneFull(@PathVariable userId: Long) : FullUserProfileDTO{
         val userProfile = userProfileService.get(userId)
-        return FullUserProfileDto(userProfile)
+        return FullUserProfileDTO(userProfile)
     }
 
     @GetMapping("/getMe")

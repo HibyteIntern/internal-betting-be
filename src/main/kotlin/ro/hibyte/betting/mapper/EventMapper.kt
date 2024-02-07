@@ -2,7 +2,7 @@ package ro.hibyte.betting.mapper
 
 import org.springframework.stereotype.Component
 import ro.hibyte.betting.dto.BetDTO
-import ro.hibyte.betting.dto.CompleteBetTypeDto
+import ro.hibyte.betting.dto.CompleteBetTypeDTO
 import ro.hibyte.betting.dto.EventDTO
 import ro.hibyte.betting.entity.*
 import ro.hibyte.betting.repository.UserGroupRepository
@@ -28,7 +28,7 @@ class EventMapper(
                 .toList()
         }
 
-        val completeBetTypeDtoList: List<CompleteBetTypeDto>? = eventRequest.completeBetTypeDtoList
+        val completeBetTypeDtoList: List<CompleteBetTypeDTO>? = eventRequest.completeBetTypeDtoList
 
         val betTypes: List<BetType> = completeBetTypeDtoList
             ?.let { dtoList ->
@@ -71,7 +71,7 @@ class EventMapper(
         )
     }
     fun mapEventToEventResponse(event: Event): EventDTO {
-        val completeBetTypeDtoList:List<CompleteBetTypeDto> = event.betTypes.stream()
+        val completeBetTypeDtoList:List<CompleteBetTypeDTO> = event.betTypes.stream()
             .map(betTypeMapper::betTypeToCompleteBetTypeDto)
             .collect(Collectors.toList())
 

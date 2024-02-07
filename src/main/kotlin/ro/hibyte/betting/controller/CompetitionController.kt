@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-import ro.hibyte.betting.dto.CompetitionDto
+import ro.hibyte.betting.dto.CompetitionDTO
 import ro.hibyte.betting.dto.CompetitionRequest
 import ro.hibyte.betting.mapper.CompetitionMapper
 import ro.hibyte.betting.service.CompetitionService
@@ -29,17 +29,17 @@ class CompetitionController {
     private lateinit var competitionMapper: CompetitionMapper
 
     @GetMapping
-    fun getAll(@RequestParam name: String?): List<CompetitionDto> =
+    fun getAll(@RequestParam name: String?): List<CompetitionDTO> =
         name?.let { competitionService.searchByName(name) } ?: competitionService.getAll()
 
     @GetMapping("/{id}")
-    fun getOneById(@PathVariable id: Long): CompetitionDto = competitionMapper.mapCompetitionToCompetitionDto(competitionService.getOne(id))
+    fun getOneById(@PathVariable id: Long): CompetitionDTO = competitionMapper.mapCompetitionToCompetitionDto(competitionService.getOne(id))
 
     @PostMapping
-    fun create(@RequestBody dto: CompetitionRequest): ResponseEntity<CompetitionDto> = ResponseEntity(competitionMapper.mapCompetitionToCompetitionDto(competitionService.create(dto)), HttpStatus.CREATED)
+    fun create(@RequestBody dto: CompetitionRequest): ResponseEntity<CompetitionDTO> = ResponseEntity(competitionMapper.mapCompetitionToCompetitionDto(competitionService.create(dto)), HttpStatus.CREATED)
 
     @PutMapping("/{id}")
-    fun update(@PathVariable id: Long, @RequestBody dto: CompetitionRequest): ResponseEntity<CompetitionDto> = ResponseEntity(competitionMapper.mapCompetitionToCompetitionDto(competitionService.update(id, dto)), HttpStatus.OK)
+    fun update(@PathVariable id: Long, @RequestBody dto: CompetitionRequest): ResponseEntity<CompetitionDTO> = ResponseEntity(competitionMapper.mapCompetitionToCompetitionDto(competitionService.update(id, dto)), HttpStatus.OK)
 
     @DeleteMapping("/{id}")
     fun deleteOne(@PathVariable id: Long): ResponseEntity<Void> {

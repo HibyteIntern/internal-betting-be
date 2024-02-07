@@ -3,7 +3,7 @@ package ro.hibyte.betting.dto
 
 import ro.hibyte.betting.entity.UserGroup
 
-data class FullUserGroupDto (
+data class FullUserGroupDTO (
     val userGroupId: Long?,
     val groupName: String?,
     var profilePicture: Long?,
