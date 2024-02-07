@@ -18,7 +18,7 @@ data class UserProfileDTO(
         profilePicture = userProfile.profilePicture,
         description = userProfile.description,
         coins = userProfile.coins,
-        groups = userProfile.groups?.map{it.userGroupId}?.toMutableSet(),
+        groups = userProfile.groups?.mapNotNull{it.userGroupId}?.toMutableSet(),
         username = userProfile.username,
         bets = userProfile.bets?.map { BetDTO(it) }?.toMutableList()
     )

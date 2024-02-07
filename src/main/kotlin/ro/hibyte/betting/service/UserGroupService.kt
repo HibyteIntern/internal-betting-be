@@ -3,6 +3,7 @@ package ro.hibyte.betting.service
 import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
 import ro.hibyte.betting.dto.FullUserGroupDto
+import ro.hibyte.betting.dto.UserGroupDto
 import ro.hibyte.betting.entity.UserGroup
 import ro.hibyte.betting.repository.UserGroupRepository
 import ro.hibyte.betting.repository.UserProfileRepository
@@ -11,7 +12,8 @@ import ro.hibyte.betting.repository.UserProfileRepository
 class UserGroupService(
     private val userGroupRepository: UserGroupRepository,
     private val waspService: WaspService,
-    private val userProfileRepository: UserProfileRepository
+    private val userProfileRepository: UserProfileRepository,
+    private val userProfileService: UserProfileService
 ) {
 
     fun getAll(): List<UserGroup> = userGroupRepository.findAll()
@@ -36,17 +38,25 @@ class UserGroupService(
         return userGroupRepository.save(existingUserGroup)
     }
 
-    fun create(userGroupDto: FullUserGroupDto): UserGroup {
+    fun create(userGroupDto: UserGroupDto): UserGroupDto {
         try {
-            val userGroup = UserGroup(userGroupDto)
-            userGroupRepository.save(userGroup)
-            userGroup.users?.forEach { userProfile ->
-                userProfile.groups?.add(userGroup)
-                userProfileRepository.save(userProfile)
+            val userProfiles = userGroupDto.users?.mapNotNull { userId ->
+                userProfileService.findById(userId)
             }
-            return userGroupRepository.save(userGroup)
+            val userGroup = UserGroup(
+                groupName = userGroupDto.groupName,
+                description = userGroupDto.description,
+                users = userProfiles?.toMutableSet()
+            ).let{
+                userGroupRepository.save(it)
+            }
+            userProfiles?.forEach {
+                it.groups?.add(userGroup)
+                userProfileRepository.save(it)
+            }
+            return UserGroupDto(userGroup)
         } catch (e: Exception) {
-            throw RuntimeException("User Group could not be created")
+            throw RuntimeException("User Group could not be created", e)
         }
     }
 

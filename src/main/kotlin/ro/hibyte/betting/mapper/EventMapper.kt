@@ -4,11 +4,9 @@ import org.springframework.stereotype.Component
 import ro.hibyte.betting.dto.BetDTO
 import ro.hibyte.betting.dto.CompleteBetTypeDto
 import ro.hibyte.betting.dto.EventDTO
-import ro.hibyte.betting.entity.BetType
-import ro.hibyte.betting.entity.Event
-import ro.hibyte.betting.entity.Status
-import ro.hibyte.betting.entity.UserProfile
+import ro.hibyte.betting.entity.*
 import ro.hibyte.betting.service.BetTypeService
+import ro.hibyte.betting.service.UserGroupService
 import ro.hibyte.betting.service.UserProfileService
 import java.sql.Timestamp
 import java.util.stream.Collectors
@@ -18,10 +16,10 @@ class EventMapper(
     private val betTypeMapper: BetTypeMapper,
     private val userProfileService: UserProfileService,
     private val betMapper: BetMapper,
-    private val betTypeService: BetTypeService
+    private val betTypeService: BetTypeService,
+    private val userGroupService: UserGroupService
 ) {
     fun mapEventRequestToEvent(eventRequest: EventDTO): Event {
-        val defaultUserGroups = emptyList<String>()
         val defaultTimestamp = Timestamp(System.currentTimeMillis())
         // Extract words starting with '#' from the description to populate tags
         val tags = eventRequest.description?.let {
@@ -38,11 +36,23 @@ class EventMapper(
             }
             ?: emptyList()
 
-        val users: List<UserProfile> = eventRequest.userProfiles
-            ?.mapNotNull { it?.let { userProfileService.get(it) } }
-            ?: emptyList()
+        val userGroupIds: Set<Long> = eventRequest.userGroupIds?: emptySet()
 
-        val userProfiles: List<Long?> = users.map { it.userId }
+        val usersFromGroups: Set<UserProfile> = userGroupIds
+            .mapNotNull { it?.let { userGroupService.getOne(it)} }
+            .toSet()
+            .flatMap { it.users.orEmpty() }
+            .toSet()
+
+
+        val users: Set<UserProfile> = eventRequest.userProfileIds
+            ?.mapNotNull { it?.let { userProfileService.findById(it) } }
+            ?.toSet()
+            ?: emptySet()
+
+        val userProfileIds: Set<Long?> = users.map { it.userId }.toSet()
+
+        val allUsers: Set<UserProfile> = usersFromGroups + users
 
         return Event(
             name = eventRequest.name?: "",
@@ -50,9 +60,9 @@ class EventMapper(
             betTypes = betTypes,
             creator = eventRequest.creator?:"",
             tags = tags?: emptyList(),
-            users = users,
-            userGroups = defaultUserGroups,
-            userProfiles = userProfiles,
+            userProfiles = allUsers,
+            userGroupIds = userGroupIds,
+            userProfileIds = userProfileIds,
             created = defaultTimestamp,
             lastModified = defaultTimestamp,
             startsAt = Timestamp.from(eventRequest.startsAt),
@@ -67,6 +77,8 @@ class EventMapper(
 
         val betList:List<BetDTO> = event.betTypes.flatMap { it.bets.map { betMapper.mapBetToBetDto(it) } }
 
+        val allUsers: Set<Long?> = event.userProfiles.map { it.userId }.toSet()
+
         return EventDTO(
             eventId = event.eventId,
             name = event.name,
@@ -74,8 +86,9 @@ class EventMapper(
             creator = event.creator,
             tags = event.tags,
             completeBetTypeDtoList = completeBetTypeDtoList,
-            userGroups = event.userGroups,
-            userProfiles = event.userProfiles,
+            userProfiles = allUsers,
+            userGroupIds = event.userGroupIds,
+            userProfileIds = event.userProfileIds,
             created = event.created.toInstant(),
             lastModified = event.lastModified.toInstant(),
             startsAt = event.startsAt.toInstant(),

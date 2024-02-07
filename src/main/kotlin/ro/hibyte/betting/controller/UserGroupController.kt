@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
 import ro.hibyte.betting.dto.FullUserGroupDto
+import ro.hibyte.betting.dto.UserGroupDto
 import ro.hibyte.betting.service.UserGroupService
 
 @RestController
@@ -21,8 +22,8 @@ class UserGroupController (private val userGroupService: UserGroupService){
         FullUserGroupDto(userGroupService.getOne(id))
 
     @PostMapping
-    fun create(@RequestBody userGroupDto: FullUserGroupDto) : ResponseEntity<FullUserGroupDto> =
-        ResponseEntity(FullUserGroupDto(userGroupService.create(userGroupDto)), HttpStatus.CREATED)
+    fun create(@RequestBody userGroupDto: UserGroupDto) : ResponseEntity<UserGroupDto> =
+        ResponseEntity(userGroupService.create(userGroupDto), HttpStatus.CREATED)
 
     @PutMapping("/{id}")
     fun update(@PathVariable id: Long, @RequestBody userGroupDto: FullUserGroupDto): FullUserGroupDto =

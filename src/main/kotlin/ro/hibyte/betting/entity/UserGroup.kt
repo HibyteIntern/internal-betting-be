@@ -8,9 +8,9 @@ import ro.hibyte.betting.dto.FullUserGroupDto
 class UserGroup(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val userGroupId: Long,
+    val userGroupId: Long? = 0,
     var groupName: String?,
-    var profilePicture: Long?,
+    var profilePicture: Long? = 0,
     var description: String?,
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -22,13 +22,6 @@ class UserGroup(
     )
     var users: MutableSet<UserProfile>?
 ){
-    constructor(dto: FullUserGroupDto): this(
-        userGroupId = dto.userGroupId,
-        groupName = dto.groupName,
-        profilePicture = dto.profilePicture,
-        description = dto.description,
-        users = dto.users?.map { UserProfile(it) }?.toMutableSet()
-    )
     fun update(userGroupDto: FullUserGroupDto){
         userGroupDto.groupName?.let { groupName = it }
         userGroupDto.profilePicture?.let { profilePicture = it }
