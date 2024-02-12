@@ -88,6 +88,25 @@ class UserProfileController(private val userProfileService: UserProfileService) 
         }
     }
 
+    @GetMapping("/getPhoto/{userId}")
+    fun getPhotoById(@PathVariable userId: Long): ResponseEntity<ByteArray> {
+        return try {
+            val userProfile = userProfileService.get(userId)
+            val photo: ByteArray? = userProfile?.userId?.let { userProfileService.getPhoto(it) }
+            if (photo != null) {
+                ResponseEntity.ok()
+                    .contentType(MediaType.IMAGE_JPEG)
+                    .body(photo)
+            } else {
+                ResponseEntity.notFound().build()
+            }
+        } catch (e: IllegalArgumentException) {
+            ResponseEntity.badRequest().build()
+        } catch (e: Exception) {
+            ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
+        }
+    }
+
     @GetMapping("/isUsernameTaken")
     fun isUsernameTaken(@RequestParam username: String, authentication: Authentication): ResponseEntity<Boolean> {
         val userProfile = userProfileService.getByKeycloakId(authentication.name)
