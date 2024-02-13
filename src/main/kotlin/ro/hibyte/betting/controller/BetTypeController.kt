@@ -19,6 +19,7 @@ import ro.hibyte.betting.service.BetTypeService
 @CrossOrigin(origins = ["http://localhost:4200"])
 class BetTypeController(private val betTypeService: BetTypeService) {
 
+
     @PostMapping
     fun create(@RequestBody completeBet: CompleteBetTypeDto): ResponseEntity<CompleteBetTypeDto> =
         ResponseEntity(
