@@ -49,6 +49,9 @@ jobs:
         id: extract_tag
         run: echo "##[set-output name=tag;]$(echo ${GITHUB_REF#refs/tags/})"
 
+      - name: test
+        run: echo ${{ secrets.HIBYTE_NEXUS_USER }}
+
       - name: Login to Docker Hub
         run: docker login docker.hq-hydra.hibyte.ro -u ${{ secrets.HIBYTE_NEXUS_USER }} -p ${{ secrets.HIBYTE_NEXUS_PASSWORD }} # same credentials :D
 
