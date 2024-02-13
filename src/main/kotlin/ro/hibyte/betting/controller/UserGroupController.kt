@@ -16,15 +16,19 @@ class UserGroupController (private val userGroupService: UserGroupService){
     @GetMapping
     fun getAll(): List<FullUserGroupDTO> = userGroupService.getAll()
 
+    @GetMapping("/{id}/full")
+    fun getOneFull(@PathVariable id: Long): FullUserGroupDTO = userGroupService.getOneFull(id)
+
     @GetMapping("/{id}")
-    fun getOne(@PathVariable id: Long): FullUserGroupDTO = userGroupService.getOne(id)
+    fun getOne(@PathVariable id: Long): UserGroupDTO = userGroupService.getOne(id)
 
     @PostMapping
     fun create(@RequestBody userGroupDto: UserGroupDTO) : ResponseEntity<UserGroupDTO> =
         ResponseEntity(userGroupService.create(userGroupDto), HttpStatus.CREATED)
 
     @PutMapping("/{id}")
-    fun update(@PathVariable id: Long, @RequestBody userGroupDto: FullUserGroupDTO): FullUserGroupDTO = userGroupService.update(id, userGroupDto)
+    fun update(@PathVariable id: Long, @RequestBody userGroupDto: UserGroupDTO): UserGroupDTO =
+        userGroupService.update(id, userGroupDto)
 
     @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Long): ResponseEntity<Unit> =

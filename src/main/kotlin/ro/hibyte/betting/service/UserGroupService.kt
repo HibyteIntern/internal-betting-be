@@ -18,9 +18,16 @@ class UserGroupService(
 
     fun getAll(): List<FullUserGroupDTO> = userGroupRepository.findAll().map { FullUserGroupDTO(it) }
 
-    fun getOne(id: Long): FullUserGroupDTO =
+    fun getOneFull(id: Long): FullUserGroupDTO =
         userGroupRepository.findById(id)
             .map { FullUserGroupDTO(it) }
+            .orElseThrow {
+            NoSuchElementException("User Group with id $id was not found")
+        }
+
+    fun getOne(id: Long): UserGroupDTO =
+        userGroupRepository.findById(id)
+            .map { UserGroupDTO(it) }
             .orElseThrow {
             NoSuchElementException("User Group with id $id was not found")
         }
@@ -32,12 +39,12 @@ class UserGroupService(
         userGroupRepository.deleteById(id)
     }
 
-    fun update(id:Long, userGroupDto: FullUserGroupDTO): FullUserGroupDTO {
+    fun update(id:Long, userGroupDto: UserGroupDTO): UserGroupDTO {
         val existingUserGroup = userGroupRepository.findById(id).orElseThrow {
             NoSuchElementException("User Group not found with id: ${userGroupDto.userGroupId}")
         }
         existingUserGroup.update(userGroupDto)
-        return FullUserGroupDTO(userGroupRepository.save(existingUserGroup))
+        return UserGroupDTO(userGroupRepository.save(existingUserGroup))
     }
 
     fun create(userGroupDto: UserGroupDTO): UserGroupDTO {
