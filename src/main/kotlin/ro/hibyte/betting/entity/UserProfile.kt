@@ -11,13 +11,13 @@ data class UserProfile(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var userId: Long? = null,
+    var userId: Long? = 0,
     var keycloakId: String? = null,
     var username: String? = null,
     var profilePicture: Long? = null,
     var description: String? = null,
 
-    @OneToMany(cascade = [CascadeType.ALL], mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(cascade = [CascadeType.ALL], mappedBy = "user", fetch = FetchType.LAZY)
     var bets: MutableList<Bet>? = null,
 
     var coins: Number = 50,

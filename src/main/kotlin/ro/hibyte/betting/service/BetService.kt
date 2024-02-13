@@ -1,18 +1,21 @@
 package ro.hibyte.betting.service
 
-import ro.hibyte.betting.repository.BetRepository
-
+import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 import ro.hibyte.betting.dto.BetDTO
 import ro.hibyte.betting.entity.Bet
+import ro.hibyte.betting.entity.BetTemplateType
 import ro.hibyte.betting.entity.UserProfile
+import ro.hibyte.betting.repository.BetRepository
 import ro.hibyte.betting.repository.BetTypeRepository
-import ro.hibyte.betting.repository.EventRepository
 import ro.hibyte.betting.repository.UserProfileRepository
+import kotlin.math.ceil
 
 @Service
-class BetService(private val betRepository: BetRepository,
-                 private val betTypeRepository: BetTypeRepository
+class BetService(
+    private val betRepository: BetRepository,
+    private val betTypeRepository: BetTypeRepository,
+    private val userProfileRepository: UserProfileRepository,
 ) {
 
     fun getAll(): List<Bet> = betRepository.findAll()
@@ -25,27 +28,38 @@ class BetService(private val betRepository: BetRepository,
 
     fun create(betDto: BetDTO, userProfile: UserProfile): Bet {
         val betType = betDto.betType?.let { betTypeRepository.findById(it).orElse(null) }
-        val bet = Bet(betDto, betType)
-        bet.user = userProfile
-        return betRepository.save(bet)
+        if (betType?.betTemplate?.type == BetTemplateType.MULTIPLE_CHOICE) {
+            val bet = Bet(betDto, betType)
+            bet.user = userProfile
 
-    }
+            val savedBet = betRepository.save(bet)
 
-    fun update(dtoBet: BetDTO): Bet {
-        val bet = betRepository.findById(dtoBet.betId!!).orElseThrow {
-            NoSuchElementException("Bet not found with betId: ${dtoBet.betId}")
+            betType.bets.add(bet)
+            betTypeRepository.save(betType)
+
+            userProfile.coins = userProfile.coins.toInt() - bet.amount.toInt()
+            userProfileRepository.save(userProfile)
+
+            return savedBet
         }
-        bet.update(dtoBet)
-        return betRepository.save(bet)
+
+        throw IllegalArgumentException("BetType with id ${betDto.betType} is not a multiple choice bet type")
     }
 
+    @Transactional
     fun delete(betId: Long) {
-        if (betRepository.existsById(betId)) {
-            betRepository.deleteById(betId)
-        } else {
-            throw NoSuchElementException("Bet not found with betId: $betId")
+        val bet =  betRepository.findById(betId).orElseThrow {
+            NoSuchElementException("Bet not found with betId: $betId")
         }
+
+        betRepository.delete(bet)
     }
 
+    fun processBet(bet: Bet) {
+        if (bet.value == bet.betType?.finalOutcome) {
+            bet.user?.coins = (bet.user?.coins?.toInt() ?: 0) + (ceil(bet.amount.toDouble() * bet.odds))
+            userProfileRepository.save(bet.user!!)
+        }
+    }
 }
 

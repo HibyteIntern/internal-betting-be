@@ -14,12 +14,9 @@ data class Event(
     var template: String = "",
     @ElementCollection
     var tags: List<String> = emptyList(),
-    @OneToMany
+    @OneToMany(cascade = [CascadeType.ALL])
     @JoinColumn(name = "eventId")
     var betTypes: List<BetType> = emptyList(),
-    @OneToMany
-    @JoinColumn(name = "eventId")
-    var bets: MutableList<Bet> = arrayListOf(),
     @OneToMany
     @JoinColumn(name = "eventId")
     var users: List<UserProfile> = emptyList(),

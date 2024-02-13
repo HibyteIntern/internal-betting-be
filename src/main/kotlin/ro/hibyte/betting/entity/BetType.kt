@@ -13,6 +13,14 @@ data class BetType (
     @JoinColumn(name = "bet_template_id")
     var betTemplate: BetTemplate,
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    @JoinColumn(name = "bet_template_id")
+    var bets: MutableList<Bet> = mutableListOf(),
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "eventId")
+    var event: Event? = null,
+
     @ElementCollection
     @CollectionTable(name = "bet_type_odds", joinColumns = [JoinColumn(name = "bet_type_id")])
     @Column(name = "odds")

@@ -1,41 +1,70 @@
 package ro.hibyte.betting.service
 
+import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
+import ro.hibyte.betting.dto.LeaderboardConfig
 import ro.hibyte.betting.dto.LeaderboardDTO
-import ro.hibyte.betting.dto.UserProfileDTO
+import ro.hibyte.betting.dto.LeaderboardRequest
+import ro.hibyte.betting.entity.Leaderboard
+import ro.hibyte.betting.exceptions.types.EntityNotFoundException
 import ro.hibyte.betting.repository.EventRepository
+import ro.hibyte.betting.repository.LeaderboardRepository
 import ro.hibyte.betting.repository.UserProfileRepository
-import java.sql.Timestamp
-
 
 @Service
 class LeaderboardService(
+    private val leaderboardRepository: LeaderboardRepository,
     private val eventRepository: EventRepository,
+    private val userProfileRepository: UserProfileRepository
 ) {
-    fun createLeaderboard(leaderboardDTO: LeaderboardDTO): LeaderboardDTO {
-        val events = eventRepository.findByStartsAtGreaterThanEqualAndEndsAtLessThanEqual(
-            Timestamp.from(leaderboardDTO.startDate),
-            Timestamp.from(leaderboardDTO.endDate)
+
+    fun createLeaderboard(request: LeaderboardConfig): LeaderboardConfig {
+        val leaderboard = Leaderboard(
+            name = request.name,
+            events = if (request.events.isNotEmpty()) eventRepository.findAllByEventIdIn(request.events).toSet()
+            else eventRepository.findAll().toSet(),
+            userProfiles = if (request.userProfiles.isNotEmpty()) userProfileRepository.findAllByUserIdIn(request.userProfiles)
+                .toSet()
+            else userProfileRepository.findAll().toSet()
         )
-
-        // Filter events to include only those with users in the leaderboard
-        val filteredEvents = events.filter { event ->
-            event.users.any { user -> leaderboardDTO.usersInLeaderboard?.contains(user.username) == true }
+        return leaderboardRepository.save(leaderboard).let {
+            LeaderboardConfig(
+                id = it.id,
+                name = it.name,
+                events = it.events.map { event -> event.eventId },
+                userProfiles = it.userProfiles.map { userProfile -> userProfile.userId!! }
+            )
         }
+    }
 
-        val leaderboardSorted = filteredEvents.flatMap { event ->
-            event.users.map { user ->
-                UserProfileDTO(username = user.username, userId = user.userId, keycloakId = user.keycloakId,
-                    profilePicture = user.profilePicture, description = user.description, coins = user.coins
-                )
-            }
-        }
+    fun computeLeaderboard(leaderboardRequest: LeaderboardRequest): LeaderboardDTO {
+        val leaderboard = leaderboardRepository.findById(leaderboardRequest.leaderboardId)
+            .orElseThrow { EntityNotFoundException("Leaderboard", leaderboardRequest.leaderboardId) }
+        val events = leaderboard.events
+        val users = leaderboard.userProfiles
+
+        // compute leaderboard according to metrics from request
 
         return LeaderboardDTO(
-            startDate = leaderboardDTO.startDate,
-            endDate = leaderboardDTO.endDate,
-            usersInLeaderboard = leaderboardDTO.usersInLeaderboard,
-            leaderboardSorted = leaderboardSorted
+            id = leaderboard.id,
+            name = leaderboard.name,
+            // somehow the users with all their metrics scores and sorted by the desired metric
         )
+    }
+
+    fun getAllLeaderboardConfigs(): List<LeaderboardConfig> {
+        return leaderboardRepository.findAll().map {
+            LeaderboardConfig(
+                id = it.id,
+                name = it.name,
+                events = it.events.map { event -> event.eventId },
+                userProfiles = it.userProfiles.map { userProfile -> userProfile.userId!! }
+            )
+        }
+    }
+
+    @Transactional
+    fun deleteLeaderboard(id: Long) {
+        leaderboardRepository.deleteById(id)
     }
 }
