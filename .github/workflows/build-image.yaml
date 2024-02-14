@@ -68,3 +68,4 @@ jobs:
           image_name=hibet-be
           docker tag $image_name:latest $REPO/$image_name:$version_tag
           docker push $REPO/$image_name:$version_tag
+
