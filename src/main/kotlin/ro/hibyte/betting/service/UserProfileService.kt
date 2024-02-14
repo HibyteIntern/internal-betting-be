@@ -12,6 +12,10 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
 
     fun getAll(): List<UserProfile> = userProfileRepository.findAll()
 
+    fun getById(id: Long): UserProfile? {
+        return userProfileRepository.findById(id).orElse(null)
+    }
+
     fun get(userId: Long): UserProfile {
         return userProfileRepository.findById(userId).orElseThrow {
             NoSuchElementException("UserProfile not found with userId: $userId")

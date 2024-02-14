@@ -28,6 +28,14 @@ class UserProfileController(private val userProfileService: UserProfileService) 
         return userProfiles.map { UserProfileDTO(it) }
     }
 
+    @GetMapping("/{userId}")
+    fun getById(@PathVariable userId: Long): ResponseEntity<UserProfileDTO> {
+        val userProfile = userProfileService.getById(userId)
+            ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "UserProfile not found")
+
+        return ResponseEntity.ok(UserProfileDTO(userProfile))
+    }
+
     @GetMapping("/getMe")
     fun getMe(authentication: Authentication): UserProfileDTO {
         val userProfile = userProfileService.getByKeycloakId(authentication.name)
