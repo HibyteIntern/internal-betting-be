@@ -19,11 +19,11 @@ data class Event(
     var betTypes: List<BetType> = emptyList(),
     @OneToMany
     @JoinColumn(name = "eventId")
-    var users: List<UserProfile> = emptyList(),
+    var userProfiles: Set<UserProfile> = emptySet(),
     @ElementCollection
-    var userGroups: List<String> = emptyList(),
+    var userGroupIds: Set<Long> = emptySet(),
     @ElementCollection
-    var userProfiles: List<Long?> = emptyList(),
+    var userProfileIds: Set<Long?> = emptySet(),
     var created: Timestamp = Timestamp(System.currentTimeMillis()),
     var lastModified: Timestamp = Timestamp(System.currentTimeMillis()),
     var startsAt: Timestamp = Timestamp(System.currentTimeMillis()),

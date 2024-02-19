@@ -18,6 +18,8 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
         }
     }
 
+    fun findById(userId: Long): UserProfile? = userProfileRepository.findById(userId).orElse(null)
+
     fun getByKeycloakId(keycloakId: String): UserProfile? = userProfileRepository.findByKeycloakId(keycloakId)
 
 

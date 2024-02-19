@@ -2,12 +2,11 @@ package ro.hibyte.betting.entity
 
 import com.fasterxml.jackson.annotation.JsonBackReference
 import jakarta.persistence.*
-import ro.hibyte.betting.dto.BetDTO
 import ro.hibyte.betting.dto.UserProfileDTO
 
 
 @Entity
-data class UserProfile(
+class UserProfile(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

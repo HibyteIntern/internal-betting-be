@@ -7,13 +7,9 @@ import org.springframework.http.ResponseEntity
 import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
-import org.springframework.web.server.ResponseStatusException
-import ro.hibyte.betting.dto.BetDTO
-import ro.hibyte.betting.dto.PrizeDrawEntryDTO
+import ro.hibyte.betting.dto.FullUserProfileDTO
 import ro.hibyte.betting.dto.UserProfileDTO
-import ro.hibyte.betting.entity.Bet
 import ro.hibyte.betting.entity.UserProfile
-import ro.hibyte.betting.service.BetService
 import ro.hibyte.betting.service.UserProfileService
 
 
@@ -28,8 +24,36 @@ class UserProfileController(private val userProfileService: UserProfileService) 
         return userProfiles.map { UserProfileDTO(it) }
     }
 
+    @GetMapping("/{userId}")
+    fun getOne(@PathVariable userId: Long) : UserProfileDTO{
+        val userProfile = userProfileService.get(userId)
+        return UserProfileDTO(userProfile)
+    }
+
+    @GetMapping("/{userId}/full-dto")
+    fun getOneFull(@PathVariable userId: Long) : FullUserProfileDTO{
+        val userProfile = userProfileService.get(userId)
+        return FullUserProfileDTO(userProfile)
+    }
+
     @GetMapping("/getMe")
-    fun getMe(authentication: Authentication): UserProfileDTO {
+    fun getMe(authentication: Authentication): FullUserProfileDTO {
+        val userProfile = userProfileService.getByKeycloakId(authentication.name)
+        if (userProfile != null) {
+            return FullUserProfileDTO(userProfile)
+        } else {
+
+            val newUserProfile = UserProfile()
+            newUserProfile.keycloakId = authentication.name
+
+            val createdUserProfile = userProfileService.create(UserProfileDTO(newUserProfile))
+
+            return FullUserProfileDTO(createdUserProfile)
+        }
+    }
+
+    @GetMapping("/getMeSimple")
+    fun getMeSimple(authentication: Authentication): UserProfileDTO {
         val userProfile = userProfileService.getByKeycloakId(authentication.name)
         if (userProfile != null) {
             return UserProfileDTO(userProfile)

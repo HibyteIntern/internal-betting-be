@@ -2,7 +2,7 @@ package ro.hibyte.betting.mapper
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ro.hibyte.betting.dto.CompetitionDto
+import ro.hibyte.betting.dto.CompetitionDTO
 import ro.hibyte.betting.dto.CompetitionRequest
 import ro.hibyte.betting.entity.Competition
 import ro.hibyte.betting.entity.Event
@@ -61,8 +61,8 @@ class CompetitionMapper {
             status = competitionRequest.status,
         )
 
-    fun mapCompetitionToCompetitionDto(competition: Competition): CompetitionDto =
-        CompetitionDto(
+    fun mapCompetitionToCompetitionDto(competition: Competition): CompetitionDTO =
+        CompetitionDTO(
             id = competition.competitionId,
             name = competition.name,
             description = competition.description,

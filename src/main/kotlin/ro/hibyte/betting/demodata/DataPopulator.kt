@@ -17,8 +17,8 @@ fun main() {
 
     val allUsers: Array<UserProfileDTO> =
         restTemplate.getForObject("http://localhost:8080/api/v1/user-profile", Array<UserProfileDTO>::class.java)!!
-    val betTypes: Array<CompleteBetTypeDto> =
-        restTemplate.getForObject("http://localhost:8080/api/v1/bet-types", Array<CompleteBetTypeDto>::class.java)!!
+    val betTypes: Array<CompleteBetTypeDTO> =
+        restTemplate.getForObject("http://localhost:8080/api/v1/bet-types", Array<CompleteBetTypeDTO>::class.java)!!
 
     createRandomBets(allUsers, betTypes)
 
@@ -39,7 +39,7 @@ fun createLeaderboard(restTemplate: RestTemplate, name: String, events: List<Lon
     println("Created leaderboard entry with id ${response.id}")
 }
 
-fun findRandomOutcomes(restTemplate: RestTemplate, events: Array<EventDTO>, betTypes: Array<CompleteBetTypeDto>) {
+fun findRandomOutcomes(restTemplate: RestTemplate, events: Array<EventDTO>, betTypes: Array<CompleteBetTypeDTO>) {
     val betTypeOutcomes: Map<Long?, String> = betTypes.associate { it.id to (it.multipleChoiceOptions?.random() ?: "") }
     val eventNo = events.map { event ->
         restTemplate.put(
@@ -50,7 +50,7 @@ fun findRandomOutcomes(restTemplate: RestTemplate, events: Array<EventDTO>, betT
     println("Created $eventNo outcomes")
 }
 
-fun createRandomBets(allUsers: Array<UserProfileDTO>, betTypes: Array<CompleteBetTypeDto>): Any {
+fun createRandomBets(allUsers: Array<UserProfileDTO>, betTypes: Array<CompleteBetTypeDTO>): Any {
     val restTemplate = RestTemplate()
     val random = java.util.Random()
     val bets = allUsers.flatMap { user ->

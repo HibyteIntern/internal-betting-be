@@ -2,7 +2,8 @@ package ro.hibyte.betting.service
 
 import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
-import ro.hibyte.betting.dto.UserGroupDto
+import ro.hibyte.betting.dto.FullUserGroupDTO
+import ro.hibyte.betting.dto.UserGroupDTO
 import ro.hibyte.betting.entity.UserGroup
 import ro.hibyte.betting.repository.UserGroupRepository
 import ro.hibyte.betting.repository.UserProfileRepository
@@ -11,13 +12,26 @@ import ro.hibyte.betting.repository.UserProfileRepository
 class UserGroupService(
     private val userGroupRepository: UserGroupRepository,
     private val waspService: WaspService,
-    private val userProfileRepository: UserProfileRepository
+    private val userProfileRepository: UserProfileRepository,
+    private val userProfileService: UserProfileService
 ) {
-    fun getAll(): List<UserGroup> = userGroupRepository.findAll()
-    fun getOne(id: Long): UserGroup =
-        userGroupRepository.findById(id).orElseThrow {
+
+    fun getAll(): List<FullUserGroupDTO> = userGroupRepository.findAll().map { FullUserGroupDTO(it) }
+
+    fun getOneFull(id: Long): FullUserGroupDTO =
+        userGroupRepository.findById(id)
+            .map { FullUserGroupDTO(it) }
+            .orElseThrow {
             NoSuchElementException("User Group with id $id was not found")
         }
+
+    fun getOne(id: Long): UserGroupDTO =
+        userGroupRepository.findById(id)
+            .map { UserGroupDTO(it) }
+            .orElseThrow {
+            NoSuchElementException("User Group with id $id was not found")
+        }
+
     fun delete(id: Long) {
         userGroupRepository.findById(id).orElseThrow {
             NoSuchElementException("User Group with id $id was not found")
@@ -25,26 +39,33 @@ class UserGroupService(
         userGroupRepository.deleteById(id)
     }
 
-    fun update(id:Long, userGroupDto: UserGroupDto): UserGroup {
+    fun update(id:Long, userGroupDto: UserGroupDTO): UserGroupDTO {
         val existingUserGroup = userGroupRepository.findById(id).orElseThrow {
             NoSuchElementException("User Group not found with id: ${userGroupDto.userGroupId}")
         }
         existingUserGroup.update(userGroupDto)
-        return userGroupRepository.save(existingUserGroup)
+        return UserGroupDTO(userGroupRepository.save(existingUserGroup))
     }
 
-    fun create(userGroupDto: UserGroupDto): UserGroup {
+    fun create(userGroupDto: UserGroupDTO): UserGroupDTO {
         try {
-            val userGroup = UserGroup(userGroupDto)
-            userGroupRepository.save(userGroup)
-            userGroup.users?.forEach { userProfile ->
-                userProfile.groups?.add(userGroup)
-                userProfileRepository.save(userProfile)
+            val userProfiles = userGroupDto.users?.mapNotNull { userId ->
+                userProfileService.findById(userId)
             }
-
-            return userGroupRepository.save(userGroup)
+            val userGroup = UserGroup(
+                groupName = userGroupDto.groupName,
+                description = userGroupDto.description,
+                users = userProfiles?.toMutableSet()
+            ).let{
+                userGroupRepository.save(it)
+            }
+            userProfiles?.forEach {
+                it.groups?.add(userGroup)
+                userProfileRepository.save(it)
+            }
+            return UserGroupDTO(userGroup)
         } catch (e: Exception) {
-            throw RuntimeException("User Group could not be created")
+            throw RuntimeException("User Group could not be created", e)
         }
     }
 
@@ -54,5 +75,11 @@ class UserGroupService(
         userGroup.profilePicture = waspService.sendPhotoToWasp(photo)
         userGroupRepository.save(userGroup)
         return userGroup.profilePicture
+    }
+
+    fun getPhoto(groupId: Long): ByteArray? {
+        val userGroup = userGroupRepository.findById(groupId).orElseThrow()
+        val photoId = userGroup.profilePicture ?: throw IllegalArgumentException("Profile picture not set for user group $groupId")
+        return waspService.getPhotoFromWasp(photoId)
     }
 }
