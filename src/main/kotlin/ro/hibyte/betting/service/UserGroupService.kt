@@ -16,7 +16,7 @@ class UserGroupService(
     private val userProfileService: UserProfileService
 ) {
 
-    fun getAll(): List<FullUserGroupDTO> = userGroupRepository.findAll().map { FullUserGroupDTO(it) }
+    fun getAll(): List<FullUserGroupDTO> = userGroupRepository.findAllByOrderByGroupName().map { FullUserGroupDTO(it) }
 
     fun getOneFull(id: Long): FullUserGroupDTO =
         userGroupRepository.findById(id)

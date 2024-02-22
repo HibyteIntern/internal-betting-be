@@ -18,7 +18,8 @@ class WebSecurityConfig {
             .csrf { it.disable() }
             .authorizeHttpRequests {
                 it.requestMatchers(HttpMethod.OPTIONS).permitAll()
-                    .anyRequest().authenticated()
+                    //.anyRequest().authenticated()
+                    .anyRequest().permitAll()
             }
             .oauth2ResourceServer { oauth2 ->
                 oauth2.jwt {
