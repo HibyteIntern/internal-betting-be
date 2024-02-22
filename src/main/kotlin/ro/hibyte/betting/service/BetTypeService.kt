@@ -1,7 +1,7 @@
 package ro.hibyte.betting.service
 
 import org.springframework.stereotype.Service
-import ro.hibyte.betting.dto.CompleteBetTypeDto
+import ro.hibyte.betting.dto.CompleteBetTypeDTO
 import ro.hibyte.betting.entity.BetTemplate
 import ro.hibyte.betting.entity.BetType
 import ro.hibyte.betting.exceptions.types.EntityNotFoundException
@@ -25,7 +25,7 @@ class BetTypeService(private val betTypeRepository: BetTypeRepository,
         return betType
     }
 
-    fun create(completeType: CompleteBetTypeDto): BetType {
+    fun create(completeType: CompleteBetTypeDTO): BetType {
         val betType = BetType(completeType)
         checkExistingBetTemplateAndAssignBetTemplate(betType)
         return betTypeRepository.save(betType)
@@ -37,7 +37,7 @@ class BetTypeService(private val betTypeRepository: BetTypeRepository,
     fun getAll(): List<BetType> =
         betTypeRepository.findAll()
 
-    fun update(id: Long, completeType: CompleteBetTypeDto): BetType {
+    fun update(id: Long, completeType: CompleteBetTypeDTO): BetType {
         val betTypeToUpdate: BetType = betTypeRepository.findById(id).orElseThrow{EntityNotFoundException("Bet Type", id)}
         val betType = BetType(completeType)
         checkExistingBetTemplateAndAssignBetTemplate(betType)
@@ -48,5 +48,10 @@ class BetTypeService(private val betTypeRepository: BetTypeRepository,
     fun delete(id: Long) {
         betTypeRepository.findById(id).orElseThrow{EntityNotFoundException("Event Type", id)}
         betTypeRepository.deleteById(id)
+    }
+
+    fun setFinalOutcome(betType: BetType, finalOutcome: String) {
+        betType.finalOutcome = finalOutcome
+        betTypeRepository.save(betType)
     }
 }

@@ -3,7 +3,7 @@ package ro.hibyte.betting.dto
 import org.springframework.security.core.GrantedAuthority
 import ro.hibyte.betting.entity.UserProfile
 
-class UserProfileDTO(
+data class UserProfileDTO(
     val userId: Long? = null,
     var keycloakId: String? = null,
     var username: String? = null,
@@ -20,7 +20,7 @@ class UserProfileDTO(
         profilePicture = userProfile.profilePicture,
         description = userProfile.description,
         coins = userProfile.coins,
-        groups = userProfile.groups?.map{it.userGroupId}?.toMutableSet(),
+        groups = userProfile.groups?.mapNotNull{it.userGroupId}?.toMutableSet(),
         username = userProfile.username,
         bets = userProfile.bets?.map { BetDTO(it) }?.toMutableList()
     )
@@ -54,7 +54,4 @@ class UserProfileDTO(
         result = 31 * result + (keycloakId?.hashCode() ?: 0)
         return result
     }
-
 }
-
-

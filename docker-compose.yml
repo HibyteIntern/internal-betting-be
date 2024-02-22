@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  betting-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - 1890:8080
+    depends_on:
+      - database
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/betting
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: https://quay.keycloak.hq-hydra.hibyte.ro/realms/internship
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: https://quay.keycloak.hq-hydra.hibyte.ro/realms/internship/protocol/openid-connect/certs
+
+  database:
+    image: postgres:15.2
+    restart: always
+    environment:
+      POSTGRES_DB: betting
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - ./init-db:/docker-entrypoint-initdb.d
+      - data:/var/lib/postgresql/data
+
+volumes:
+    data:

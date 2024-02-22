@@ -5,4 +5,6 @@ import ro.hibyte.betting.entity.UserGroup
 
 interface UserGroupRepository: JpaRepository<UserGroup, Long> {
     fun findByGroupName(name: String): UserGroup
+
+    fun findAllByOrderByGroupName(): List<UserGroup>
 }

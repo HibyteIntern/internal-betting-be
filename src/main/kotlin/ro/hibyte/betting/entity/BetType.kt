@@ -1,7 +1,7 @@
 package ro.hibyte.betting.entity
 
 import jakarta.persistence.*
-import ro.hibyte.betting.dto.CompleteBetTypeDto
+import ro.hibyte.betting.dto.CompleteBetTypeDTO
 
 @Entity
 data class BetType (
@@ -13,13 +13,23 @@ data class BetType (
     @JoinColumn(name = "bet_template_id")
     var betTemplate: BetTemplate,
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    @JoinColumn(name = "bet_template_id")
+    var bets: MutableList<Bet> = mutableListOf(),
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "eventId")
+    var event: Event? = null,
+
     @ElementCollection
     @CollectionTable(name = "bet_type_odds", joinColumns = [JoinColumn(name = "bet_type_id")])
     @Column(name = "odds")
-    var odds: List<Double> = ArrayList()
+    var odds: List<Double> = ArrayList(),
+
+    var finalOutcome : String? = null
 ) {
 
-    constructor(completeBet: CompleteBetTypeDto) : this(
+    constructor(completeBet: CompleteBetTypeDTO) : this(
         id = completeBet.id,
         betTemplate = BetTemplate(
             name = completeBet.name,

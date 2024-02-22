@@ -23,6 +23,18 @@ class UserProfileController(private val userProfileService: UserProfileService) 
         return userProfiles.map { UserProfileDTO(it) }
     }
 
+    @GetMapping("/{userId}")
+    fun getOne(@PathVariable userId: Long) : UserProfileDTO{
+        val userProfile = userProfileService.get(userId)
+        return UserProfileDTO(userProfile)
+    }
+
+    @GetMapping("/{userId}/full-dto")
+    fun getOneFull(@PathVariable userId: Long) : FullUserProfileDTO{
+        val userProfile = userProfileService.get(userId)
+        return FullUserProfileDTO(userProfile)
+    }
+
     @GetMapping("/getMe")
     fun getMe(authentication: Authentication): UserProfileDTO {
         val userProfile = userProfileService.getByKeycloakId(authentication.name)
@@ -43,6 +55,12 @@ class UserProfileController(private val userProfileService: UserProfileService) 
     fun create(@RequestBody userProfileDto: UserProfileDTO) : UserProfileDTO{
         val userProfile = userProfileService.create(userProfileDto)
         return UserProfileDTO(userProfile)
+    }
+
+    @PostMapping("/many")
+    fun createMany(@RequestBody userProfilesDto: List<UserProfileDTO>) : List<UserProfileDTO>{
+        val userProfiles = userProfilesDto.map { userProfileService.create(it) }
+        return userProfiles.map { UserProfileDTO(it) }
     }
 
     @PutMapping
@@ -84,4 +102,3 @@ class UserProfileController(private val userProfileService: UserProfileService) 
     }
 
 }
-

@@ -19,6 +19,12 @@ class EventController(private val eventService: EventService) {
             HttpStatus.CREATED
         )
 
+    @PostMapping("/many")
+    fun addEvents(@RequestBody events: List<EventDTO>): ResponseEntity<List<EventDTO>> {
+        val response = eventService.addEvents(events)
+        return ResponseEntity(response, HttpStatus.CREATED)
+    }
+
     @PutMapping("/edit/{eventId}")
     fun editEvent(@PathVariable eventId: Long, @RequestBody updatedEvent: EventDTO, authentication: Authentication): ResponseEntity<EventDTO> =
         ResponseEntity(
@@ -38,12 +44,6 @@ class EventController(private val eventService: EventService) {
         return ResponseEntity(events, HttpStatus.OK)
     }
 
-    @PostMapping("/bet/{eventId}")
-    fun addBet(@PathVariable eventId: Long, @RequestBody complexBetByUserDto: ComplexBetByUserDto):ResponseEntity<Unit>{
-        eventService.addBetForEvent(eventId,complexBetByUserDto.betDTO,complexBetByUserDto.userProfileDTO)
-        return ResponseEntity(HttpStatus.OK)
-    }
-
     @GetMapping("/get/{eventId}")
     fun getOneEvent(@PathVariable eventId: Long): ResponseEntity<EventDTO> {
         val event = eventService.getOneEvent(eventId)
@@ -60,6 +60,12 @@ class EventController(private val eventService: EventService) {
     fun getEventsByName(@RequestParam name:String?):ResponseEntity<List<EventDTO>>{
         val events = name?.let { eventService.getEventsByName(it) } ?: eventService.getAllEvents()
         return ResponseEntity(events,HttpStatus.OK)
+    }
+
+    @PutMapping("/outcome/{eventId}")
+    fun populateBetTypesOutcome(@PathVariable eventId: Long,@RequestBody resolveOutcomeDTO: ResolveOutcomeDTO): ResponseEntity<Unit>{
+        eventService.populateBetTypeOutcome(eventId,resolveOutcomeDTO)
+        return ResponseEntity(HttpStatus.OK)
     }
 }
 
