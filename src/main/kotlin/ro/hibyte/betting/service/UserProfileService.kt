@@ -68,10 +68,8 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
             return userProfileRepository.save(user)
         }
     }
-
-    fun isUsernameTaken(username: String?, userId: Long?): Boolean {
-        return userProfileRepository.findByUsernameAndUserIdNot(username, userId).isPresent
+    fun isUsernameTaken(username: String): Boolean {
+        return userProfileRepository.existsByUsername(username)
     }
-
 
 }
