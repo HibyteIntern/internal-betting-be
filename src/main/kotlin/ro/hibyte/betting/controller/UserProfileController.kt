@@ -1,16 +1,15 @@
 package ro.hibyte.betting.controller
 
-
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
+import ro.hibyte.betting.dto.FullUserProfileDTO
 import ro.hibyte.betting.dto.UserProfileDTO
 import ro.hibyte.betting.entity.UserProfile
 import ro.hibyte.betting.service.UserProfileService
-
 
 @CrossOrigin(origins = ["http://localhost:4200"])
 @RestController
@@ -75,7 +74,6 @@ class UserProfileController(private val userProfileService: UserProfileService) 
         userProfile?.userId?.let { userProfileService.delete(it) }
     }
 
-
     @PostMapping("/addPhoto")
     fun addPhoto(@RequestPart("photo") photo: MultipartFile, authentication: Authentication): Long? {
         val userProfile = userProfileService.getByKeycloakId(authentication.name)
@@ -100,5 +98,4 @@ class UserProfileController(private val userProfileService: UserProfileService) 
             ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
         }
     }
-
 }

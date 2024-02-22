@@ -20,8 +20,8 @@ class EventController(private val eventService: EventService) {
         )
 
     @PostMapping("/many")
-    fun addEvents(@RequestBody events: List<EventDTO>): ResponseEntity<List<EventDTO>> {
-        val response = eventService.addEvents(events)
+    fun addEvents(@RequestBody events: List<EventDTO>, authentication: Authentication): ResponseEntity<List<EventDTO>> {
+        val response = eventService.addEvents(events, authentication.name)
         return ResponseEntity(response, HttpStatus.CREATED)
     }
 

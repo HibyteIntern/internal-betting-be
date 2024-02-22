@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component
 import ro.hibyte.betting.dto.BetDTO
 import ro.hibyte.betting.dto.CompleteBetTypeDTO
 import ro.hibyte.betting.dto.EventDTO
+import ro.hibyte.betting.dto.UserProfileDTO
 import ro.hibyte.betting.entity.*
 import ro.hibyte.betting.repository.UserGroupRepository
 import ro.hibyte.betting.service.BetTypeService
@@ -19,7 +20,7 @@ class EventMapper(
     private val betTypeService: BetTypeService,
     private val userGroupRepository: UserGroupRepository
 ) {
-    fun mapEventRequestToEvent(eventRequest: EventDTO): Event {
+    fun mapEventRequestToEvent(eventRequest: EventDTO, creator: UserProfile): Event {
         val defaultTimestamp = Timestamp(System.currentTimeMillis())
         // Extract words starting with '#' from the description to populate tags
         val tags = eventRequest.description?.let {
@@ -32,7 +33,7 @@ class EventMapper(
 
         val betTypes: List<BetType> = completeBetTypeDtoList
             ?.let { dtoList ->
-                dtoList.mapNotNull { betTypeService.create(it) }
+                dtoList.map { betTypeService.create(it) }
             }
             ?: emptyList()
 
@@ -58,7 +59,7 @@ class EventMapper(
             name = eventRequest.name?: "",
             description = eventRequest.description?:"",
             betTypes = betTypes,
-            creator = eventRequest.creator?:"",
+            creator = creator,
             tags = tags?: emptyList(),
             userProfiles = allUsers,
             userGroupIds = userGroupIds,
@@ -75,15 +76,20 @@ class EventMapper(
             .map(betTypeMapper::betTypeToCompleteBetTypeDto)
             .collect(Collectors.toList())
 
-        val betList:List<BetDTO> = event.betTypes.flatMap { it.bets.map { betMapper.mapBetToBetDto(it) } }
+        val betList:List<BetDTO> = event.betTypes.flatMap { betType -> betType.bets.map { betMapper.mapBetToBetDto(it) } }
 
         val allUsers: Set<Long?> = event.userProfiles.map { it.userId }.toSet()
+
+        var creator: UserProfileDTO? = null
+        if(event.creator != null) {
+            creator = UserProfileDTO(event.creator!!)
+        }
 
         return EventDTO(
             eventId = event.eventId,
             name = event.name,
             description = event.description,
-            creator = event.creator,
+            creator = creator,
             tags = event.tags,
             completeBetTypeDtoList = completeBetTypeDtoList,
             userProfiles = allUsers,

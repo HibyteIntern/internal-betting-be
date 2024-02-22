@@ -12,7 +12,7 @@ data class EventDTO(
     var userProfiles: Set<Long?>? = null,
     var userGroupIds : Set<Long>? = null,
     var userProfileIds : Set<Long?>?=null,
-    var completeBetTypeDtoList: List<CompleteBetTypeDto>?=null,
+    var completeBetTypeDtoList: List<CompleteBetTypeDTO>?=null,
     var bets:List<BetDTO>?=null,
     var created : Instant?=null,
     var lastModified : Instant?=null,
