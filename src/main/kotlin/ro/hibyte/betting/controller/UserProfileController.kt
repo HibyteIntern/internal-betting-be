@@ -114,8 +114,15 @@ class UserProfileController(private val userProfileService: UserProfileService) 
     }
 
     @GetMapping("/isUsernameTaken")
-    fun isUsernameTaken(@RequestParam username: String): ResponseEntity<Boolean> {
-        val isTaken = userProfileService.isUsernameTaken(username)
+    fun isUsernameTaken(
+            @RequestParam username: String,
+            @RequestParam(required = false) currentUsername: String?
+    ): ResponseEntity<Boolean> {
+        val isTaken = if (currentUsername != null && currentUsername == username) {
+            false
+        } else {
+            userProfileService.isUsernameTaken(username)
+        }
         return ResponseEntity.ok(isTaken)
     }
 
