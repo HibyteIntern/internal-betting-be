@@ -11,6 +11,7 @@ class UserProfile(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var userId: Long? = 0,
+    @Column(unique = true, nullable = false)
     var keycloakId: String? = null,
     var username: String? = null,
     var profilePicture: Long? = null,
@@ -59,7 +60,4 @@ class UserProfile(
         profilePicture = dtoUser.profilePicture
         description = dtoUser.description
     }
-
 }
-
-

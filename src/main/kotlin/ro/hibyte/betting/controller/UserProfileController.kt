@@ -35,7 +35,23 @@ class UserProfileController(private val userProfileService: UserProfileService) 
     }
 
     @GetMapping("/getMe")
-    fun getMe(authentication: Authentication): UserProfileDTO {
+    fun getMe(authentication: Authentication): FullUserProfileDTO {
+        val userProfile = userProfileService.getByKeycloakId(authentication.name)
+        return if (userProfile != null) {
+            FullUserProfileDTO(userProfile, authentication.authorities)
+        } else {
+
+            val newUserProfile = UserProfile()
+            newUserProfile.keycloakId = authentication.name
+
+            val createdUserProfile = userProfileService.create(UserProfileDTO(newUserProfile))
+
+            FullUserProfileDTO(createdUserProfile, authentication.authorities)
+        }
+    }
+
+    @GetMapping("/getMeSimple")
+    fun getMeSimple(authentication: Authentication): UserProfileDTO {
         val userProfile = userProfileService.getByKeycloakId(authentication.name)
         return if (userProfile != null) {
             UserProfileDTO(userProfile, authentication.authorities)

@@ -19,6 +19,7 @@ class WebSecurityConfig {
             .authorizeHttpRequests {
                 it.requestMatchers(HttpMethod.OPTIONS).permitAll()
                     .requestMatchers("/api/v1/user-profile/getMe").authenticated()
+                    .requestMatchers("/api/v1/user-profile/getMeSimple").authenticated()
                     .requestMatchers(HttpMethod.GET, "/**").permitAll()
 
                     .requestMatchers("/api/v1/event-templates/**").hasAuthority("ADMIN")
