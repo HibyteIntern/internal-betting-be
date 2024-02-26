@@ -9,8 +9,7 @@ class UserProfileDTO(
     var username: String? = null,
     var profilePicture: Long? = null,
     var description: String? = null,
-    var bets: MutableList<BetDTO>? = null,
-    var coins: Number = 50,
+        var coins: Number = 50,
     var groups: MutableSet<Long>? = mutableSetOf()
 ) {
     constructor(userProfile: UserProfile) : this(
@@ -21,7 +20,6 @@ class UserProfileDTO(
         coins = userProfile.coins,
         groups = userProfile.groups?.map{it.userGroupId}?.toMutableSet(),
         username = userProfile.username,
-        bets = userProfile.bets?.map { BetDTO(it) }?.toMutableList()
     )
 
     override fun equals(other: Any?): Boolean {
