@@ -18,7 +18,6 @@ class LeaderboardService(
     private val leaderboardRepository: LeaderboardRepository,
     private val eventRepository: EventRepository,
     private val userProfileRepository: UserProfileRepository,
-    private val betService: BetService
 ) {
 
     fun createLeaderboard(request: LeaderboardConfig): LeaderboardConfig {
@@ -62,7 +61,7 @@ class LeaderboardService(
             "longestWinningStreakStrategy" to LongestWinningStreakStrategy(),
         )
 
-        val resultMap = mutableMapOf<Long, MutableMap<String, Int>>()
+        val resultMap = mutableMapOf<Long, MutableMap<String, Number>>()
 
         leaderboardRequest.metrics.forEach { metric ->
             val strategy = metricStrategies[metric] ?: throw IllegalArgumentException("Invalid metric: $metric")
@@ -73,10 +72,13 @@ class LeaderboardService(
             }
         }
 
-        val sortedResults = resultMap.entries.sortedByDescending { it.value[leaderboardRequest.sortedBy] ?: 0 }
+        val sortedResults = resultMap.entries.sortedByDescending {
+            it.value[leaderboardRequest.sortedBy]?.toDouble() ?: 0.0
+        }
+
 
         val leaderboardEntries = sortedResults.map { (userId, metrics) ->
-            LeaderboardEntry(userId, metrics)
+            LeaderboardEntry(userId, metrics.mapValues { it.value })
         }
 
         return LeaderboardDTO(
