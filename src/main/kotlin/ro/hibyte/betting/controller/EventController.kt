@@ -2,6 +2,7 @@ package ro.hibyte.betting.controller
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.*
 import ro.hibyte.betting.dto.*
 import ro.hibyte.betting.service.EventService
@@ -12,26 +13,34 @@ import ro.hibyte.betting.service.EventService
 class EventController(private val eventService: EventService) {
 
     @PostMapping("/add")
-    fun addEvent(@RequestBody eventRequest: EventDTO): ResponseEntity<Unit> {
-        eventService.addEvent(eventRequest)
-        return ResponseEntity(HttpStatus.CREATED)
-    }
+    fun addEvent(@RequestBody eventRequest: EventDTO, authentication: Authentication): ResponseEntity<EventDTO> =
+        ResponseEntity(
+            eventService.addEvent(eventRequest, authentication.name),
+            HttpStatus.CREATED
+        )
 
     @PostMapping("/many")
-    fun addEvents(@RequestBody events: List<EventDTO>): ResponseEntity<List<EventDTO>> {
-        val response = eventService.addEvents(events)
+    fun addEvents(@RequestBody events: List<EventDTO>, authentication: Authentication): ResponseEntity<List<EventDTO>> {
+        val response = eventService.addEvents(events, authentication.name)
         return ResponseEntity(response, HttpStatus.CREATED)
     }
 
+//    @PostMapping("/many")
+//    fun addEvents(@RequestBody events: List<EventDTO>): ResponseEntity<List<EventDTO>> {
+//        val response = eventService.addEvents(events)
+//        return ResponseEntity(response, HttpStatus.CREATED)
+//    }
+
     @PutMapping("/edit/{eventId}")
-    fun editEvent(@PathVariable eventId: Long, @RequestBody updatedEvent: EventDTO): ResponseEntity<Unit> {
-        eventService.editEvent(eventId, updatedEvent)
-        return ResponseEntity(HttpStatus.OK)
-    }
+    fun editEvent(@PathVariable eventId: Long, @RequestBody updatedEvent: EventDTO, authentication: Authentication): ResponseEntity<EventDTO> =
+        ResponseEntity(
+            eventService.editEvent(eventId, updatedEvent, authentication.name),
+            HttpStatus.OK
+        )
 
     @DeleteMapping("/delete/{eventId}")
-    fun deleteEvent(@PathVariable eventId: Long): ResponseEntity<Unit> {
-        eventService.deleteEvent(eventId)
+    fun deleteEvent(@PathVariable eventId: Long, authentication: Authentication): ResponseEntity<Unit> {
+        eventService.deleteEvent(eventId, authentication.name)
         return ResponseEntity(HttpStatus.NO_CONTENT)
     }
 

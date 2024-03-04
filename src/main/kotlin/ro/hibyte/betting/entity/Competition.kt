@@ -1,10 +1,6 @@
 package ro.hibyte.betting.entity
 
 import jakarta.persistence.*
-import org.springframework.beans.factory.annotation.Autowired
-import ro.hibyte.betting.dto.CompetitionDto
-import ro.hibyte.betting.dto.CompetitionRequest
-import ro.hibyte.betting.service.CompetitionService
 import java.sql.Timestamp
 
 @Entity

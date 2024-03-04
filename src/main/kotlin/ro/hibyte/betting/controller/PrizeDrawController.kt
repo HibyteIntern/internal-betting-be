@@ -3,8 +3,6 @@ package ro.hibyte.betting.controller
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.Authentication
-import org.springframework.security.oauth2.jwt.Jwt
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken
 import org.springframework.web.bind.annotation.*
 import ro.hibyte.betting.dto.PrizeDrawEntryDTO
 import ro.hibyte.betting.dto.PrizeDrawDTO
@@ -52,9 +50,9 @@ class PrizeDrawController(private val prizeDrawService: PrizeDrawService) {
     }
 
     @PostMapping("/entry")
-    fun addEntry(@RequestBody prizeDrawEntryDTO: PrizeDrawEntryDTO, authentication: Authentication) {
+    fun addEntry(@RequestBody prizeDrawEntryDTO: PrizeDrawEntryDTO, authentication: Authentication): PrizeDrawEntry =
         prizeDrawService.addEntry(prizeDrawEntryDTO, authentication)
-    }
+
 
     @PutMapping("/{id}/end")
     fun end(@PathVariable id: Long): PrizeDrawDTO =

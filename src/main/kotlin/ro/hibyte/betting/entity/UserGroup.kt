@@ -2,15 +2,15 @@ package ro.hibyte.betting.entity
 
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.*
-import ro.hibyte.betting.dto.UserGroupDto
+import ro.hibyte.betting.dto.UserGroupDTO
 
 @Entity
-data class UserGroup(
+class UserGroup(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val userGroupId: Long,
+    val userGroupId: Long? = 0,
     var groupName: String?,
-    var profilePicture: Long?,
+    var profilePicture: Long? = 0,
     var description: String?,
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -22,22 +22,14 @@ data class UserGroup(
     )
     var users: MutableSet<UserProfile>?
 ){
-    constructor(dto: UserGroupDto): this(
-        userGroupId = dto.userGroupId,
-        groupName = dto.groupName,
-        profilePicture = dto.profilePicture,
-        description = dto.description,
-        users = dto.users?.map { UserProfile(it) }?.toMutableSet()
-    )
-    fun update(userGroupDto: UserGroupDto){
+    fun update(userGroupDto: UserGroupDTO){
         userGroupDto.groupName?.let { groupName = it }
         userGroupDto.profilePicture?.let { profilePicture = it }
         userGroupDto.description?.let { description = it }
 
         userGroupDto.users?.let { updatedUsers ->
-            val updatedUserProfiles = updatedUsers.map { UserProfile(it) }.toMutableSet()
             users?.clear()
-            users?.addAll(updatedUserProfiles)
+            users?.addAll(updatedUsers.map { UserProfile(it) }.toMutableSet())
         }
     }
 

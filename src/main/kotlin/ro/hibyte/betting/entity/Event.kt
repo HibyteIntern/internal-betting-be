@@ -10,7 +10,8 @@ data class Event(
     var eventId: Long = 0,
     var name: String = "",
     var description: String = "",
-    var creator: String = "",
+    @ManyToOne
+    var creator: UserProfile? = null,
     var template: String = "",
     @ElementCollection
     var tags: List<String> = emptyList(),
@@ -19,11 +20,11 @@ data class Event(
     var betTypes: List<BetType> = emptyList(),
     @OneToMany
     @JoinColumn(name = "eventId")
-    var users: List<UserProfile> = emptyList(),
+    var userProfiles: Set<UserProfile> = emptySet(),
     @ElementCollection
-    var userGroups: List<String> = emptyList(),
+    var userGroupIds: Set<Long> = emptySet(),
     @ElementCollection
-    var userProfiles: List<Long?> = emptyList(),
+    var userProfileIds: Set<Long?> = emptySet(),
     var created: Timestamp = Timestamp(System.currentTimeMillis()),
     var lastModified: Timestamp = Timestamp(System.currentTimeMillis()),
     var startsAt: Timestamp = Timestamp(System.currentTimeMillis()),
