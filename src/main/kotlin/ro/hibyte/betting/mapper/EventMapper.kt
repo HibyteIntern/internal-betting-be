@@ -2,7 +2,7 @@ package ro.hibyte.betting.mapper
 
 import org.springframework.stereotype.Component
 import ro.hibyte.betting.dto.BetDTO
-import ro.hibyte.betting.dto.CompleteBetTypeDTO
+import ro.hibyte.betting.dto.BetTypeDTO
 import ro.hibyte.betting.dto.EventDTO
 import ro.hibyte.betting.dto.UserProfileDTO
 import ro.hibyte.betting.entity.*
@@ -16,7 +16,6 @@ import java.util.stream.Collectors
 class EventMapper(
     private val betTypeMapper: BetTypeMapper,
     private val userProfileService: UserProfileService,
-    private val betMapper: BetMapper,
     private val betTypeService: BetTypeService,
     private val userGroupRepository: UserGroupRepository
 ) {
@@ -29,9 +28,9 @@ class EventMapper(
                 .toList()
         }
 
-        val completeBetTypeDtoList: List<CompleteBetTypeDTO>? = eventRequest.completeBetTypeDtoList
+        val betTypeDtoList: List<BetTypeDTO>? = eventRequest.betTypeDtoList
 
-        val betTypes: List<BetType> = completeBetTypeDtoList
+        val betTypes: List<BetType> = betTypeDtoList
             ?.let { dtoList ->
                 dtoList.map { betTypeService.create(it) }
             }
@@ -72,11 +71,11 @@ class EventMapper(
         )
     }
     fun mapEventToEventResponse(event: Event): EventDTO {
-        val completeBetTypeDtoList:List<CompleteBetTypeDTO> = event.betTypes.stream()
-            .map(betTypeMapper::betTypeToCompleteBetTypeDto)
+        val betTypeDtoList:List<BetTypeDTO> = event.betTypes.stream()
+            .map(betTypeMapper::betTypeToBetTypeDTO)
             .collect(Collectors.toList())
 
-        val betList:List<BetDTO> = event.betTypes.flatMap { betType -> betType.bets.map { betMapper.mapBetToBetDto(it) } }
+        val betList:List<BetDTO> = event.betTypes.flatMap { betType -> betType.bets.map { BetDTO(it) } }
 
         val allUsers: Set<Long?> = event.userProfiles.map { it.userId }.toSet()
 
@@ -91,7 +90,7 @@ class EventMapper(
             description = event.description,
             creator = creator,
             tags = event.tags,
-            completeBetTypeDtoList = completeBetTypeDtoList,
+            betTypeDtoList = betTypeDtoList,
             userProfiles = allUsers,
             userGroupIds = event.userGroupIds,
             userProfileIds = event.userProfileIds,

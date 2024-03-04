@@ -2,7 +2,7 @@ package ro.hibyte.betting.service
 
 import org.springframework.stereotype.Service
 import ro.hibyte.betting.entity.BetTemplate
-import ro.hibyte.betting.entity.BetTemplateType
+import ro.hibyte.betting.exceptions.types.ConflictException
 import ro.hibyte.betting.exceptions.types.EntityNotFoundException
 import ro.hibyte.betting.repository.BetTemplateRepository
 
@@ -10,10 +10,10 @@ import ro.hibyte.betting.repository.BetTemplateRepository
 class BetTemplateService(private val betTemplateRepository: BetTemplateRepository) {
 
     fun create(betTemplate: BetTemplate): BetTemplate {
-        BetTemplate.validateAndCorrect(betTemplate)
+        BetTemplate.validate(betTemplate)
         val existingTemplate = checkEntityAlreadyExists(betTemplate)
         if(existingTemplate != null)
-            return existingTemplate
+            throw ConflictException("Bet template with this name and options already exists.")
         return betTemplateRepository.save(betTemplate)
     }
 
@@ -27,7 +27,7 @@ class BetTemplateService(private val betTemplateRepository: BetTemplateRepositor
         val templateToUpdate = betTemplateRepository.findById(id).orElseThrow { EntityNotFoundException("Bet Template", id) }
         val existingTemplate = checkEntityAlreadyExists(betTemplate)
         if(existingTemplate != null)
-            return existingTemplate
+            throw ConflictException("Bet template with this name and options already exists.")
         templateToUpdate.update(betTemplate)
         return betTemplateRepository.save(templateToUpdate)
     }
@@ -37,15 +37,9 @@ class BetTemplateService(private val betTemplateRepository: BetTemplateRepositor
         betTemplateRepository.deleteById(id)
     }
 
-    /*
-    Everytime we want to add a new bet template, we check that a similar template doesn't already exist. The reason we do this is
-    to prevent multiple BetTemplates with the same structure filling the database. This way, we make sure that only one template with a
-    certain structure can exist at a time.
-    */
     fun checkEntityAlreadyExists(betTemplate: BetTemplate): BetTemplate? {
-        val betTemplateList: List<BetTemplate> = betTemplateRepository.findBetTemplatesByNameAndType(betTemplate.name, betTemplate.type)
+        val betTemplateList: List<BetTemplate> = betTemplateRepository.findBetTemplatesByName(betTemplate.name)
         if(betTemplateList.isEmpty()) return null
-        if(betTemplate.type != BetTemplateType.MULTIPLE_CHOICE) return betTemplateList[0]
         for(template in betTemplateList) {
             if(haveSameOptions(betTemplate, template)) return template
         }
@@ -53,6 +47,6 @@ class BetTemplateService(private val betTemplateRepository: BetTemplateRepositor
     }
 
     fun haveSameOptions(template1: BetTemplate, template2: BetTemplate): Boolean =
-        template1.multipleChoiceOptions.size == template2.multipleChoiceOptions.size &&
-                template1.multipleChoiceOptions.zip(template2.multipleChoiceOptions).all { (option1, option2) -> option1 == option2 }
+        template1.options.size == template2.options.size &&
+                template1.options.zip(template2.options).all { (option1, option2) -> option1 == option2 }
 }

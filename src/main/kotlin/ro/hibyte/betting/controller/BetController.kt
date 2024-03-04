@@ -1,14 +1,19 @@
 package ro.hibyte.betting.controller
 
+import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.*
 import ro.hibyte.betting.dto.BetDTO
+import ro.hibyte.betting.exceptions.types.EntityNotFoundByNameException
 import ro.hibyte.betting.service.BetService
 import ro.hibyte.betting.service.UserProfileService
 
 @CrossOrigin(origins = ["http://localhost:4200"])
 @RestController
 @RequestMapping("/api/v1/bets")
-class BetController(private val betService: BetService, private val userProfileService: UserProfileService) {
+class BetController(
+    private val betService: BetService,
+    private val userProfileService: UserProfileService
+) {
 
     @GetMapping
     fun getAll(): Set<BetDTO> {
@@ -23,10 +28,13 @@ class BetController(private val betService: BetService, private val userProfileS
     }
 
     @PostMapping
-    fun create(@RequestBody betDto: BetDTO): BetDTO {
-        val userProfile = userProfileService.get(betDto.user!!)
-        val bet = betService.create(betDto, userProfile)
-        return BetDTO(bet)
+    fun create(@RequestBody betDto: BetDTO, authentication: Authentication): BetDTO {
+        val userProfile = userProfileService.getByKeycloakId(authentication.name)
+        if(userProfile != null) {
+            val bet = betService.create(betDto, userProfile)
+            return BetDTO(bet)
+        }
+        throw EntityNotFoundByNameException("User Profile", authentication.name)
     }
 
     @PostMapping("/many")

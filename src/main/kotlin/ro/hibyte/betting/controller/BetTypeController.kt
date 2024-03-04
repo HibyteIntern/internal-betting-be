@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import ro.hibyte.betting.dto.CompleteBetTypeDTO
+import ro.hibyte.betting.dto.BetTypeDTO
 import ro.hibyte.betting.service.BetTypeService
 
 @RestController
@@ -20,24 +20,24 @@ import ro.hibyte.betting.service.BetTypeService
 class BetTypeController(private val betTypeService: BetTypeService) {
 
     @PostMapping
-    fun create(@RequestBody completeBet: CompleteBetTypeDTO): ResponseEntity<CompleteBetTypeDTO> =
+    fun create(@RequestBody betType: BetTypeDTO): ResponseEntity<BetTypeDTO> =
         ResponseEntity(
-            CompleteBetTypeDTO(betTypeService.create(completeBet)),
+            BetTypeDTO(betTypeService.create(betType)),
             HttpStatus.CREATED
         )
 
     @GetMapping("/{id}")
-    fun getById(@PathVariable id: Long): CompleteBetTypeDTO =
-       CompleteBetTypeDTO(betTypeService.getById(id))
+    fun getById(@PathVariable id: Long): BetTypeDTO =
+       BetTypeDTO(betTypeService.getById(id))
 
     @GetMapping
-    fun getAll(): List<CompleteBetTypeDTO> =
-        betTypeService.getAll().map{ CompleteBetTypeDTO(it) }
+    fun getAll(): List<BetTypeDTO> =
+        betTypeService.getAll().map{ BetTypeDTO(it) }
 
     @PutMapping("/{id}")
-    fun update(@PathVariable id: Long, @RequestBody completeBet: CompleteBetTypeDTO): ResponseEntity<CompleteBetTypeDTO> =
+    fun update(@PathVariable id: Long, @RequestBody betTypeDTO: BetTypeDTO): ResponseEntity<BetTypeDTO> =
         ResponseEntity(
-            CompleteBetTypeDTO(betTypeService.update(id, completeBet)),
+            BetTypeDTO(betTypeService.update(id, betTypeDTO)),
             HttpStatus.OK
         )
 
