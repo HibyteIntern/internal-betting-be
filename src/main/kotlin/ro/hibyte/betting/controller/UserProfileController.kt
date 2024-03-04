@@ -37,34 +37,23 @@ class UserProfileController(private val userProfileService: UserProfileService) 
     }
 
     @GetMapping("/getMe")
-    fun getMe(authentication: Authentication): FullUserProfileDTO {
+    fun getMe(authentication: Authentication): UserProfileDTO {
         val userProfile = userProfileService.getByKeycloakId(authentication.name)
-        if (userProfile != null) {
-            return FullUserProfileDTO(userProfile)
+        return if (userProfile != null) {
+            UserProfileDTO(
+                    userId = userProfile.userId,
+                    keycloakId = userProfile.keycloakId,
+                    username = userProfile.username,
+                    profilePicture = userProfile.profilePicture,
+                    description = userProfile.description,
+                    coins = userProfile.coins,
+                    groups = userProfile.groups?.mapNotNull { it.userGroupId }?.toMutableSet() ?: mutableSetOf()
+            )
         } else {
-
             val newUserProfile = UserProfile()
             newUserProfile.keycloakId = authentication.name
-
             val createdUserProfile = userProfileService.create(UserProfileDTO(newUserProfile))
-
-            return FullUserProfileDTO(createdUserProfile)
-        }
-    }
-
-    @GetMapping("/getMeSimple")
-    fun getMeSimple(authentication: Authentication): UserProfileDTO {
-        val userProfile = userProfileService.getByKeycloakId(authentication.name)
-        if (userProfile != null) {
-            return UserProfileDTO(userProfile)
-        } else {
-
-            val newUserProfile = UserProfile()
-            newUserProfile.keycloakId = authentication.name
-
-            val createdUserProfile = userProfileService.create(UserProfileDTO(newUserProfile))
-
-            return UserProfileDTO(createdUserProfile)
+            UserProfileDTO(createdUserProfile)
         }
     }
 
@@ -116,6 +105,38 @@ class UserProfileController(private val userProfileService: UserProfileService) 
         } catch (e: Exception) {
             ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
         }
+    }
+
+    @GetMapping("/getPhoto/{userId}")
+    fun getPhotoById(@PathVariable userId: Long): ResponseEntity<ByteArray> {
+        return try {
+            val userProfile = userProfileService.get(userId)
+            val photo: ByteArray? = userProfile?.userId?.let { userProfileService.getPhoto(it) }
+            if (photo != null) {
+                ResponseEntity.ok()
+                    .contentType(MediaType.IMAGE_JPEG)
+                    .body(photo)
+            } else {
+                ResponseEntity.notFound().build()
+            }
+        } catch (e: IllegalArgumentException) {
+            ResponseEntity.badRequest().build()
+        } catch (e: Exception) {
+            ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
+        }
+    }
+
+    @GetMapping("/isUsernameTaken")
+    fun isUsernameTaken(
+            @RequestParam username: String,
+            @RequestParam(required = false) currentUsername: String?
+    ): ResponseEntity<Boolean> {
+        val isTaken = if (currentUsername != null && currentUsername == username) {
+            false
+        } else {
+            userProfileService.isUsernameTaken(username)
+        }
+        return ResponseEntity.ok(isTaken)
     }
 
 }

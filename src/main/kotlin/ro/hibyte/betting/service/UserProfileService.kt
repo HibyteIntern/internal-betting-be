@@ -70,4 +70,8 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
             return userProfileRepository.save(user)
         }
     }
+    fun isUsernameTaken(username: String): Boolean {
+        return userProfileRepository.existsByUsername(username)
+    }
+
 }

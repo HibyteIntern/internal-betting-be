@@ -1,5 +1,6 @@
 package ro.hibyte.betting.controller
 
+import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.*
 import ro.hibyte.betting.dto.BetDTO
 import ro.hibyte.betting.service.BetService
@@ -15,6 +16,17 @@ class BetController(private val betService: BetService, private val userProfileS
         val bets = betService.getAll()
         return bets.map { BetDTO(it) }.toSet()
     }
+
+    @GetMapping("/user")
+    fun getBets(authentication: Authentication): List<BetDTO> {
+        val userProfile = userProfileService.getByKeycloakId(authentication.name)
+        userProfile?.userId?.let { userId ->
+            val bets = betService.getBetsByUserId(userId)
+            return bets.map { BetDTO(it) }
+        }
+        return emptyList()
+    }
+
 
     @GetMapping("/{betId}")
     fun getOne(@PathVariable betId: Long): BetDTO {
@@ -39,4 +51,5 @@ class BetController(private val betService: BetService, private val userProfileS
 
     @DeleteMapping("/{betId}")
     fun delete(@PathVariable betId: Long) = betService.delete(betId)
+
 }
