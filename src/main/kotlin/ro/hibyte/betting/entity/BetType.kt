@@ -1,7 +1,7 @@
 package ro.hibyte.betting.entity
 
 import jakarta.persistence.*
-import ro.hibyte.betting.dto.CompleteBetTypeDto
+import ro.hibyte.betting.dto.CompleteBetTypeDTO
 
 @Entity
 data class BetType (
@@ -29,7 +29,7 @@ data class BetType (
     var finalOutcome : String? = null
 ) {
 
-    constructor(completeBet: CompleteBetTypeDto) : this(
+    constructor(completeBet: CompleteBetTypeDTO) : this(
         id = completeBet.id,
         betTemplate = BetTemplate(
             name = completeBet.name,

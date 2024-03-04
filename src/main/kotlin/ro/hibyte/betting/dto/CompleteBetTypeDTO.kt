@@ -2,7 +2,7 @@ package ro.hibyte.betting.dto
 
 import ro.hibyte.betting.entity.BetType
 
-data class CompleteBetTypeDto(
+data class CompleteBetTypeDTO(
     val id: Long? = null,
     val name: String,
     val type: String,

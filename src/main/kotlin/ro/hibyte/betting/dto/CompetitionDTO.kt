@@ -1,13 +1,11 @@
 package ro.hibyte.betting.dto
 
-import ro.hibyte.betting.entity.Competition
 import ro.hibyte.betting.entity.Event
 import ro.hibyte.betting.entity.Status
 import ro.hibyte.betting.entity.UserProfile
-import java.sql.Timestamp
 import java.time.Instant
 
-data class CompetitionDto(
+data class CompetitionDTO(
     var id: Long? = null,
     var name: String = "",
     var description: String = "",
