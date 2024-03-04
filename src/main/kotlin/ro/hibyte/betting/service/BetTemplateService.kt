@@ -2,7 +2,6 @@ package ro.hibyte.betting.service
 
 import org.springframework.stereotype.Service
 import ro.hibyte.betting.entity.BetTemplate
-import ro.hibyte.betting.exceptions.types.ConflictException
 import ro.hibyte.betting.exceptions.types.EntityNotFoundException
 import ro.hibyte.betting.repository.BetTemplateRepository
 
@@ -11,9 +10,6 @@ class BetTemplateService(private val betTemplateRepository: BetTemplateRepositor
 
     fun create(betTemplate: BetTemplate): BetTemplate {
         BetTemplate.validate(betTemplate)
-        val existingTemplate = checkEntityAlreadyExists(betTemplate)
-        if(existingTemplate != null)
-            throw ConflictException("Bet template with this name and options already exists.")
         return betTemplateRepository.save(betTemplate)
     }
 
@@ -25,9 +21,6 @@ class BetTemplateService(private val betTemplateRepository: BetTemplateRepositor
 
     fun update(id: Long, betTemplate: BetTemplate): BetTemplate {
         val templateToUpdate = betTemplateRepository.findById(id).orElseThrow { EntityNotFoundException("Bet Template", id) }
-        val existingTemplate = checkEntityAlreadyExists(betTemplate)
-        if(existingTemplate != null)
-            throw ConflictException("Bet template with this name and options already exists.")
         templateToUpdate.update(betTemplate)
         return betTemplateRepository.save(templateToUpdate)
     }
@@ -36,17 +29,4 @@ class BetTemplateService(private val betTemplateRepository: BetTemplateRepositor
         betTemplateRepository.findById(id).orElseThrow { EntityNotFoundException("Bet Template", id) }
         betTemplateRepository.deleteById(id)
     }
-
-    fun checkEntityAlreadyExists(betTemplate: BetTemplate): BetTemplate? {
-        val betTemplateList: List<BetTemplate> = betTemplateRepository.findBetTemplatesByName(betTemplate.name)
-        if(betTemplateList.isEmpty()) return null
-        for(template in betTemplateList) {
-            if(haveSameOptions(betTemplate, template)) return template
-        }
-        return null
-    }
-
-    fun haveSameOptions(template1: BetTemplate, template2: BetTemplate): Boolean =
-        template1.options.size == template2.options.size &&
-                template1.options.zip(template2.options).all { (option1, option2) -> option1 == option2 }
 }

@@ -9,7 +9,6 @@ data class BetTemplate (
     @GeneratedValue
     var id: Long? = null,
 
-    @Column(unique = true, nullable = false)
     var name: String,
 
     @ElementCollection
