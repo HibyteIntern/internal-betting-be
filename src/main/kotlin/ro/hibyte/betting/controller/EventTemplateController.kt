@@ -42,5 +42,4 @@ class EventTemplateController(private val eventTemplateService: EventTemplateSer
         eventTemplateService.delete(id)
         return ResponseEntity.noContent().build()
     }
-
 }

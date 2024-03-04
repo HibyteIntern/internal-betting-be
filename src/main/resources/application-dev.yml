@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://138.201.251.9:1673/betting
+    username: postgres
+    password: admin
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect

@@ -2,6 +2,7 @@ package ro.hibyte.betting.entity
 
 import com.fasterxml.jackson.annotation.JsonBackReference
 import jakarta.persistence.*
+import ro.hibyte.betting.dto.BetDTO
 import ro.hibyte.betting.dto.UserProfileDTO
 
 
@@ -11,6 +12,7 @@ class UserProfile(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var userId: Long? = 0,
+    @Column(unique = true, nullable = false)
     var keycloakId: String? = null,
     var username: String? = null,
     var profilePicture: Long? = null,

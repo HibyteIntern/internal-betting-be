@@ -40,5 +40,4 @@ class BetTemplateController(private val betTemplateService: BetTemplateService) 
         betTemplateService.delete(id)
         return ResponseEntity.noContent().build()
     }
-
 }

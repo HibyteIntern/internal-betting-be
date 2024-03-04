@@ -6,8 +6,8 @@ import java.time.Instant
 data class EventDTO(
     var eventId: Long? =null,
     var name: String?=null,
-    var description: String?=null,
-    var creator:String? = null,
+    var description: String?=null ,
+    var creator:UserProfileDTO? = null ,
     var tags: List<String>? = null,
     var userProfiles: Set<Long?>? = null,
     var userGroupIds : Set<Long>? = null,

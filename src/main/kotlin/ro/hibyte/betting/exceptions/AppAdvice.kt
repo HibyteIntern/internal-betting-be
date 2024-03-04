@@ -46,4 +46,13 @@ class AppAdvice {
         val errorResponse = ErrorResponse(ex.message ?: "error", HttpStatus.CONFLICT)
         return ResponseEntity(errorResponse, HttpStatus.CONFLICT)
     }
+
+    @ResponseBody
+    @ExceptionHandler(value = [
+        ForbiddenException::class
+    ])
+    fun forbiddenExceptionHandler(ex: RuntimeException): ResponseEntity<Any> {
+        val errorResponse = ErrorResponse(ex.message ?: "error", HttpStatus.FORBIDDEN)
+        return ResponseEntity(errorResponse, HttpStatus.FORBIDDEN)
+    }
 }

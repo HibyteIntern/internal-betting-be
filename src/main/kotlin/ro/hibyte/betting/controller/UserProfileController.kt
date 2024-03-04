@@ -1,17 +1,16 @@
 package ro.hibyte.betting.controller
 
-
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
+import org.springframework.web.server.ResponseStatusException
 import ro.hibyte.betting.dto.FullUserProfileDTO
 import ro.hibyte.betting.dto.UserProfileDTO
 import ro.hibyte.betting.entity.UserProfile
 import ro.hibyte.betting.service.UserProfileService
-
 
 @CrossOrigin(origins = ["http://localhost:4200"])
 @RestController
@@ -25,10 +24,18 @@ class UserProfileController(private val userProfileService: UserProfileService) 
     }
 
     @GetMapping("/{userId}")
-    fun getOne(@PathVariable userId: Long) : UserProfileDTO{
-        val userProfile = userProfileService.get(userId)
-        return UserProfileDTO(userProfile)
+    fun getById(@PathVariable userId: Long): ResponseEntity<UserProfileDTO> {
+        val userProfile = userProfileService.getById(userId)
+            ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "UserProfile not found")
+
+        return ResponseEntity.ok(UserProfileDTO(userProfile))
     }
+
+//    @GetMapping("/{userId}")
+//    fun getOne(@PathVariable userId: Long) : UserProfileDTO{
+//        val userProfile = userProfileService.get(userId)
+//        return UserProfileDTO(userProfile)
+//    }
 
     @GetMapping("/{userId}/full-dto")
     fun getOneFull(@PathVariable userId: Long) : FullUserProfileDTO{
@@ -39,8 +46,8 @@ class UserProfileController(private val userProfileService: UserProfileService) 
     @GetMapping("/getMe")
     fun getMe(authentication: Authentication): FullUserProfileDTO {
         val userProfile = userProfileService.getByKeycloakId(authentication.name)
-        if (userProfile != null) {
-            return FullUserProfileDTO(userProfile)
+        return if (userProfile != null) {
+            FullUserProfileDTO(userProfile, authentication.authorities)
         } else {
 
             val newUserProfile = UserProfile()
@@ -48,15 +55,15 @@ class UserProfileController(private val userProfileService: UserProfileService) 
 
             val createdUserProfile = userProfileService.create(UserProfileDTO(newUserProfile))
 
-            return FullUserProfileDTO(createdUserProfile)
+            FullUserProfileDTO(createdUserProfile, authentication.authorities)
         }
     }
 
     @GetMapping("/getMeSimple")
     fun getMeSimple(authentication: Authentication): UserProfileDTO {
         val userProfile = userProfileService.getByKeycloakId(authentication.name)
-        if (userProfile != null) {
-            return UserProfileDTO(userProfile)
+        return if (userProfile != null) {
+            UserProfileDTO(userProfile, authentication.authorities)
         } else {
 
             val newUserProfile = UserProfile()
@@ -64,7 +71,7 @@ class UserProfileController(private val userProfileService: UserProfileService) 
 
             val createdUserProfile = userProfileService.create(UserProfileDTO(newUserProfile))
 
-            return UserProfileDTO(createdUserProfile)
+            UserProfileDTO(createdUserProfile, authentication.authorities)
         }
     }
 
@@ -117,6 +124,31 @@ class UserProfileController(private val userProfileService: UserProfileService) 
             ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
         }
     }
+
+    @GetMapping("/getPhoto/{userId}")
+    fun getPhotoById(@PathVariable userId: Long): ResponseEntity<ByteArray> {
+        return try {
+            val userProfile = userProfileService.get(userId)
+            val photo: ByteArray? = userProfile?.userId?.let { userProfileService.getPhoto(it) }
+            if (photo != null) {
+                ResponseEntity.ok()
+                        .contentType(MediaType.IMAGE_JPEG)
+                        .body(photo)
+            } else {
+                ResponseEntity.notFound().build()
+            }
+        } catch (e: IllegalArgumentException) {
+            ResponseEntity.badRequest().build()
+        } catch (e: Exception) {
+            ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
+        }
+    }
+
+    @PostMapping("/addPhoto/{userId}")
+    fun addPhoto(@PathVariable("userId") userId: Long, @RequestPart("photo") photo: MultipartFile): Long? {
+        return userProfileService.addPhoto(userId, photo)
+    }
+
 
 }
 
