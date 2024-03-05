@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     restart: on-failure
     ports:
-      - 1890:8080
+      - "1890:8080"
     depends_on:
       - database
     environment:

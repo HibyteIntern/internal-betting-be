@@ -40,7 +40,7 @@ class BetController(
     @PostMapping("/many")
     fun createMany(@RequestBody betsDto: List<BetDTO>): List<BetDTO> {
         val bets = betsDto.mapNotNull { betDTO ->
-            betDTO.user?.let { userProfileService.get(it) }?.let { betService.create(betDTO, it) }
+            betDTO.userId?.let { userProfileService.get(it) }?.let { betService.create(betDTO, it) }
         }
         return bets.map { BetDTO(it) }
     }

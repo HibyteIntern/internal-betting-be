@@ -30,7 +30,7 @@ class BetService(
     fun create(betDto: BetDTO, userProfile: UserProfile): Bet {
         if(userProfile.coins.toInt() < betDto.amount.toInt()) throw BadRequestException("User doesn't have enough coins for request.")
 
-        val betType = betDto.betType.let{
+        val betType = betDto.betTypeId.let{
             betTypeRepository.findById(it).orElseThrow { EntityNotFoundException("Bet Type", betDto.betId ?: 0) }}
 
         val savedBet = betRepository.save(

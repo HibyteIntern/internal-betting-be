@@ -15,20 +15,20 @@ class BetTypeService(private val betTypeRepository: BetTypeRepository) {
     }
 
     fun getById(id: Long): BetType =
-        betTypeRepository.findById(id).orElseThrow{EntityNotFoundException("Bet Type", id)}
+        betTypeRepository.findById(id).orElseThrow{ EntityNotFoundException("Bet Type", id) }
 
     fun getAll(): List<BetType> =
         betTypeRepository.findAll()
 
     fun update(id: Long, betTypeDTO: BetTypeDTO): BetType {
-        val betTypeToUpdate: BetType = betTypeRepository.findById(id).orElseThrow{EntityNotFoundException("Bet Type", id)}
+        val betTypeToUpdate: BetType = betTypeRepository.findById(id).orElseThrow{ EntityNotFoundException("Bet Type", id) }
         val betType = BetType(betTypeDTO)
         betTypeToUpdate.update(betType)
         return betTypeRepository.save(betTypeToUpdate)
     }
 
     fun delete(id: Long) {
-        betTypeRepository.findById(id).orElseThrow{EntityNotFoundException("Event Type", id)}
+        betTypeRepository.findById(id).orElseThrow{ EntityNotFoundException("Event Type", id) }
         betTypeRepository.deleteById(id)
     }
 

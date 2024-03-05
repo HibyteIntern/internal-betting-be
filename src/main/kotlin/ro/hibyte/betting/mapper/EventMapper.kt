@@ -1,10 +1,7 @@
 package ro.hibyte.betting.mapper
 
 import org.springframework.stereotype.Component
-import ro.hibyte.betting.dto.BetDTO
-import ro.hibyte.betting.dto.BetTypeDTO
-import ro.hibyte.betting.dto.EventDTO
-import ro.hibyte.betting.dto.UserProfileDTO
+import ro.hibyte.betting.dto.*
 import ro.hibyte.betting.entity.*
 import ro.hibyte.betting.repository.UserGroupRepository
 import ro.hibyte.betting.service.BetTypeService
@@ -24,7 +21,7 @@ class EventMapper(
         // Extract words starting with '#' from the description to populate tags
         val tags = eventRequest.description?.let {
             Regex("#\\w+").findAll(it)
-                .map { it.value }
+                .map { tag -> tag.value }
                 .toList()
         }
 
@@ -75,7 +72,7 @@ class EventMapper(
             .map(betTypeMapper::betTypeToBetTypeDTO)
             .collect(Collectors.toList())
 
-        val betList:List<BetDTO> = event.betTypes.flatMap { betType -> betType.bets.map { BetDTO(it) } }
+        val betList:List<CompleteBetDTO> = event.betTypes.flatMap { betType -> betType.bets.map { CompleteBetDTO(it) } }
 
         val allUsers: Set<Long?> = event.userProfiles.map { it.userId }.toSet()
 
@@ -91,7 +88,7 @@ class EventMapper(
             creator = creator,
             tags = event.tags,
             betTypeDtoList = betTypeDtoList,
-            userProfiles = allUsers,
+            combinedUserProfileIds = allUsers,
             userGroupIds = event.userGroupIds,
             userProfileIds = event.userProfileIds,
             created = event.created.toInstant(),

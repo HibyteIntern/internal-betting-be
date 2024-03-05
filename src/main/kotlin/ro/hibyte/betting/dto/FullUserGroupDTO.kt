@@ -15,6 +15,6 @@ data class FullUserGroupDTO (
         groupName = userGroup.groupName,
         profilePicture = userGroup.profilePicture,
         description = userGroup.description,
-        users = userGroup.users?.map{UserProfileDTO(it)}?.toMutableSet()
+        users = userGroup.users?.map{ UserProfileDTO(it) }?.toMutableSet()
     )
 }

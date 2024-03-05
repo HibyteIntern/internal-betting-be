@@ -62,8 +62,8 @@ fun createRandomBets(allUsers: Array<UserProfileDTO>, betTypes: Array<BetTypeDTO
             BetDTO(
                 value = betValue,
                 amount = random.nextInt(5) + 5,
-                betType = betType.id ?: 0,
-                user = user.userId
+                betTypeId = betType.id ?: 0,
+                userId = user.userId
             )
         }
     }
