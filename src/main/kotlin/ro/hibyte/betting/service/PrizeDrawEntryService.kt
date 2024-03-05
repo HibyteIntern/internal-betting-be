@@ -4,5 +4,4 @@ import org.springframework.stereotype.Service
 import ro.hibyte.betting.repository.PrizeDrawEntryRepository
 
 @Service
-class PrizeDrawEntryService(private val prizeDrawEntryRepository: PrizeDrawEntryRepository) {
-}
+class PrizeDrawEntryService(private val prizeDrawEntryRepository: PrizeDrawEntryRepository)

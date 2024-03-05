@@ -3,9 +3,9 @@ package ro.hibyte.betting.dto
 import ro.hibyte.betting.entity.Bet
 import ro.hibyte.betting.exceptions.types.BadRequestException
 
-class BetDTO(
+data class CompleteBetDTO(
     val betId: Long? = null,
-    var userId: Long? = null,
+    var user: FullUserProfileDTO? = null,
     var betTypeId: Long,
     val amount: Number,
     val odds: Double? = null,
@@ -14,7 +14,7 @@ class BetDTO(
 ) {
     constructor(bet: Bet): this(
         betId = bet.betId,
-        userId = bet.user.userId,
+        user = FullUserProfileDTO(bet.user),
         betTypeId = bet.betType.id ?: throw BadRequestException("Bet Type must have an id."),
         amount = bet.amount,
         odds = bet.odds,

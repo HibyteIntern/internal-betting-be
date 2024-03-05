@@ -43,7 +43,7 @@ class EventTemplateService(
         eventTemplateRepository.findAllByNameContainsIgnoreCase(name)
 
     fun update(eventTemplateRequest: EventTemplateRequest, id: Long): EventTemplate {
-        val eventTemplateToUpdate: EventTemplate = eventTemplateRepository.findById(id).orElseThrow{EntityNotFoundException("Event Template", id)}
+        val eventTemplateToUpdate: EventTemplate = eventTemplateRepository.findById(id).orElseThrow{ EntityNotFoundException("Event Template", id) }
         val eventTemplate = EventTemplate(
             null,
             eventTemplateRequest.name,

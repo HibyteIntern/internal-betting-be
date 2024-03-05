@@ -5,7 +5,6 @@ import org.springframework.scheduling.annotation.EnableAsync
 import org.springframework.scheduling.annotation.EnableScheduling
 import org.springframework.scheduling.annotation.Scheduled
 import ro.hibyte.betting.service.EventService
-import java.time.Instant
 
 @Configuration
 @EnableScheduling

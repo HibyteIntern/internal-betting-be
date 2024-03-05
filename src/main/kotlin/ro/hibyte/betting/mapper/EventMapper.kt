@@ -1,10 +1,7 @@
 package ro.hibyte.betting.mapper
 
 import org.springframework.stereotype.Component
-import ro.hibyte.betting.dto.BetDTO
-import ro.hibyte.betting.dto.CompleteBetTypeDTO
-import ro.hibyte.betting.dto.EventDTO
-import ro.hibyte.betting.dto.UserProfileDTO
+import ro.hibyte.betting.dto.*
 import ro.hibyte.betting.entity.*
 import ro.hibyte.betting.repository.UserGroupRepository
 import ro.hibyte.betting.service.BetTypeService
@@ -16,7 +13,6 @@ import java.util.stream.Collectors
 class EventMapper(
     private val betTypeMapper: BetTypeMapper,
     private val userProfileService: UserProfileService,
-    private val betMapper: BetMapper,
     private val betTypeService: BetTypeService,
     private val userGroupRepository: UserGroupRepository
 ) {
@@ -25,13 +21,13 @@ class EventMapper(
         // Extract words starting with '#' from the description to populate tags
         val tags = eventRequest.description?.let {
             Regex("#\\w+").findAll(it)
-                .map { it.value }
+                .map { tag -> tag.value }
                 .toList()
         }
 
-        val completeBetTypeDtoList: List<CompleteBetTypeDTO>? = eventRequest.completeBetTypeDtoList
+        val betTypeDtoList: List<BetTypeDTO>? = eventRequest.betTypeDtoList
 
-        val betTypes: List<BetType> = completeBetTypeDtoList
+        val betTypes: List<BetType> = betTypeDtoList
             ?.let { dtoList ->
                 dtoList.map { betTypeService.create(it) }
             }
@@ -72,11 +68,11 @@ class EventMapper(
         )
     }
     fun mapEventToEventResponse(event: Event): EventDTO {
-        val completeBetTypeDtoList:List<CompleteBetTypeDTO> = event.betTypes.stream()
-            .map(betTypeMapper::betTypeToCompleteBetTypeDto)
+        val betTypeDtoList:List<BetTypeDTO> = event.betTypes.stream()
+            .map(betTypeMapper::betTypeToBetTypeDTO)
             .collect(Collectors.toList())
 
-        val betList:List<BetDTO> = event.betTypes.flatMap { betType -> betType.bets.map { betMapper.mapBetToBetDto(it) } }
+        val betList:List<CompleteBetDTO> = event.betTypes.flatMap { betType -> betType.bets.map { CompleteBetDTO(it) } }
 
         val allUsers: Set<Long?> = event.userProfiles.map { it.userId }.toSet()
 
@@ -91,8 +87,8 @@ class EventMapper(
             description = event.description,
             creator = creator,
             tags = event.tags,
-            completeBetTypeDtoList = completeBetTypeDtoList,
-            userProfiles = allUsers,
+            betTypeDtoList = betTypeDtoList,
+            combinedUserProfileIds = allUsers,
             userGroupIds = event.userGroupIds,
             userProfileIds = event.userProfileIds,
             created = event.created.toInstant(),
