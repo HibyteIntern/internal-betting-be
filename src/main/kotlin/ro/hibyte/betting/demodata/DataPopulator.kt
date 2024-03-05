@@ -17,8 +17,8 @@ fun main() {
 
     val allUsers: Array<UserProfileDTO> =
         restTemplate.getForObject("http://localhost:8080/api/v1/user-profile", Array<UserProfileDTO>::class.java)!!
-    val betTypes: Array<CompleteBetTypeDTO> =
-        restTemplate.getForObject("http://localhost:8080/api/v1/bet-types", Array<CompleteBetTypeDTO>::class.java)!!
+    val betTypes: Array<BetTypeDTO> =
+        restTemplate.getForObject("http://localhost:8080/api/v1/bet-types", Array<BetTypeDTO>::class.java)!!
 
     createRandomBets(allUsers, betTypes)
 
@@ -39,8 +39,8 @@ fun createLeaderboard(restTemplate: RestTemplate, name: String, events: List<Lon
     println("Created leaderboard entry with id ${response.id}")
 }
 
-fun findRandomOutcomes(restTemplate: RestTemplate, events: Array<EventDTO>, betTypes: Array<CompleteBetTypeDTO>) {
-    val betTypeOutcomes: Map<Long?, String> = betTypes.associate { it.id to (it.multipleChoiceOptions?.random() ?: "") }
+fun findRandomOutcomes(restTemplate: RestTemplate, events: Array<EventDTO>, betTypes: Array<BetTypeDTO>) {
+    val betTypeOutcomes: Map<Long?, String> = betTypes.associate { it.id to it.options.random() }
     val eventNo = events.map { event ->
         restTemplate.put(
             "http://localhost:8080/api/v1/events/outcome/${event.eventId}",
@@ -50,7 +50,7 @@ fun findRandomOutcomes(restTemplate: RestTemplate, events: Array<EventDTO>, betT
     println("Created $eventNo outcomes")
 }
 
-fun createRandomBets(allUsers: Array<UserProfileDTO>, betTypes: Array<CompleteBetTypeDTO>): Any {
+fun createRandomBets(allUsers: Array<UserProfileDTO>, betTypes: Array<BetTypeDTO>): Any {
     val restTemplate = RestTemplate()
     val random = java.util.Random()
     val bets = allUsers.flatMap { user ->
@@ -58,12 +58,12 @@ fun createRandomBets(allUsers: Array<UserProfileDTO>, betTypes: Array<CompleteBe
         val numberOfBets = random.nextInt(5) + 5
         (0..numberOfBets).map {
             val betType = betTypes.random()
-            val betValue = betType.multipleChoiceOptions?.random()!!
+            val betValue = betType.options.random()
             BetDTO(
                 value = betValue,
                 amount = random.nextInt(5) + 5,
-                betType = betType.id,
-                user = user.userId
+                betTypeId = betType.id ?: 0,
+                userId = user.userId
             )
         }
     }

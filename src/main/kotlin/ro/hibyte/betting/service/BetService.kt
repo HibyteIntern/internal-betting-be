@@ -5,8 +5,9 @@ import org.springframework.stereotype.Service
 import ro.hibyte.betting.dto.BetDTO
 import ro.hibyte.betting.dto.UserProfileDTO
 import ro.hibyte.betting.entity.Bet
-import ro.hibyte.betting.entity.BetTemplateType
 import ro.hibyte.betting.entity.UserProfile
+import ro.hibyte.betting.exceptions.types.BadRequestException
+import ro.hibyte.betting.exceptions.types.EntityNotFoundException
 import ro.hibyte.betting.repository.BetRepository
 import ro.hibyte.betting.repository.BetTypeRepository
 import ro.hibyte.betting.repository.UserProfileRepository
@@ -30,23 +31,21 @@ class BetService(
     }
 
     fun create(betDto: BetDTO, userProfile: UserProfile): Bet {
-        val betType = betDto.betType?.let { betTypeRepository.findById(it).orElse(null) }
-        if (betType?.betTemplate?.type == BetTemplateType.MULTIPLE_CHOICE) {
-            val bet = Bet(betDto, betType)
-            bet.user = userProfile
+        if(userProfile.coins.toInt() < betDto.amount.toInt()) throw BadRequestException("User doesn't have enough coins for request.")
 
-            val savedBet = betRepository.save(bet)
+        val betType = betDto.betTypeId.let{
+            betTypeRepository.findById(it).orElseThrow { EntityNotFoundException("Bet Type", betDto.betId ?: 0) }}
 
-            betType.bets.add(bet)
-            betTypeRepository.save(betType)
+        val savedBet = betRepository.save(
+            Bet(betDto, betType, userProfile)
+        )
 
-            userProfile.coins = userProfile.coins.toInt() - bet.amount.toInt()
-            userProfileRepository.save(userProfile)
+        betType.bets.add(savedBet)
+        betTypeRepository.save(betType)
 
-            return savedBet
-        }
-
-        throw IllegalArgumentException("BetType with id ${betDto.betType} is not a multiple choice bet type")
+        userProfile.coins = userProfile.coins.toInt() - savedBet.amount.toInt()
+        userProfileRepository.save(userProfile)
+        return savedBet
     }
 
     fun addBetForEvent(betDTO: BetDTO, userProfileDTO: UserProfileDTO) {
@@ -64,9 +63,9 @@ class BetService(
     }
 
     fun processBet(bet: Bet) {
-        if (bet.value == bet.betType?.finalOutcome) {
-            bet.user?.coins = (bet.user?.coins?.toInt() ?: 0) + (ceil(bet.amount.toDouble() * bet.odds))
-            userProfileRepository.save(bet.user!!)
+        if (bet.value == bet.betType.finalOutcome) {
+            bet.user.coins = bet.user.coins.toInt() + (ceil(bet.amount.toDouble() * bet.odds))
+            userProfileRepository.save(bet.user)
         }
     }
 }

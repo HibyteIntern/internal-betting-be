@@ -11,22 +11,26 @@ data class Bet(
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST, CascadeType.MERGE])
     @JoinColumn(name = "userId")
-    var user: UserProfile? = null,
+    var user: UserProfile,
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST, CascadeType.MERGE])
-    @JoinColumn(name = "betTypetId")
-    var betType: BetType? = null,
+    @JoinColumn(name = "betTypeId")
+    var betType: BetType,
 
     var amount: Number,
     var odds: Double,
     var value: String,
 ){
-    constructor(betDto: BetDTO, betType: BetType?): this(
+    constructor(
+        betDto: BetDTO,
+        betType: BetType,
+        userProfile: UserProfile,
+    ): this(
         betId = betDto.betId,
-        user = betDto.user?.let { UserProfile(userId = it) },
+        user = userProfile,
         betType = betType,
         amount = betDto.amount,
-        odds = betType?.betTemplate?.multipleChoiceOptions?.indexOf(betDto.value)?.let { (betType.odds[it]) } ?: 0.0,
+        odds = betType.options.indexOf(betDto.value).let { (betType.odds[it]) },
         value = betDto.value,
     )
 }

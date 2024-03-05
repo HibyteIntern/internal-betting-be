@@ -45,6 +45,4 @@ class UserGroup(
     override fun hashCode(): Int {
         return userGroupId.hashCode()
     }
-
-
 }
