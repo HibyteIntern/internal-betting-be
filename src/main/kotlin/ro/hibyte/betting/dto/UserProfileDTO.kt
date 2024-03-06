@@ -22,7 +22,6 @@ data class UserProfileDTO(
         coins = userProfile.coins,
         groups = userProfile.groups?.mapNotNull{it.userGroupId}?.toMutableSet(),
         username = userProfile.username,
-        bets = userProfile.bets?.map { BetDTO(it) }?.toMutableList()
     )
 
     constructor(userProfile: UserProfile, roles: Collection<GrantedAuthority>) : this(

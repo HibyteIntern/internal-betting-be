@@ -21,6 +21,17 @@ class BetController(
         return bets.map { BetDTO(it) }.toSet()
     }
 
+    @GetMapping("/user")
+    fun getBets(authentication: Authentication): List<BetDTO> {
+        val userProfile = userProfileService.getByKeycloakId(authentication.name)
+        userProfile?.userId?.let { userId ->
+            val bets = betService.getBetsByUserId(userId)
+            return bets.map { BetDTO(it) }
+        }
+        return emptyList()
+    }
+
+
     @GetMapping("/{betId}")
     fun getOne(@PathVariable betId: Long): BetDTO {
         val bet = betService.get(betId)
@@ -47,4 +58,5 @@ class BetController(
 
     @DeleteMapping("/{betId}")
     fun delete(@PathVariable betId: Long) = betService.delete(betId)
+
 }

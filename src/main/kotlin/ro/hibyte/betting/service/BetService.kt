@@ -29,6 +29,13 @@ class BetService(
             NoSuchElementException("Bet not found with betId: $betId")
         }
     }
+    @Transactional
+    fun getBetsByUserId(userId: Long): List<Bet> {
+        val user = userProfileRepository.findById(userId).orElseThrow {
+            NoSuchElementException("User not found with userId: $userId")
+        }
+        return user.bets?.toList() ?: emptyList()
+    }
 
     fun create(betDto: BetDTO, userProfile: UserProfile): Bet {
         if(userProfile.coins.toInt() < betDto.amount.toInt()) throw BadRequestException("User doesn't have enough coins for request.")

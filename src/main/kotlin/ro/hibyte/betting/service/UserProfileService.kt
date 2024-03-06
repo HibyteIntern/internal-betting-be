@@ -50,7 +50,7 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
     }
 
     fun addPhoto(userId: Long, photo: MultipartFile): Long?{
-       val userProfile = userProfileRepository.findById(userId).orElseThrow()
+       var userProfile = userProfileRepository.findById(userId).orElseThrow()
         userProfile.profilePicture = waspService.sendPhotoToWasp(photo)
         userProfileRepository.save(userProfile)
         return userProfile.profilePicture
@@ -65,7 +65,7 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
 
     fun createUserProfileIfNonExistent(userProfileDTO: UserProfileDTO): UserProfile{
         val userId: Long = userProfileDTO.userId?:0
-        val userProfile = userProfileRepository.findById(userId)
+        var userProfile = userProfileRepository.findById(userId)
         if (userProfile.isPresent){
             return userProfile.get()
         }
@@ -84,5 +84,9 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
     }
 
     fun getByUsername(creator: String): UserProfile = this.userProfileRepository.findByUsername(creator) ?: throw EntityNotFoundByNameException("User Profile", creator)
+
+    fun isUsernameTaken(username: String): Boolean {
+        return userProfileRepository.existsByUsername(username)
+    }
 
 }

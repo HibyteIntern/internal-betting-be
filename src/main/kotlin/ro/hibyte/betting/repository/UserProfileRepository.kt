@@ -7,4 +7,6 @@ interface UserProfileRepository : JpaRepository<UserProfile, Long>{
     fun findByKeycloakId(keycloakId: String): UserProfile?
     fun findByUsername(username: String): UserProfile?
     fun findAllByUserIdIn(userIds: List<Long>): List<UserProfile>
+    fun existsByUsername(username: String): Boolean
+
 }

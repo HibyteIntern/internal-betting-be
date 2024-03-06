@@ -45,8 +45,14 @@ class UserProfileController(private val userProfileService: UserProfileService) 
 
     @GetMapping("/getMe")
     fun getMe(authentication: Authentication): FullUserProfileDTO {
-        val userProfile = userProfileService.getByKeycloakId(authentication.name)
+        var userProfile = userProfileService.getByKeycloakId(authentication.name)
         return if (userProfile != null) {
+            userProfile = UserProfile( userId = userProfile.userId,
+                    keycloakId = userProfile.keycloakId,
+                    username = userProfile.username,
+                    profilePicture = userProfile.profilePicture,
+                    description = userProfile.description,
+                    coins = userProfile.coins)
             FullUserProfileDTO(userProfile, authentication.authorities)
         } else {
 
@@ -65,10 +71,8 @@ class UserProfileController(private val userProfileService: UserProfileService) 
         return if (userProfile != null) {
             UserProfileDTO(userProfile, authentication.authorities)
         } else {
-
             val newUserProfile = UserProfile()
             newUserProfile.keycloakId = authentication.name
-
             val createdUserProfile = userProfileService.create(UserProfileDTO(newUserProfile))
 
             UserProfileDTO(createdUserProfile, authentication.authorities)
@@ -132,8 +136,8 @@ class UserProfileController(private val userProfileService: UserProfileService) 
             val photo: ByteArray? = userProfile?.userId?.let { userProfileService.getPhoto(it) }
             if (photo != null) {
                 ResponseEntity.ok()
-                        .contentType(MediaType.IMAGE_JPEG)
-                        .body(photo)
+                    .contentType(MediaType.IMAGE_JPEG)
+                    .body(photo)
             } else {
                 ResponseEntity.notFound().build()
             }
@@ -149,6 +153,18 @@ class UserProfileController(private val userProfileService: UserProfileService) 
         return userProfileService.addPhoto(userId, photo)
     }
 
+    @GetMapping("/isUsernameTaken")
+    fun isUsernameTaken(
+            @RequestParam username: String,
+            @RequestParam(required = false) currentUsername: String?
+    ): ResponseEntity<Boolean> {
+        val isTaken = if (currentUsername != null && currentUsername == username) {
+            false
+        } else {
+            userProfileService.isUsernameTaken(username)
+        }
+        return ResponseEntity.ok(isTaken)
+    }
 
 }
 
