@@ -76,16 +76,12 @@ class EventMapper(
 
         val allUsers: Set<Long?> = event.userProfiles.map { it.userId }.toSet()
 
-        var creator: UserProfileDTO? = null
-        if(event.creator != null) {
-            creator = UserProfileDTO(event.creator!!)
-        }
 
         return EventDTO(
             eventId = event.eventId,
             name = event.name,
             description = event.description,
-            creator = creator,
+            creator = event.creator?.username,
             tags = event.tags,
             betTypeDtoList = betTypeDtoList,
             combinedUserProfileIds = allUsers,

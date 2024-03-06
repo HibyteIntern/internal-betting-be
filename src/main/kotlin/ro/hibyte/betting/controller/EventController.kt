@@ -13,15 +13,15 @@ import ro.hibyte.betting.service.EventService
 class EventController(private val eventService: EventService) {
 
     @PostMapping("/add")
-    fun addEvent(@RequestBody eventRequest: EventDTO, authentication: Authentication): ResponseEntity<EventDTO> =
+    fun addEvent(@RequestBody eventRequest: EventDTO, authentication: Authentication?): ResponseEntity<EventDTO> =
         ResponseEntity(
-            eventService.addEvent(eventRequest, authentication.name),
+            eventService.addEvent(eventRequest, authentication?.name),
             HttpStatus.CREATED
         )
 
     @PostMapping("/many")
-    fun addEvents(@RequestBody events: List<EventDTO>, authentication: Authentication): ResponseEntity<List<EventDTO>> {
-        val response = eventService.addEvents(events, authentication.name)
+    fun addEvents(@RequestBody events: List<EventDTO>, authentication: Authentication?): ResponseEntity<List<EventDTO>> {
+        val response = eventService.addEvents(events, authentication?.name)
         return ResponseEntity(response, HttpStatus.CREATED)
     }
 

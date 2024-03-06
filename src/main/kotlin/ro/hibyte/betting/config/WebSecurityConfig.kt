@@ -18,6 +18,7 @@ class WebSecurityConfig {
             .csrf { it.disable() }
             .authorizeHttpRequests {
                 it.requestMatchers(HttpMethod.OPTIONS).permitAll()
+//                it.anyRequest().permitAll()
                     .requestMatchers("/api/v1/user-profile/getMe").authenticated()
                     .requestMatchers("/api/v1/user-profile/getMeSimple").authenticated()
                     .requestMatchers(HttpMethod.GET, "/**").permitAll()
@@ -30,6 +31,7 @@ class WebSecurityConfig {
                     .requestMatchers("/api/v1/prize-draws/**").hasAuthority("ADMIN")
 
                     .requestMatchers("/api/v1/user-profile/**").authenticated()
+                    .requestMatchers("/api/v1/leaderboards/**").authenticated()
 
                     .anyRequest().authenticated()
             }

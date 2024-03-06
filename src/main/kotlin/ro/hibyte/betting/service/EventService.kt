@@ -18,35 +18,37 @@ import java.time.Instant
 
 @Service
 class EventService(
-    private val eventRepository: EventRepository,
-    private val eventMapper: EventMapper,
-    private val betTypeService: BetTypeService,
-    private val betService: BetService,
-    private val userProfileService: UserProfileService,
-    private val competitionRepository: CompetitionRepository,
-    private val competitionService: CompetitionService
+        private val eventRepository: EventRepository,
+        private val eventMapper: EventMapper,
+        private val betTypeService: BetTypeService,
+        private val betService: BetService,
+        private val userProfileService: UserProfileService,
+        private val competitionRepository: CompetitionRepository,
+        private val competitionService: CompetitionService
+
 ) {
-    fun addEvent(eventRequest: EventDTO, keycloakId: String): EventDTO {
-        val creator = userProfileService.getByKeycloakId(keycloakId) ?: throw EntityNotFoundByNameException("User Profile", keycloakId)
-        val event = eventMapper.mapEventRequestToEvent(eventRequest, creator)
+    fun addEvent(eventRequest: EventDTO, keycloakId: String?): EventDTO {
+        val creator = if (keycloakId != null) userProfileService.getByKeycloakId(keycloakId) else eventRequest.creator?.let { userProfileService.getByUsername(it) }
+        val event = eventMapper.mapEventRequestToEvent(eventRequest, creator!!)
         return eventMapper.mapEventToEventResponse(eventRepository.save(event))
     }
 
     @Transactional
     fun editEvent(eventId: Long, updatedEvent: EventDTO, keycloakId: String): EventDTO {
         val existingEvent = eventRepository.findById(eventId).orElseThrow { RuntimeException("event not present") }
-        val user: UserProfile = userProfileService.getByKeycloakId(keycloakId) ?: throw EntityNotFoundByNameException("User Profile", keycloakId)
+        val user: UserProfile = userProfileService.getByKeycloakId(keycloakId)
+                ?: throw EntityNotFoundByNameException("User Profile", keycloakId)
         if (existingEvent.creator?.userId != user.userId) {
             throw ForbiddenException("You are not allowed to edit this event")
         }
-        existingEvent.name = updatedEvent.name?:""
-        existingEvent.description = updatedEvent.description?:""
-        existingEvent.tags = Regex("#\\w+").findAll(updatedEvent.description?:"")
-            .map { it.value }
-            .toMutableList()
+        existingEvent.name = updatedEvent.name ?: ""
+        existingEvent.description = updatedEvent.description ?: ""
+        existingEvent.tags = Regex("#\\w+").findAll(updatedEvent.description ?: "")
+                .map { it.value }
+                .toMutableList()
         existingEvent.startsAt = Timestamp.from(updatedEvent.startsAt)
         existingEvent.endsAt = Timestamp.from(updatedEvent.endsAt)
-        existingEvent.status = updatedEvent.status?:Status.DRAFT
+        existingEvent.status = updatedEvent.status ?: Status.DRAFT
         return eventMapper.mapEventToEventResponse(eventRepository.save(existingEvent))
     }
 
@@ -70,7 +72,8 @@ class EventService(
 
     fun deleteEvent(eventId: Long, keycloakId: String) {
         val event = eventRepository.findById(eventId).orElseThrow { RuntimeException("No such event found") }
-        val user = userProfileService.getByKeycloakId(keycloakId) ?: throw EntityNotFoundByNameException("User Profile", keycloakId)
+        val user = userProfileService.getByKeycloakId(keycloakId)
+                ?: throw EntityNotFoundByNameException("User Profile", keycloakId)
         if (event.creator?.userId != user.userId) {
             throw ForbiddenException("You are not allowed to delete this event")
         }
@@ -87,8 +90,8 @@ class EventService(
 
     fun getAllEvents(): List<EventDTO> {
         return eventRepository.findAll()
-            .map(eventMapper::mapEventToEventResponse)
-            .toList()
+                .map(eventMapper::mapEventToEventResponse)
+                .toList()
     }
 
     fun getOneEvent(eventId: Long): EventDTO {
@@ -96,17 +99,17 @@ class EventService(
         return eventMapper.mapEventToEventResponse(event)
     }
 
-    fun getAllTags():List<String>{
+    fun getAllTags(): List<String> {
         return eventRepository.findAll()
-            .flatMap { event -> eventMapper.mapToTags(event) }
-            .distinct()
-            .toList()
+                .flatMap { event -> eventMapper.mapToTags(event) }
+                .distinct()
+                .toList()
     }
 
-    fun getEventsByName(name:String):List<EventDTO>{
+    fun getEventsByName(name: String): List<EventDTO> {
         return eventRepository.findAllByNameContainsIgnoreCase(name)
-              .map(eventMapper::mapEventToEventResponse)
-              .toList()
+                .map(eventMapper::mapEventToEventResponse)
+                .toList()
     }
 
     fun populateBetTypeOutcome(eventId: Long, resolveOutcomeDTO: ResolveOutcomeDTO) {
@@ -121,10 +124,14 @@ class EventService(
         }
     }
 
-    fun addEvents(events: List<EventDTO>, keycloakId: String): List<EventDTO> {
-        val creator = userProfileService.getByKeycloakId(keycloakId) ?: throw EntityNotFoundByNameException("User Profile", keycloakId)
-        return eventRepository.saveAll(events.map{eventMapper.mapEventRequestToEvent(it, creator)})
-            .map { eventMapper.mapEventToEventResponse(it) }
+    fun addEvents(events: List<EventDTO>, keycloakId: String?): List<EventDTO> {
+        return events.mapNotNull {
+            try {
+                addEvent(it, keycloakId)
+            } catch (e: Exception) {
+                null
+            }
+        }
     }
 }
 

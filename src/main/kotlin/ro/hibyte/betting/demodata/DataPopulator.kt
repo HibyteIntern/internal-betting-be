@@ -61,7 +61,7 @@ fun createRandomBets(allUsers: Array<UserProfileDTO>, betTypes: Array<BetTypeDTO
             val betValue = betType.options.random()
             BetDTO(
                 value = betValue,
-                amount = random.nextInt(5) + 5,
+                amount = random.nextInt(5) + 1,
                 betTypeId = betType.id ?: 0,
                 userId = user.userId
             )

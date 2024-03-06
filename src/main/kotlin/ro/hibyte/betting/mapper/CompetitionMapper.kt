@@ -27,7 +27,7 @@ class CompetitionMapper {
         val userGroupsFromNames = userGroupNames.map{ groupName -> userGroupRepository.findByGroupName(groupName) }.toList()
         val userGroupSet = userGroupsFromNames.map { group -> group.users }
         val usersFromGroups = userGroupSet.flatMap { it.orEmpty() }.toSet().toList()
-        val userProfilesFromGivenUsernames = usernames.map{ username -> userProfileRepository.findByUsername(username) }.toList()
+        val userProfilesFromGivenUsernames = usernames.mapNotNull{ username -> userProfileRepository.findByUsername(username) }.toList()
 
         return listOf(usersFromGroups, userProfilesFromGivenUsernames).flatten().toSet().toList()
     }

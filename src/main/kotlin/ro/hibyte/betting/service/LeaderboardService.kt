@@ -43,8 +43,8 @@ class LeaderboardService(
     fun computeLeaderboard(leaderboardRequest: LeaderboardRequest): LeaderboardDTO {
         val leaderboard = leaderboardRepository.findById(leaderboardRequest.leaderboardId)
             .orElseThrow { EntityNotFoundException("Leaderboard", leaderboardRequest.leaderboardId) }
-        val events = leaderboard.events
-        val users = leaderboard.userProfiles
+        val events = eventRepository.findAll().toSet()
+        val users = userProfileRepository.findAll().toSet()
 
         val metricStrategies: Map<String, MetricStrategy> = mapOf(
             "numberOfBets" to NumberOfBetsStrategy(),

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service
 import org.springframework.web.multipart.MultipartFile
 import ro.hibyte.betting.dto.UserProfileDTO
 import ro.hibyte.betting.entity.UserProfile
+import ro.hibyte.betting.exceptions.types.EntityNotFoundByNameException
 import ro.hibyte.betting.repository.UserProfileRepository
 import kotlin.NoSuchElementException
 
@@ -25,7 +26,6 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
     fun findById(userId: Long): UserProfile? = userProfileRepository.findById(userId).orElse(null)
 
     fun getByKeycloakId(keycloakId: String): UserProfile? = userProfileRepository.findByKeycloakId(keycloakId)
-
 
     fun create(dtoUser: UserProfileDTO): UserProfile {
         val userProfile = UserProfile(dtoUser)
@@ -82,4 +82,7 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
             userProfileRepository.save(user)
         }
     }
+
+    fun getByUsername(creator: String): UserProfile = this.userProfileRepository.findByUsername(creator) ?: throw EntityNotFoundByNameException("User Profile", creator)
+
 }
