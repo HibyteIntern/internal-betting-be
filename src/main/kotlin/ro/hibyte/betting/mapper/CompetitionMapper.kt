@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import ro.hibyte.betting.dto.CompetitionDTO
 import ro.hibyte.betting.dto.CompetitionRequest
+import ro.hibyte.betting.dto.UserProfileDTO
 import ro.hibyte.betting.entity.Competition
 import ro.hibyte.betting.entity.Event
 import ro.hibyte.betting.entity.UserProfile
@@ -20,6 +21,8 @@ class CompetitionMapper {
     private lateinit var userProfileRepository: UserProfileRepository
     @Autowired
     private lateinit var userGroupRepository: UserGroupRepository
+    @Autowired
+    private lateinit var eventMapper: EventMapper
 
     fun getEventsFromNames(eventNames: List<String>): List<Event> = eventNames.map { name -> eventRepository.findByName(name).first() }.toList()
 
@@ -67,10 +70,10 @@ class CompetitionMapper {
             name = competition.name,
             description = competition.description,
             creator = competition.creator,
-            users = competition.users,
+            users = competition.users.map { user -> UserProfileDTO(user) },
             userGroups = competition.userGroups,
             userProfiles = competition.userProfiles,
-            events = competition.events,
+            events = competition.events.map { event -> eventMapper.mapEventToEventResponse(event) },
             created = competition.created.toInstant(),
             lastModified = competition.lastModified.toInstant(),
             status = competition.status,
