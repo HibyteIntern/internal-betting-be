@@ -7,7 +7,7 @@ data class CompetitionDTO(
     var id: Long? = null,
     var name: String = "",
     var description: String = "",
-    var creator: String = "",
+    var creator: UserProfileDTO,
     var users: List<UserProfileDTO> = emptyList(),
     var userGroups: List<String> = emptyList(),
     var userProfiles: List<String> = emptyList(),

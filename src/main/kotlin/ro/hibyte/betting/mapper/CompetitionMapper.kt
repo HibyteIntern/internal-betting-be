@@ -35,26 +35,31 @@ class CompetitionMapper {
         return listOf(usersFromGroups, userProfilesFromGivenUsernames).flatten().toSet().toList()
     }
 
-        fun mapCompetitionRequestToCompetition(competitionRequest: CompetitionRequest): Competition =
-            Competition(
-                name = competitionRequest.name,
-                description = competitionRequest.description,
-                creator = "",
-                users = getUserProfilesFromUserGroupNamesAndUsernames(competitionRequest.userGroups, competitionRequest.userProfiles),
-                userGroups = competitionRequest.userGroups,
-                userProfiles = competitionRequest.userProfiles,
-                events = getEventsFromNames(competitionRequest.events),
-                created = Timestamp(System.currentTimeMillis()),
-                lastModified = Timestamp(System.currentTimeMillis()),
-                status = competitionRequest.status,
-            )
+    fun mapCompetitionRequestToCompetition(
+        competitionRequest: CompetitionRequest,
+        creator: UserProfile
+    ): Competition = Competition(
+            name = competitionRequest.name,
+            description = competitionRequest.description,
+            creator = creator,
+            users = getUserProfilesFromUserGroupNamesAndUsernames(competitionRequest.userGroups, competitionRequest.userProfiles),
+            userGroups = competitionRequest.userGroups,
+            userProfiles = competitionRequest.userProfiles,
+            events = getEventsFromNames(competitionRequest.events),
+            created = Timestamp(System.currentTimeMillis()),
+            lastModified = Timestamp(System.currentTimeMillis()),
+            status = competitionRequest.status,
+        )
 
-    fun mapCompetitionRequestToCompetition(competitionRequest: CompetitionRequest, initialCompetition: Competition): Competition =
-        Competition(
+    fun mapCompetitionRequestToCompetition(
+        competitionRequest: CompetitionRequest,
+        initialCompetition: Competition,
+        creator: UserProfile
+    ): Competition = Competition(
             competitionId = initialCompetition.competitionId,
             name = competitionRequest.name,
             description = competitionRequest.description,
-            creator = "",
+            creator = creator,
             users = getUserProfilesFromUserGroupNamesAndUsernames(competitionRequest.userGroups, competitionRequest.userProfiles),
             userGroups = competitionRequest.userGroups,
             userProfiles = competitionRequest.userProfiles,
@@ -69,7 +74,7 @@ class CompetitionMapper {
             id = competition.competitionId,
             name = competition.name,
             description = competition.description,
-            creator = competition.creator,
+            creator = UserProfileDTO(competition.creator),
             users = competition.users.map { user -> UserProfileDTO(user) },
             userGroups = competition.userGroups,
             userProfiles = competition.userProfiles,

@@ -20,9 +20,11 @@ class CompetitionService {
     @Autowired
     private lateinit var competitionRepository : CompetitionRepository
 
+    @Autowired
+    private lateinit var userProfileService: UserProfileService
+
     fun getAll(): List<CompetitionDTO> {
         val competitions = competitionRepository.findAll()
-
         return competitions.map { competitionMapper.mapCompetitionToCompetitionDto(it) }
     }
 
@@ -31,13 +33,21 @@ class CompetitionService {
 
     fun getOne(id: Long): Competition = competitionRepository.findById(id).orElseThrow{ EntityNotFoundException("Competition", id) }
 
-    fun create(competitionRequest: CompetitionRequest): Competition = competitionRepository.save(competitionMapper.mapCompetitionRequestToCompetition(competitionRequest))
+    fun create(competitionRequest: CompetitionRequest, keycloakId: String): Competition {
+        val creator = userProfileService.getByKeycloakId(keycloakId)
+            ?: throw EntityNotFoundByNameException("User Profile", keycloakId)
 
-    fun update(id: Long, competitionRequest: CompetitionRequest): Competition {
+        return competitionRepository.save(competitionMapper.mapCompetitionRequestToCompetition(competitionRequest, creator))
+    }
+
+    fun update(id: Long, competitionRequest: CompetitionRequest, keycloakId: String): Competition {
         val competition = competitionRepository.findById(id).orElseThrow{ EntityNotFoundException("Competition", id) }
+        val creator = userProfileService.getByKeycloakId(keycloakId) ?:
+            throw EntityNotFoundByNameException("User Profile", keycloakId)
+        if(creator.userId != competition.creator.userId)
+            throw ForbiddenException("You cannot edit a competition created by another user")
 
-        val newCompetition = competitionMapper.mapCompetitionRequestToCompetition(competitionRequest, competition)
-
+        val newCompetition = competitionMapper.mapCompetitionRequestToCompetition(competitionRequest, competition, creator)
         return competitionRepository.save(newCompetition)
     }
 
@@ -62,5 +72,13 @@ class CompetitionService {
         }
     }
 
-    fun delete(id: Long) = competitionRepository.deleteById(id)
+    fun delete(id: Long, keycloakId: String) {
+        val foundCompetition = competitionRepository.findById(id).orElseThrow{ EntityNotFoundException("Competition", id) }
+        val creator = userProfileService.getByKeycloakId(keycloakId) ?:
+            throw EntityNotFoundByNameException("User Profile", keycloakId)
+        if(creator.userId != foundCompetition.creator.userId)
+            throw ForbiddenException("You cannot delete a competition created by another user")
+
+        competitionRepository.deleteById(id)
+    }
 }
