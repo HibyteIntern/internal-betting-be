@@ -5,6 +5,8 @@ import org.springframework.web.multipart.MultipartFile
 import ro.hibyte.betting.dto.FullUserGroupDTO
 import ro.hibyte.betting.dto.UserGroupDTO
 import ro.hibyte.betting.entity.UserGroup
+import ro.hibyte.betting.exceptions.types.BadRequestException
+import ro.hibyte.betting.exceptions.types.EntityNotFoundException
 import ro.hibyte.betting.repository.UserGroupRepository
 import ro.hibyte.betting.repository.UserProfileRepository
 
@@ -78,8 +80,8 @@ class UserGroupService(
     }
 
     fun getPhoto(groupId: Long): ByteArray? {
-        val userGroup = userGroupRepository.findById(groupId).orElseThrow()
-        val photoId = userGroup.profilePicture ?: throw IllegalArgumentException("Profile picture not set for user group $groupId")
+        val userGroup = userGroupRepository.findById(groupId).orElseThrow { EntityNotFoundException("Group", groupId) }
+        val photoId = userGroup.profilePicture ?: throw BadRequestException("Profile picture not set for user group $groupId")
         return waspService.getPhotoFromWasp(photoId)
     }
 }

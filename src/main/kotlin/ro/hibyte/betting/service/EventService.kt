@@ -4,11 +4,10 @@ import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 import ro.hibyte.betting.dto.EventDTO
 import ro.hibyte.betting.dto.ResolveOutcomeDTO
-import ro.hibyte.betting.dto.UserProfileDTO
-import ro.hibyte.betting.entity.Event
 import ro.hibyte.betting.entity.Status
 import ro.hibyte.betting.entity.UserProfile
 import ro.hibyte.betting.exceptions.types.EntityNotFoundByNameException
+import ro.hibyte.betting.exceptions.types.EntityNotFoundException
 import ro.hibyte.betting.exceptions.types.ForbiddenException
 import ro.hibyte.betting.mapper.EventMapper
 import ro.hibyte.betting.repository.CompetitionRepository
@@ -113,7 +112,7 @@ class EventService(
     }
 
     fun populateBetTypeOutcome(eventId: Long, resolveOutcomeDTO: ResolveOutcomeDTO) {
-        val event = eventRepository.findById(eventId).orElseThrow { RuntimeException("no such event found") }
+        val event = eventRepository.findById(eventId).orElseThrow { EntityNotFoundException("Event", eventId) }
 
         event.betTypes.forEach { betType ->
             resolveOutcomeDTO[betType.id]?.let { betTypeService.setFinalOutcome(betType, it) }
