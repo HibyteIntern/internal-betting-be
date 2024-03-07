@@ -7,12 +7,12 @@ import ro.hibyte.betting.dto.UserProfileDTO
 import ro.hibyte.betting.entity.Bet
 import ro.hibyte.betting.entity.UserProfile
 import ro.hibyte.betting.exceptions.types.BadRequestException
+import ro.hibyte.betting.exceptions.types.EntityNotFoundByNameException
 import ro.hibyte.betting.exceptions.types.EntityNotFoundException
 import ro.hibyte.betting.repository.BetRepository
 import ro.hibyte.betting.repository.BetTypeRepository
 import ro.hibyte.betting.repository.UserProfileRepository
 import kotlin.math.ceil
-import kotlin.math.roundToInt
 
 @Service
 class BetService(
@@ -41,7 +41,7 @@ class BetService(
         if(userProfile.coins.toInt() < betDto.amount.toInt()) throw BadRequestException("User doesn't have enough coins for request.")
 
         val betType = betDto.betTypeId.let{
-            betTypeRepository.findById(it).orElseThrow { EntityNotFoundException("Bet Type", betDto.betId ?: 0) }}
+            betTypeRepository.findById(it).orElseThrow { EntityNotFoundByNameException("Bet Type", betDto.betId.toString()) }}
 
         val savedBet = betRepository.save(
             Bet(betDto, betType, userProfile)
@@ -63,7 +63,7 @@ class BetService(
     @Transactional
     fun delete(betId: Long) {
         val bet =  betRepository.findById(betId).orElseThrow {
-            NoSuchElementException("Bet not found with betId: $betId")
+            EntityNotFoundException("Bet", betId)
         }
 
         betRepository.delete(bet)

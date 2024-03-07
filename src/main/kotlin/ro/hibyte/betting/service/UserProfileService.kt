@@ -50,7 +50,7 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
     }
 
     fun addPhoto(userId: Long, photo: MultipartFile): Long?{
-       var userProfile = userProfileRepository.findById(userId).orElseThrow()
+       val userProfile = userProfileRepository.findById(userId).orElseThrow()
         userProfile.profilePicture = waspService.sendPhotoToWasp(photo)
         userProfileRepository.save(userProfile)
         return userProfile.profilePicture
@@ -65,7 +65,7 @@ class UserProfileService(private val userProfileRepository: UserProfileRepositor
 
     fun createUserProfileIfNonExistent(userProfileDTO: UserProfileDTO): UserProfile{
         val userId: Long = userProfileDTO.userId?:0
-        var userProfile = userProfileRepository.findById(userId)
+        val userProfile = userProfileRepository.findById(userId)
         if (userProfile.isPresent){
             return userProfile.get()
         }
