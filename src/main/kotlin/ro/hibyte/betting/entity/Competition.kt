@@ -10,7 +10,10 @@ data class Competition(
     var competitionId: Long = 0,
     var name: String = "",
     var description: String = "",
-    var creator: String = "",
+
+    @ManyToOne
+    var creator: UserProfile,
+
     @ManyToMany
     @JoinTable(
         name = "competitions_user",

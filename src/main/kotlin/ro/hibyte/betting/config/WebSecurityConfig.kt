@@ -18,7 +18,7 @@ class WebSecurityConfig {
             .csrf { it.disable() }
             .authorizeHttpRequests {
                 it.requestMatchers(HttpMethod.OPTIONS).permitAll()
-//                it.anyRequest().permitAll()
+              //it.anyRequest().permitAll()
                     .requestMatchers("/api/v1/user-profile/getMe").authenticated()
                     .requestMatchers("/api/v1/user-profile/getMeSimple").authenticated()
                     .requestMatchers(HttpMethod.GET, "/**").permitAll()

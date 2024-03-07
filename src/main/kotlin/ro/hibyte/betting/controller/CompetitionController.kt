@@ -3,6 +3,7 @@ package ro.hibyte.betting.controller
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
@@ -33,18 +34,26 @@ class CompetitionController {
         name?.let { competitionService.searchByName(name) } ?: competitionService.getAll()
 
     @GetMapping("/{id}")
-    fun getOneById(@PathVariable id: Long): CompetitionDTO = competitionMapper.mapCompetitionToCompetitionDto(competitionService.getOne(id))
+    fun getOneById(@PathVariable id: Long): CompetitionDTO =
+        competitionMapper.mapCompetitionToCompetitionDto(competitionService.getOne(id))
 
     @PostMapping
-    fun create(@RequestBody dto: CompetitionRequest): ResponseEntity<CompetitionDTO> = ResponseEntity(competitionMapper.mapCompetitionToCompetitionDto(competitionService.create(dto)), HttpStatus.CREATED)
+    fun create(@RequestBody dto: CompetitionRequest, authentication: Authentication): ResponseEntity<CompetitionDTO> =
+        ResponseEntity(
+            competitionMapper.mapCompetitionToCompetitionDto(competitionService.create(dto, authentication.name)),
+            HttpStatus.CREATED
+        )
 
     @PutMapping("/{id}")
-    fun update(@PathVariable id: Long, @RequestBody dto: CompetitionRequest): ResponseEntity<CompetitionDTO> = ResponseEntity(competitionMapper.mapCompetitionToCompetitionDto(competitionService.update(id, dto)), HttpStatus.OK)
+    fun update(@PathVariable id: Long, @RequestBody dto: CompetitionRequest, authentication: Authentication): ResponseEntity<CompetitionDTO> =
+        ResponseEntity(
+            competitionMapper.mapCompetitionToCompetitionDto(competitionService.update(id, dto, authentication.name)),
+            HttpStatus.OK
+        )
 
     @DeleteMapping("/{id}")
-    fun deleteOne(@PathVariable id: Long): ResponseEntity<Void> {
-        competitionService.delete(id)
-
+    fun deleteOne(@PathVariable id: Long, authentication: Authentication): ResponseEntity<Void> {
+        competitionService.delete(id, authentication.name)
         return ResponseEntity(HttpStatus.NO_CONTENT)
     }
 }
