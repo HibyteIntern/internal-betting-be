@@ -27,10 +27,13 @@ class CompetitionMapper {
     fun getEventsFromNames(eventNames: List<String>): List<Event> = eventNames.map { name -> eventRepository.findByName(name).first() }.toList()
 
     fun getUserProfilesFromUserGroupNamesAndUsernames(userGroupNames: List<String>, usernames: List<String>): List<UserProfile> {
-        val userGroupsFromNames = userGroupNames.map{ groupName -> userGroupRepository.findByGroupName(groupName) }.toList()
+        val uniqueUserGroupNames = userGroupNames.toMutableSet().toMutableList()
+        val userGroupsFromNames = uniqueUserGroupNames.map{ groupName -> userGroupRepository.findByGroupName(groupName) }.toList()
         val userGroupSet = userGroupsFromNames.map { group -> group.users }
+
+        val uniqueUsernames = usernames.toMutableSet().toMutableList()
         val usersFromGroups = userGroupSet.flatMap { it.orEmpty() }.toSet().toList()
-        val userProfilesFromGivenUsernames = usernames.mapNotNull{ username -> userProfileRepository.findByUsername(username) }.toList()
+        val userProfilesFromGivenUsernames = uniqueUsernames.mapNotNull{ username -> userProfileRepository.findByUsername(username) }.toList()
 
         return listOf(usersFromGroups, userProfilesFromGivenUsernames).flatten().toSet().toList()
     }
@@ -43,8 +46,8 @@ class CompetitionMapper {
             description = competitionRequest.description,
             creator = creator,
             users = getUserProfilesFromUserGroupNamesAndUsernames(competitionRequest.userGroups, competitionRequest.userProfiles),
-            userGroups = competitionRequest.userGroups,
-            userProfiles = competitionRequest.userProfiles,
+            userGroups = competitionRequest.userGroups.toMutableSet().toList(),
+            userProfiles = competitionRequest.userProfiles.toMutableSet().toList(),
             events = getEventsFromNames(competitionRequest.events),
             created = Timestamp(System.currentTimeMillis()),
             lastModified = Timestamp(System.currentTimeMillis()),
@@ -61,8 +64,8 @@ class CompetitionMapper {
             description = competitionRequest.description,
             creator = creator,
             users = getUserProfilesFromUserGroupNamesAndUsernames(competitionRequest.userGroups, competitionRequest.userProfiles),
-            userGroups = competitionRequest.userGroups,
-            userProfiles = competitionRequest.userProfiles,
+            userGroups = competitionRequest.userGroups.toMutableSet().toList(),
+            userProfiles = competitionRequest.userProfiles.toMutableSet().toList(),
             events = getEventsFromNames(competitionRequest.events),
             created = initialCompetition.created,
             lastModified = Timestamp(System.currentTimeMillis()),
